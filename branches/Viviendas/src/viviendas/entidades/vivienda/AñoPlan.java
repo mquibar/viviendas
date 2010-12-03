@@ -1,13 +1,13 @@
 package viviendas.entidades.vivienda;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-
 
 /**
  * @author Manuel
@@ -15,20 +15,32 @@ import javax.persistence.OneToMany;
  * @created 02-dic-2010 12:40:00
  */
 @Entity
-public class AñoPlan {
-        @Id
-        @GeneratedValue(strategy=GenerationType.IDENTITY)
-        private Long id;
-	private Integer año;
-	private Integer cantViviendasAño;
-        @OneToMany
-	public List<ProvinciaCiudad> listaProvinciaCiudad;
-        @OneToMany
-	public List<DistribucionProvincial> listaDistribucionProvincial;
-        @OneToMany
-	public List<CiudadSector> listaCiudadSector;
-	@OneToMany
-        public List<SectorOperatoria> listaSectorOperatoria;
+public class AñoPlan implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Integer año;
+    private Integer cantViviendasAño;
+    @OneToMany(mappedBy = "añoPlan")
+    public List<ProvinciaCiudad> listaProvinciaCiudad;
+    @OneToMany(mappedBy = "añoPlan")
+    public List<DistribucionProvincial> listaDistribucionProvincial;
+    @OneToMany(mappedBy = "añoPlan")
+    public List<CiudadSector> listaCiudadSector;
+    @OneToMany(mappedBy = "añoPlan")
+    public List<SectorOperatoria> listaSectorOperatoria;
+    @ManyToOne
+    private Plan plan;
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
 
     public Integer getAño() {
         return año;
@@ -85,7 +97,4 @@ public class AñoPlan {
     public void setListaSectorOperatoria(List<SectorOperatoria> listaSectorOperatoria) {
         this.listaSectorOperatoria = listaSectorOperatoria;
     }
-
-        
-
 }

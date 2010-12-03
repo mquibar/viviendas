@@ -1,5 +1,6 @@
 package viviendas.entidades.vivienda;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,13 +14,15 @@ import javax.persistence.ManyToMany;
  * @created 02-dic-2010 12:40:01
  */
 @Entity
-public class Provincia {
+public class Provincia implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     @ManyToMany
-    public List<Cuidad> listaCuidad;
+    public List<Ciudad> listaCuidad;
 
 
     public Provincia() {
@@ -33,11 +36,11 @@ public class Provincia {
         this.id = id;
     }
 
-    public List<Cuidad> getListaCuidad() {
+    public List<Ciudad> getListaCuidad() {
         return listaCuidad;
     }
 
-    public void setListaCuidad(List<Cuidad> listaCuidad) {
+    public void setListaCuidad(List<Ciudad> listaCuidad) {
         this.listaCuidad = listaCuidad;
     }
 

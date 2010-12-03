@@ -28,7 +28,7 @@ class ConectionAdmin {
     }
 
     private ConectionAdmin() {
-        _factory = Persistence.createEntityManagerFactory("MalbecPU");
+        _factory = Persistence.createEntityManagerFactory("ViviendasPU");
 
     }
 

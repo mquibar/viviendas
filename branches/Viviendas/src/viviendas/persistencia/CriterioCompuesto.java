@@ -5,7 +5,6 @@
 package viviendas.persistencia;
 
 import java.util.Map;
-import persistencia.Criterio;
 
 /**
  *
@@ -16,28 +15,15 @@ public class CriterioCompuesto extends Criterio {
     private Criterio criterioA;
     private Criterio criterioB;
 
-    public CriterioCompuesto() {
-    }
-
-    public Criterio getCriterioA() {
-        return criterioA;
-    }
-
-    public void setCriterioA(Criterio criterioA) {
+    public CriterioCompuesto(Criterio criterioA, String operador, Criterio criterioB) {
         this.criterioA = criterioA;
-    }
-
-    public Criterio getCriterioB() {
-        return criterioB;
-    }
-
-    public void setCriterioB(Criterio criterioB) {
         this.criterioB = criterioB;
+        this.operador = operador;
     }
 
     @Override
     public String toString() {
-        return criterioA + " " + operador + " " + criterioB;
+        return criterioA.toString() + " " + operador + " " + criterioB.toString();
     }
 
     @Override
@@ -46,7 +32,4 @@ public class CriterioCompuesto extends Criterio {
         mapa.putAll(criterioB.toMap());
         return mapa;
     }
-
-
-
 }

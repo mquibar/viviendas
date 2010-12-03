@@ -1,11 +1,12 @@
 package viviendas.entidades.flujo;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import viviendas.entidades.vivienda.Cuidad;
+import viviendas.entidades.vivienda.Ciudad;
 
 /**
  * @author Administrador
@@ -13,23 +14,23 @@ import viviendas.entidades.vivienda.Cuidad;
  * @created 02-dic-2010 12:42:09
  */
 @Entity
-public class Valor {
-
+public class Valor implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double porcentaje;
     @ManyToOne
-    public Cuidad cuidad;
+    public Ciudad cuidad;
 
     public Valor() {
     }
 
-    public Cuidad getCuidad() {
+    public Ciudad getCuidad() {
         return cuidad;
     }
 
-    public void setCuidad(Cuidad cuidad) {
+    public void setCuidad(Ciudad cuidad) {
         this.cuidad = cuidad;
     }
 

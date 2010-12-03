@@ -2,8 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package persistencia;
+package viviendas.persistencia;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,55 +19,38 @@ public class Criterio {
     private String atributo;
     protected String operador;
     private Object valor;
-    private String gui;
+    private static Integer contador = 0;
+    private Integer gui;
 
-    public Criterio() {
-        gui=UUID.randomUUID().toString();
-    }
-
-    public String getAtributo() {
-        return atributo;
-    }
-
-    public void setAtributo(String atributo) {
+    public Criterio(String atributo, String operador, Object valor) {
         this.atributo = atributo;
-    }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
         this.operador = operador;
+        if (valor.getClass().getSimpleName().equals("String") || valor.getClass().getSimpleName().equals("Date")) {
+            this.valor = "'" + valor + "'";
+        }
+        gui = ++contador;
     }
 
-    public Object getValor() {
-        return valor;
-    }
-
-    public void setValor(Object valor) {
-        this.valor = valor;
+    protected Criterio() {
     }
 
     @Override
     public String toString() {
-        return "o."+atributo + operador + ":"+gui;
+        return "o." + atributo + operador + ":" + atributo + gui.toString();
     }
 
-    public Map<String,Object> toMap(){
+    public Map<String, Object> toMap() {
         Map mapa = new HashMap<String, Object>();
-        mapa.put(gui, valor);
+        mapa.put(atributo + gui, valor);
         return mapa;
     }
 
-    public List<Object[]> toParameter(){
+    public List<Object[]> toParameter() {
         List<Object[]> sql = new ArrayList<Object[]>();
         Object[] o = new Object[2];
-        o[0]=gui;
-        o[1]=valor;
+        o[0] = atributo + gui;
+        o[1] = valor;
         sql.add(o);
-        
         return sql;
     }
-
 }

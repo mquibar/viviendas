@@ -1,5 +1,6 @@
 package viviendas.entidades.vivienda;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,25 +13,36 @@ import javax.persistence.ManyToOne;
  * @created 02-dic-2010 12:40:02
  */
 @Entity
-public class CiudadSector {
+public class CiudadSector implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double porcentajeDistribucion;
     @ManyToOne
-    public SectorEconomico sectorEconomico;
+    private SectorEconomico sectorEconomico;
     @ManyToOne
-    public Cuidad cuidad;
+    private Ciudad cuidad;
+    @ManyToOne
+    private AñoPlan añoPlan;
+
+    public AñoPlan getAñoPlan() {
+        return añoPlan;
+    }
+
+    public void setAñoPlan(AñoPlan añoPlan) {
+        this.añoPlan = añoPlan;
+    }
 
     public CiudadSector() {
     }
 
-    public Cuidad getCuidad() {
+    public Ciudad getCuidad() {
         return cuidad;
     }
 
-    public void setCuidad(Cuidad cuidad) {
+    public void setCuidad(Ciudad cuidad) {
         this.cuidad = cuidad;
     }
 

@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Query;
-import persistencia.Criterio;
 import viviendas.persistencia.exceptions.PersistException;
 
 /**
@@ -58,7 +57,8 @@ class Intermediario<E> {
     }
 
     public List<E> findByCriterio(Criterio criterio) {
-        String sql = "SELECT o FROM " + _clase + " o WHERE " + criterio;
+        String sql = "SELECT o FROM " + _clase + " o WHERE " + criterio.toString();
+        System.out.println(sql.toString());
         Query q = ConectionAdmin.getInstance().getManager().createQuery(sql);
         Map<String, Object> mapa = criterio.toMap();
         Iterator<String> it = mapa.keySet().iterator();
@@ -70,7 +70,7 @@ class Intermediario<E> {
         return q.getResultList();
     }
 
-    public List<E> excecuteQuery(String query){
+    public List<E> excecuteQuery(String query) {
         return ConectionAdmin.getInstance().getManager().createQuery(query).getResultList();
     }
 }
