@@ -2,11 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package viviendas.persistencia;
 
 import java.util.HashMap;
 import java.util.Map;
+import viviendas.entidades.vivienda.Usuario;
 
 /**
  *
@@ -14,49 +14,41 @@ import java.util.Map;
  */
 class MediatorFactory {
 
-    private static MediatorFactory _instance=null;
-    private Map<Class,Intermediario> _mapaIntermediarios;
+    private static MediatorFactory _instance = null;
+    private Map<Class, Intermediario> _mapaIntermediarios;
 
-    private enum intermediarios{CAJA,PARCELA,TIPOUVA}
+    private enum intermediarios {
+
+        Usuario
+    }
 
     private MediatorFactory() {
-        _mapaIntermediarios=new HashMap<Class, Intermediario>();
+        _mapaIntermediarios = new HashMap<Class, Intermediario>();
     }
 
     public static MediatorFactory getInstance() {
-        if(_instance==null)
-            _instance=new MediatorFactory();
+        if (_instance == null) {
+            _instance = new MediatorFactory();
+        }
         return _instance;
     }
-    
-    public Intermediario getMediator(Object c){
-        
-        if( _mapaIntermediarios.containsKey(c.getClass()))
-            return _mapaIntermediarios.get(c.getClass());
-        
-        Intermediario interm=null;
-        
-        switch(intermediarios.valueOf(c.getClass().getSimpleName())){
-            /*
-            case CAJA:
-                interm=new Intermediario<Caja>("Caja");
-                break;
-            case PARCELA:
-                interm=new Intermediario<Parcela>("Parcela");
-                break;
-            case TIPOUVA:
-                interm=new Intermediario<TipoUva>("TipoUva");
-                break;
-            */
+
+    public Intermediario getMediator(Class c) {
+
+        if (_mapaIntermediarios.containsKey(c)) {
+            return _mapaIntermediarios.get(c);
         }
-        
-        _mapaIntermediarios.put(c.getClass(), interm);
+
+        Intermediario interm = null;
+
+        switch (intermediarios.valueOf(c.getSimpleName())) {
+            case Usuario:
+                interm = new Intermediario<Usuario>("Usuario");
+                break;
+        }
+
+        _mapaIntermediarios.put(c, interm);
         return interm;
-        
+
     }
-
-
-
-
-
 }

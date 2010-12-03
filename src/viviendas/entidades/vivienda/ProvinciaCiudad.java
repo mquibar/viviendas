@@ -1,9 +1,11 @@
 package viviendas.entidades.vivienda;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -12,25 +14,36 @@ import javax.persistence.OneToOne;
  * @created 02-dic-2010 12:40:01
  */
 @Entity
-public class ProvinciaCiudad {
+public class ProvinciaCiudad implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double porcentajeDistribucion;
-    @OneToOne
-    public Cuidad cuidad;
-    @OneToOne
+    @ManyToOne
+    public Ciudad cuidad;
+    @ManyToOne
     public Provincia provincia;
+    @ManyToOne
+    private AñoPlan añoPlan;
+
+    public AñoPlan getAñoPlan() {
+        return añoPlan;
+    }
+
+    public void setAñoPlan(AñoPlan añoPlan) {
+        this.añoPlan = añoPlan;
+    }
 
     public ProvinciaCiudad() {
     }
 
-    public Cuidad getCuidad() {
+    public Ciudad getCuidad() {
         return cuidad;
     }
 
-    public void setCuidad(Cuidad cuidad) {
+    public void setCuidad(Ciudad cuidad) {
         this.cuidad = cuidad;
     }
 
@@ -57,6 +70,4 @@ public class ProvinciaCiudad {
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }
-
-    
 }

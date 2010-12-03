@@ -1,5 +1,6 @@
 package viviendas.entidades.vivienda;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,14 +13,25 @@ import javax.persistence.ManyToOne;
  * @created 02-dic-2010 12:40:01
  */
 @Entity
-public class DistribucionProvincial {
+public class DistribucionProvincial implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double porcentajeDistribucion;
     @ManyToOne
-    public Provincia provincia;
+    private Provincia provincia;
+    @ManyToOne
+    private AñoPlan añoPlan;
+
+    public AñoPlan getAñoPlan() {
+        return añoPlan;
+    }
+
+    public void setAñoPlan(AñoPlan añoPlan) {
+        this.añoPlan = añoPlan;
+    }
 
     public DistribucionProvincial() {
     }

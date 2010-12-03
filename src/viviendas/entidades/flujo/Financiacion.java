@@ -1,11 +1,12 @@
 package viviendas.entidades.flujo;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import viviendas.entidades.vivienda.Cuidad;
+import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.SectorEconomico;
 
@@ -15,14 +16,14 @@ import viviendas.entidades.vivienda.SectorEconomico;
  * @created 02-dic-2010 12:41:58
  */
 @Entity
-public class Financiacion {
-
+public class Financiacion implements Serializable {
+private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     @ManyToOne
-    public Cuidad cuidad;
+    public Ciudad cuidad;
     @ManyToOne
     public SectorEconomico sectorEconomico;
     @ManyToOne
@@ -33,11 +34,11 @@ public class Financiacion {
     public Financiacion() {
     }
 
-    public Cuidad getCuidad() {
+    public Ciudad getCuidad() {
         return cuidad;
     }
 
-    public void setCuidad(Cuidad cuidad) {
+    public void setCuidad(Ciudad cuidad) {
         this.cuidad = cuidad;
     }
 
