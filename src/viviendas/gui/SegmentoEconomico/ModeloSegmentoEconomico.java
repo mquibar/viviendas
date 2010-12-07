@@ -3,23 +3,23 @@
  * and open the template in the editor.
  */
 
-package viviendas.gui.Operatoria;
+package viviendas.gui.SegmentoEconomico;
 
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import viviendas.entidades.vivienda.Operatoria;
+import viviendas.entidades.vivienda.SectorEconomico;
 
 /**
  *
  * @author Maximiliano.
  */
-public class ModeloOperatoria extends AbstractTableModel{
-    private List<Operatoria> list = new ArrayList();
+public class ModeloSegmentoEconomico extends AbstractTableModel{
+    private List<SectorEconomico> list = new ArrayList();
     private List<String> columnas = new ArrayList();
 
-    public ModeloOperatoria() {
-        this.columnas.add("Operatoria");
+    public ModeloSegmentoEconomico() {
+        this.columnas.add("Nombre");
         obtenerDatos();
     }
 
@@ -28,11 +28,6 @@ public class ModeloOperatoria extends AbstractTableModel{
             return 0;
 
         return list.size();
-    }
-
-    @Override
-    public String getColumnName(int column) {
-        return columnas.get(column);
     }
 
     public int getColumnCount() {
@@ -46,17 +41,13 @@ public class ModeloOperatoria extends AbstractTableModel{
         return list.get(rowIndex).getNombre();
     }
 
-    public void obtenerDatos(){
-        //solicitamos los datos al controlador....
-        Operatoria op = new Operatoria();
-        op.setId(1L);
-        op.setNombre("Vivienda");
-        Operatoria op1 = new Operatoria();
-        op1.setId(2L);
-        op1.setNombre("Cooperativa");
+    @Override
+    public String getColumnName(int column) {
+        return columnas.get(column);
+    }
 
-        list.add(op);
-        list.add(op1);
+    private void obtenerDatos(){
         fireTableDataChanged();
     }
+
 }
