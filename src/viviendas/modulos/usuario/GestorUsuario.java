@@ -32,9 +32,12 @@ public class GestorUsuario {
         String contraseña = dto.getContrasenia();
 
         Criterio criterio = new Criterio("usuario", "=", dto.getNombreUsuario());
-        List<Usuario> usuarios = (List<Usuario>) Facade.getInstance().findByCriterio(Usuario.class, criterio);
+        Criterio criterio1 = new Criterio("contraseña", "=", dto.getContrasenia());
+        CriterioCompuesto cc = new CriterioCompuesto(criterio, "AND", criterio1);
+        List<Usuario> usuarios = (List<Usuario>) Facade.getInstance().findByCriterio(Usuario.class, cc);
         if (usuarios.isEmpty()) {
             throw new Exception("El usuario o contraseña son incorrectos");
         }
+        System.out.println(usuarios);
     }
 }

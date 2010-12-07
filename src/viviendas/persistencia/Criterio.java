@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  *
@@ -25,9 +24,7 @@ public class Criterio {
     public Criterio(String atributo, String operador, Object valor) {
         this.atributo = atributo;
         this.operador = operador;
-        if (valor.getClass().getSimpleName().equals("String") || valor.getClass().getSimpleName().equals("Date")) {
-            this.valor = "'" + valor + "'";
-        }
+        this.valor = valor;
         gui = ++contador;
     }
 

@@ -10,6 +10,7 @@
       <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/viviendas"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
