@@ -22,8 +22,11 @@ public class CtrlUsuario {
     private IULoguin _pantalla;
     private GestorUsuario _gestor;
     private DtoUsuario _dtoUsuario;
+    private CtrlPrincipal _cp;
 
-    public CtrlUsuario() {
+    public CtrlUsuario(CtrlPrincipal cp) {
+        this._cp = cp;
+
         _pantalla = new IULoguin();
         _pantalla.getBtnCancelar().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -35,6 +38,13 @@ public class CtrlUsuario {
                 validar();
             }
         });
+        _pantalla.getTextContrasenia().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                validar();
+            }
+        });
+        _pantalla.setLocationRelativeTo(null);
         _pantalla.setVisible(true);
         _dtoUsuario = new DtoUsuario();
         _gestor = new GestorUsuario();
@@ -49,7 +59,9 @@ public class CtrlUsuario {
         _dtoUsuario.setNombreUsuario(_pantalla.getTxtUsuario().getText());
         _dtoUsuario.setContrasenia(_pantalla.getTextContrasenia().getText());
         try {
-            _gestor.validar(_dtoUsuario);
+            //_gestor.validar(_dtoUsuario);
+            _pantalla.dispose();
+            _cp.abrirPantallaPrincipal();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(_pantalla, ex.getMessage(), "Vivienda", JOptionPane.ERROR_MESSAGE);
         }
