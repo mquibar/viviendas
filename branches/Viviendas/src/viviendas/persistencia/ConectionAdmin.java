@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author desarrollo
+ * @author desarrollo1
  */
 class ConectionAdmin {
 
