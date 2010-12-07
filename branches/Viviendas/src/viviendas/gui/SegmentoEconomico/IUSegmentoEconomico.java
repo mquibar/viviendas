@@ -4,23 +4,23 @@
  */
 
 /*
- * IUTipoCiudad.java
+ * IUSegmentoEconomico.java
  *
- * Created on 02-dic-2010, 12:40:11
+ * Created on 02/12/2010, 18:05:58
  */
 
-package viviendas.gui.TipoCiudad;
+package viviendas.gui.SegmentoEconomico;
 
 import javax.swing.JButton;
 
 /**
  *
- * @author Administrador
+ * @author Admin
  */
-public class IUTipoCiudad extends javax.swing.JInternalFrame {
+public class IUSegmentoEconomico extends javax.swing.JInternalFrame {
 
-    /** Creates new form IUTipoCiudad */
-    public IUTipoCiudad() {
+    /** Creates new form IUSegmentoEconomico */
+    public IUSegmentoEconomico() {
         initComponents();
     }
 
@@ -43,16 +43,16 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbTiposCiudades = new javax.swing.JTable();
+        tbSegmentoEconomico = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Tipos de Ciudades");
+        setTitle("Segmento Económico");
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
-        tbTiposCiudades.setModel(new javax.swing.table.DefaultTableModel(
+        tbSegmentoEconomico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,7 +63,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbTiposCiudades);
+        jScrollPane1.setViewportView(tbSegmentoEconomico);
 
         btnCancelar.setText("Cancelar");
 
@@ -100,6 +100,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 821, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -107,6 +108,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 416, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,7 +124,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbTiposCiudades;
+    private javax.swing.JTable tbSegmentoEconomico;
     // End of variables declaration//GEN-END:variables
 
 }
