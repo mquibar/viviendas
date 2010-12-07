@@ -23,13 +23,13 @@ private static final long serialVersionUID = 1L;
     private Long id;
     private String nombre;
     @ManyToOne
-    public Ciudad cuidad;
+    private Ciudad cuidad;
     @ManyToOne
-    public SectorEconomico sectorEconomico;
+    private SectorEconomico sectorEconomico;
     @ManyToOne
-    public Operatoria operatoria;
+    private Operatoria operatoria;
     @ManyToOne
-    public DistribucionFinanciacion distribucionFinanciacion;
+    private DistribucionFinanciacion distribucionFinanciacion;
 
     public Financiacion() {
     }
@@ -81,4 +81,34 @@ private static final long serialVersionUID = 1L;
     public void setSectorEconomico(SectorEconomico sectorEconomico) {
         this.sectorEconomico = sectorEconomico;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Financiacion other = (Financiacion) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+
+
 }

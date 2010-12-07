@@ -59,4 +59,33 @@ public class DistribucionProvincial implements Serializable {
     public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DistribucionProvincial other = (DistribucionProvincial) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(porcentajeDistribucion);
+    }
+
+
 }

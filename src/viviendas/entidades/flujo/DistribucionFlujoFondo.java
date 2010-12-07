@@ -23,12 +23,81 @@ public class DistribucionFlujoFondo implements Serializable {
     private Long id;
     private Double porcentajeDistribucion;
     @OneToOne
-    public SectorEconomico sectorEconomico;
+    private SectorEconomico sectorEconomico;
     @OneToOne
-    public Operatoria operatoria;
+    private Operatoria operatoria;
     @OneToOne
-    public FlujoFondo flujoFondo;
+    private FlujoFondo flujoFondo;
 
     public DistribucionFlujoFondo() {
     }
+
+    public FlujoFondo getFlujoFondo() {
+        return flujoFondo;
+    }
+
+    public void setFlujoFondo(FlujoFondo flujoFondo) {
+        this.flujoFondo = flujoFondo;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Operatoria getOperatoria() {
+        return operatoria;
+    }
+
+    public void setOperatoria(Operatoria operatoria) {
+        this.operatoria = operatoria;
+    }
+
+    public Double getPorcentajeDistribucion() {
+        return porcentajeDistribucion;
+    }
+
+    public void setPorcentajeDistribucion(Double porcentajeDistribucion) {
+        this.porcentajeDistribucion = porcentajeDistribucion;
+    }
+
+    public SectorEconomico getSectorEconomico() {
+        return sectorEconomico;
+    }
+
+    public void setSectorEconomico(SectorEconomico sectorEconomico) {
+        this.sectorEconomico = sectorEconomico;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DistribucionFlujoFondo other = (DistribucionFlujoFondo) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(porcentajeDistribucion);
+    }
+
+
 }

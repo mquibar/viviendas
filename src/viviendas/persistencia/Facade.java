@@ -6,6 +6,7 @@ package viviendas.persistencia;
 
 import java.util.List;
 import systemException.SystemException;
+import viviendas.persistencia.exceptions.PersistException;
 
 /**
  *
@@ -37,11 +38,15 @@ public class Facade {
         ConectionAdmin.getInstance().rollbackTransaction();
     }
 
-    public void guardar(Object entidad) throws SystemException {
-//        MediatorFactory.getInstance().getMediator(entidad).guardar(entidad);
+    public void guardar(Object entidad) throws PersistException {
+        MediatorFactory.getInstance().getMediator(entidad.getClass()).guardar(entidad);
     }
 
-    public void actualizar(Object entidad) throws SystemException {
+    public void eliminar(Object entidad) throws PersistException{
+        MediatorFactory.getInstance().getMediator(entidad.getClass()).eliminar(entidad);
+    }
+
+    public void actualizar(Object entidad) throws PersistException {
         MediatorFactory.getInstance().getMediator(entidad.getClass()).actualizar(entidad);
     }
 
@@ -57,8 +62,7 @@ public class Facade {
         return MediatorFactory.getInstance().getMediator(entidad).findByCriterio(criterio);
     }
 
-    public List excecuteQuery(Object entidad, String query) {
-//        return MediatorFactory.getInstance().getMediator(entidad).excecuteQuery(query);
-        return null;
+    public List excecuteQuery(Class entidad, String query) {
+        return MediatorFactory.getInstance().getMediator(entidad).excecuteQuery(query);
     }
 }

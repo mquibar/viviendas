@@ -16,9 +16,9 @@ public class DistribucionCiudad implements Serializable {
     private Long id;
     private Double porcentajeDistribucion;
     @ManyToOne
-    public Ciudad cuidad;
+    private Ciudad cuidad;
     @ManyToOne
-    public Provincia provincia;
+    private DistribucionProvincial distribucionProvincial;
     @ManyToOne
     private AñoPlan añoPlan;
 
@@ -57,11 +57,40 @@ public class DistribucionCiudad implements Serializable {
         this.porcentajeDistribucion = porcentajeDistribucion;
     }
 
-    public Provincia getProvincia() {
-        return provincia;
+    public DistribucionProvincial getDistribucionProvincial() {
+        return distribucionProvincial;
     }
 
-    public void setProvincia(Provincia provincia) {
-        this.provincia = provincia;
+    public void setDistribucionProvincial(DistribucionProvincial distribucionProvincial) {
+        this.distribucionProvincial = distribucionProvincial;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DistribucionCiudad other = (DistribucionCiudad) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(porcentajeDistribucion);
+    }
+
+
 }

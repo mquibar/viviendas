@@ -22,13 +22,23 @@ public class Plan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String nombre;
     private Integer añosPlan;
+    private Integer numeroViviendas;
     @ManyToOne
-    public TipoPlan tipoPlan;
+    private TipoPlan tipoPlan;
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
-    public List<AñoPlan> listaAñoPlan;
+    private List<AñoPlan> listaAñoPlan;
 
     public Plan() {
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public Integer getAñosPlan() {
@@ -37,6 +47,14 @@ public class Plan implements Serializable {
 
     public void setAñosPlan(Integer añosPlan) {
         this.añosPlan = añosPlan;
+    }
+
+    public Integer getNumeroViviendas() {
+        return numeroViviendas;
+    }
+
+    public void setNumeroViviendas(Integer numeroViviendas) {
+        this.numeroViviendas = numeroViviendas;
     }
 
     public Long getId() {
@@ -62,4 +80,33 @@ public class Plan implements Serializable {
     public void setTipoPlan(TipoPlan tipoPlan) {
         this.tipoPlan = tipoPlan;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Plan other = (Plan) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+
 }
