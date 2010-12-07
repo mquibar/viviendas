@@ -18,7 +18,6 @@ class MediatorFactory {
     private Map<Class, Intermediario> _mapaIntermediarios;
 
     private enum intermediarios {
-
         Usuario
     }
 

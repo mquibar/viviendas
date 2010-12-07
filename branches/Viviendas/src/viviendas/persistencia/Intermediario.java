@@ -24,7 +24,7 @@ class Intermediario<E> {
 
     public List<E> findAll() {
         try {
-            Query q = ConectionAdmin.getInstance().getManager().createNamedQuery(_clase + ".findAll");
+            Query q = ConectionAdmin.getInstance().getManager().createQuery("SELECT o FROM "+_clase + " o");
             return q.getResultList();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -66,6 +66,7 @@ class Intermediario<E> {
         while (it.hasNext()) {
             key = it.next();
             q.setParameter(key, mapa.get(key));
+            System.out.println(key +"    "+ mapa.get(key));
         }
         return q.getResultList();
     }

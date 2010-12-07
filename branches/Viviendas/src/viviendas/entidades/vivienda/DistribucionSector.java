@@ -7,13 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- * @author Manuel
- * @version 1.0
- * @created 02-dic-2010 12:40:02
- */
 @Entity
-public class CiudadSector implements Serializable {
+public class DistribucionSector implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -23,9 +18,9 @@ public class CiudadSector implements Serializable {
     @ManyToOne
     private SectorEconomico sectorEconomico;
     @ManyToOne
-    private Ciudad cuidad;
-    @ManyToOne
     private AñoPlan añoPlan;
+    @ManyToOne
+    private DistribucionCiudad distribucionCiudad;
 
     public AñoPlan getAñoPlan() {
         return añoPlan;
@@ -35,16 +30,18 @@ public class CiudadSector implements Serializable {
         this.añoPlan = añoPlan;
     }
 
-    public CiudadSector() {
+    public DistribucionSector() {
     }
 
-    public Ciudad getCuidad() {
-        return cuidad;
+    public DistribucionCiudad getDistribucionCiudad() {
+        return distribucionCiudad;
     }
 
-    public void setCuidad(Ciudad cuidad) {
-        this.cuidad = cuidad;
+    public void setDistribucionCiudad(DistribucionCiudad distribucionCiudad) {
+        this.distribucionCiudad = distribucionCiudad;
     }
+
+
 
     public Long getId() {
         return id;

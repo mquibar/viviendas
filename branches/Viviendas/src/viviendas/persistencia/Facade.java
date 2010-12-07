@@ -42,17 +42,15 @@ public class Facade {
     }
 
     public void actualizar(Object entidad) throws SystemException {
-//        MediatorFactory.getInstance().getMediator(entidad).actualizar(entidad);
+        MediatorFactory.getInstance().getMediator(entidad.getClass()).actualizar(entidad);
     }
 
-    public List findAll(Object entidad) {
-//        return MediatorFactory.getInstance().getMediator(entidad).findAll();
-        return null;
+    public List findAll(Class entidad) {
+        return MediatorFactory.getInstance().getMediator(entidad).findAll();
     }
 
-    public List findInOrder(Object entidad, String orden) {
-//            return MediatorFactory.getInstance().getMediator(entidad).findInOrden(orden);
-        return null;
+    public List findInOrder(Class entidad, String orden) {
+            return MediatorFactory.getInstance().getMediator(entidad).findInOrden(orden);
     }
 
     public List findByCriterio(Class entidad, Criterio criterio) {

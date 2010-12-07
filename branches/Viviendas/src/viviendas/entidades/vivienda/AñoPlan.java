@@ -24,13 +24,13 @@ public class AñoPlan implements Serializable {
     private Integer año;
     private Integer cantViviendasAño;
     @OneToMany(mappedBy = "añoPlan")
-    public List<ProvinciaCiudad> listaProvinciaCiudad;
+    public List<DistribucionCiudad> listaProvinciaCiudad;
     @OneToMany(mappedBy = "añoPlan")
     public List<DistribucionProvincial> listaDistribucionProvincial;
     @OneToMany(mappedBy = "añoPlan")
-    public List<CiudadSector> listaCiudadSector;
+    public List<DistribucionSector> listaCiudadSector;
     @OneToMany(mappedBy = "añoPlan")
-    public List<SectorOperatoria> listaSectorOperatoria;
+    public List<DistribucionOperatoria> listaSectorOperatoria;
     @ManyToOne
     private Plan plan;
 
@@ -66,11 +66,11 @@ public class AñoPlan implements Serializable {
         this.id = id;
     }
 
-    public List<CiudadSector> getListaCiudadSector() {
+    public List<DistribucionSector> getListaCiudadSector() {
         return listaCiudadSector;
     }
 
-    public void setListaCiudadSector(List<CiudadSector> listaCiudadSector) {
+    public void setListaCiudadSector(List<DistribucionSector> listaCiudadSector) {
         this.listaCiudadSector = listaCiudadSector;
     }
 
@@ -82,19 +82,19 @@ public class AñoPlan implements Serializable {
         this.listaDistribucionProvincial = listaDistribucionProvincial;
     }
 
-    public List<ProvinciaCiudad> getListaProvinciaCiudad() {
+    public List<DistribucionCiudad> getListaProvinciaCiudad() {
         return listaProvinciaCiudad;
     }
 
-    public void setListaProvinciaCiudad(List<ProvinciaCiudad> listaProvinciaCiudad) {
+    public void setListaProvinciaCiudad(List<DistribucionCiudad> listaProvinciaCiudad) {
         this.listaProvinciaCiudad = listaProvinciaCiudad;
     }
 
-    public List<SectorOperatoria> getListaSectorOperatoria() {
+    public List<DistribucionOperatoria> getListaSectorOperatoria() {
         return listaSectorOperatoria;
     }
 
-    public void setListaSectorOperatoria(List<SectorOperatoria> listaSectorOperatoria) {
+    public void setListaSectorOperatoria(List<DistribucionOperatoria> listaSectorOperatoria) {
         this.listaSectorOperatoria = listaSectorOperatoria;
     }
 }

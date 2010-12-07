@@ -7,13 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-/**
- * @author Manuel
- * @version 1.0
- * @created 02-dic-2010 12:40:02
- */
 @Entity
-public class SectorOperatoria implements Serializable {
+public class DistribucionCiudad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -21,9 +16,9 @@ public class SectorOperatoria implements Serializable {
     private Long id;
     private Double porcentajeDistribucion;
     @ManyToOne
-    private SectorEconomico sectorEconomico;
+    public Ciudad cuidad;
     @ManyToOne
-    private Operatoria operatoria;
+    public Provincia provincia;
     @ManyToOne
     private AñoPlan añoPlan;
 
@@ -35,20 +30,23 @@ public class SectorOperatoria implements Serializable {
         this.añoPlan = añoPlan;
     }
 
+    public DistribucionCiudad() {
+    }
+
+    public Ciudad getCuidad() {
+        return cuidad;
+    }
+
+    public void setCuidad(Ciudad cuidad) {
+        this.cuidad = cuidad;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Operatoria getOperatoria() {
-        return operatoria;
-    }
-
-    public void setOperatoria(Operatoria operatoria) {
-        this.operatoria = operatoria;
     }
 
     public Double getPorcentajeDistribucion() {
@@ -59,14 +57,11 @@ public class SectorOperatoria implements Serializable {
         this.porcentajeDistribucion = porcentajeDistribucion;
     }
 
-    public SectorEconomico getSectorEconomico() {
-        return sectorEconomico;
+    public Provincia getProvincia() {
+        return provincia;
     }
 
-    public void setSectorEconomico(SectorEconomico sectorEconomico) {
-        this.sectorEconomico = sectorEconomico;
-    }
-
-    public SectorOperatoria() {
+    public void setProvincia(Provincia provincia) {
+        this.provincia = provincia;
     }
 }

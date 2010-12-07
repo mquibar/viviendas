@@ -6,15 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
-/**
- * @author Manuel
- * @version 1.0
- * @created 02-dic-2010 12:40:01
- */
 @Entity
-public class ProvinciaCiudad implements Serializable {
+public class DistribucionOperatoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,9 +16,9 @@ public class ProvinciaCiudad implements Serializable {
     private Long id;
     private Double porcentajeDistribucion;
     @ManyToOne
-    public Ciudad cuidad;
+    private DistribucionSector distribucionSector;
     @ManyToOne
-    public Provincia provincia;
+    private Operatoria operatoria;
     @ManyToOne
     private AñoPlan añoPlan;
 
@@ -36,23 +30,20 @@ public class ProvinciaCiudad implements Serializable {
         this.añoPlan = añoPlan;
     }
 
-    public ProvinciaCiudad() {
-    }
-
-    public Ciudad getCuidad() {
-        return cuidad;
-    }
-
-    public void setCuidad(Ciudad cuidad) {
-        this.cuidad = cuidad;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Operatoria getOperatoria() {
+        return operatoria;
+    }
+
+    public void setOperatoria(Operatoria operatoria) {
+        this.operatoria = operatoria;
     }
 
     public Double getPorcentajeDistribucion() {
@@ -63,11 +54,11 @@ public class ProvinciaCiudad implements Serializable {
         this.porcentajeDistribucion = porcentajeDistribucion;
     }
 
-    public Provincia getProvincia() {
-        return provincia;
+    public DistribucionSector getDistribucionSector() {
+        return distribucionSector;
     }
 
-    public void setProvincia(Provincia provincia) {
-        this.provincia = provincia;
+    public void setDistribucionSector(DistribucionSector distribucionSector) {
+        this.distribucionSector = distribucionSector;
     }
 }
