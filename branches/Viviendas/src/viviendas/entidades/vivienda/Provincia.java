@@ -15,15 +15,14 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Provincia implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     @ManyToMany
-    public List<Ciudad> listaCuidad;
-
+    private List<Ciudad> listaCuidad;
 
     public Provincia() {
     }
@@ -52,6 +51,31 @@ public class Provincia implements Serializable {
         this.nombre = nombre;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Provincia other = (Provincia) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 
 }

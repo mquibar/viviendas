@@ -42,6 +42,15 @@ class Intermediario<E> {
         }
     }
 
+    public void eliminar(E obj) throws PersistException{
+        try {
+            ConectionAdmin.getInstance().getManager().remove(obj);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            throw new PersistException("Eliminar", obj);
+        }
+    }
+
     public void actualizar(E obj) throws PersistException {
         try {
             ConectionAdmin.getInstance().getManager().merge(obj);

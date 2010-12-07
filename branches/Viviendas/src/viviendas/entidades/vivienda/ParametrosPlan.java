@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package viviendas.entidades.vivienda;
 
 import java.io.Serializable;
@@ -9,38 +10,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
- * @author batte
+ * @author desarrollo
  */
 @Entity
-public class Usuario implements Serializable {
-
+public class ParametrosPlan implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String usuario;
-    private String contraseña;
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-
-    
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
+    @ManyToOne
+    private Plan plan;
+    private String nombreParametro;
+    private Double porcenteaje;
 
     public Long getId() {
         return id;
@@ -49,6 +34,31 @@ public class Usuario implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getNombreParametro() {
+        return nombreParametro;
+    }
+
+    public void setNombreParametro(String nombreParametro) {
+        this.nombreParametro = nombreParametro;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public Double getPorcenteaje() {
+        return porcenteaje;
+    }
+
+    public void setPorcenteaje(Double porcenteaje) {
+        this.porcenteaje = porcenteaje;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -60,10 +70,10 @@ public class Usuario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
+        if (!(object instanceof ParametrosPlan)) {
             return false;
         }
-        Usuario other = (Usuario) object;
+        ParametrosPlan other = (ParametrosPlan) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -72,6 +82,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return usuario;
+        return nombreParametro;
     }
+
 }

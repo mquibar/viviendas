@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
 /**
  * @author Manuel
  * @version 1.0
@@ -18,18 +16,14 @@ import javax.persistence.OneToMany;
 @Entity
 public class LoQueFinancio implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private String nombre;
-    @OneToMany
-	public List<Valor> listaValor;
+    private String nombre;
 
-	public LoQueFinancio(){
-
-	}
+    public LoQueFinancio() {
+    }
 
     public Long getId() {
         return id;
@@ -37,14 +31,6 @@ public class LoQueFinancio implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Valor> getListaValor() {
-        return listaValor;
-    }
-
-    public void setListaValor(List<Valor> listaValor) {
-        this.listaValor = listaValor;
     }
 
     public String getNombre() {
@@ -55,5 +41,32 @@ public class LoQueFinancio implements Serializable {
         this.nombre = nombre;
     }
 
-        
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final LoQueFinancio other = (LoQueFinancio) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
+
+
 }
