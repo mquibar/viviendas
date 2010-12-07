@@ -3,6 +3,7 @@
   <persistence-unit name="ViviendasPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>viviendas.entidades.vivienda.Usuario</class>
+    <class>viviendas.entidades.vivienda.ParametrosPlan</class>
     <properties>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
