@@ -19,6 +19,8 @@ public class Ciudad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    private Integer desde;
+    private Integer hasta;
 
     public Ciudad() {
     }
@@ -30,6 +32,24 @@ public class Ciudad implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Integer getDesde() {
+        return desde;
+    }
+
+    public void setDesde(Integer desde) {
+        this.desde = desde;
+    }
+
+    public Integer getHasta() {
+        return hasta;
+    }
+
+    public void setHasta(Integer hasta) {
+        this.hasta = hasta;
+    }
+
+    
 
     public String getNombre() {
         return nombre;
