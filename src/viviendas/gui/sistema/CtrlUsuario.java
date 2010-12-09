@@ -7,9 +7,6 @@ package viviendas.gui.sistema;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import viviendas.modulos.usuario.GestorUsuario;
 import viviendas.gui.dto.DtoUsuario;
@@ -59,7 +56,7 @@ public class CtrlUsuario {
         _dtoUsuario.setNombreUsuario(_pantalla.getTxtUsuario().getText());
         _dtoUsuario.setContrasenia(_pantalla.getTextContrasenia().getText());
         try {
-            //_gestor.validar(_dtoUsuario);
+            _gestor.validar(_dtoUsuario);
             _pantalla.dispose();
             _cp.abrirPantallaPrincipal();
         } catch (Exception ex) {
@@ -67,5 +64,4 @@ public class CtrlUsuario {
         }
 
     }
-
 }
