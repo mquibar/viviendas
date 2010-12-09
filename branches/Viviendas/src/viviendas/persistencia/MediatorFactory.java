@@ -6,6 +6,7 @@ package viviendas.persistencia;
 
 import java.util.HashMap;
 import java.util.Map;
+import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Usuario;
 
 /**
@@ -18,7 +19,7 @@ class MediatorFactory {
     private Map<Class, Intermediario> _mapaIntermediarios;
 
     private enum intermediarios {
-        Usuario
+        Usuario, Operatoria
     }
 
     private MediatorFactory() {
@@ -42,7 +43,10 @@ class MediatorFactory {
 
         switch (intermediarios.valueOf(c.getSimpleName())) {
             case Usuario:
-                interm = new Intermediario<Usuario>("Usuario");
+                interm = new IntermediarioUsuario();
+                break;
+            case Operatoria:
+                interm = new IntermediarioOperatoria();
                 break;
         }
 
