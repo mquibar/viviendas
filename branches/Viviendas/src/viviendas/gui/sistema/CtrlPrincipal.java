@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package viviendas.gui.sistema;
 
 import java.awt.event.ActionEvent;
@@ -10,14 +5,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import viviendas.gui.FuentesFondos.CtrlFuenteFondo;
 import viviendas.gui.Operatoria.CtrlOperatoria;
-import viviendas.gui.Plan.CtrlPlan;
+import viviendas.gui.Plan.crear.CtrlPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
 
-/**
- *
- * @author Administrador
- */
 public class CtrlPrincipal {
     private IUPantallaPrincipal _pantalla;
     private static final String _VERSION = "Viviendas 1.0";
