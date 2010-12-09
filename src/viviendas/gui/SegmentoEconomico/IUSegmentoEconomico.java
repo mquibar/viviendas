@@ -12,6 +12,7 @@
 package viviendas.gui.SegmentoEconomico;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -32,6 +33,10 @@ public class IUSegmentoEconomico extends javax.swing.JInternalFrame {
         return btnCancelar;
     }
 
+    public JTable getTbSegmentoEconomico(){
+        return tbSegmentoEconomico;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -50,7 +55,7 @@ public class IUSegmentoEconomico extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Segmento Económico");
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         tbSegmentoEconomico.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,7 +105,6 @@ public class IUSegmentoEconomico extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 821, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,11 +112,10 @@ public class IUSegmentoEconomico extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();

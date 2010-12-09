@@ -5,22 +5,24 @@
 
 package viviendas.gui.TipoCiudad;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDesktopPane;
+import viviendas.gui.models.tables.ModeloTableCiudad;
 import viviendas.modulos.tipoCiudad.GestorTipoCiudad;
 
 /**
  *
- * @author Admin
+ * @author Maximiliano.
  */
 public class CtrlTipoCiudad {
     private IUTipoCiudad _pantalla;
     private GestorTipoCiudad _gestor;
+    private ModeloTableCiudad _modelo;
 
 
     public CtrlTipoCiudad(JDesktopPane desktop) {
+        _gestor = new GestorTipoCiudad();
         _pantalla = new IUTipoCiudad();
         _pantalla.getBtnCancelar().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -32,6 +34,8 @@ public class CtrlTipoCiudad {
                 guardar();
             }
         });
+        _modelo = new ModeloTableCiudad(_gestor.obtenerTiposCiudades());
+        _pantalla.getTbCiudad().setModel(_modelo);
         _pantalla.setVisible(true);
         desktop.add(_pantalla);
     }
