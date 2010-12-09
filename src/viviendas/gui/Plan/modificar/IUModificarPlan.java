@@ -6,13 +6,10 @@
 /*
  * IUModificarPlan.java
  *
- * Created on 07/12/2010, 13:26:25
+ * Created on 09/12/2010, 10:48:38
  */
 
 package viviendas.gui.Plan.modificar;
-
-import javax.swing.JButton;
-import javax.swing.JTable;
 
 /**
  *
@@ -33,85 +30,28 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
-
-        jScrollPane1 = new javax.swing.JScrollPane();
-        _tblPlane = new javax.swing.JTable();
-        _btnOpen = new javax.swing.JButton();
-        _btnCancel = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Abrir Plan");
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
-        _tblPlane.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(_tblPlane);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 234;
-        gridBagConstraints.ipady = 244;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
-        getContentPane().add(jScrollPane1, gridBagConstraints);
-
-        _btnOpen.setText("Abrir");
-        _btnOpen.setMaximumSize(new java.awt.Dimension(68, 29));
-        _btnOpen.setMinimumSize(new java.awt.Dimension(68, 29));
-        _btnOpen.setPreferredSize(new java.awt.Dimension(68, 29));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
-        getContentPane().add(_btnOpen, gridBagConstraints);
-
-        _btnCancel.setText("Cancelar");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 4);
-        getContentPane().add(_btnCancel, gridBagConstraints);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 649, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 454, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton _btnCancel;
-    private javax.swing.JButton _btnOpen;
-    private javax.swing.JTable _tblPlane;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getBtnCancel() {
-        return _btnCancel;
-    }
-
-    public JButton getBtnOpen() {
-        return _btnOpen;
-    }
-
-    public JTable getTblPlane() {
-        return _tblPlane;
-    }
-
-    
 }
