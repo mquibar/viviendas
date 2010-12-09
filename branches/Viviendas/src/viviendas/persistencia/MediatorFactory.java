@@ -17,7 +17,7 @@ class MediatorFactory {
     private Map<Class, Intermediario> _mapaIntermediarios;
 
     private enum intermediarios {
-        Usuario, Operatoria, SectorEconomico, TipoCiudad
+        USUARIO, OPERATORIA, SECTORECONOMICO, CIUDAD, PROVINCIA, TIPOPLAN
     }
 
     private MediatorFactory() {
@@ -39,18 +39,24 @@ class MediatorFactory {
 
         Intermediario interm = null;
 
-        switch (intermediarios.valueOf(c.getSimpleName())) {
-            case Usuario:
+        switch (intermediarios.valueOf(c.getSimpleName().toUpperCase())) {
+            case PROVINCIA:
+                interm = new IntermediarioProvincia();
+                break;
+            case CIUDAD:
+                interm = new IntermediarioCiudad();
+                break;
+            case USUARIO:
                 interm = new IntermediarioUsuario();
                 break;
-            case Operatoria:
+            case OPERATORIA:
                 interm = new IntermediarioOperatoria();
                 break;
-            case SectorEconomico:
+            case SECTORECONOMICO:
                 interm = new IntermediarioSectorEconomico();
                 break;
-            case TipoCiudad:
-                interm = new IntermediarioTipoCiudad();
+            case TIPOPLAN:
+                interm = new IntermediarioTipoPlan();
                 break;
         }
 
