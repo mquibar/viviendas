@@ -12,10 +12,11 @@
 package viviendas.gui.TipoCiudad;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
 
 /**
  *
- * @author Administrador
+ * @author Maximiliano.
  */
 public class IUTipoCiudad extends javax.swing.JInternalFrame {
 
@@ -30,6 +31,10 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
 
     public JButton getBtnCancelar(){
         return btnCancelar;
+    }
+
+    public JTable getTbCiudad(){
+        return tbTiposCiudades;
     }
 
     /** This method is called from within the constructor to
@@ -50,7 +55,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Tipos de Ciudades");
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         tbTiposCiudades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,7 +115,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
