@@ -14,7 +14,7 @@ import viviendas.persistencia.exceptions.PersistException;
  *
  * @author desarrollo
  */
-class Intermediario<E> {
+abstract class Intermediario<E> {
 
     protected String _clase;
 
