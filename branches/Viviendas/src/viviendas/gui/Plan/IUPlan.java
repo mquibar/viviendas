@@ -11,6 +11,13 @@
 
 package viviendas.gui.Plan;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Admin
@@ -34,15 +41,15 @@ public class IUPlan extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labNombre = new javax.swing.JLabel();
-        comTipoPlan = new javax.swing.JLabel();
+        labTipoPlan = new javax.swing.JLabel();
         labNroViviendasPorAño = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jTextField2 = new javax.swing.JTextField();
+        texNombre = new javax.swing.JTextField();
+        comTipoPlan = new javax.swing.JComboBox();
+        formatedViviendas = new javax.swing.JFormattedTextField();
+        spinAños = new javax.swing.JSpinner();
+        texTotalViviendas = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabProvincias = new javax.swing.JTable();
@@ -52,6 +59,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         btnQuitarTodas = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabProvinciasSeleccionadas = new javax.swing.JTable();
+        btnAceptar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Plan de Vivienda");
@@ -65,12 +73,12 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(labNombre, gridBagConstraints);
 
-        comTipoPlan.setText("Tipo");
+        labTipoPlan.setText("Tipo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        jPanel1.add(comTipoPlan, gridBagConstraints);
+        jPanel1.add(labTipoPlan, gridBagConstraints);
 
         labNroViviendasPorAño.setText("Viviendas x Año");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -93,35 +101,35 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanel1.add(jLabel5, gridBagConstraints);
 
-        jTextField1.setPreferredSize(new java.awt.Dimension(150, 27));
+        texNombre.setPreferredSize(new java.awt.Dimension(150, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        jPanel1.add(jTextField1, gridBagConstraints);
+        jPanel1.add(texNombre, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comTipoPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        jPanel1.add(jComboBox1, gridBagConstraints);
+        jPanel1.add(comTipoPlan, gridBagConstraints);
 
-        jFormattedTextField1.setPreferredSize(new java.awt.Dimension(150, 27));
+        formatedViviendas.setPreferredSize(new java.awt.Dimension(150, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        jPanel1.add(jFormattedTextField1, gridBagConstraints);
+        jPanel1.add(formatedViviendas, gridBagConstraints);
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), Byte.valueOf((byte)50), Byte.valueOf((byte)1)));
+        spinAños.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), Byte.valueOf((byte)50), Byte.valueOf((byte)1)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        jPanel1.add(jSpinner1, gridBagConstraints);
+        jPanel1.add(spinAños, gridBagConstraints);
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(150, 27));
+        texTotalViviendas.setPreferredSize(new java.awt.Dimension(150, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
-        jPanel1.add(jTextField2, gridBagConstraints);
+        jPanel1.add(texTotalViviendas, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -198,31 +206,137 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel3, gridBagConstraints);
 
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        getContentPane().add(btnAceptar, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregarTodas;
     private javax.swing.JButton btnQuitar;
     private javax.swing.JButton btnQuitarTodas;
-    private javax.swing.JLabel comTipoPlan;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JComboBox comTipoPlan;
+    private javax.swing.JFormattedTextField formatedViviendas;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel labNombre;
     private javax.swing.JLabel labNroViviendasPorAño;
+    private javax.swing.JLabel labTipoPlan;
+    private javax.swing.JSpinner spinAños;
     private javax.swing.JTable tabProvincias;
     private javax.swing.JTable tabProvinciasSeleccionadas;
+    private javax.swing.JTextField texNombre;
+    private javax.swing.JTextField texTotalViviendas;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public void setBtnAceptar(JButton btnAceptar) {
+        this.btnAceptar = btnAceptar;
+    }
+
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public void setBtnAgregar(JButton btnAgregar) {
+        this.btnAgregar = btnAgregar;
+    }
+
+    public JButton getBtnAgregarTodas() {
+        return btnAgregarTodas;
+    }
+
+    public void setBtnAgregarTodas(JButton btnAgregarTodas) {
+        this.btnAgregarTodas = btnAgregarTodas;
+    }
+
+    public JButton getBtnQuitar() {
+        return btnQuitar;
+    }
+
+    public void setBtnQuitar(JButton btnQuitar) {
+        this.btnQuitar = btnQuitar;
+    }
+
+    public JButton getBtnQuitarTodas() {
+        return btnQuitarTodas;
+    }
+
+    public void setBtnQuitarTodas(JButton btnQuitarTodas) {
+        this.btnQuitarTodas = btnQuitarTodas;
+    }
+
+    public JComboBox getComTipoPlan() {
+        return comTipoPlan;
+    }
+
+    public void setComTipoPlan(JComboBox comTipoPlan) {
+        this.comTipoPlan = comTipoPlan;
+    }
+
+    public JFormattedTextField getFormatedViviendas() {
+        return formatedViviendas;
+    }
+
+    public void setFormatedViviendas(JFormattedTextField formatedViviendas) {
+        this.formatedViviendas = formatedViviendas;
+    }
+
+    public JSpinner getSpinAños() {
+        return spinAños;
+    }
+
+    public void setSpinAños(JSpinner spinAños) {
+        this.spinAños = spinAños;
+    }
+
+    public JTable getTabProvinciasSeleccionadas() {
+        return tabProvinciasSeleccionadas;
+    }
+
+    public void setTabProvinciasSeleccionadas(JTable tabProvinciasSeleccionadas) {
+        this.tabProvinciasSeleccionadas = tabProvinciasSeleccionadas;
+    }
+
+    public JTextField getTexNombre() {
+        return texNombre;
+    }
+
+    public void setTexNombre(JTextField texNombre) {
+        this.texNombre = texNombre;
+    }
+
+    public JTextField getTexTotalViviendas() {
+        return texTotalViviendas;
+    }
+
+    public void setTexTotalViviendas(JTextField texTotalViviendas) {
+        this.texTotalViviendas = texTotalViviendas;
+    }
+
 
 }
