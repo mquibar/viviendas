@@ -5,7 +5,6 @@
 package viviendas.persistencia;
 
 import java.util.List;
-import systemException.SystemException;
 import viviendas.persistencia.exceptions.PersistException;
 
 /**
