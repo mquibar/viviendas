@@ -36,6 +36,7 @@ public class ModelTableDistribucionProvincial extends AbstractTableModel<Distrib
             case 1:
                 distribucion.setPorcentajeDistribucion((Double) aValue);
         }
+        fireTableDataChanged();
     }
 
     @Override

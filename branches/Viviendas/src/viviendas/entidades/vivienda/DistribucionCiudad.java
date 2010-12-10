@@ -2,6 +2,7 @@ package viviendas.entidades.vivienda;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ public class DistribucionCiudad implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double porcentajeDistribucion;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.EAGER)
     private Ciudad cuidad;
     @ManyToOne
     private DistribucionProvincial distribucionProvincial;
