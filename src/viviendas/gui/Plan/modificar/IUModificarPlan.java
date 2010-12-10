@@ -11,6 +11,12 @@
 
 package viviendas.gui.Plan.modificar;
 
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author desarrollo
@@ -42,10 +48,18 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         _txtTotViviendas = new javax.swing.JTextField();
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        _scrOperatoria = new javax.swing.JScrollPane();
+        _tblOperatoria = new javax.swing.JTable();
+        _scrSectEconom = new javax.swing.JScrollPane();
+        _tblSectorEconomico = new javax.swing.JTable();
+        _scrCiudad = new javax.swing.JScrollPane();
+        _tblCiudad = new javax.swing.JTable();
+        _scrProvincia = new javax.swing.JScrollPane();
         _tblProvincia = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        _scrAño = new javax.swing.JScrollPane();
         _tblAños = new javax.swing.JTable();
+        _btnOk = new javax.swing.JButton();
+        _btnCancel = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -108,6 +122,8 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(jLabel4, gridBagConstraints);
+
+        _txtTotViviendas.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -118,6 +134,54 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         jPanel1.add(_txtTotViviendas, gridBagConstraints);
 
         jLayeredPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+
+        _tblOperatoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        _scrOperatoria.setViewportView(_tblOperatoria);
+
+        _scrOperatoria.setBounds(120, 0, 260, 440);
+        jLayeredPane1.add(_scrOperatoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        _tblSectorEconomico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        _scrSectEconom.setViewportView(_tblSectorEconomico);
+
+        _scrSectEconom.setBounds(90, 0, 260, 450);
+        jLayeredPane1.add(_scrSectEconom, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        _tblCiudad.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        _scrCiudad.setViewportView(_tblCiudad);
+
+        _scrCiudad.setBounds(60, 0, 260, 460);
+        jLayeredPane1.add(_scrCiudad, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         _tblProvincia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,10 +194,10 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(_tblProvincia);
+        _scrProvincia.setViewportView(_tblProvincia);
 
-        jScrollPane2.setBounds(50, 0, 260, 370);
-        jLayeredPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        _scrProvincia.setBounds(30, 0, 260, 470);
+        jLayeredPane1.add(_scrProvincia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         _tblAños.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,10 +210,14 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(_tblAños);
+        _scrAño.setViewportView(_tblAños);
 
-        jScrollPane1.setBounds(0, 0, 210, 420);
-        jLayeredPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        _scrAño.setBounds(0, 0, 210, 480);
+        jLayeredPane1.add(_scrAño, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        _btnOk.setText("Guardar");
+
+        _btnCancel.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,16 +227,27 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(_btnOk)
+                    .addComponent(_btnCancel))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(_btnOk)
+                        .addGap(52, 52, 52)
+                        .addComponent(_btnCancel)))
+                .addContainerGap())
         );
 
         pack();
@@ -176,9 +255,19 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _btnCancel;
+    private javax.swing.JButton _btnOk;
+    private javax.swing.JScrollPane _scrAño;
+    private javax.swing.JScrollPane _scrCiudad;
+    private javax.swing.JScrollPane _scrOperatoria;
+    private javax.swing.JScrollPane _scrProvincia;
+    private javax.swing.JScrollPane _scrSectEconom;
     private javax.swing.JSpinner _spnAños;
     private javax.swing.JTable _tblAños;
+    private javax.swing.JTable _tblCiudad;
+    private javax.swing.JTable _tblOperatoria;
     private javax.swing.JTable _tblProvincia;
+    private javax.swing.JTable _tblSectorEconomico;
     private javax.swing.JTextField _txtNombre;
     private javax.swing.JTextField _txtTipo;
     private javax.swing.JTextField _txtTotViviendas;
@@ -188,8 +277,70 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
+
+    public JButton getBtnCancel() {
+        return _btnCancel;
+    }
+
+    public JButton getBtnOk() {
+        return _btnOk;
+    }
+
+    public JScrollPane getScrAño() {
+        return _scrAño;
+    }
+
+    public JScrollPane getScrCiudad() {
+        return _scrCiudad;
+    }
+
+    public JScrollPane getScrOperatoria() {
+        return _scrOperatoria;
+    }
+
+    public JScrollPane getScrProvincia() {
+        return _scrProvincia;
+    }
+
+    public JScrollPane getScrSectEconom() {
+        return _scrSectEconom;
+    }
+
+    public JSpinner getSpnAños() {
+        return _spnAños;
+    }
+
+    public JTable getTblAños() {
+        return _tblAños;
+    }
+
+    public JTable getTblCiudad() {
+        return _tblCiudad;
+    }
+
+    public JTable getTblOperatoria() {
+        return _tblOperatoria;
+    }
+
+    public JTable getTblProvincia() {
+        return _tblProvincia;
+    }
+
+    public JTable getTblSectorEconomico() {
+        return _tblSectorEconomico;
+    }
+
+    public JTextField getTxtNombre() {
+        return _txtNombre;
+    }
+
+    public JTextField getTxtTipo() {
+        return _txtTipo;
+    }
+
+    public JTextField getTxtTotViviendas() {
+        return _txtTotViviendas;
+    }
 
 }
