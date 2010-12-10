@@ -28,9 +28,9 @@ public class AñoPlan implements Serializable {
     @OneToMany(mappedBy = "añoPlan")
     private List<DistribucionProvincial> listaDistribucionProvincial;
     @OneToMany(mappedBy = "añoPlan")
-    private List<DistribucionSector> listaCiudadSector;
+    private List<DistribucionSector> distribucionSector;
     @OneToMany(mappedBy = "añoPlan")
-    private List<DistribucionOperatoria> listaSectorOperatoria;
+    private List<DistribucionOperatoria> distribucionOperatoria;
     @ManyToOne
     private Plan plan;
 
@@ -66,14 +66,6 @@ public class AñoPlan implements Serializable {
         this.id = id;
     }
 
-    public List<DistribucionSector> getListaCiudadSector() {
-        return listaCiudadSector;
-    }
-
-    public void setListaCiudadSector(List<DistribucionSector> listaCiudadSector) {
-        this.listaCiudadSector = listaCiudadSector;
-    }
-
     public List<DistribucionProvincial> getListaDistribucionProvincial() {
         return listaDistribucionProvincial;
     }
@@ -90,13 +82,23 @@ public class AñoPlan implements Serializable {
         this.listaProvinciaCiudad = listaProvinciaCiudad;
     }
 
-    public List<DistribucionOperatoria> getListaSectorOperatoria() {
-        return listaSectorOperatoria;
+    public List<DistribucionOperatoria> getDistribucionOperatoria() {
+        return distribucionOperatoria;
     }
 
-    public void setListaSectorOperatoria(List<DistribucionOperatoria> listaSectorOperatoria) {
-        this.listaSectorOperatoria = listaSectorOperatoria;
+    public void setDistribucionOperatoria(List<DistribucionOperatoria> distribucionOperatoria) {
+        this.distribucionOperatoria = distribucionOperatoria;
     }
+
+    public List<DistribucionSector> getDistribucionSector() {
+        return distribucionSector;
+    }
+
+    public void setDistribucionSector(List<DistribucionSector> distribucionSector) {
+        this.distribucionSector = distribucionSector;
+    }
+
+    
 
     @Override
     public int hashCode() {

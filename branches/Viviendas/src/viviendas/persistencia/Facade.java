@@ -29,7 +29,7 @@ public class Facade {
         ConectionAdmin.getInstance().beginTransaction();
     }
 
-    public void commitTx() throws Exception {
+    public void commitTx() throws PersistException {
         ConectionAdmin.getInstance().commitTransaction();
     }
 

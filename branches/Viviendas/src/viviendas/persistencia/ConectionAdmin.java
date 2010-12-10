@@ -7,6 +7,7 @@ package viviendas.persistencia;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import viviendas.persistencia.exceptions.PersistException;
 
 /**
  *
@@ -53,7 +54,7 @@ class ConectionAdmin {
         }
     }
 
-    public synchronized void commitTransaction() throws Exception {
+    public synchronized void commitTransaction() throws PersistException  {
         if (_contador > 1) {
             _contador--;
             return;
@@ -63,7 +64,7 @@ class ConectionAdmin {
                 _manager.getTransaction().commit();
             } catch (Exception ex) {
                 ex.printStackTrace();
-                throw new Exception(ex);
+                throw new PersistException("Commit", ex);
             } finally {
                 _contador = 0;
             }
