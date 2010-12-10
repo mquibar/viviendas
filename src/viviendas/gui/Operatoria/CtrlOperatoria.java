@@ -9,6 +9,8 @@ import viviendas.gui.models.tables.ModeloTablaOperatoria;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+import viviendas.entidades.vivienda.Operatoria;
 import viviendas.modulos.Operatoria.GestorOperatoria;
 
 /**
@@ -59,17 +61,20 @@ public class CtrlOperatoria {
         _pantalla.dispose();
     }
 
-    private void guardar(){        
-        _gestor.guardar();
+    private void guardar(){
+        _gestor.guardar(_modelo.getAllRow());
     }
 
-    private void agregar(){        
-
+    private void agregar(){
+        Operatoria op = new Operatoria();
+        _modelo.addRow(op);
+        System.out.println("ID: " + op.getId());
     }
 
     private void quitar(){
-
+        if(_pantalla.getTbOperatoria().getSelectedRow() > -1)
+            _modelo.delRow(_pantalla.getTbOperatoria().getSelectedRow());
+        else
+            JOptionPane.showMessageDialog(_pantalla, "No ha seleccionado ninguna fila.", "Viviendas", JOptionPane.ERROR_MESSAGE);
     }
-
-
 }
