@@ -1,5 +1,7 @@
 package viviendas.gui.Plan.crear;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import viviendas.gui.models.tables.ModelTableProvincia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,7 @@ import viviendas.entidades.vivienda.TipoPlan;
 import viviendas.gui.models.combos.ModelComboTipoPlan;
 import viviendas.gui.models.tables.ModelTableDistribucionProvincial;
 import viviendas.modulos.Plan.GestorCrearPlan;
+import viviendas.persistencia.exceptions.PersistException;
 
 public class CtrlPlan {
 
@@ -71,7 +74,11 @@ public class CtrlPlan {
             return;
         }
         dto.setTipo(plan);
-        _gestor.crearNuevoPlan(dto);
+        try {
+            _gestor.crearNuevoPlan(dto);
+        } catch (PersistException ex) {
+            mostrarError(ex.getLocalizedMessage());
+        }
     }
 
     private void agregarProvincia() {
