@@ -36,5 +36,8 @@ public class SubscriptorTotal {
             iCalculable.actualizarPorcentaje();
         }
     }
+    public void remove(ICalculable calculable){
+        icalculables.remove(calculable);
+    }
 
 }

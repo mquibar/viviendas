@@ -78,7 +78,7 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 100);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 150);
         getContentPane().add(_btnOpen, gridBagConstraints);
 
         _btnCancel.setText("Cancelar");

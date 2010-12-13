@@ -60,6 +60,9 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         _tblAños = new javax.swing.JTable();
         _btnOk = new javax.swing.JButton();
         _btnCancel = new javax.swing.JButton();
+        _txtTotal = new javax.swing.JTextField();
+        _btnDropDetails = new javax.swing.JButton();
+        _btnViewDetails = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -219,20 +222,37 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
         _btnCancel.setText("Cancelar");
 
+        _txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("% Total"));
+        _txtTotal.setEnabled(false);
+
+        _btnDropDetails.setText("<<");
+        _btnDropDetails.setEnabled(false);
+
+        _btnViewDetails.setText(">>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(_btnOk)
-                    .addComponent(_btnCancel))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(_btnDropDetails)
+                            .addComponent(_btnViewDetails))
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(_txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(_btnOk)
+                        .addGap(18, 18, 18)
+                        .addComponent(_btnCancel)
+                        .addGap(129, 129, 129))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,13 +261,19 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
+                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(_btnOk)
+                                .addComponent(_btnCancel))
+                            .addComponent(_txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
-                        .addComponent(_btnOk)
-                        .addGap(52, 52, 52)
-                        .addComponent(_btnCancel)))
-                .addContainerGap())
+                        .addGap(281, 281, 281)
+                        .addComponent(_btnViewDetails)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(_btnDropDetails)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,7 +282,9 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton _btnCancel;
+    private javax.swing.JButton _btnDropDetails;
     private javax.swing.JButton _btnOk;
+    private javax.swing.JButton _btnViewDetails;
     private javax.swing.JScrollPane _scrAño;
     private javax.swing.JScrollPane _scrCiudad;
     private javax.swing.JScrollPane _scrOperatoria;
@@ -271,6 +299,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
     private javax.swing.JTextField _txtNombre;
     private javax.swing.JTextField _txtTipo;
     private javax.swing.JTextField _txtTotViviendas;
+    private javax.swing.JTextField _txtTotal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -341,6 +370,18 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
     public JTextField getTxtTotViviendas() {
         return _txtTotViviendas;
+    }
+
+    public JButton getBtnDropDetails() {
+        return _btnDropDetails;
+    }
+
+    public JButton getBtnViewDetails() {
+        return _btnViewDetails;
+    }
+
+    public JTextField getTxtTotal() {
+        return _txtTotal;
     }
 
     }
