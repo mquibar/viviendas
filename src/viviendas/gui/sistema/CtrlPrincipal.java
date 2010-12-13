@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import viviendas.gui.FuentesFondos.CtrlFuenteFondo;
 import viviendas.gui.Operatoria.CtrlOperatoria;
 import viviendas.gui.Plan.crear.CtrlPlan;
+import viviendas.gui.Plan.modificar.ctrlAbrirPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
 
@@ -58,6 +59,12 @@ public class CtrlPrincipal {
                 abrirIUPlan();
             }
         });
+        _pantalla.getMnuAbrirPlan().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUAbrirPlan();
+            }
+        });
 
     }
 
@@ -83,6 +90,10 @@ public class CtrlPrincipal {
 
     private void abrirIUPlan(){
         new CtrlPlan(_pantalla.getDesktopPane());
+    }
+
+    private void abrirIUAbrirPlan(){
+        new ctrlAbrirPlan(_pantalla.getDesktopPane());
     }
 
     /**

@@ -7,6 +7,7 @@ package viviendas.gui.Plan.modificar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JDesktopPane;
 import viviendas.gui.models.tables.ModelTablePlan;
 import viviendas.modulos.Plan.modificar.GestorModificarPlan;
 
@@ -18,11 +19,15 @@ public class ctrlAbrirPlan {
     private IUAbrirPlan _pantalla;
     private ModelTablePlan _tablaPlan;
     private GestorModificarPlan _gestor;
+    private JDesktopPane _panel;
 
-    public ctrlAbrirPlan() {
+    public ctrlAbrirPlan(JDesktopPane panel) {
         _pantalla = new IUAbrirPlan();
-        cargarPantalla();
         _gestor = new GestorModificarPlan();
+        cargarPantalla();
+        panel.add(_pantalla);
+        _pantalla.setVisible(true);
+        _panel=panel;
     }
 
     private void cargarPantalla(){
@@ -48,7 +53,8 @@ public class ctrlAbrirPlan {
         if(idx<0)
             return;
         _gestor.cargarPlan(_tablaPlan.getSelectedIndex(idx));
-        new ctrlModificarPlan(_gestor);
+        new ctrlModificarPlan(_gestor,_panel);
+        _pantalla.dispose();
         /**
          * ACA REALIZO LA LLAMADA AL NUEVO CONTROL PARA REALIZAR LAS MODIFICACIONES NECESARIAS.
          */

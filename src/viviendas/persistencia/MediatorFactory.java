@@ -6,6 +6,11 @@ package viviendas.persistencia;
 
 import java.util.HashMap;
 import java.util.Map;
+import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.Operatoria;
+import viviendas.entidades.vivienda.Plan;
+import viviendas.entidades.vivienda.Provincia;
+import viviendas.entidades.vivienda.Usuario;
 
 /**
  *
@@ -43,16 +48,16 @@ class MediatorFactory {
 
         switch (intermediarios.valueOf(c.getSimpleName().toUpperCase())) {
             case PROVINCIA:
-                interm = new IntermediarioProvincia();
+                interm = new Intermediario<Provincia>(c.getSimpleName());
                 break;
             case CIUDAD:
                 interm = new IntermediarioCiudad();
                 break;
             case USUARIO:
-                interm = new IntermediarioUsuario();
+                interm = new Intermediario<Usuario>(c.getSimpleName());
                 break;
             case OPERATORIA:
-                interm = new IntermediarioOperatoria();
+                interm = new Intermediario<Operatoria>(c.getSimpleName());
                 break;
             case SECTORECONOMICO:
                 interm = new IntermediarioSectorEconomico();
@@ -73,10 +78,10 @@ class MediatorFactory {
                 interm = new IntermediarioDistribucionSector();
                 break;
             case PLAN:
-                interm = new IntermediarioPlan();
+                interm = new Intermediario<Plan>(c.getSimpleName());
                 break;
             case AÑOPLAN:
-                interm = new IntermediarioAñoPlan();
+                interm = new Intermediario<AñoPlan>("AñoPlan");
                 break;
             case PARAMETROSPLAN:
                 interm = new IntermediarioParametrosPlan();

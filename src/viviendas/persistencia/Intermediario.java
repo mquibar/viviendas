@@ -14,7 +14,7 @@ import viviendas.persistencia.exceptions.PersistException;
  *
  * @author desarrollo
  */
-abstract class Intermediario<E> {
+class Intermediario<E> {
 
     protected String _clase;
 
@@ -67,7 +67,6 @@ abstract class Intermediario<E> {
 
     public List<E> findByCriterio(Criterio criterio) {
         String sql = "SELECT o FROM " + _clase + " o WHERE " + criterio.toString();
-        System.out.println(sql.toString());
         Query q = ConectionAdmin.getInstance().getManager().createQuery(sql);
         Map<String, Object> mapa = criterio.toMap();
         Iterator<String> it = mapa.keySet().iterator();
@@ -75,7 +74,6 @@ abstract class Intermediario<E> {
         while (it.hasNext()) {
             key = it.next();
             q.setParameter(key, mapa.get(key));
-            System.out.println(key +"    "+ mapa.get(key));
         }
         return q.getResultList();
     }
