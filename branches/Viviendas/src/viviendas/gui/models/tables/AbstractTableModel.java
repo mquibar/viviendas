@@ -69,6 +69,11 @@ public abstract class AbstractTableModel<E> extends javax.swing.table.AbstractTa
         return _lista;
     }
 
+    public void setList(List<E> lista){
+        _lista = lista;
+        fireTableDataChanged();
+    }
+
     public void clear(){
         if(_lista == null)
             return;
