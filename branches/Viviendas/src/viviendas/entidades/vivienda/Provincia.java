@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 /**
  * @author Manuel
@@ -24,6 +25,8 @@ public class Provincia implements Serializable {
     private String nombre;
     @ManyToMany
     private List<Ciudad> listaCuidad;
+    @OneToOne
+    private ParametrosPlan parametro;
 
     public Provincia() {
     }
@@ -52,8 +55,14 @@ public class Provincia implements Serializable {
         this.listaCuidad = listaCuidad;
     }
 
-    
+    public ParametrosPlan getParametro() {
+        return parametro;
+    }
 
+    public void setParametro(ParametrosPlan parametro) {
+        this.parametro = parametro;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
