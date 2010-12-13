@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package viviendas.gui.Plan.crear;
+package viviendas.gui.tool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,9 @@ public class SubscriptorTotal {
         icalculables.add(calculable);
     }
 
-    public void notificar(Double porcentaje){
+    public void notificar(){
         for (ICalculable iCalculable : icalculables) {
-            iCalculable.mostrarTotalPorcentaje(porcentaje);
+            iCalculable.actualizarPorcentaje();
         }
     }
 
