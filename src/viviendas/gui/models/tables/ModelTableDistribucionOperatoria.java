@@ -47,4 +47,16 @@ public class ModelTableDistribucionOperatoria extends AbstractTableModel<Distrib
         _lista.get(rowIndex).setPorcentajeDistribucion(Double.valueOf(aValue.toString()));
         fireTableDataChanged();
     }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return String.class;
+            case 1:
+                return Double.class;
+            default:
+                return Object.class;
+        }
+    }
 }

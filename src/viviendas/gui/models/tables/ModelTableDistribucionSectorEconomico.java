@@ -14,7 +14,7 @@ import viviendas.entidades.vivienda.DistribucionSector;
  */
 public class ModelTableDistribucionSectorEconomico extends AbstractTableModel<DistribucionSector>{
 
-    public ModelTableDistribucionSectorEconomico(List<DistribucionSector> lista, String[] columnNames) {
+    public ModelTableDistribucionSectorEconomico(List<DistribucionSector> lista) {
         super(lista,"Sector","% Distribución");
     }
 

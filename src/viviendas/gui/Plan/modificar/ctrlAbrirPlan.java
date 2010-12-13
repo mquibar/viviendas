@@ -48,6 +48,7 @@ public class ctrlAbrirPlan {
         if(idx<0)
             return;
         _gestor.cargarPlan(_tablaPlan.getSelectedIndex(idx));
+        new ctrlModificarPlan(_gestor);
         /**
          * ACA REALIZO LA LLAMADA AL NUEVO CONTROL PARA REALIZAR LAS MODIFICACIONES NECESARIAS.
          */
