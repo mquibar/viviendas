@@ -17,6 +17,8 @@ class MediatorFactory {
     private Map<Class, Intermediario> _mapaIntermediarios;
 
     private enum intermediarios {
+
+        DISTRIBUCIONCIUDAD, DISTRIBUCIONPROVINCIAL, DISTRIBUCIONSECTOR, DISTRIBUCIONOPERATORIA, PLAN, AÑOPLAN,
         USUARIO, OPERATORIA, SECTORECONOMICO, CIUDAD, PROVINCIA, TIPOPLAN
     }
 
@@ -57,6 +59,24 @@ class MediatorFactory {
                 break;
             case TIPOPLAN:
                 interm = new IntermediarioTipoPlan();
+                break;
+            case DISTRIBUCIONCIUDAD:
+                interm = new IntermediarioDistribucionCiudad();
+                break;
+            case DISTRIBUCIONOPERATORIA:
+                interm = new IntermediarioDistribucionOperatoria();
+                break;
+            case DISTRIBUCIONPROVINCIAL:
+                interm = new IntermediarioDistribucionProvincial();
+                break;
+            case DISTRIBUCIONSECTOR:
+                interm = new IntermediarioDistribucionSector();
+                break;
+            case PLAN:
+                interm = new IntermediarioPlan();
+                break;
+            case AÑOPLAN:
+                interm = new IntermediarioAñoPlan();
                 break;
         }
 

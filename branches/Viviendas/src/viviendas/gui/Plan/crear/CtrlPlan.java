@@ -1,7 +1,6 @@
 package viviendas.gui.Plan.crear;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Color;
 import viviendas.gui.models.tables.ModelTableProvincia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +16,7 @@ import viviendas.gui.models.tables.ModelTableDistribucionProvincial;
 import viviendas.modulos.Plan.GestorCrearPlan;
 import viviendas.persistencia.exceptions.PersistException;
 
-public class CtrlPlan {
+public class CtrlPlan implements ICalculable {
 
     private IUPlan _pantalla;
     private GestorCrearPlan _gestor;
@@ -28,6 +27,7 @@ public class CtrlPlan {
         _pantalla.getTabProvincias().setModel(new ModelTableProvincia(_gestor.buscarProvincias()));
         _pantalla.getTabProvinciasSeleccionadas().setModel(new ModelTableDistribucionProvincial(new ArrayList<DistribucionProvincial>()));
         _pantalla.getComTipoPlan().setModel(new ModelComboTipoPlan(_gestor.buscarTiposPlanes()));
+        SubscriptorTotal.getInstance().añadir(this);
         _pantalla.getBtnAceptar().addActionListener(new java.awt.event.ActionListener() {
 
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,21 +70,23 @@ public class CtrlPlan {
         dto.setDistribucionProvincial(((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).getAllRow());
         TipoPlan plan = ((ModelComboTipoPlan) _pantalla.getComTipoPlan().getModel()).getSelected();
         if (plan == null) {
-            mostrarError("Seleccione un Tipo del Plan");
+            mostrarMensaje("Seleccione un Tipo del Plan");
             return;
         }
         dto.setTipo(plan);
         try {
             _gestor.crearNuevoPlan(dto);
+            mostrarMensaje("Se ha guardado el Plan correctamente");
+            _pantalla.dispose();
         } catch (PersistException ex) {
-            mostrarError(ex.getLocalizedMessage());
+            mostrarMensaje(ex.getLocalizedMessage());
         }
     }
 
     private void agregarProvincia() {
         int index = _pantalla.getTabProvincias().getSelectedRow();
         if (index == -1) {
-            mostrarError("Por Favor seleccione una provincia");
+            mostrarMensaje("Por Favor seleccione una provincia");
         } else {
             Provincia provincia = ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).getSelectedIndex(index);
             DistribucionProvincial distribucion = new DistribucionProvincial();
@@ -110,9 +112,10 @@ public class CtrlPlan {
     private void quitarProvincia() {
         int index = _pantalla.getTabProvinciasSeleccionadas().getSelectedRow();
         if (index == -1) {
-            mostrarError("Por Favor seleccione una provincia");
+            mostrarMensaje("Por Favor seleccione una provincia");
         } else {
             DistribucionProvincial distribucion = ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).getSelectedIndex(index);
+            SubscriptorTotal.getInstance().notificar(-distribucion.getPorcentajeDistribucion());
             ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).addRow(distribucion.getProvincia());
             ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).delRow(distribucion);
         }
@@ -126,9 +129,27 @@ public class CtrlPlan {
         }
         ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).addAll(listaProvincia);
         ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).clear();
+        SubscriptorTotal.getInstance().notificar(new Double(0));
     }
 
-    private void mostrarError(String string) {
+    private void mostrarMensaje(String string) {
         JOptionPane.showMessageDialog(_pantalla, string, "", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void mostrarTotalPorcentaje(Double porcentajeTotal) {
+        _pantalla.getFormatedTotal().setValue(porcentajeTotal);
+        _pantalla.getTexRestante().setText(Double.toString(100 - porcentajeTotal));
+        if (new Double(100).compareTo(porcentajeTotal) == 0) {
+            _pantalla.getLabTotal().setForeground(Color.GREEN);
+            _pantalla.getFormatedTotal().setForeground(Color.GREEN);
+            _pantalla.getLabRestante().setForeground(Color.GREEN);
+            _pantalla.getTexRestante().setForeground(Color.GREEN);
+        } else {
+            _pantalla.getLabTotal().setForeground(Color.RED);
+            _pantalla.getFormatedTotal().setForeground(Color.RED);
+            _pantalla.getLabRestante().setForeground(Color.RED);
+            _pantalla.getTexRestante().setForeground(Color.RED);
+        }
     }
 }

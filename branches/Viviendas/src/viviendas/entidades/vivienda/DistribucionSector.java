@@ -1,6 +1,7 @@
 package viviendas.entidades.vivienda;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class DistribucionSector implements Serializable {
     private SectorEconomico sectorEconomico;
     @ManyToOne
     private AñoPlan añoPlan;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private DistribucionCiudad distribucionCiudad;
 
     public AñoPlan getAñoPlan() {

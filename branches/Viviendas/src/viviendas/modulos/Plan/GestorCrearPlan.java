@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package viviendas.modulos.Plan;
 
 import java.util.ArrayList;
@@ -21,10 +17,6 @@ import viviendas.gui.Plan.crear.DtoNuevoPlan;
 import viviendas.persistencia.Facade;
 import viviendas.persistencia.exceptions.PersistException;
 
-/**
- *
- * @author Admin
- */
 public class GestorCrearPlan {
 
     public void crearNuevoPlan(DtoNuevoPlan dto) throws PersistException {
@@ -44,7 +36,7 @@ public class GestorCrearPlan {
             añoPlan.setAño(año++);
             añoPlan.setCantViviendasAño(dto.getCantidadViviendas());
             añoPlan.setPlan(plan);
-            
+
             for (DistribucionProvincial distribucionProvincial : dto.getDistribucionProvincial()) {
 
                 for (Ciudad ciudad : distribucionProvincial.getProvincia().getListaCuidad()) {

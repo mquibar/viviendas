@@ -1,6 +1,7 @@
 package viviendas.entidades.vivienda;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ public class DistribucionOperatoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double porcentajeDistribucion;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private DistribucionSector distribucionSector;
     @ManyToOne
     private Operatoria operatoria;

@@ -1,6 +1,7 @@
 package viviendas.entidades.vivienda;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ public class DistribucionCiudad implements Serializable {
     private Double porcentajeDistribucion;
     @ManyToOne(fetch=FetchType.EAGER)
     private Ciudad cuidad;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private DistribucionProvincial distribucionProvincial;
     @ManyToOne
     private AñoPlan añoPlan;
