@@ -1,17 +1,32 @@
 package viviendas.gui.Plan.crear;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
 
 public class IUPlan extends javax.swing.JInternalFrame {
 
     /** Creates new form IUPlan */
     public IUPlan() {
         initComponents();
+        NumberFormat formatoEditar = NumberFormat.getNumberInstance(Locale.US);
+
+        formatoEditar.setGroupingUsed(false); //no me acuerdo para q es esto
+
+        NumberFormatter formateador2 = new NumberFormatter(formatoEditar);
+        formateador2.setAllowsInvalid(true);// en false te deja poner sólo nros, yo creo q está bien xq no le vamos a  poner a una entrada algo así como $25.50, así q con eso //yo creo q anda bien, si le pones true, te deja ingresar lo q sea, pero si tenes cargado $10 y editas y le pones "ddd", no te toma eso y te deja en $10, fijate q conviene
+
+        DefaultFormatterFactory fabricaSinPesos = new DefaultFormatterFactory(formateador2, formateador2);
+
+        formatedViviendas.setFormatterFactory(fabricaSinPesos);
     }
 
     /** This method is called from within the constructor to
@@ -44,8 +59,10 @@ public class IUPlan extends javax.swing.JInternalFrame {
         btnQuitarTodas = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabProvinciasSeleccionadas = new javax.swing.JTable();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jLabel1 = new javax.swing.JLabel();
+        formatedTotal = new javax.swing.JFormattedTextField();
+        labTotal = new javax.swing.JLabel();
+        labRestante = new javax.swing.JLabel();
+        texRestante = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
 
         setClosable(true);
@@ -58,6 +75,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         labNombre.setText("Nombre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(labNombre, gridBagConstraints);
 
         labTipoPlan.setText("Tipo");
@@ -65,6 +83,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(labTipoPlan, gridBagConstraints);
 
         labNroViviendasPorAño.setText("Viviendas x Año");
@@ -72,6 +91,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(labNroViviendasPorAño, gridBagConstraints);
 
         jLabel4.setText("Cantidad Años");
@@ -79,6 +99,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(jLabel4, gridBagConstraints);
 
         jLabel5.setText("Total Viviendas");
@@ -86,36 +107,44 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         jPanel1.add(jLabel5, gridBagConstraints);
 
         texNombre.setPreferredSize(new java.awt.Dimension(150, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(texNombre, gridBagConstraints);
 
         comTipoPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(comTipoPlan, gridBagConstraints);
 
         formatedViviendas.setPreferredSize(new java.awt.Dimension(150, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(formatedViviendas, gridBagConstraints);
 
         spinAños.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), Byte.valueOf((byte)50), Byte.valueOf((byte)1)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(spinAños, gridBagConstraints);
 
+        texTotalViviendas.setEditable(false);
+        texTotalViviendas.setEnabled(false);
         texTotalViviendas.setPreferredSize(new java.awt.Dimension(150, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(texTotalViviendas, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -142,7 +171,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel3.add(jScrollPane1, gridBagConstraints);
 
-        btnAgregar.setText(">");
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/+.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
@@ -156,7 +185,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
         jPanel3.add(btnAgregarTodas, gridBagConstraints);
 
-        btnQuitar.setText("<");
+        btnQuitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/-.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -180,30 +209,47 @@ public class IUPlan extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(tabProvinciasSeleccionadas);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel3.add(jScrollPane2, gridBagConstraints);
 
-        jFormattedTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jFormattedTextField1.setMinimumSize(new java.awt.Dimension(100, 27));
-        jFormattedTextField1.setPreferredSize(new java.awt.Dimension(100, 27));
+        formatedTotal.setAutoscrolls(true);
+        formatedTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        formatedTotal.setMinimumSize(new java.awt.Dimension(80, 27));
+        formatedTotal.setPreferredSize(new java.awt.Dimension(80, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        jPanel3.add(jFormattedTextField1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 16, 0, 16);
+        jPanel3.add(formatedTotal, gridBagConstraints);
 
-        jLabel1.setText("% Total:");
+        labTotal.setText("% Total:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 16, 0, 16);
+        jPanel3.add(labTotal, gridBagConstraints);
+
+        labRestante.setText("% Restante");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        jPanel3.add(jLabel1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 6);
+        jPanel3.add(labRestante, gridBagConstraints);
+
+        texRestante.setAutoscrolls(true);
+        texRestante.setMinimumSize(new java.awt.Dimension(80, 27));
+        texRestante.setPreferredSize(new java.awt.Dimension(80, 27));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 6);
+        jPanel3.add(texRestante, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -214,12 +260,8 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(jPanel3, gridBagConstraints);
 
+        btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Accept.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -229,10 +271,6 @@ public class IUPlan extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAceptarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
@@ -241,9 +279,8 @@ public class IUPlan extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnQuitar;
     private javax.swing.JButton btnQuitarTodas;
     private javax.swing.JComboBox comTipoPlan;
+    private javax.swing.JFormattedTextField formatedTotal;
     private javax.swing.JFormattedTextField formatedViviendas;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -252,11 +289,14 @@ public class IUPlan extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labNombre;
     private javax.swing.JLabel labNroViviendasPorAño;
+    private javax.swing.JLabel labRestante;
     private javax.swing.JLabel labTipoPlan;
+    private javax.swing.JLabel labTotal;
     private javax.swing.JSpinner spinAños;
     private javax.swing.JTable tabProvincias;
     private javax.swing.JTable tabProvinciasSeleccionadas;
     private javax.swing.JTextField texNombre;
+    private javax.swing.JTextField texRestante;
     private javax.swing.JTextField texTotalViviendas;
     // End of variables declaration//GEN-END:variables
 
@@ -358,5 +398,35 @@ public class IUPlan extends javax.swing.JInternalFrame {
         this.texTotalViviendas = texTotalViviendas;
     }
 
+    public JFormattedTextField getFormatedTotal() {
+        return formatedTotal;
+    }
 
+    public void setFormatedTotal(JFormattedTextField formatedTotal) {
+        this.formatedTotal = formatedTotal;
+    }
+
+    public JLabel getLabTotal() {
+        return labTotal;
+    }
+
+    public void setLabTotal(JLabel labTotal) {
+        this.labTotal = labTotal;
+    }
+
+    public JLabel getLabRestante() {
+        return labRestante;
+    }
+
+    public void setLabRestante(JLabel labRestante) {
+        this.labRestante = labRestante;
+    }
+
+    public JTextField getTexRestante() {
+        return texRestante;
+    }
+
+    public void setTexRestante(JTextField texRestante) {
+        this.texRestante = texRestante;
+    }
 }

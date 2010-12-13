@@ -94,7 +94,6 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Viviendas 1.0");
-        setResizable(false);
 
         desktopPane.setBackground(new java.awt.Color(102, 153, 255));
 

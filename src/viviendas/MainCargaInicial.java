@@ -18,10 +18,35 @@ import viviendas.persistencia.exceptions.PersistException;
 public class MainCargaInicial {
 
     /**
-     * @param args the command line arguments
+INSERT INTO viviendas.Usuario (`contraseña`, usuario) VALUES ('luis', 'luis');
+INSERT INTO Provincia (nombre) VALUES ('San Juan');
+INSERT INTO Provincia (nombre) VALUES ('Buenos Aires');
+INSERT INTO Provincia (nombre) VALUES ('Tierra del Fuego');
+INSERT INTO Provincia (nombre) VALUES ('Entre Ríos');
+INSERT INTO Provincia (nombre) VALUES ('Formosa');
+INSERT INTO Provincia (nombre) VALUES ('Santiago del Estero');
+INSERT INTO Provincia (nombre) VALUES ('Chaco');
+INSERT INTO Provincia (nombre) VALUES ('Misiones');
+INSERT INTO Provincia (nombre) VALUES ('Jujuy');
+INSERT INTO Provincia (nombre) VALUES ('Catamarca');
+INSERT INTO Provincia (nombre) VALUES ('La Rioja');
+INSERT INTO Provincia (nombre) VALUES ('Mendoza');
+INSERT INTO Provincia (nombre) VALUES ('Neuquén');
+INSERT INTO Provincia (nombre) VALUES ('Córdoba');
+INSERT INTO Provincia (nombre) VALUES ('La Pampa');
+INSERT INTO Provincia (nombre) VALUES ('Santa Cruz');
+INSERT INTO Provincia (nombre) VALUES ('Río Negro');
+INSERT INTO Provincia (nombre) VALUES ('Salta');
+INSERT INTO Provincia (nombre) VALUES ('Tucumán');
+INSERT INTO Provincia (nombre) VALUES ('Chubut');
+INSERT INTO Provincia (nombre) VALUES ('San Luis');
+INSERT INTO Provincia (nombre) VALUES ('Corrientes');
+INSERT INTO Provincia (nombre) VALUES ('Santa Fe');
+INSERT INTO Provincia (nombre) VALUES ('Capital Federal');
+update Provincia set nombre = upper(nombre)
      */
     public static void main(String[] args) throws PersistException, Exception {
-        //PRIMERO EJECUTAR LOS INSERTS COLOCADOS EN PROVINCIA
+        //PRIMERO EJECUTAR LOS INSERTS
         Facade.getInstance().beginTx();
         Ciudad ciudad = new Ciudad();
         ciudad.setNombre("RURAL");

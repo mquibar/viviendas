@@ -6,6 +6,7 @@ package viviendas.gui.models.tables;
 
 import java.util.List;
 import viviendas.entidades.vivienda.DistribucionProvincial;
+import viviendas.gui.Plan.crear.SubscriptorTotal;
 
 /**
  *
@@ -35,7 +36,15 @@ public class ModelTableDistribucionProvincial extends AbstractTableModel<Distrib
         switch (columnIndex) {
             case 1:
                 distribucion.setPorcentajeDistribucion((Double) aValue);
+
         }
+        Double total = new Double(0);
+        for (DistribucionProvincial distribucionProvincial : _lista) {
+            if (distribucionProvincial.getPorcentajeDistribucion() != null) {
+                total += distribucionProvincial.getPorcentajeDistribucion();
+            }
+        }
+        SubscriptorTotal.getInstance().notificar(total);
         fireTableDataChanged();
     }
 
