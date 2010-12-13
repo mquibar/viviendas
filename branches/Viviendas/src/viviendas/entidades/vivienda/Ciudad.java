@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * @author Manuel
@@ -21,6 +22,8 @@ public class Ciudad implements Serializable {
     private String nombre;
     private Integer desde;
     private Integer hasta;
+    @OneToOne
+    private ParametrosPlan parametro;
 
     public Ciudad() {
     }
@@ -49,14 +52,20 @@ public class Ciudad implements Serializable {
         this.hasta = hasta;
     }
 
-    
-
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public ParametrosPlan getParametro() {
+        return parametro;
+    }
+
+    public void setParametro(ParametrosPlan parametro) {
+        this.parametro = parametro;
     }
 
     @Override

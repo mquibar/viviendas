@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * @author Manuel
@@ -18,6 +19,8 @@ public class SectorEconomico implements Serializable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    @OneToOne
+    private ParametrosPlan parametro;
 
     public SectorEconomico() {
     }
@@ -37,6 +40,15 @@ public class SectorEconomico implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public ParametrosPlan getParametro() {
+        return parametro;
+    }
+
+    public void setParametro(ParametrosPlan parametro) {
+        this.parametro = parametro;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

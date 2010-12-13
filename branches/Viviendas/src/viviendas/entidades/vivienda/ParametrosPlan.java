@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,8 +21,6 @@ public class ParametrosPlan implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Plan plan;
     private String nombreParametro;
     private Double porcenteaje;
 
@@ -43,14 +40,6 @@ public class ParametrosPlan implements Serializable {
         this.nombreParametro = nombreParametro;
     }
 
-    public Plan getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Plan plan) {
-        this.plan = plan;
-    }
-
     public Double getPorcenteaje() {
         return porcenteaje;
     }
@@ -58,7 +47,7 @@ public class ParametrosPlan implements Serializable {
     public void setPorcenteaje(Double porcenteaje) {
         this.porcenteaje = porcenteaje;
     }
-    
+
 
     @Override
     public int hashCode() {
@@ -84,5 +73,4 @@ public class ParametrosPlan implements Serializable {
     public String toString() {
         return nombreParametro;
     }
-
 }
