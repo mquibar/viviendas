@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package viviendas.gui.Plan.crear;
+package viviendas.gui.tool;
 
 /**
  *
@@ -11,5 +11,5 @@ package viviendas.gui.Plan.crear;
  */
 public interface ICalculable {
 
-    public void mostrarTotalPorcentaje(Double totalPorcentaje);
+    public void actualizarPorcentaje();
 }

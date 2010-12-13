@@ -1,5 +1,7 @@
 package viviendas.gui.Plan.crear;
 
+import viviendas.gui.tool.SubscriptorTotal;
+import viviendas.gui.tool.ICalculable;
 import java.awt.Color;
 import viviendas.gui.models.tables.ModelTableProvincia;
 import java.awt.event.ActionEvent;
@@ -115,7 +117,6 @@ public class CtrlPlan implements ICalculable {
             mostrarMensaje("Por Favor seleccione una provincia");
         } else {
             DistribucionProvincial distribucion = ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).getSelectedIndex(index);
-            SubscriptorTotal.getInstance().notificar(-distribucion.getPorcentajeDistribucion());
             ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).addRow(distribucion.getProvincia());
             ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).delRow(distribucion);
         }
@@ -129,7 +130,6 @@ public class CtrlPlan implements ICalculable {
         }
         ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).addAll(listaProvincia);
         ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).clear();
-        SubscriptorTotal.getInstance().notificar(new Double(0));
     }
 
     private void mostrarMensaje(String string) {
@@ -137,7 +137,14 @@ public class CtrlPlan implements ICalculable {
     }
 
     @Override
-    public void mostrarTotalPorcentaje(Double porcentajeTotal) {
+    public void actualizarPorcentaje() {
+        Double porcentajeTotal = new Double(0);
+        for (DistribucionProvincial distribucionProvincial : ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).getAllRow()) {
+            if (distribucionProvincial.getPorcentajeDistribucion() != null) {
+                porcentajeTotal += distribucionProvincial.getPorcentajeDistribucion();
+            }
+        }
+
         _pantalla.getFormatedTotal().setValue(porcentajeTotal);
         _pantalla.getTexRestante().setText(Double.toString(100 - porcentajeTotal));
         if (new Double(100).compareTo(porcentajeTotal) == 0) {
