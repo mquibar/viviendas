@@ -343,4 +343,4 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         return _txtTotViviendas;
     }
 
-}
+    }
