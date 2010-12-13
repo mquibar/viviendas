@@ -5,7 +5,6 @@
 
 package viviendas.gui.models.tables;
 
-import java.util.ArrayList;
 import java.util.List;
 import viviendas.entidades.vivienda.Operatoria;
 
@@ -16,7 +15,7 @@ import viviendas.entidades.vivienda.Operatoria;
 public class ModeloTablaOperatoria extends AbstractTableModel<Operatoria>{
 
     public ModeloTablaOperatoria(List<Operatoria> lista) {
-        super(lista, "Nombre");
+        super(lista, "Nombre", "Porcentaje Distr.");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -24,11 +23,13 @@ public class ModeloTablaOperatoria extends AbstractTableModel<Operatoria>{
             switch(columnIndex){
                 case 0:
                     return _lista.get(rowIndex).getNombre();
+                case 1:
+                    return _lista.get(rowIndex).getParametro().getPorcenteaje();
                 default:
-                    return "-";
+                    return "0";
             }
         }catch(Exception e){
-            return "-";
+            return "0";
         }
     }
 
@@ -39,7 +40,18 @@ public class ModeloTablaOperatoria extends AbstractTableModel<Operatoria>{
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        _lista.get(rowIndex).setNombre(aValue.toString());
+        switch(columnIndex){
+            case 0:
+                _lista.get(rowIndex).setNombre(aValue.toString().toUpperCase());
+                break;
+            case 1:
+                try {
+                    _lista.get(rowIndex).getParametro().setPorcenteaje(Double.valueOf(aValue.toString()));
+                } catch (NumberFormatException ex) {
+                    _lista.get(rowIndex).getParametro().setPorcenteaje(0d);                
+                }
+                break;
+        }
     }
 
 }

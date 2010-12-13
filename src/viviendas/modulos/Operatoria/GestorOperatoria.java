@@ -10,13 +10,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.persistencia.Facade;
-import viviendas.persistencia.exceptions.PersistException;
 
 /**
  *
  * @author Maximiliano.
  */
 public class GestorOperatoria {
+    public static final String NOMBRE_PARAM_OPERATORIA = "OPERATORIA_";
 
     public void guardar(List<Operatoria> listaMod){
         List<Operatoria> listaDB = Facade.getInstance().findAll(Operatoria.class);
@@ -26,8 +26,9 @@ public class GestorOperatoria {
             for(int i_db=0; i_db<listaMod.size(); i_db++){
                 if(listaMod.get(i_db).getId() == null){
                     //inserto.
+                    listaMod.get(i_db).getParametro().setNombreParametro(NOMBRE_PARAM_OPERATORIA + listaMod.get(i_db).getNombre());
+                    Facade.getInstance().guardar(listaMod.get(i_db).getParametro());
                     Facade.getInstance().guardar(listaMod.get(i_db));
-                    //continue;
                 }
                 else{
                     if(!listaMod.contains(listaDB.get(i_db))){

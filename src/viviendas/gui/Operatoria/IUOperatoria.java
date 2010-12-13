@@ -13,6 +13,7 @@ package viviendas.gui.Operatoria;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -45,6 +46,10 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
         return tbOperatoria;
     }
 
+    public JTextField getTxtPorcentajeTotal(){
+        return txtPorcentajeTotal;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -59,6 +64,8 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
         tbOperatoria = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnQuitar = new javax.swing.JButton();
+        txtPorcentajeTotal = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -84,19 +91,27 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
 
         btnQuitar.setText("Quitar");
 
+        jLabel1.setText("Total");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
                         .addComponent(btnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnQuitar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(109, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnQuitar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtPorcentajeTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,11 +121,14 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
-                    .addComponent(btnQuitar))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(btnQuitar)
+                    .addComponent(txtPorcentajeTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         btnAceptar.setText("Guardar");
+        btnAceptar.setEnabled(false);
 
         btnCancelar.setText("Cancelar");
 
@@ -151,9 +169,11 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnQuitar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbOperatoria;
+    private javax.swing.JTextField txtPorcentajeTotal;
     // End of variables declaration//GEN-END:variables
 
 }
