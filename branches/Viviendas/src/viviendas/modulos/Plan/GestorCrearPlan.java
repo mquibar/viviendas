@@ -45,27 +45,32 @@ public class GestorCrearPlan {
                     distribucionCiudad.setDistribucionProvincial(distribucionProvincial);
                     distribucionCiudad.setCuidad(ciudad);
                     distribucionCiudad.setAñoPlan(añoPlan);
-                    distribucionCiudad.setPorcentajeDistribucion(3.1);
-                    Facade.getInstance().guardar(distribucionCiudad);
+                    distribucionCiudad.setPorcentajeDistribucion(ciudad.getParametro().getPorcenteaje());
                     for (SectorEconomico sectorEconomico : sectoresEconomicos) {
 
                         DistribucionSector distribucionSector = new DistribucionSector();
                         distribucionSector.setAñoPlan(añoPlan);
                         distribucionSector.setDistribucionCiudad(distribucionCiudad);
                         distribucionSector.setSectorEconomico(sectorEconomico);
-                        distribucionSector.setPorcentajeDistribucion(4.1);
-                        Facade.getInstance().guardar(distribucionSector);
+                        distribucionSector.setPorcentajeDistribucion(sectorEconomico.getParametro().getPorcenteaje());
                         for (Operatoria operatoria : operatorias) {
 
                             DistribucionOperatoria distribucionOperatoria = new DistribucionOperatoria();
                             distribucionOperatoria.setAñoPlan(añoPlan);
                             distribucionOperatoria.setDistribucionSector(distribucionSector);
                             distribucionOperatoria.setOperatoria(operatoria);
-                            distribucionOperatoria.setPorcentajeDistribucion(5.1);
+                            distribucionOperatoria.setPorcentajeDistribucion(operatoria.getParametro().getPorcenteaje());
+                            distribucionOperatoria.setAñoPlan(añoPlan);
                             Facade.getInstance().guardar(distribucionOperatoria);
                         }
+                        distribucionSector.setAñoPlan(añoPlan);
+                        Facade.getInstance().guardar(distribucionSector);
                     }
+                    distribucionCiudad.setAñoPlan(añoPlan);
+                    Facade.getInstance().guardar(distribucionCiudad);
                 }
+                distribucionProvincial.setAñoPlan(añoPlan);
+                Facade.getInstance().guardar(distribucionProvincial);
             }
             añosPlan.add(añoPlan);
         }
