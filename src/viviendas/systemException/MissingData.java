@@ -5,7 +5,6 @@
 
 package viviendas.systemException;
 
-import systemException.SystemException;
 
 /**
  *
