@@ -15,6 +15,7 @@ import viviendas.entidades.vivienda.Plan;
 import viviendas.modulos.Plan.consultar.GestorConsultarPlan;
 import viviendas.persistencia.Facade;
 import viviendas.persistencia.exceptions.PersistException;
+import viviendas.systemException.BusinessOperationException;
 
 /**
  *
@@ -79,16 +80,17 @@ public class GestorModificarPlan {
         return dop;
     }
 
-    public void guardar(){
+    public void guardar() throws BusinessOperationException{
         Facade.getInstance().beginTx();
-        
+        try {
+            Facade.getInstance().actualizar(plan_a_modificar);
             for (AñoPlan aPlan : plan_a_modificar.getListaAñoPlan()) {
                 Facade.getInstance().actualizar(aPlan);
             }
-            try {
             Facade.getInstance().commitTx();
         } catch (PersistException persistException) {
             Facade.getInstance().rollBackTx();
+            throw new BusinessOperationException("actualización");
         }
 
     }

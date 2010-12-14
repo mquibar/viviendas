@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import viviendas.entidades.vivienda.AñoPlan;
 import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
@@ -24,6 +25,7 @@ import viviendas.gui.models.tables.ModelTableDistribucionProvincial;
 import viviendas.gui.models.tables.ModelTableDistribucionSectorEconomico;
 import viviendas.gui.tool.SubscriptorTotal;
 import viviendas.modulos.Plan.modificar.GestorModificarPlan;
+import viviendas.systemException.BusinessOperationException;
 
 /**
  *
@@ -105,7 +107,12 @@ public class ctrlModificarPlan implements ICalculable {
     }
 
     void pressOkButton(){
-
+        try {
+            _gestor.guardar();
+            JOptionPane.showMessageDialog(_pantalla, "Operación Realizada con exito");
+        } catch (BusinessOperationException ex) {
+            JOptionPane.showMessageDialog(_pantalla, ex, "Error de Sistema", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     void pressCancelButton(){
@@ -172,19 +179,25 @@ public class ctrlModificarPlan implements ICalculable {
     }
 
     void viewCiudad(){
-        _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), _distProvincial.getSelectedIndex(_pantalla.getTblProvincia().getSelectedRow())));//LLAMAR ACA TB AL GESTOR
+        int rowIndex = _pantalla.getTblProvincia().getSelectedRow();
+        if(rowIndex<0) rowIndex=0;
+        _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), _distProvincial.getSelectedIndex(rowIndex)));//LLAMAR ACA TB AL GESTOR
         _pantalla.getTblProvincia().setEnabled(false);
         _pantalla.getScrCiudad().setVisible(true);
     }
 
     void viewSectEconomico(){
-        _distSEconomico.setList(_gestor.listarDistribucionSector(getAñoSeleccionado(), _distCiudad.getSelectedIndex(_pantalla.getTblCiudad().getSelectedRow())));//GESTOR
+        int rowIndex = _pantalla.getTblCiudad().getSelectedRow();
+        if(rowIndex<0) rowIndex=0;
+        _distSEconomico.setList(_gestor.listarDistribucionSector(getAñoSeleccionado(), _distCiudad.getSelectedIndex(rowIndex)));//GESTOR
         _pantalla.getTblCiudad().setEnabled(false);
         _pantalla.getScrSectEconom().setVisible(true);
     }
 
     void viewOperatoria(){
-        _distOperatoria.setList(_gestor.listarDistribucionOperatoria(getAñoSeleccionado(), _distSEconomico.getSelectedIndex(_pantalla.getTblSectorEconomico().getSelectedRow())));//GESTOR
+        int rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
+        if(rowIndex<0) rowIndex=0;
+        _distOperatoria.setList(_gestor.listarDistribucionOperatoria(getAñoSeleccionado(), _distSEconomico.getSelectedIndex(rowIndex)));//GESTOR
         _pantalla.getTblSectorEconomico().setEnabled(false);
         _pantalla.getScrOperatoria().setVisible(true);
     }
