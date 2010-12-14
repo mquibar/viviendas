@@ -4,10 +4,8 @@
  */
 package viviendas.gui.models.tables;
 
-import java.util.ArrayList;
 import java.util.List;
 import viviendas.entidades.vivienda.Provincia;
-import viviendas.gui.models.tables.AbstractTableModel;
 
 /**
  *

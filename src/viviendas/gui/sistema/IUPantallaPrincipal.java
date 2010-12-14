@@ -99,9 +99,11 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         mnuPlanes.setText("Planes");
 
+        mnuNuevoPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/New_16x16.png"))); // NOI18N
         mnuNuevoPlan.setText("Nuevo");
         mnuPlanes.add(mnuNuevoPlan);
 
+        mnuAbrirPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Open_16x16.png"))); // NOI18N
         mnuAbrirPlan.setText("Abrir");
         mnuPlanes.add(mnuAbrirPlan);
 
@@ -131,9 +133,11 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         mnuSistema.setText("Sistema");
 
+        mnuAcercaDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Alert.png"))); // NOI18N
         mnuAcercaDe.setText("Acerca de");
         mnuSistema.add(mnuAcercaDe);
 
+        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
         mnuSalir.setText("Salir");
         mnuSistema.add(mnuSalir);
 

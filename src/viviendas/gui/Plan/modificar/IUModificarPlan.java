@@ -126,7 +126,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(jLabel4, gridBagConstraints);
 
-        _txtTotViviendas.setEnabled(false);
+        _txtTotViviendas.setEditable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -222,8 +222,10 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
         _btnCancel.setText("Cancelar");
 
+        _txtTotal.setEditable(false);
+        _txtTotal.setFont(new java.awt.Font("DejaVu Sans", 1, 13)); // NOI18N
+        _txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         _txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("% Total"));
-        _txtTotal.setEnabled(false);
 
         _btnDropDetails.setText("<<");
         _btnDropDetails.setEnabled(false);
@@ -273,7 +275,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
                         .addComponent(_btnViewDetails)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(_btnDropDetails)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

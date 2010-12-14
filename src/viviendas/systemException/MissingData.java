@@ -12,9 +12,14 @@ package viviendas.systemException;
  */
 public class MissingData extends SystemException{
     private String dato;
-    private String valor;
 
     public MissingData(String dato) {
         super(3, MissingData.class, "Dato faltante [" + dato +"]");
+        this.dato=dato;
     }
+
+    public String getDato() {
+        return dato;
+    }
+
 }

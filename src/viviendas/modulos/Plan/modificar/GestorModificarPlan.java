@@ -13,6 +13,8 @@ import viviendas.entidades.vivienda.DistribucionProvincial;
 import viviendas.entidades.vivienda.DistribucionSector;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.modulos.Plan.consultar.GestorConsultarPlan;
+import viviendas.persistencia.Facade;
+import viviendas.persistencia.exceptions.PersistException;
 
 /**
  *
@@ -75,5 +77,19 @@ public class GestorModificarPlan {
                 dop.add(dOperatoria);
         }
         return dop;
+    }
+
+    public void guardar(){
+        Facade.getInstance().beginTx();
+        
+            for (AñoPlan aPlan : plan_a_modificar.getListaAñoPlan()) {
+                Facade.getInstance().actualizar(aPlan);
+            }
+            try {
+            Facade.getInstance().commitTx();
+        } catch (PersistException persistException) {
+            Facade.getInstance().rollBackTx();
+        }
+
     }
 }

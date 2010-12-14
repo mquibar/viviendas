@@ -6,6 +6,7 @@ package viviendas.gui.models.tables;
 
 import java.util.List;
 import viviendas.entidades.vivienda.DistribucionCiudad;
+import viviendas.gui.tool.SubscriptorTotal;
 
 /**
  *
@@ -59,5 +60,10 @@ public class ModelTableDistribucionCiudad extends AbstractTableModel<Distribucio
             default:
                 return Object.class;
         }
+    }
+    @Override
+    public void fireTableDataChanged() {
+        super.fireTableDataChanged();
+        SubscriptorTotal.getInstance().notificar();
     }
 }

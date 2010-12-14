@@ -2,6 +2,7 @@ package viviendas.entidades.vivienda;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,13 +24,13 @@ public class AñoPlan implements Serializable {
     private Long id;
     private Integer año;
     private Integer cantViviendasAño;
-    @OneToMany(mappedBy = "añoPlan")
+    @OneToMany(mappedBy = "añoPlan", cascade=CascadeType.ALL)
     private List<DistribucionCiudad> listaProvinciaCiudad;
-    @OneToMany(mappedBy = "añoPlan")
+    @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
     private List<DistribucionProvincial> listaDistribucionProvincial;
-    @OneToMany(mappedBy = "añoPlan")
+    @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
     private List<DistribucionSector> distribucionSector;
-    @OneToMany(mappedBy = "añoPlan")
+    @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
     private List<DistribucionOperatoria> distribucionOperatoria;
     @ManyToOne
     private Plan plan;
