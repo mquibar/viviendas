@@ -8,6 +8,7 @@ package viviendas.gui.Plan.modificar;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import javax.swing.JDesktopPane;
 import viviendas.entidades.vivienda.AñoPlan;
 import viviendas.entidades.vivienda.DistribucionCiudad;
@@ -56,6 +57,7 @@ public class ctrlModificarPlan implements ICalculable {
         cargarPantalla();
         panel.add(_pantalla);
         _pantalla.setVisible(true);
+        SubscriptorTotal.getInstance().añadir(this);
     }
 
     final void cargarPantalla(){
@@ -134,6 +136,7 @@ public class ctrlModificarPlan implements ICalculable {
             default:
                 tablaOnTop--;
         }
+        actualizarPorcentaje();
     }
 
     void ocultarTablas(){
@@ -160,6 +163,7 @@ public class ctrlModificarPlan implements ICalculable {
                 tablaOnTop++;
         }
         tablaOnTop--;
+        actualizarPorcentaje();
     }
     void viewProvincia(){
         _distProvincial.setList(_gestor.listarDistribucionProvincial(getAñoSeleccionado()));//LLAMAR AL GESTOR PARA QUE ME RECUPERE EL LISTADO
@@ -188,22 +192,18 @@ public class ctrlModificarPlan implements ICalculable {
     void dropOperatoria(){
         _pantalla.getTblSectorEconomico().setEnabled(true);
         _pantalla.getScrOperatoria().setVisible(false);
-        _distOperatoria.clear();
     }
     void dropSectEconomico(){
         _pantalla.getTblCiudad().setEnabled(true);
         _pantalla.getScrSectEconom().setVisible(false);
-        _distSEconomico.clear();
     }
     void dropCiudad(){
         _pantalla.getTblProvincia().setEnabled(true);
         _pantalla.getScrCiudad().setVisible(false);
-        _distCiudad.clear();
     }
     void dropProvincia(){
         _pantalla.getTblAños().setEnabled(true);
         _pantalla.getScrProvincia().setVisible(false);
-        _distProvincial.clear();
     }
 
     private AñoPlan getAñoSeleccionado(){
@@ -230,12 +230,16 @@ public class ctrlModificarPlan implements ICalculable {
     }
 
     private void colorTotal(double porcentaje){
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        _pantalla.getTxtTotal().setText(nf.format(porcentaje));
         if(porcentaje!=100.0){
             _pantalla.getTxtTotal().setForeground(Color.red);
         }
         else
             _pantalla.getTxtTotal().setForeground(Color.BLUE);
     }
+
     private void porcentajeProvincia(){
         double porcentaje=0;
         for (DistribucionProvincial dProvincial : _distProvincial.getAllRow()) {

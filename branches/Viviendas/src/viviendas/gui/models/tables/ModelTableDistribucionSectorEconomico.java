@@ -7,6 +7,7 @@ package viviendas.gui.models.tables;
 
 import java.util.List;
 import viviendas.entidades.vivienda.DistribucionSector;
+import viviendas.gui.tool.SubscriptorTotal;
 
 /**
  *
@@ -59,5 +60,10 @@ public class ModelTableDistribucionSectorEconomico extends AbstractTableModel<Di
          fireTableDataChanged();
     }
 
+    @Override
+    public void fireTableDataChanged() {
+        super.fireTableDataChanged();
+        SubscriptorTotal.getInstance().notificar();
+    }
 
 }

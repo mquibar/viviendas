@@ -15,8 +15,17 @@ public class DuplicateDataException extends SystemException {
     private String valor;
     public DuplicateDataException(String dato, String valor) {
         super(2, DuplicateDataException.class, "Existen datos para [" + dato +"] con valor [" + valor + "]");
+        this.dato = dato;
+        this.valor = valor;
     }
 
+    public String getDato() {
+        return dato;
+    }
+
+    public String getValor() {
+        return valor;
+    }
 
 
 }
