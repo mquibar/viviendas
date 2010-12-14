@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 
 /**
  *
- * @author Administrador
+ * @author Maximiliano.
  */
 public class IUPantallaPrincipal extends javax.swing.JFrame {
 
@@ -99,14 +99,15 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         mnuPlanes.setText("Planes");
 
-        mnuNuevoPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/New_16x16.png"))); // NOI18N
+        mnuNuevoPlan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         mnuNuevoPlan.setText("Nuevo");
         mnuPlanes.add(mnuNuevoPlan);
 
-        mnuAbrirPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Open_16x16.png"))); // NOI18N
+        mnuAbrirPlan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         mnuAbrirPlan.setText("Abrir");
         mnuPlanes.add(mnuAbrirPlan);
 
+        mnuReportes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         mnuReportes.setText("Reportes");
         mnuPlanes.add(mnuReportes);
 
@@ -114,15 +115,19 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         mnuParametros.setText("Parámetros");
 
+        mnuSegmentoEconomico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         mnuSegmentoEconomico.setText("Segmento Económico");
         mnuParametros.add(mnuSegmentoEconomico);
 
+        mnuTiposCiudades.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         mnuTiposCiudades.setText("Tipos Ciudadades");
         mnuParametros.add(mnuTiposCiudades);
 
+        mnuFuenteFondos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         mnuFuenteFondos.setText("Fuentes Fondos");
         mnuParametros.add(mnuFuenteFondos);
 
+        mnuOperatoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         mnuOperatoria.setText("Operatoria");
         mnuParametros.add(mnuOperatoria);
 
@@ -137,7 +142,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuAcercaDe.setText("Acerca de");
         mnuSistema.add(mnuAcercaDe);
 
-        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
+        mnuSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.CTRL_MASK));
         mnuSalir.setText("Salir");
         mnuSistema.add(mnuSalir);
 

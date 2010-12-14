@@ -13,7 +13,7 @@ import viviendas.gui.dto.DtoUsuario;
 
 /**
  *
- * @author Administrador
+ * @author Maximiliano.
  */
 public class CtrlUsuario {
     private IULoguin _pantalla;
