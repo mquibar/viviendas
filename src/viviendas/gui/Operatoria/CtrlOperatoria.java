@@ -7,8 +7,6 @@ package viviendas.gui.Operatoria;
 
 import java.awt.Color;
 import java.beans.PropertyChangeEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import viviendas.gui.models.tables.ModeloTablaOperatoria;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -79,7 +77,13 @@ public class CtrlOperatoria {
     }
 
     private void guardar(){
-        _gestor.guardar(_modelo.getAllRow());
+        try {
+            _gestor.guardar(_modelo.getAllRow());
+            JOptionPane.showMessageDialog(_pantalla, "Valores guardados correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            cerrar();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(_pantalla, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void agregar(){
@@ -93,8 +97,10 @@ public class CtrlOperatoria {
     }
 
     private void quitar(){
-        if(_pantalla.getTbOperatoria().getSelectedRow() > -1)
+        if(_pantalla.getTbOperatoria().getSelectedRow() > -1){
             _modelo.delRow(_pantalla.getTbOperatoria().getSelectedRow());
+            verificarPorcentajes();
+        }
         else
             JOptionPane.showMessageDialog(_pantalla, "No ha seleccionado ninguna fila.", "Viviendas", JOptionPane.ERROR_MESSAGE);
     }

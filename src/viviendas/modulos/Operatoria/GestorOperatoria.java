@@ -31,15 +31,15 @@ public class GestorOperatoria {
                     Facade.getInstance().guardar(listaMod.get(i_db));
                 }
                 else{
-                    if(!listaMod.contains(listaDB.get(i_db))){
-                        //elimino.
-                        Facade.getInstance().eliminar(listaDB.get(i_db));
-                    }
-                    else{
-                        //modifico.
-                        System.out.println(listaMod.get(i_db).getNombre());
-                        Facade.getInstance().actualizar(listaMod.get(i_db));
-                    }
+                    //modifico.
+                    System.out.println(listaMod.get(i_db).getNombre());
+                    Facade.getInstance().actualizar(listaMod.get(i_db));
+                }
+            }
+            //eliminar:
+            for(int i=0; i<listaDB.size(); i++){
+                if(!listaMod.contains(listaDB.get(i))){
+                    Facade.getInstance().eliminar(listaDB.get(i));
                 }
             }
             Facade.getInstance().commitTx();

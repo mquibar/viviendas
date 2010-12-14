@@ -10,6 +10,11 @@ import viviendas.gui.Plan.modificar.ctrlAbrirPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
 
+/**
+ *
+ * @author Maximiliano.
+ */
+
 public class CtrlPrincipal {
     private IUPantallaPrincipal _pantalla;
     private static final String _VERSION = "Viviendas 1.0";
