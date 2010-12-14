@@ -6,7 +6,7 @@
 package viviendas.persistencia.exceptions;
 
 
-import systemException.SystemException;
+import viviendas.systemException.SystemException;
 
 /**
  *

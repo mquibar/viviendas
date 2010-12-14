@@ -5,10 +5,15 @@
 
 package viviendas.gui.Plan.modificar;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDesktopPane;
 import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.DistribucionCiudad;
+import viviendas.entidades.vivienda.DistribucionOperatoria;
+import viviendas.entidades.vivienda.DistribucionProvincial;
+import viviendas.entidades.vivienda.DistribucionSector;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.gui.tool.ICalculable;
 import viviendas.gui.models.tables.ModelTableAño;
@@ -38,10 +43,6 @@ public class ctrlModificarPlan implements ICalculable {
     private final int SECTORECONOMICO = 3;
     private final int OPERATORIA = 4;
     private int tablaOnTop=AÑO;
-    private final int DELANTE =1;
-    private final int ATRAS =-1;
-
-
 
     public ctrlModificarPlan(GestorModificarPlan gestor,JDesktopPane panel) {
         _gestor = gestor;
@@ -212,6 +213,57 @@ public class ctrlModificarPlan implements ICalculable {
     }
 
     public void actualizarPorcentaje() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        switch(tablaOnTop){
+            case PROVINCIA:
+                porcentajeProvincia();
+                break;
+            case CIUDAD:
+                porcentajeCiudad();
+                break;
+            case SECTORECONOMICO:
+                porcentajeSEconomico();
+                break;
+            case OPERATORIA:
+                porcentajeOperatoria();
+                break;
+        }
+    }
+
+    private void colorTotal(double porcentaje){
+        if(porcentaje!=100.0){
+            _pantalla.getTxtTotal().setForeground(Color.red);
+        }
+        else
+            _pantalla.getTxtTotal().setForeground(Color.BLUE);
+    }
+    private void porcentajeProvincia(){
+        double porcentaje=0;
+        for (DistribucionProvincial dProvincial : _distProvincial.getAllRow()) {
+            porcentaje+=dProvincial.getPorcentajeDistribucion();
+        }
+        colorTotal(porcentaje);
+    }
+
+    private void porcentajeCiudad(){
+        double porcentaje = 0;
+        for (DistribucionCiudad dCiudad : _distCiudad.getAllRow()) {
+            porcentaje+= dCiudad.getPorcentajeDistribucion();
+        }
+        colorTotal(porcentaje);
+    }
+
+    private void porcentajeSEconomico(){
+        double porcentaje = 0;
+        for (DistribucionSector dSector : _distSEconomico.getAllRow()) {
+            porcentaje+=dSector.getPorcentajeDistribucion();
+        }
+        colorTotal(porcentaje);
+    }
+    private void porcentajeOperatoria(){
+        double porcentaje = 0;
+        for (DistribucionOperatoria dOperatoria : _distOperatoria.getAllRow()) {
+            porcentaje+=dOperatoria.getPorcentajeDistribucion();
+        }
+        colorTotal(porcentaje);
     }
 }
