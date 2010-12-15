@@ -66,7 +66,10 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         _btnDropDetails = new javax.swing.JButton();
         _btnViewDetails = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
+        _btnAdd = new javax.swing.JButton();
+        _btnDel = new javax.swing.JButton();
         _txtTotal = new javax.swing.JTextField();
+        _txtRestante = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -244,10 +247,27 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         jToolBar1.add(_btnViewDetails);
         jToolBar1.add(jSeparator2);
 
+        _btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/+.png"))); // NOI18N
+        _btnAdd.setFocusable(false);
+        _btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        _btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(_btnAdd);
+
+        _btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/-.png"))); // NOI18N
+        _btnDel.setFocusable(false);
+        _btnDel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        _btnDel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(_btnDel);
+
         _txtTotal.setEditable(false);
-        _txtTotal.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
-        _txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        _txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("% Total"));
+        _txtTotal.setFont(new java.awt.Font("DejaVu Sans", 1, 13)); // NOI18N
+        _txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        _txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "% Total", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+
+        _txtRestante.setEditable(false);
+        _txtRestante.setFont(new java.awt.Font("DejaVu Sans", 1, 13)); // NOI18N
+        _txtRestante.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        _txtRestante.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "% Restante", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,10 +276,13 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(_contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
-                    .addComponent(_txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(_txtRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(_txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(_contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -269,9 +292,12 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(_contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(_txtRestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(_txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(_txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(_contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -279,7 +305,9 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _btnAdd;
     private javax.swing.JButton _btnCancel;
+    private javax.swing.JButton _btnDel;
     private javax.swing.JButton _btnDropDetails;
     private javax.swing.JButton _btnOk;
     private javax.swing.JButton _btnViewDetails;
@@ -296,6 +324,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
     private javax.swing.JTable _tblSectorEconomico;
     private javax.swing.JTextField _txtAños;
     private javax.swing.JTextField _txtNombre;
+    private javax.swing.JTextField _txtRestante;
     private javax.swing.JTextField _txtTipo;
     private javax.swing.JTextField _txtTotViviendas;
     private javax.swing.JTextField _txtTotal;
@@ -387,6 +416,10 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
     public JTextField getTxtAños() {
         return _txtAños;
+    }
+
+    public JTextField getTxtRestante() {
+        return _txtRestante;
     }
 
 }

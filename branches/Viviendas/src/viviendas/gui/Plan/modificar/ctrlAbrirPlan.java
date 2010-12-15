@@ -7,6 +7,8 @@ package viviendas.gui.Plan.modificar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JDesktopPane;
 import viviendas.gui.models.tables.ModelTablePlan;
 import viviendas.modulos.Plan.modificar.GestorModificarPlan;
@@ -33,7 +35,15 @@ public class ctrlAbrirPlan {
     private void cargarPantalla(){
         _tablaPlan = new ModelTablePlan(_gestor.listarPlanes());
         _pantalla.getTblPlane().setModel(_tablaPlan);
+        _pantalla.getTblPlane().addMouseListener(new MouseAdapter() {
 
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if(e.getClickCount()==2)
+                    pressOkButton();
+            }
+
+        });
         _pantalla.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -46,6 +56,7 @@ public class ctrlAbrirPlan {
                 pressOkButton();
             }
         });
+
     }
 
     void pressOkButton(){
