@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -16,17 +17,23 @@ import javax.swing.JPopupMenu;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.entidades.vivienda.DistribucionProvincial;
 import viviendas.entidades.vivienda.DistribucionSector;
 import viviendas.entidades.vivienda.Plan;
+import viviendas.entidades.vivienda.Provincia;
 import viviendas.gui.tool.ICalculable;
 import viviendas.gui.models.tables.ModelTableAño;
 import viviendas.gui.models.tables.ModelTableDistribucionCiudad;
 import viviendas.gui.models.tables.ModelTableDistribucionOperatoria;
 import viviendas.gui.models.tables.ModelTableDistribucionProvincial;
 import viviendas.gui.models.tables.ModelTableDistribucionSectorEconomico;
+import viviendas.gui.models.tables.ModelTableProvincia;
+import viviendas.gui.models.tables.ModeloTablaOperatoria;
+import viviendas.gui.models.tables.ModeloTablaSectorEconomico;
+import viviendas.gui.models.tables.ModeloTableCiudad;
 import viviendas.gui.tool.SubscriptorTotal;
 import viviendas.modulos.Plan.modificar.GestorModificarPlan;
 import viviendas.systemException.BusinessOperationException;
@@ -43,6 +50,11 @@ public class ctrlModificarPlan implements ICalculable {
     private ModelTableDistribucionCiudad _distCiudad;
     private ModelTableDistribucionSectorEconomico _distSEconomico;
     private ModelTableDistribucionOperatoria _distOperatoria;
+
+    private ModelTableProvincia _provincias;
+    private ModeloTableCiudad _ciudades;
+    private ModeloTablaSectorEconomico _sectores;
+    private ModeloTablaOperatoria _operatorias;
     private GestorModificarPlan _gestor;
     private final int AÑO = 0;
     private final int PROVINCIA = 1;
@@ -50,6 +62,7 @@ public class ctrlModificarPlan implements ICalculable {
     private final int SECTORECONOMICO = 3;
     private final int OPERATORIA = 4;
     private int tablaOnTop = AÑO;
+    private IUSeleccionRestantes _seleccion;
 
     public ctrlModificarPlan(GestorModificarPlan gestor, JDesktopPane panel) {
         _gestor = gestor;
@@ -59,10 +72,11 @@ public class ctrlModificarPlan implements ICalculable {
         _distCiudad = new ModelTableDistribucionCiudad(null);
         _distSEconomico = new ModelTableDistribucionSectorEconomico(null);
         _distOperatoria = new ModelTableDistribucionOperatoria(null);
-
+        _seleccion = new IUSeleccionRestantes(null, true);
         cargarPantalla();
         panel.add(_pantalla);
         _pantalla.setVisible(true);
+        _pantalla.toFront();
         SubscriptorTotal.getInstance().añadir(this);
     }
 
@@ -383,17 +397,53 @@ public class ctrlModificarPlan implements ICalculable {
                 rowIndex = _pantalla.getTblProvincia().getSelectedRow();
                 if(rowIndex<0)
                     return;
+                _gestor.removeDistribucion( _distProvincial.getSelectedIndex(rowIndex));
                 _distProvincial.delRow(rowIndex);
                 break;
             case CIUDAD:
+                rowIndex = _pantalla.getTblCiudad().getSelectedRow();
+                if(rowIndex<0)
+                    return;
+                _gestor.removeDistribucion( _distCiudad.getSelectedIndex(rowIndex));
+                _distCiudad.delRow(rowIndex);
                 break;
             case SECTORECONOMICO:
+                rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
+                if(rowIndex<0)
+                    return;
+                _gestor.removeDistribucion( _distSEconomico.getSelectedIndex(rowIndex));
+                _distSEconomico.delRow(rowIndex);
                 break;
             case OPERATORIA:
+                rowIndex = _pantalla.getTblOperatoria().getSelectedRow();
+                if(rowIndex<0)
+                    return;
+                _gestor.removeDistribucion( _distOperatoria.getSelectedIndex(rowIndex));
+                _distOperatoria.delRow(rowIndex);
                 break;
         }
     }
 
+    void pressAddButton(){
+        switch(tablaOnTop){
+            case PROVINCIA:
+                _provincias= new TablaProvincias(null);
+                _seleccion.getTblSeleccion().setModel(_provincias);
+                break;
+            case CIUDAD:
+                _ciudades = new TablaCiudad(null);
+                _seleccion.getTblSeleccion().setModel(_ciudades);
+                break;
+
+        }
+        if(_seleccion.getTblSeleccion().getRowCount()<=0)
+            _seleccion.getBtnAccept().setEnabled(false);
+        else{
+            _seleccion.getBtnAccept().setEnabled(true);
+            _seleccion.getTblSeleccion().setRowSelectionInterval(0, 0);
+        }
+        _seleccion.setVisible(true);
+    }
 }
 
 class MenuClickDerecho extends MouseAdapter {
@@ -430,4 +480,31 @@ class MenuClickDerecho extends MouseAdapter {
             _menu.show(_pantalla.getContenedor(), e.getX(), e.getY());
         }
     }
+}
+
+class TablaProvincias extends ModelTableProvincia{
+
+    public TablaProvincias(List<Provincia> provincias) {
+        super(provincias);
+        fireTableDataChanged();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 1;
+    }
+}
+
+class TablaCiudad extends ModeloTableCiudad{
+
+    public TablaCiudad(List<Ciudad> lista) {
+        super(lista);
+        fireTableDataChanged();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 1;
+    }
+
 }
