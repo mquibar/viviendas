@@ -15,7 +15,7 @@ import viviendas.gui.tool.SubscriptorTotal;
 public class ModelTableDistribucionProvincial extends AbstractTableModel<DistribucionProvincial> {
 
     public ModelTableDistribucionProvincial(List<DistribucionProvincial> distribucionProvincial) {
-        super(distribucionProvincial, "Provincia", "Porcentaje");
+        super(distribucionProvincial, "Provincia", "Porcentaje","Cantidad Viviendas");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -25,6 +25,11 @@ public class ModelTableDistribucionProvincial extends AbstractTableModel<Distrib
                 return distribucion.getProvincia().getNombre();
             case 1:
                 return distribucion.getPorcentajeDistribucion();
+            case 2:
+                if(distribucion.getPorcentajeDistribucion() == null || distribucion.getAñoPlan() == null){
+                    return 0.0;
+                }
+                return (distribucion.getAñoPlan().getCantViviendasAño() * distribucion.getPorcentajeDistribucion())/100.0;
             default:
                 return "";
         }

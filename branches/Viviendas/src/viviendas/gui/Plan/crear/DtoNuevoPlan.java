@@ -2,7 +2,6 @@ package viviendas.gui.Plan.crear;
 
 import java.util.List;
 import viviendas.entidades.vivienda.DistribucionProvincial;
-import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.TipoPlan;
 
 public class DtoNuevoPlan {
@@ -11,7 +10,16 @@ public class DtoNuevoPlan {
     private Integer cantidadViviendas;
     private TipoPlan tipo;
     private Integer años;
+    private Integer añoInicial;
     private List<DistribucionProvincial> distribucionProvincial;
+
+    public Integer getAñoInicial() {
+        return añoInicial;
+    }
+
+    public void setAñoInicial(Integer añoInicial) {
+        this.añoInicial = añoInicial;
+    }
 
     public Integer getAños() {
         return años;

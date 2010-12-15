@@ -36,6 +36,13 @@ public class DistribucionProvincial implements Serializable {
     public DistribucionProvincial() {
     }
 
+    public DistribucionProvincial(DistribucionProvincial distribucionProvincial) {
+        this.añoPlan = distribucionProvincial.getAñoPlan();
+        this.porcentajeDistribucion = distribucionProvincial.getPorcentajeDistribucion();
+        this.provincia = distribucionProvincial.getProvincia();
+    }
+
+
     public Long getId() {
         return id;
     }
