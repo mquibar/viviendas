@@ -25,6 +25,7 @@ public class GestorModificarPlan {
 
     private Plan plan_a_modificar;
     private GestorConsultarPlan gestor;
+    private List aEliminar=null;
 
     public GestorModificarPlan() {
         gestor = new GestorConsultarPlan();
@@ -80,12 +81,22 @@ public class GestorModificarPlan {
         return dop;
     }
 
+    public void removeDistribucion(Object distribucion){
+        if(distribucion== null)
+            return;
+        if(aEliminar== null)
+            aEliminar=new ArrayList();
+        aEliminar.add(distribucion);
+    }
     public void guardar() throws BusinessOperationException{
         Facade.getInstance().beginTx();
         try {
             Facade.getInstance().actualizar(plan_a_modificar);
             for (AñoPlan aPlan : plan_a_modificar.getListaAñoPlan()) {
                 Facade.getInstance().actualizar(aPlan);
+            }
+            for (Object object : aEliminar) {
+                Facade.getInstance().eliminar(object);
             }
             Facade.getInstance().commitTx();
         } catch (PersistException persistException) {
