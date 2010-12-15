@@ -1,7 +1,5 @@
 package viviendas.gui.Plan.crear;
 
-import java.text.NumberFormat;
-import java.util.Locale;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -9,24 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.NumberFormatter;
+import viviendas.gui.tool.LimitarCampoNumerico;
 
 public class IUPlan extends javax.swing.JInternalFrame {
 
     /** Creates new form IUPlan */
     public IUPlan() {
         initComponents();
-        NumberFormat formatoEditar = NumberFormat.getNumberInstance(Locale.US);
-
-        formatoEditar.setGroupingUsed(false); //no me acuerdo para q es esto
-
-        NumberFormatter formateador2 = new NumberFormatter(formatoEditar);
-        formateador2.setAllowsInvalid(true);// en false te deja poner sólo nros, yo creo q está bien xq no le vamos a  poner a una entrada algo así como $25.50, así q con eso //yo creo q anda bien, si le pones true, te deja ingresar lo q sea, pero si tenes cargado $10 y editas y le pones "ddd", no te toma eso y te deja en $10, fijate q conviene
-
-        DefaultFormatterFactory fabricaSinPesos = new DefaultFormatterFactory(formateador2, formateador2);
-
-        formatedViviendas.setFormatterFactory(fabricaSinPesos);
     }
 
     /** This method is called from within the constructor to
@@ -47,9 +34,9 @@ public class IUPlan extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         texNombre = new javax.swing.JTextField();
         comTipoPlan = new javax.swing.JComboBox();
-        formatedViviendas = new javax.swing.JFormattedTextField();
         spinAños = new javax.swing.JSpinner();
         texTotalViviendas = new javax.swing.JTextField();
+        texViviendas = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabProvincias = new javax.swing.JTable();
@@ -124,13 +111,6 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(comTipoPlan, gridBagConstraints);
 
-        formatedViviendas.setPreferredSize(new java.awt.Dimension(150, 27));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
-        jPanel1.add(formatedViviendas, gridBagConstraints);
-
         spinAños.setModel(new javax.swing.SpinnerNumberModel(Byte.valueOf((byte)1), Byte.valueOf((byte)1), Byte.valueOf((byte)50), Byte.valueOf((byte)1)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
@@ -146,6 +126,14 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(texTotalViviendas, gridBagConstraints);
+
+        texViviendas.setMinimumSize(new java.awt.Dimension(150, 27));
+        texViviendas.setPreferredSize(new java.awt.Dimension(150, 27));
+        texViviendas.setDocument(new LimitarCampoNumerico());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        jPanel1.add(texViviendas, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 3;
@@ -280,7 +268,6 @@ public class IUPlan extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnQuitarTodas;
     private javax.swing.JComboBox comTipoPlan;
     private javax.swing.JFormattedTextField formatedTotal;
-    private javax.swing.JFormattedTextField formatedViviendas;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -298,6 +285,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
     private javax.swing.JTextField texNombre;
     private javax.swing.JTextField texRestante;
     private javax.swing.JTextField texTotalViviendas;
+    private javax.swing.JTextField texViviendas;
     // End of variables declaration//GEN-END:variables
 
     
@@ -350,12 +338,12 @@ public class IUPlan extends javax.swing.JInternalFrame {
         this.comTipoPlan = comTipoPlan;
     }
 
-    public JFormattedTextField getFormatedViviendas() {
-        return formatedViviendas;
+    public JTextField getTexViviendas() {
+        return texViviendas;
     }
 
-    public void setFormatedViviendas(JFormattedTextField formatedViviendas) {
-        this.formatedViviendas = formatedViviendas;
+    public void setTexViviendas(JTextField texViviendas) {
+        this.texViviendas = texViviendas;
     }
 
     public JSpinner getSpinAños() {
