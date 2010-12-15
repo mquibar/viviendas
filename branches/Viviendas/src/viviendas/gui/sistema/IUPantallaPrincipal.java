@@ -39,11 +39,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
     public JMenuItem getMnuAcercaDe() {
         return mnuAcercaDe;
-    }
-
-    public JMenuItem getMnuFuenteFondos() {
-        return mnuFuenteFondos;
-    }
+    }    
 
     public JMenuItem getMnuNuevoPlan() {
         return mnuNuevoPlan;
@@ -51,6 +47,10 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
     public JMenuItem getMnuOperatoria() {
         return mnuOperatoria;
+    }
+
+    public JMenuItem getMnuProvincias(){
+        return mnuProvincias;
     }
 
     public JMenuItem getMnuReportes() {
@@ -85,8 +85,8 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuParametros = new javax.swing.JMenu();
         mnuSegmentoEconomico = new javax.swing.JMenuItem();
         mnuTiposCiudades = new javax.swing.JMenuItem();
-        mnuFuenteFondos = new javax.swing.JMenuItem();
         mnuOperatoria = new javax.swing.JMenuItem();
+        mnuProvincias = new javax.swing.JMenuItem();
         mnuConfiguracion = new javax.swing.JMenu();
         mnuSistema = new javax.swing.JMenu();
         mnuAcercaDe = new javax.swing.JMenuItem();
@@ -124,13 +124,11 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuTiposCiudades.setText("Tipos Ciudadades");
         mnuParametros.add(mnuTiposCiudades);
 
-        mnuFuenteFondos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        mnuFuenteFondos.setText("Fuentes Fondos");
-        mnuParametros.add(mnuFuenteFondos);
-
         mnuOperatoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        mnuOperatoria.setText("Operatoria");
         mnuParametros.add(mnuOperatoria);
+
+        mnuProvincias.setText("Provincias");
+        mnuParametros.add(mnuProvincias);
 
         mnuBarSistema.add(mnuParametros);
 
@@ -171,11 +169,11 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuAcercaDe;
     private javax.swing.JMenuBar mnuBarSistema;
     private javax.swing.JMenu mnuConfiguracion;
-    private javax.swing.JMenuItem mnuFuenteFondos;
     private javax.swing.JMenuItem mnuNuevoPlan;
     private javax.swing.JMenuItem mnuOperatoria;
     private javax.swing.JMenu mnuParametros;
     private javax.swing.JMenu mnuPlanes;
+    private javax.swing.JMenuItem mnuProvincias;
     private javax.swing.JMenuItem mnuReportes;
     private javax.swing.JMenuItem mnuSalir;
     private javax.swing.JMenuItem mnuSegmentoEconomico;
