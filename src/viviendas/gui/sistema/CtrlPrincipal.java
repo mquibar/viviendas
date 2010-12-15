@@ -10,6 +10,7 @@ import viviendas.gui.Plan.crear.CtrlPlan;
 import viviendas.gui.Plan.modificar.ctrlAbrirPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
+import viviendas.gui.provincia.CtrlProvincia;
 
 /**
  *
@@ -30,12 +31,12 @@ public class CtrlPrincipal {
                 abrirIUTiposCiudades();
             }
         });
-        _pantalla.getMnuFuenteFondos().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                abrirIUFuentesFondos();
-            }
-        });
+//        _pantalla.getMnuFuenteFondos().addActionListener(new ActionListener() {
+//
+//            public void actionPerformed(ActionEvent e) {
+//                abrirIUFuentesFondos();
+//            }
+//        });
         _pantalla.getMnuOperatoria().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -72,6 +73,12 @@ public class CtrlPrincipal {
                 abrirIUAbrirPlan();
             }
         });
+        _pantalla.getMnuProvincias().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUAbrirProvincias();
+            }
+        });
 
     }
 
@@ -101,6 +108,10 @@ public class CtrlPrincipal {
 
     private void abrirIUAbrirPlan(){
         new ctrlAbrirPlan(_pantalla.getDesktopPane());
+    }
+
+    private void abrirIUAbrirProvincias(){
+        new CtrlProvincia(_pantalla.getDesktopPane());
     }
 
     /**
