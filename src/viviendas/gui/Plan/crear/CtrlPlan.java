@@ -1,5 +1,7 @@
 package viviendas.gui.Plan.crear;
 
+import javax.swing.JTable;
+import javax.swing.event.ChangeEvent;
 import viviendas.gui.tool.SubscriptorTotal;
 import viviendas.gui.tool.ICalculable;
 import java.awt.Color;
@@ -16,7 +18,7 @@ import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.TipoPlan;
 import viviendas.gui.models.combos.ModelComboTipoPlan;
 import viviendas.gui.models.tables.ModelTableDistribucionProvincial;
-import viviendas.modulos.Plan.GestorCrearPlan;
+import viviendas.modulos.Plan.crear.GestorCrearPlan;
 import viviendas.persistencia.exceptions.PersistException;
 import viviendas.systemException.MissingData;
 import viviendas.systemException.VerifyDataException;
@@ -30,12 +32,9 @@ public class CtrlPlan implements ICalculable {
         _gestor = new GestorCrearPlan();
         _pantalla = new IUPlan();
         _pantalla.getTabProvincias().setModel(new ModelTableProvincia(_gestor.buscarProvincias()));
-        TableColumn columnaPorcentaje = _pantalla.getTabProvincias().getColumnModel().getColumn(1);
-        columnaPorcentaje.setMaxWidth(0);
-        columnaPorcentaje.setMinWidth(0);
-        columnaPorcentaje.setPreferredWidth(0);
-        columnaPorcentaje.setWidth(0);
         _pantalla.getTabProvinciasSeleccionadas().setModel(new ModelTableDistribucionProvincial(new ArrayList<DistribucionProvincial>()));
+        ocultarColumna(_pantalla.getTabProvincias(), 1);
+        ocultarColumna(_pantalla.getTabProvinciasSeleccionadas(), 2);
         _pantalla.getComTipoPlan().setModel(new ModelComboTipoPlan(_gestor.buscarTiposPlanes()));
         SubscriptorTotal.getInstance().añadir(this);
         _pantalla.getBtnAceptar().addActionListener(new java.awt.event.ActionListener() {
@@ -68,20 +67,53 @@ public class CtrlPlan implements ICalculable {
                 quitarTodasProvincias();
             }
         });
+        _pantalla.getTexViviendas().addKeyListener(new java.awt.event.KeyAdapter() {
+
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                calcularTotalVivienda();
+            }
+        });
+
+        _pantalla.getSpinAños().addChangeListener(new javax.swing.event.ChangeListener() {
+
+            public void stateChanged(ChangeEvent e) {
+                calcularTotalVivienda();
+            }
+        });
+        _pantalla.getBtnCancelar().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                cancelar();
+            }
+        });
+        _pantalla.addInternalFrameListener(new javax.swing.event.InternalFrameAdapter() {
+
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                cancelar();
+            }
+        });
         _pantalla.setVisible(true);
         desktop.add(_pantalla);
+
+    }
+
+    private void cancelar() {
+        SubscriptorTotal.getInstance().remove(this);
+        _pantalla.dispose();
     }
 
     private void cargarNuevoPlan() {
         try {
             DtoNuevoPlan dto = new DtoNuevoPlan();
+            dto.setAñoInicial(((Number) _pantalla.getSpinAñoInicio().getValue()).intValue());
             dto.setAños(((Number) _pantalla.getSpinAños().getValue()).intValue());
             String cantidadViviendas = _pantalla.getTexViviendas().getText();
-            if (cantidadViviendas == null) {
+            if (cantidadViviendas == null || cantidadViviendas.equals("")) {
                 throw new MissingData("Cantidad Vivienda");
             }
             dto.setCantidadViviendas(Integer.parseInt(cantidadViviendas));
-            if (_pantalla.getTexNombre().getText() == null) {
+            if (_pantalla.getTexNombre().getText() == null || _pantalla.getTexNombre().getText().equals("")) {
                 throw new MissingData("Nombre Plan");
             }
             dto.setNombre(_pantalla.getTexNombre().getText());
@@ -155,6 +187,15 @@ public class CtrlPlan implements ICalculable {
         JOptionPane.showMessageDialog(_pantalla, string, "", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    private void calcularTotalVivienda() {
+        Integer total = 0;
+        if (_pantalla.getTexViviendas().getText() != null && !_pantalla.getTexViviendas().getText().equals("")) {
+            total = Integer.parseInt(_pantalla.getTexViviendas().getText());
+        }
+        total *= ((Number) _pantalla.getSpinAños().getValue()).intValue();
+        _pantalla.getTexTotalViviendas().setText(Integer.toString(total));
+    }
+
     @Override
     public void actualizarPorcentaje() {
         Double porcentajeTotal = _gestor.sumarPorcentaje(((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).getAllRow());
@@ -173,5 +214,13 @@ public class CtrlPlan implements ICalculable {
             _pantalla.getLabRestante().setForeground(Color.RED);
             _pantalla.getTexRestante().setForeground(Color.RED);
         }
+    }
+
+    private void ocultarColumna(JTable tabla, int columna) {
+        TableColumn columnaPorcentaje = tabla.getColumnModel().getColumn(columna);
+        columnaPorcentaje.setMaxWidth(0);
+        columnaPorcentaje.setMinWidth(0);
+        columnaPorcentaje.setPreferredWidth(0);
+        columnaPorcentaje.setWidth(0);
     }
 }

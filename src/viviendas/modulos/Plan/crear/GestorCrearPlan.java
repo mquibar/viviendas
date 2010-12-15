@@ -1,4 +1,4 @@
-package viviendas.modulos.Plan;
+package viviendas.modulos.Plan.crear;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,31 +24,33 @@ public class GestorCrearPlan {
         verificarEl100Porciento(sumarPorcentaje(dto.getDistribucionProvincial()));
         Facade.getInstance().beginTx();
         int cantidadAños = dto.getAños();
-        int año = 2010;
+        int año = dto.getAñoInicial();
         Plan plan = new Plan();
         plan.setAñosPlan(cantidadAños);
         plan.setTipoPlan(dto.getTipo());
-        plan.setNombre(dto.getNombre());
+        plan.setNombre(dto.getNombre().toUpperCase());
         plan.setNumeroViviendas(cantidadAños * dto.getCantidadViviendas());
         List<AñoPlan> añosPlan = new ArrayList<AñoPlan>();
+
         List<SectorEconomico> sectoresEconomicos = Facade.getInstance().findAll(SectorEconomico.class);
         List<Operatoria> operatorias = Facade.getInstance().findAll(Operatoria.class);
+
         for (int i = 0; i < cantidadAños; i++) {
             AñoPlan añoPlan = new AñoPlan();
             añoPlan.setAño(año++);
             añoPlan.setCantViviendasAño(dto.getCantidadViviendas());
             añoPlan.setPlan(plan);
-
-            for (DistribucionProvincial distribucionProvincial : dto.getDistribucionProvincial()) {
-
-                for (Ciudad ciudad : distribucionProvincial.getProvincia().getListaCuidad()) {
+            List<DistribucionProvincial> distribucionesProvinciales = new ArrayList<DistribucionProvincial>(dto.getDistribucionProvincial());
+            for (DistribucionProvincial distribucionProvincial : distribucionesProvinciales) {
+                DistribucionProvincial distribucionProvincialNueva = new DistribucionProvincial(distribucionProvincial);
+                for (Ciudad ciudad : distribucionProvincialNueva.getProvincia().getListaCuidad()) {
 
                     DistribucionCiudad distribucionCiudad = new DistribucionCiudad();
-                    distribucionCiudad.setDistribucionProvincial(distribucionProvincial);
+                    distribucionCiudad.setDistribucionProvincial(distribucionProvincialNueva);
                     distribucionCiudad.setCuidad(ciudad);
                     distribucionCiudad.setAñoPlan(añoPlan);
 //                    distribucionCiudad.setPorcentajeDistribucion(ciudad.getParametro().getPorcenteaje());
-                    distribucionCiudad.setPorcentajeDistribucion(30.0);
+                    distribucionCiudad.setPorcentajeDistribucion(33.333);
                     for (SectorEconomico sectorEconomico : sectoresEconomicos) {
 
                         DistribucionSector distribucionSector = new DistribucionSector();
@@ -56,7 +58,7 @@ public class GestorCrearPlan {
                         distribucionSector.setDistribucionCiudad(distribucionCiudad);
                         distribucionSector.setSectorEconomico(sectorEconomico);
 //                        distribucionSector.setPorcentajeDistribucion(sectorEconomico.getParametro().getPorcenteaje());
-                        distribucionSector.setPorcentajeDistribucion(30.0);
+                        distribucionSector.setPorcentajeDistribucion(33.333);
                         for (Operatoria operatoria : operatorias) {
 
                             DistribucionOperatoria distribucionOperatoria = new DistribucionOperatoria();
@@ -64,7 +66,7 @@ public class GestorCrearPlan {
                             distribucionOperatoria.setDistribucionSector(distribucionSector);
                             distribucionOperatoria.setOperatoria(operatoria);
 //                            distribucionOperatoria.setPorcentajeDistribucion(operatoria.getParametro().getPorcenteaje());
-                            distribucionOperatoria.setPorcentajeDistribucion(30.0);
+                            distribucionOperatoria.setPorcentajeDistribucion(33.333);
                             distribucionOperatoria.setAñoPlan(añoPlan);
                             Facade.getInstance().guardar(distribucionOperatoria);
                         }
@@ -74,8 +76,8 @@ public class GestorCrearPlan {
                     distribucionCiudad.setAñoPlan(añoPlan);
                     Facade.getInstance().guardar(distribucionCiudad);
                 }
-                distribucionProvincial.setAñoPlan(añoPlan);
-                Facade.getInstance().guardar(distribucionProvincial);
+                distribucionProvincialNueva.setAñoPlan(añoPlan);
+                Facade.getInstance().guardar(distribucionProvincialNueva);
             }
             añosPlan.add(añoPlan);
         }
@@ -93,12 +95,12 @@ public class GestorCrearPlan {
     }
 
     public void verificarEl100Porciento(Double porcentaje) throws VerifyDataException {
-        if(new Double(100).compareTo(porcentaje) != 0){
+        if (new Double(100).compareTo(porcentaje) != 0) {
             throw new VerifyDataException("porcentaje");
         }
     }
 
-    public Double sumarPorcentaje(List<DistribucionProvincial> distribucion){
+    public Double sumarPorcentaje(List<DistribucionProvincial> distribucion) {
         Double porcentajeTotal = new Double(0);
         for (DistribucionProvincial distribucionProvincial : distribucion) {
             if (distribucionProvincial.getPorcentajeDistribucion() != null) {

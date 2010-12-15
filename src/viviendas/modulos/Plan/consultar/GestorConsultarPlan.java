@@ -15,10 +15,6 @@ import viviendas.entidades.vivienda.Plan;
 import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
 
-/**
- *
- * @author Manuel
- */
 public class GestorConsultarPlan {
 
     public List<Plan> listarPlanes(){
