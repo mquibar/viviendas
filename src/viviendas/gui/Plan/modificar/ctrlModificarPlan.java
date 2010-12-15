@@ -89,6 +89,12 @@ public class ctrlModificarPlan implements ICalculable {
                 pressCancelButton();
             }
         });
+        _pantalla.getBtnDel().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                pressDelButton();
+            }
+        });
 
         //DATOS DEL PLAN
         _pantalla.getTxtNombre().setText(plan.getNombre());
@@ -368,6 +374,24 @@ public class ctrlModificarPlan implements ICalculable {
             porcentaje += dOperatoria.getPorcentajeDistribucion();
         }
         colorTotal(porcentaje);
+    }
+
+    void pressDelButton(){
+        int rowIndex=0;
+        switch(tablaOnTop){
+            case PROVINCIA:
+                rowIndex = _pantalla.getTblProvincia().getSelectedRow();
+                if(rowIndex<0)
+                    return;
+                _distProvincial.delRow(rowIndex);
+                break;
+            case CIUDAD:
+                break;
+            case SECTORECONOMICO:
+                break;
+            case OPERATORIA:
+                break;
+        }
     }
 
 }

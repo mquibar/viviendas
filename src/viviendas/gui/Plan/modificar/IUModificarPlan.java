@@ -422,4 +422,12 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         return _txtRestante;
     }
 
+    public JButton getBtnAdd() {
+        return _btnAdd;
+    }
+
+    public JButton getBtnDel() {
+        return _btnDel;
+    }
+
 }
