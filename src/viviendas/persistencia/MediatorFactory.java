@@ -7,9 +7,17 @@ package viviendas.persistencia;
 import java.util.HashMap;
 import java.util.Map;
 import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.Ciudad;
+import viviendas.entidades.vivienda.DistribucionCiudad;
+import viviendas.entidades.vivienda.DistribucionOperatoria;
+import viviendas.entidades.vivienda.DistribucionProvincial;
+import viviendas.entidades.vivienda.DistribucionSector;
 import viviendas.entidades.vivienda.Operatoria;
+import viviendas.entidades.vivienda.ParametrosPlan;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.entidades.vivienda.Provincia;
+import viviendas.entidades.vivienda.SectorEconomico;
+import viviendas.entidades.vivienda.TipoPlan;
 import viviendas.entidades.vivienda.Usuario;
 
 /**
@@ -51,7 +59,7 @@ class MediatorFactory {
                 interm = new Intermediario<Provincia>(c.getSimpleName());
                 break;
             case CIUDAD:
-                interm = new IntermediarioCiudad();
+                interm = new Intermediario<Ciudad>(c.getSimpleName());
                 break;
             case USUARIO:
                 interm = new Intermediario<Usuario>(c.getSimpleName());
@@ -60,22 +68,22 @@ class MediatorFactory {
                 interm = new Intermediario<Operatoria>(c.getSimpleName());
                 break;
             case SECTORECONOMICO:
-                interm = new IntermediarioSectorEconomico();
+                interm = new Intermediario<SectorEconomico>(c.getSimpleName());
                 break;
             case TIPOPLAN:
-                interm = new IntermediarioTipoPlan();
+                interm = new Intermediario<TipoPlan>(c.getSimpleName());
                 break;
             case DISTRIBUCIONCIUDAD:
-                interm = new IntermediarioDistribucionCiudad();
+                interm = new Intermediario<DistribucionCiudad>(c.getSimpleName());
                 break;
             case DISTRIBUCIONOPERATORIA:
-                interm = new IntermediarioDistribucionOperatoria();
+                interm = new Intermediario<DistribucionOperatoria>(c.getSimpleName());
                 break;
             case DISTRIBUCIONPROVINCIAL:
-                interm = new IntermediarioDistribucionProvincial();
+                interm = new Intermediario<DistribucionProvincial>(c.getSimpleName());
                 break;
             case DISTRIBUCIONSECTOR:
-                interm = new IntermediarioDistribucionSector();
+                interm = new Intermediario<DistribucionSector>(c.getSimpleName());
                 break;
             case PLAN:
                 interm = new Intermediario<Plan>(c.getSimpleName());
@@ -84,7 +92,7 @@ class MediatorFactory {
                 interm = new Intermediario<AñoPlan>("AñoPlan");
                 break;
             case PARAMETROSPLAN:
-                interm = new IntermediarioParametrosPlan();
+                interm = new Intermediario<ParametrosPlan>(c.getSimpleName());
         }
 
         _mapaIntermediarios.put(c, interm);

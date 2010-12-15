@@ -16,10 +16,12 @@ import viviendas.entidades.vivienda.TipoPlan;
 import viviendas.gui.Plan.crear.DtoNuevoPlan;
 import viviendas.persistencia.Facade;
 import viviendas.persistencia.exceptions.PersistException;
+import viviendas.systemException.VerifyDataException;
 
 public class GestorCrearPlan {
 
-    public void crearNuevoPlan(DtoNuevoPlan dto) throws PersistException {
+    public void crearNuevoPlan(DtoNuevoPlan dto) throws PersistException, VerifyDataException {
+        verificarEl100Porciento(sumarPorcentaje(dto.getDistribucionProvincial()));
         Facade.getInstance().beginTx();
         int cantidadAños = dto.getAños();
         int año = 2010;
@@ -45,21 +47,24 @@ public class GestorCrearPlan {
                     distribucionCiudad.setDistribucionProvincial(distribucionProvincial);
                     distribucionCiudad.setCuidad(ciudad);
                     distribucionCiudad.setAñoPlan(añoPlan);
-                    distribucionCiudad.setPorcentajeDistribucion(ciudad.getParametro().getPorcenteaje());
+//                    distribucionCiudad.setPorcentajeDistribucion(ciudad.getParametro().getPorcenteaje());
+                    distribucionCiudad.setPorcentajeDistribucion(30.0);
                     for (SectorEconomico sectorEconomico : sectoresEconomicos) {
 
                         DistribucionSector distribucionSector = new DistribucionSector();
                         distribucionSector.setAñoPlan(añoPlan);
                         distribucionSector.setDistribucionCiudad(distribucionCiudad);
                         distribucionSector.setSectorEconomico(sectorEconomico);
-                        distribucionSector.setPorcentajeDistribucion(sectorEconomico.getParametro().getPorcenteaje());
+//                        distribucionSector.setPorcentajeDistribucion(sectorEconomico.getParametro().getPorcenteaje());
+                        distribucionSector.setPorcentajeDistribucion(30.0);
                         for (Operatoria operatoria : operatorias) {
 
                             DistribucionOperatoria distribucionOperatoria = new DistribucionOperatoria();
                             distribucionOperatoria.setAñoPlan(añoPlan);
                             distribucionOperatoria.setDistribucionSector(distribucionSector);
                             distribucionOperatoria.setOperatoria(operatoria);
-                            distribucionOperatoria.setPorcentajeDistribucion(operatoria.getParametro().getPorcenteaje());
+//                            distribucionOperatoria.setPorcentajeDistribucion(operatoria.getParametro().getPorcenteaje());
+                            distribucionOperatoria.setPorcentajeDistribucion(30.0);
                             distribucionOperatoria.setAñoPlan(añoPlan);
                             Facade.getInstance().guardar(distribucionOperatoria);
                         }
@@ -85,5 +90,21 @@ public class GestorCrearPlan {
 
     public List<TipoPlan> buscarTiposPlanes() {
         return Facade.getInstance().findAll(TipoPlan.class);
+    }
+
+    public void verificarEl100Porciento(Double porcentaje) throws VerifyDataException {
+        if(new Double(100).compareTo(porcentaje) != 0){
+            throw new VerifyDataException("porcentaje");
+        }
+    }
+
+    public Double sumarPorcentaje(List<DistribucionProvincial> distribucion){
+        Double porcentajeTotal = new Double(0);
+        for (DistribucionProvincial distribucionProvincial : distribucion) {
+            if (distribucionProvincial.getPorcentajeDistribucion() != null) {
+                porcentajeTotal += distribucionProvincial.getPorcentajeDistribucion();
+            }
+        }
+        return porcentajeTotal;
     }
 }
