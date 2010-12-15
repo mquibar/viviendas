@@ -2,6 +2,7 @@ package viviendas.gui.sistema;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import viviendas.gui.FuentesFondos.CtrlFuenteFondo;
 import viviendas.gui.Operatoria.CtrlOperatoria;
@@ -22,6 +23,7 @@ public class CtrlPrincipal {
     public CtrlPrincipal() {
         _pantalla = new IUPantallaPrincipal();
         _pantalla.setLocationRelativeTo(null);
+        _pantalla.setExtendedState(JFrame.MAXIMIZED_BOTH);
         _pantalla.getMnuTiposCiudades().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {

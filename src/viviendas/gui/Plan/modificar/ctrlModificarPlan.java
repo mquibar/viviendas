@@ -6,11 +6,16 @@
 package viviendas.gui.Plan.modificar;
 
 import java.awt.Color;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import javax.swing.JDesktopPane;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import viviendas.entidades.vivienda.AñoPlan;
 import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
@@ -64,6 +69,7 @@ public class ctrlModificarPlan implements ICalculable {
 
     final void cargarPantalla(){
         Plan plan = _gestor.getPlan();
+        MenuClickDerecho mnuDerecho = new MenuClickDerecho(this, _pantalla);
         _pantalla.getBtnOk().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -76,19 +82,38 @@ public class ctrlModificarPlan implements ICalculable {
                 pressCancelButton();
             }
         });
+        
+        //DATOS DEL PLAN
         _pantalla.getTxtNombre().setText(plan.getNombre());
         _pantalla.getTxtTipo().setText(plan.getTipoPlan().getNombre());
+        _pantalla.getTxtAños().setText(plan.getAñosPlan().toString());
         _pantalla.getTxtTotViviendas().setText(plan.getNumeroViviendas().toString());
+
         _tablaAños.setList(_gestor.getPlan().getListaAñoPlan());
+        //MANEJO DE EVENTOS PARA LA TABLA AÑO
         _pantalla.getTblAños().setModel(_tablaAños);
+        _pantalla.getTblAños().addMouseListener(mnuDerecho);
+        _pantalla.getScrAño().addMouseListener(mnuDerecho);
+        //MANEJO DE EVENTOS PARA LA TABLA PROVINCIA
         _pantalla.getTblProvincia().setModel(_distProvincial);
+        _pantalla.getTblProvincia().addMouseListener(mnuDerecho);
         _pantalla.getScrProvincia().setVisible(false);
+        _pantalla.getScrProvincia().addMouseListener(mnuDerecho);
+        //MANEJO DE EVENTOS PARA LA TABLA CIUDAD
         _pantalla.getTblCiudad().setModel(_distCiudad);
+        _pantalla.getTblCiudad().addMouseListener(mnuDerecho);
         _pantalla.getScrCiudad().setVisible(false);
+        _pantalla.getScrCiudad().addMouseListener(mnuDerecho);
+        //MANEJO DE EVENTOS PARA LA TABLA SECTOR ECONOMICO
         _pantalla.getTblSectorEconomico().setModel(_distSEconomico);
+        _pantalla.getTblSectorEconomico().addMouseListener(mnuDerecho);
         _pantalla.getScrSectEconom().setVisible(false);
+        _pantalla.getScrSectEconom().addMouseListener(mnuDerecho);
+        //MANEJO DE EVENTOS PARA LA TABLA OPERATORIA
         _pantalla.getTblOperatoria().setModel(_distOperatoria);
+        _pantalla.getTblOperatoria().addMouseListener(mnuDerecho);
         _pantalla.getScrOperatoria().setVisible(false);
+        _pantalla.getScrOperatoria().addMouseListener(mnuDerecho);
 
         _pantalla.getBtnViewDetails().addActionListener(new ActionListener() {
 
@@ -167,7 +192,14 @@ public class ctrlModificarPlan implements ICalculable {
                 _pantalla.getBtnViewDetails().setEnabled(true);
                 break;
             default:
-                tablaOnTop++;
+                if(tablaOnTop<AÑO){
+                    _pantalla.getBtnDropDetails().setEnabled(false);
+                    tablaOnTop=AÑO+1;
+                } else if(tablaOnTop>OPERATORIA){
+                    _pantalla.getBtnViewDetails().setEnabled(true);
+                    tablaOnTop=OPERATORIA+1;
+                }
+
         }
         tablaOnTop--;
         actualizarPorcentaje();
@@ -176,28 +208,41 @@ public class ctrlModificarPlan implements ICalculable {
         _distProvincial.setList(_gestor.listarDistribucionProvincial(getAñoSeleccionado()));//LLAMAR AL GESTOR PARA QUE ME RECUPERE EL LISTADO
         _pantalla.getTblAños().setEnabled(false);
         _pantalla.getScrProvincia().setVisible(true);
+        if(_distProvincial.getAllRow().isEmpty()) ocultarTablas();
     }
 
     void viewCiudad(){
         int rowIndex = _pantalla.getTblProvincia().getSelectedRow();
-        if(rowIndex<0) rowIndex=0;
+        if(rowIndex<0) {
+            rowIndex=0;
+            _pantalla.getTblProvincia().setRowSelectionInterval(0, 0);
+        }
         _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), _distProvincial.getSelectedIndex(rowIndex)));//LLAMAR ACA TB AL GESTOR
         _pantalla.getTblProvincia().setEnabled(false);
         _pantalla.getScrCiudad().setVisible(true);
+        if(_distCiudad.getAllRow().isEmpty()) ocultarTablas();
     }
 
     void viewSectEconomico(){
         int rowIndex = _pantalla.getTblCiudad().getSelectedRow();
-        if(rowIndex<0) rowIndex=0;
+        if(rowIndex<0) {
+            rowIndex=0;
+            _pantalla.getTblCiudad().setRowSelectionInterval(0, 0);
+        }
         _distSEconomico.setList(_gestor.listarDistribucionSector(getAñoSeleccionado(), _distCiudad.getSelectedIndex(rowIndex)));//GESTOR
+        if(_distSEconomico.getAllRow().isEmpty()) { ocultarTablas(); return;}
         _pantalla.getTblCiudad().setEnabled(false);
         _pantalla.getScrSectEconom().setVisible(true);
     }
 
     void viewOperatoria(){
         int rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
-        if(rowIndex<0) rowIndex=0;
+        if(rowIndex<0) {
+            rowIndex=0;
+            _pantalla.getTblSectorEconomico().setRowSelectionInterval(rowIndex, rowIndex);
+        }
         _distOperatoria.setList(_gestor.listarDistribucionOperatoria(getAñoSeleccionado(), _distSEconomico.getSelectedIndex(rowIndex)));//GESTOR
+        if(_distOperatoria.getAllRow().isEmpty()) { ocultarTablas(); return;}
         _pantalla.getTblSectorEconomico().setEnabled(false);
         _pantalla.getScrOperatoria().setVisible(true);
     }
@@ -221,12 +266,18 @@ public class ctrlModificarPlan implements ICalculable {
 
     private AñoPlan getAñoSeleccionado(){
         int idx = _pantalla.getTblAños().getSelectedRow();
-        if(idx<0) idx=0;
+        if(idx<0) {
+            idx=0;
+            _pantalla.getTblAños().setRowSelectionInterval(0, 0);
+        }
         return _tablaAños.getSelectedIndex(idx);
     }
 
     public void actualizarPorcentaje() {
         switch(tablaOnTop){
+            case AÑO:
+                colorTotal(100);
+                break;
             case PROVINCIA:
                 porcentajeProvincia();
                 break;
@@ -248,9 +299,18 @@ public class ctrlModificarPlan implements ICalculable {
         _pantalla.getTxtTotal().setText(nf.format(porcentaje));
         if(porcentaje!=100.0){
             _pantalla.getTxtTotal().setForeground(Color.red);
+            _pantalla.getBtnOk().setEnabled(false);
+            if(tablaOnTop!=AÑO)
+                _pantalla.getBtnDropDetails().setEnabled(false);
+            _pantalla.getBtnViewDetails().setEnabled(false);
         }
-        else
+        else{
             _pantalla.getTxtTotal().setForeground(Color.BLUE);
+            _pantalla.getBtnOk().setEnabled(true);
+            _pantalla.getBtnDropDetails().setEnabled(true);
+            if(tablaOnTop!=OPERATORIA)
+                _pantalla.getBtnViewDetails().setEnabled(true);
+        }
     }
 
     private void porcentajeProvincia(){
@@ -283,4 +343,46 @@ public class ctrlModificarPlan implements ICalculable {
         }
         colorTotal(porcentaje);
     }
+
+    private double round(double value, int decimal){
+        return 0;
+    }
+}
+
+class MenuClickDerecho extends MouseAdapter{
+    private JPopupMenu _menu;
+    private JMenuItem _mnuAdd;
+    private IUModificarPlan _pantalla;
+
+    public MenuClickDerecho(final ctrlModificarPlan control, IUModificarPlan _pantalla) {
+        this._pantalla = _pantalla;
+        _menu = new JPopupMenu("Detalles");
+        _mnuAdd = new JMenuItem("Mostrar Detalles");
+        _mnuAdd.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                control.verTablas();
+            }
+        });
+        _menu.add(_mnuAdd);
+        _mnuAdd = new JMenuItem("Ocultar Detalles");
+        _mnuAdd.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                control.ocultarTablas();
+            }
+        });
+        _menu.add(_mnuAdd);
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if (e.isPopupTrigger())
+            _menu.show(_pantalla.getContenedor(), e.getX(), e.getY());
+    }
+
+
+
+
 }

@@ -94,6 +94,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Viviendas 1.0");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         desktopPane.setBackground(new java.awt.Color(102, 153, 255));
 
@@ -103,7 +104,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuNuevoPlan.setText("Nuevo");
         mnuPlanes.add(mnuNuevoPlan);
 
-        mnuAbrirPlan.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        mnuAbrirPlan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Open_16x16.png"))); // NOI18N
         mnuAbrirPlan.setText("Abrir");
         mnuPlanes.add(mnuAbrirPlan);
 
@@ -142,7 +143,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuAcercaDe.setText("Acerca de");
         mnuSistema.add(mnuAcercaDe);
 
-        mnuSalir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, java.awt.event.InputEvent.CTRL_MASK));
+        mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
         mnuSalir.setText("Salir");
         mnuSistema.add(mnuSalir);
 
@@ -163,17 +164,6 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new IUPantallaPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;

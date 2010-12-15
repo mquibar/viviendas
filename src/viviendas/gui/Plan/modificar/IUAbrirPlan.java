@@ -42,6 +42,10 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle("Abrir Plan");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
+        setMaximumSize(new java.awt.Dimension(402, 411));
+        setMinimumSize(new java.awt.Dimension(302, 311));
+        setPreferredSize(new java.awt.Dimension(350, 411));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         _tblPlane.setModel(new javax.swing.table.DefaultTableModel(
@@ -68,6 +72,7 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
+        _btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Open_16x16.png"))); // NOI18N
         _btnOpen.setText("Abrir");
         _btnOpen.setMaximumSize(new java.awt.Dimension(68, 29));
         _btnOpen.setMinimumSize(new java.awt.Dimension(68, 29));
@@ -81,6 +86,7 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 150);
         getContentPane().add(_btnOpen, gridBagConstraints);
 
+        _btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
         _btnCancel.setText("Cancelar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
