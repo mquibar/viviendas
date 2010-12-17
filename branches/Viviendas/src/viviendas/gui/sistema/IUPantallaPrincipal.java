@@ -125,8 +125,10 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuParametros.add(mnuTiposCiudades);
 
         mnuOperatoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        mnuOperatoria.setText("Operatorias");
         mnuParametros.add(mnuOperatoria);
 
+        mnuProvincias.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         mnuProvincias.setText("Provincias");
         mnuParametros.add(mnuProvincias);
 
