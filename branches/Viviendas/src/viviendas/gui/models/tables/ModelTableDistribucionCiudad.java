@@ -6,6 +6,7 @@ package viviendas.gui.models.tables;
 
 import java.util.List;
 import viviendas.entidades.vivienda.DistribucionCiudad;
+import viviendas.entidades.vivienda.DistribucionProvincial;
 import viviendas.gui.tool.SubscriptorTotal;
 
 /**
@@ -15,16 +16,20 @@ import viviendas.gui.tool.SubscriptorTotal;
 public class ModelTableDistribucionCiudad extends AbstractTableModel<DistribucionCiudad> {
 
     public ModelTableDistribucionCiudad(List<DistribucionCiudad> _lista) {
-        super(_lista, "Ciudad", "% de Distribución");
+        super(_lista, "Ciudad", "% de Distribución","Cantidad Viviendas");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
+        DistribucionCiudad distribucionCiudad = _lista.get(rowIndex);
         try {
             switch (columnIndex) {
                 case 0:
                     return _lista.get(rowIndex).getCuidad().getNombre();
                 case 1:
                     return _lista.get(rowIndex).getPorcentajeDistribucion();
+                case 2:
+                    return distribucionCiudad.getPorcentajeDistribucion() /100 * (distribucionCiudad.getDistribucionProvincial().getAñoPlan().getCantViviendasAño() * distribucionCiudad.getDistribucionProvincial().getPorcentajeDistribucion() / 100.0);
+
                 default:
                     return "-";
             }
@@ -61,6 +66,7 @@ public class ModelTableDistribucionCiudad extends AbstractTableModel<Distribucio
                 return Object.class;
         }
     }
+
     @Override
     public void fireTableDataChanged() {
         super.fireTableDataChanged();

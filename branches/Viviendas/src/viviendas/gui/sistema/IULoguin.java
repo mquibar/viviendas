@@ -69,6 +69,10 @@ public class IULoguin extends javax.swing.JFrame {
 
         jLabel3.setText("Contraseña");
 
+        txtUsuario.setText("luis");
+
+        txtContrasenia.setText("luis");
+
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Accept.png"))); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {

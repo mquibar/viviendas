@@ -1,6 +1,5 @@
 package viviendas.gui.Plan.crear;
 
-import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import viviendas.gui.tool.SubscriptorTotal;
 import viviendas.gui.tool.ICalculable;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableColumn;
 import viviendas.entidades.vivienda.DistribucionProvincial;
 import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.TipoPlan;
@@ -22,6 +20,7 @@ import viviendas.modulos.Plan.crear.GestorCrearPlan;
 import viviendas.persistencia.exceptions.PersistException;
 import viviendas.systemException.MissingData;
 import viviendas.systemException.VerifyDataException;
+import viviendas.utiles.Utiles;
 
 public class CtrlPlan implements ICalculable {
 
@@ -31,10 +30,10 @@ public class CtrlPlan implements ICalculable {
     public CtrlPlan(JDesktopPane desktop) {
         _gestor = new GestorCrearPlan();
         _pantalla = new IUPlan();
-        _pantalla.getTabProvincias().setModel(new ModelTableProvincia(_gestor.buscarProvincias()));
-        _pantalla.getTabProvinciasSeleccionadas().setModel(new ModelTableDistribucionProvincial(new ArrayList<DistribucionProvincial>()));
-        ocultarColumna(_pantalla.getTabProvincias(), 1);
-        ocultarColumna(_pantalla.getTabProvinciasSeleccionadas(), 2);
+        List<Provincia> listaProvincia = _gestor.buscarProvincias();
+        Utiles.ordena(listaProvincia, "nombre");
+        _pantalla.getTabProvincias().setModel(new TablaProvincia(listaProvincia));
+        _pantalla.getTabProvinciasSeleccionadas().setModel(new TablaDistribucionProvincial(new ArrayList<DistribucionProvincial>()));
         _pantalla.getComTipoPlan().setModel(new ModelComboTipoPlan(_gestor.buscarTiposPlanes()));
         SubscriptorTotal.getInstance().añadir(this);
         _pantalla.getBtnAceptar().addActionListener(new java.awt.event.ActionListener() {
@@ -89,11 +88,14 @@ public class CtrlPlan implements ICalculable {
         });
         _pantalla.addInternalFrameListener(new javax.swing.event.InternalFrameAdapter() {
 
+            @Override
             public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
                 cancelar();
             }
         });
+        _pantalla.toFront();
         _pantalla.setVisible(true);
+        _pantalla.getBtnAceptar().setEnabled(false);
         desktop.add(_pantalla);
 
     }
@@ -207,20 +209,37 @@ public class CtrlPlan implements ICalculable {
             _pantalla.getFormatedTotal().setForeground(Color.BLUE);
             _pantalla.getLabRestante().setForeground(Color.BLUE);
             _pantalla.getTexRestante().setForeground(Color.BLUE);
-
+            _pantalla.getBtnAceptar().setEnabled(true);
         } catch (VerifyDataException ex) {
+            _pantalla.getBtnAceptar().setEnabled(false);
             _pantalla.getLabTotal().setForeground(Color.RED);
             _pantalla.getFormatedTotal().setForeground(Color.RED);
             _pantalla.getLabRestante().setForeground(Color.RED);
             _pantalla.getTexRestante().setForeground(Color.RED);
         }
     }
+}
 
-    private void ocultarColumna(JTable tabla, int columna) {
-        TableColumn columnaPorcentaje = tabla.getColumnModel().getColumn(columna);
-        columnaPorcentaje.setMaxWidth(0);
-        columnaPorcentaje.setMinWidth(0);
-        columnaPorcentaje.setPreferredWidth(0);
-        columnaPorcentaje.setWidth(0);
+class TablaProvincia extends ModelTableProvincia {
+
+    public TablaProvincia(List<Provincia> provincias) {
+        super(provincias);
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 1;
+    }
+}
+
+class TablaDistribucionProvincial extends ModelTableDistribucionProvincial {
+
+    public TablaDistribucionProvincial(List<DistribucionProvincial> distribucionProvincial) {
+        super(distribucionProvincial);
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 2;
     }
 }

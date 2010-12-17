@@ -40,19 +40,19 @@ public class IUPlan extends javax.swing.JInternalFrame {
         labAñoInicio = new javax.swing.JLabel();
         spinAñoInicio = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabProvincias = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnAgregarTodas = new javax.swing.JButton();
         btnQuitar = new javax.swing.JButton();
         btnQuitarTodas = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabProvinciasSeleccionadas = new javax.swing.JTable();
         formatedTotal = new javax.swing.JFormattedTextField();
         labTotal = new javax.swing.JLabel();
         labRestante = new javax.swing.JLabel();
         texRestante = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabProvincias = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabProvinciasSeleccionadas = new javax.swing.JTable();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -108,8 +108,6 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
         jPanel1.add(texNombre, gridBagConstraints);
-
-        comTipoPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
@@ -156,22 +154,10 @@ public class IUPlan extends javax.swing.JInternalFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Paso 2: Agregar Provincias al Plan", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 18))); // NOI18N
         jPanel3.setLayout(new java.awt.GridBagLayout());
 
-        jScrollPane1.setMinimumSize(new java.awt.Dimension(350, 200));
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(350, 200));
-
-        tabProvincias.setMinimumSize(new java.awt.Dimension(350, 200));
-        tabProvincias.setPreferredSize(new java.awt.Dimension(350, 200));
-        jScrollPane1.setViewportView(tabProvincias);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel3.add(jScrollPane1, gridBagConstraints);
-
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/poner_16x16.png"))); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
         jPanel3.add(btnAgregar, gridBagConstraints);
@@ -199,21 +185,6 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
         jPanel3.add(btnQuitarTodas, gridBagConstraints);
-
-        jScrollPane2.setMinimumSize(new java.awt.Dimension(350, 200));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(350, 200));
-
-        tabProvinciasSeleccionadas.setMinimumSize(new java.awt.Dimension(350, 200));
-        tabProvinciasSeleccionadas.setPreferredSize(new java.awt.Dimension(350, 200));
-        jScrollPane2.setViewportView(tabProvinciasSeleccionadas);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
-        jPanel3.add(jScrollPane2, gridBagConstraints);
 
         formatedTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         formatedTotal.setMinimumSize(new java.awt.Dimension(80, 27));
@@ -252,6 +223,40 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(jSeparator1, gridBagConstraints);
+
+        jScrollPane1.setViewportView(tabProvincias);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jScrollPane1, gridBagConstraints);
+
+        tabProvinciasSeleccionadas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tabProvinciasSeleccionadas);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        jPanel3.add(jScrollPane2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
