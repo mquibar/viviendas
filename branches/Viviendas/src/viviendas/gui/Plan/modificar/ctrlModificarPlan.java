@@ -249,6 +249,7 @@ public class ctrlModificarPlan implements ICalculable {
         _distProvincial.setList(_gestor.listarDistribucionProvincial(getAñoSeleccionado()));//LLAMAR AL GESTOR PARA QUE ME RECUPERE EL LISTADO
         _pantalla.getTblAños().setEnabled(false);
         _pantalla.getScrProvincia().setVisible(true);
+        _pantalla.getLblUbicacion().setText(getAñoSeleccionado().toString());
         if (_distProvincial.getAllRow().isEmpty()) {
             ocultarTablas();
         }
@@ -263,6 +264,7 @@ public class ctrlModificarPlan implements ICalculable {
         _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), _distProvincial.getSelectedIndex(rowIndex)));//LLAMAR ACA TB AL GESTOR
         _pantalla.getTblProvincia().setEnabled(false);
         _pantalla.getScrCiudad().setVisible(true);
+        _pantalla.getLblUbicacion().setText(_distProvincial.getSelectedIndex(rowIndex).getProvincia().getNombre());
         if (_distCiudad.getAllRow().isEmpty()) {
             ocultarTablas();
         }
@@ -281,6 +283,7 @@ public class ctrlModificarPlan implements ICalculable {
         }
         _pantalla.getTblCiudad().setEnabled(false);
         _pantalla.getScrSectEconom().setVisible(true);
+        _pantalla.getLblUbicacion().setText(_distCiudad.getSelectedIndex(rowIndex).getCuidad().getNombre());
     }
 
     void viewOperatoria() {
@@ -296,26 +299,31 @@ public class ctrlModificarPlan implements ICalculable {
         }
         _pantalla.getTblSectorEconomico().setEnabled(false);
         _pantalla.getScrOperatoria().setVisible(true);
+        _pantalla.getLblUbicacion().setText(_distSEconomico.getSelectedIndex(rowIndex).getSectorEconomico().getNombre());
     }
 
     void dropOperatoria() {
         _pantalla.getTblSectorEconomico().setEnabled(true);
         _pantalla.getScrOperatoria().setVisible(false);
+        _pantalla.getLblUbicacion().setText(_distCiudad.getSelectedIndex(_pantalla.getTblCiudad().getSelectedRow()).getCuidad().getNombre());
     }
 
     void dropSectEconomico() {
         _pantalla.getTblCiudad().setEnabled(true);
         _pantalla.getScrSectEconom().setVisible(false);
+        _pantalla.getLblUbicacion().setText(_distProvincial.getSelectedIndex(_pantalla.getTblProvincia().getSelectedRow()).getProvincia().getNombre());
     }
 
     void dropCiudad() {
         _pantalla.getTblProvincia().setEnabled(true);
         _pantalla.getScrCiudad().setVisible(false);
+        _pantalla.getLblUbicacion().setText(getAñoSeleccionado().toString());
     }
 
     void dropProvincia() {
         _pantalla.getTblAños().setEnabled(true);
         _pantalla.getScrProvincia().setVisible(false);
+        _pantalla.getLblUbicacion().setText("");
     }
 
     private AñoPlan getAñoSeleccionado() {

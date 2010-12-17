@@ -32,14 +32,16 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jToolBar1" alignment="0" pref="405" max="32767" attributes="0"/>
-                  <Component id="jPanel1" alignment="0" pref="405" max="32767" attributes="1"/>
+                  <Component id="jToolBar1" alignment="0" pref="439" max="32767" attributes="0"/>
+                  <Component id="jPanel1" alignment="0" pref="439" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="_txtRestante" min="-2" pref="121" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="_txtTotal" min="-2" pref="123" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="_lblUbicacion" pref="165" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="_contenedor" alignment="0" min="-2" pref="390" max="-2" attributes="1"/>
+                  <Component id="_contenedor" alignment="1" pref="439" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -52,13 +54,14 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="_txtRestante" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="_txtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="_lblUbicacion" max="32767" attributes="1"/>
+                  <Component id="_txtRestante" alignment="0" max="32767" attributes="1"/>
+                  <Component id="_txtTotal" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="_contenedor" min="-2" pref="484" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -177,7 +180,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="120" y="0" width="260" height="440" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="170" y="0" width="260" height="440" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -204,7 +207,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="90" y="0" width="260" height="450" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="130" y="0" width="280" height="450" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -231,7 +234,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="60" y="0" width="260" height="460" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="80" y="0" width="290" height="460" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -258,7 +261,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="30" y="0" width="260" height="470" layer="0" position="-1"/>
+              <JLayeredPaneConstraints x="40" y="0" width="280" height="470" layer="0" position="-1"/>
             </Constraint>
           </Constraints>
 
@@ -395,6 +398,13 @@
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder justification="2" title="% Restante"/>
           </Border>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="_lblUbicacion">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="DejaVu Sans" size="13" style="1"/>
         </Property>
       </Properties>
     </Component>
