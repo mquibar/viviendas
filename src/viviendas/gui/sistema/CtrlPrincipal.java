@@ -31,12 +31,12 @@ public class CtrlPrincipal {
                 abrirIUTiposCiudades();
             }
         });
-//        _pantalla.getMnuFuenteFondos().addActionListener(new ActionListener() {
-//
-//            public void actionPerformed(ActionEvent e) {
-//                abrirIUFuentesFondos();
-//            }
-//        });
+        _pantalla.getMnuFuenteFondos().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUFuentesFondos();
+            }
+        });
         _pantalla.getMnuOperatoria().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -112,6 +112,10 @@ public class CtrlPrincipal {
 
     private void abrirIUAbrirProvincias(){
         new CtrlProvincia(_pantalla.getDesktopPane());
+    }
+
+    private void abrirReporteDistribGenProvincias(){
+        
     }
 
     /**

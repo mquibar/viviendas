@@ -12,7 +12,7 @@ import viviendas.modulos.FuentesFondos.GestorFuentesFondos;
 
 /**
  *
- * @author Admin
+ * @author Maximiliano.
  */
 public class CtrlFuenteFondo {
     private IUFuenteFondo _pantalla;

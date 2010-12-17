@@ -3,15 +3,12 @@
  * and open the template in the editor.
  */
 
-package viviendas.modulos.FuentesFondos;
+package viviendas.gui.usosFondos;
 
 /**
  *
  * @author Maximiliano.
  */
-public class GestorFuentesFondos {
-    
-    public void guardar(){
+public class CtrlUsosFondos {
 
-    }
 }

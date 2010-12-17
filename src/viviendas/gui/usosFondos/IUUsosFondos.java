@@ -4,34 +4,52 @@
  */
 
 /*
- * IUFuenteFondo.java
+ * IUUsosFondos.java
  *
- * Created on 02/12/2010, 18:04:43
+ * Created on 17-dic-2010, 13:09:55
  */
 
-package viviendas.gui.FuentesFondos;
+package viviendas.gui.usosFondos;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Maximiliano.
  */
-public class IUFuenteFondo extends javax.swing.JInternalFrame {
+public class IUUsosFondos extends javax.swing.JInternalFrame {
 
-    /** Creates new form IUFuenteFondo */
-    public IUFuenteFondo() {
+    /** Creates new form IUUsosFondos */
+    public IUUsosFondos() {
         initComponents();
     }
 
-    public JButton getBtnAceptar(){
+    public JButton getBtnAceptar() {
         return btnAceptar;
     }
 
-    public JButton getBtnCancelar(){
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JButton getBtnCancelar() {
         return btnCancelar;
     }
 
+    public JButton getBtnQuitar() {
+        return btnQuitar;
+    }
+
+    public JTable getTbUsosFondos() {
+        return tbUsosFondos;
+    }
+
+    public JTextField getTxtPorcentajeTotal() {
+        return txtPorcentajeTotal;
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -52,7 +70,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
         btnAceptar = new javax.swing.JButton();
 
         setClosable(true);
-        setTitle("Fuentes de Fondos");
+        setTitle("Usos de Fondos");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -125,23 +143,21 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 821, Short.MAX_VALUE)
-            .addGap(0, 821, Short.MAX_VALUE)
+            .addGap(0, 830, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(287, 287, 287)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(275, 275, 275))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
-            .addGap(0, 428, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +165,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
