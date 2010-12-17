@@ -15,18 +15,21 @@ import viviendas.gui.tool.SubscriptorTotal;
 public class ModelTableDistribucionOperatoria extends AbstractTableModel<DistribucionOperatoria> {
 
     public ModelTableDistribucionOperatoria(List<DistribucionOperatoria> lista) {
-        super(lista, "Operatoria", "% Distribución");
+        super(lista, "Operatoria", "% Distribución", "Cantidad Viviendas");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         if (_lista == null || _lista.size() < rowIndex || rowIndex < 0) {
             return "-";
         }
+        DistribucionOperatoria distribucion = _lista.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return _lista.get(rowIndex).getOperatoria().getNombre();
             case 1:
                 return _lista.get(rowIndex).getPorcentajeDistribucion();
+            case 2:
+                return distribucion.getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getDistribucionCiudad().getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getAñoPlan().getCantViviendasAño() * distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getPorcentajeDistribucion() / 100.0;
             default:
                 return "-";
         }

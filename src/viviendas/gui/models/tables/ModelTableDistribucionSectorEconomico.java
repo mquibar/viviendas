@@ -16,11 +16,12 @@ import viviendas.gui.tool.SubscriptorTotal;
 public class ModelTableDistribucionSectorEconomico extends AbstractTableModel<DistribucionSector>{
 
     public ModelTableDistribucionSectorEconomico(List<DistribucionSector> lista) {
-        super(lista,"Sector","% Distribución");
+        super(lista,"Sector","% Distribución","Cantidad Viviendas");
     }
 
 
     public Object getValueAt(int rowIndex, int columnIndex) {
+        DistribucionSector distribucion = _lista.get(rowIndex);
         if(_lista == null)
             return "-";
         switch(columnIndex){
@@ -28,6 +29,10 @@ public class ModelTableDistribucionSectorEconomico extends AbstractTableModel<Di
                 return _lista.get(rowIndex).getSectorEconomico().getNombre();
             case 1:
                 return _lista.get(rowIndex).getPorcentajeDistribucion();
+            case 2:
+                return distribucion.getPorcentajeDistribucion()/100 * (distribucion.getDistribucionCiudad().getPorcentajeDistribucion()/100) * (distribucion.getDistribucionCiudad().getDistribucionProvincial().getAñoPlan().getCantViviendasAño() * distribucion.getDistribucionCiudad().getDistribucionProvincial().getPorcentajeDistribucion() / 100.0);
+
+
             default:
                 return "-";
         }
