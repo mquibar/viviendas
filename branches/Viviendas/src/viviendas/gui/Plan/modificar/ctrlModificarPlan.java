@@ -22,8 +22,10 @@ import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.entidades.vivienda.DistribucionProvincial;
 import viviendas.entidades.vivienda.DistribucionSector;
+import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.entidades.vivienda.Provincia;
+import viviendas.entidades.vivienda.SectorEconomico;
 import viviendas.gui.tool.ICalculable;
 import viviendas.gui.models.tables.ModelTableAño;
 import viviendas.gui.models.tables.ModelTableDistribucionCiudad;
@@ -50,7 +52,6 @@ public class ctrlModificarPlan implements ICalculable {
     private ModelTableDistribucionCiudad _distCiudad;
     private ModelTableDistribucionSectorEconomico _distSEconomico;
     private ModelTableDistribucionOperatoria _distOperatoria;
-
     private ModelTableProvincia _provincias;
     private ModeloTableCiudad _ciudades;
     private ModeloTablaSectorEconomico _sectores;
@@ -89,7 +90,6 @@ public class ctrlModificarPlan implements ICalculable {
             public void internalFrameClosing(InternalFrameEvent e) {
                 pressCancelButton();
             }
-
         });
         _pantalla.getBtnOk().addActionListener(new ActionListener() {
 
@@ -107,6 +107,13 @@ public class ctrlModificarPlan implements ICalculable {
 
             public void actionPerformed(ActionEvent e) {
                 pressDelButton();
+            }
+        });
+
+        _pantalla.getBtnAdd().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                pressAddButton();
             }
         });
 
@@ -153,6 +160,12 @@ public class ctrlModificarPlan implements ICalculable {
 
             public void actionPerformed(ActionEvent e) {
                 ocultarTablas();
+            }
+        });
+        _seleccion.getBtnCancel().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                pressCancelButtonSeleccion();
             }
         });
 
@@ -336,7 +349,8 @@ public class ctrlModificarPlan implements ICalculable {
 
     private void colorTotal(double porcentaje) {
         porcentaje = viviendas.utiles.Utiles.round(porcentaje, 2);
-        double restante = 100.00-porcentaje;
+        double restante = 100.00 - porcentaje;
+        restante = viviendas.utiles.Utiles.round(restante, 2);
         _pantalla.getTxtTotal().setText(String.valueOf(porcentaje));
         _pantalla.getTxtRestante().setText(String.valueOf(restante));
         if (porcentaje != 100.00) {
@@ -390,59 +404,76 @@ public class ctrlModificarPlan implements ICalculable {
         colorTotal(porcentaje);
     }
 
-    void pressDelButton(){
-        int rowIndex=0;
-        switch(tablaOnTop){
+    void pressDelButton() {
+        int rowIndex = 0;
+        switch (tablaOnTop) {
             case PROVINCIA:
                 rowIndex = _pantalla.getTblProvincia().getSelectedRow();
-                if(rowIndex<0)
+                if (rowIndex < 0) {
                     return;
-                _gestor.removeDistribucion( _distProvincial.getSelectedIndex(rowIndex));
+                }
+                _gestor.removeDistribucion(getAñoSeleccionado(), _distProvincial.getSelectedIndex(rowIndex));
                 _distProvincial.delRow(rowIndex);
                 break;
             case CIUDAD:
                 rowIndex = _pantalla.getTblCiudad().getSelectedRow();
-                if(rowIndex<0)
+                if (rowIndex < 0) {
                     return;
-                _gestor.removeDistribucion( _distCiudad.getSelectedIndex(rowIndex));
+                }
+                _gestor.removeDistribucion(getAñoSeleccionado(), _distCiudad.getSelectedIndex(rowIndex));
                 _distCiudad.delRow(rowIndex);
                 break;
             case SECTORECONOMICO:
                 rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
-                if(rowIndex<0)
+                if (rowIndex < 0) {
                     return;
-                _gestor.removeDistribucion( _distSEconomico.getSelectedIndex(rowIndex));
+                }
+                _gestor.removeDistribucion(getAñoSeleccionado(), _distSEconomico.getSelectedIndex(rowIndex));
                 _distSEconomico.delRow(rowIndex);
                 break;
             case OPERATORIA:
                 rowIndex = _pantalla.getTblOperatoria().getSelectedRow();
-                if(rowIndex<0)
+                if (rowIndex < 0) {
                     return;
-                _gestor.removeDistribucion( _distOperatoria.getSelectedIndex(rowIndex));
+                }
+                _gestor.removeDistribucion(getAñoSeleccionado(), _distOperatoria.getSelectedIndex(rowIndex));
                 _distOperatoria.delRow(rowIndex);
                 break;
         }
     }
 
-    void pressAddButton(){
-        switch(tablaOnTop){
+    void pressAddButton() {
+        switch (tablaOnTop) {
             case PROVINCIA:
-                _provincias= new TablaProvincias(null);
+                _provincias = new TablaProvincias(_gestor.provinciasNoAsignadas(getAñoSeleccionado()));
                 _seleccion.getTblSeleccion().setModel(_provincias);
                 break;
             case CIUDAD:
-                _ciudades = new TablaCiudad(null);
+                _ciudades = new TablaCiudad(_gestor.ciudadesNoAsignadas(getAñoSeleccionado()));
                 _seleccion.getTblSeleccion().setModel(_ciudades);
                 break;
+            case SECTORECONOMICO:
+                _sectores = new TablaSector(_gestor.sectoresNoAsignados(getAñoSeleccionado()));
+                _seleccion.getTblSeleccion().setModel(_sectores);
+            case OPERATORIA:
+                _operatorias = new TablaOperatoria(_gestor.operatoriasNoAsignadas(getAñoSeleccionado()));
+                _seleccion.getTblSeleccion().setModel(_operatorias);
 
         }
-        if(_seleccion.getTblSeleccion().getRowCount()<=0)
+        if (_seleccion.getTblSeleccion().getRowCount() <= 0) {
             _seleccion.getBtnAccept().setEnabled(false);
-        else{
+        } else {
             _seleccion.getBtnAccept().setEnabled(true);
             _seleccion.getTblSeleccion().setRowSelectionInterval(0, 0);
         }
         _seleccion.setVisible(true);
+    }
+
+    void pressCancelButtonSeleccion() {
+        _seleccion.setVisible(false);
+    }
+    void pressOkButtonSeleccion(){
+        
     }
 }
 
@@ -482,7 +513,7 @@ class MenuClickDerecho extends MouseAdapter {
     }
 }
 
-class TablaProvincias extends ModelTableProvincia{
+class TablaProvincias extends ModelTableProvincia {
 
     public TablaProvincias(List<Provincia> provincias) {
         super(provincias);
@@ -495,7 +526,7 @@ class TablaProvincias extends ModelTableProvincia{
     }
 }
 
-class TablaCiudad extends ModeloTableCiudad{
+class TablaCiudad extends ModeloTableCiudad {
 
     public TablaCiudad(List<Ciudad> lista) {
         super(lista);
@@ -506,5 +537,34 @@ class TablaCiudad extends ModeloTableCiudad{
     public int getColumnCount() {
         return 1;
     }
+}
+
+class TablaSector extends ModeloTablaSectorEconomico{
+
+    public TablaSector(List<SectorEconomico> lista) {
+        super(lista);
+        fireTableDataChanged();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 1;
+    }
+
+}
+
+class TablaOperatoria extends ModeloTablaOperatoria{
+
+    public TablaOperatoria(List<Operatoria> lista) {
+        super(lista);
+        fireTableDataChanged();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 1;
+    }
+
+
 
 }

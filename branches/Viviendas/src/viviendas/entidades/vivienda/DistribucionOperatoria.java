@@ -17,7 +17,7 @@ public class DistribucionOperatoria implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double porcentajeDistribucion;
-    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
     private DistribucionSector distribucionSector;
     @ManyToOne
     private Operatoria operatoria;

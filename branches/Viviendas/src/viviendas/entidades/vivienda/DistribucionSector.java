@@ -21,7 +21,7 @@ public class DistribucionSector implements Serializable {
     private SectorEconomico sectorEconomico;
     @ManyToOne
     private AñoPlan añoPlan;
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.MERGE)
     private DistribucionCiudad distribucionCiudad;
 
     public AñoPlan getAñoPlan() {

@@ -28,6 +28,7 @@ public class ctrlAbrirPlan {
         _gestor = new GestorModificarPlan();
         cargarPantalla();
         panel.add(_pantalla);
+        _pantalla.toFront();
         _pantalla.setVisible(true);
         _panel=panel;
     }
