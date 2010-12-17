@@ -35,6 +35,8 @@ public class ctrlAbrirPlan {
     private void cargarPantalla(){
         _tablaPlan = new ModelTablePlan(_gestor.listarPlanes());
         _pantalla.getTblPlane().setModel(_tablaPlan);
+        if(_tablaPlan.getAllRow().isEmpty())
+            _pantalla.getBtnOpen().setEnabled(false);
         _pantalla.getTblPlane().addMouseListener(new MouseAdapter() {
 
             @Override

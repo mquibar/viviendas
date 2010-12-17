@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import viviendas.entidades.vivienda.Ciudad;
 import viviendas.gui.models.tables.ModelTableProvincia;
+import viviendas.gui.models.tables.ModeloTableCiudad;
 import viviendas.modulos.provincia.GestorProvincia;
 import viviendas.utiles.Utiles;
 
@@ -91,4 +93,17 @@ public class CtrlProvincia {
             _pantalla.getBtnAceptar().setEnabled(false);
         }
     }
+}
+
+class TablaCiudad extends ModeloTableCiudad{
+
+    public TablaCiudad(List<Ciudad> lista) {
+        super(lista);
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 1;
+    }
+
 }
