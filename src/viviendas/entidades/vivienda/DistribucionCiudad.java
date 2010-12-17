@@ -19,7 +19,7 @@ public class DistribucionCiudad implements Serializable {
     private Double porcentajeDistribucion;
     @ManyToOne(fetch=FetchType.EAGER)
     private Ciudad cuidad;
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(cascade=CascadeType.MERGE)
     private DistribucionProvincial distribucionProvincial;
     @ManyToOne
     private AñoPlan añoPlan;

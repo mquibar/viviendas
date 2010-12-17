@@ -44,7 +44,6 @@ public class IUSeleccionRestantes extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(350, 411));
         setResizable(false);
-        setUndecorated(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         _tblSeleccion.setModel(new javax.swing.table.DefaultTableModel(
