@@ -1,53 +1,45 @@
 package viviendas.entidades.flujo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import viviendas.entidades.vivienda.Ciudad;
-import viviendas.entidades.vivienda.Operatoria;
-import viviendas.entidades.vivienda.SectorEconomico;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import viviendas.entidades.vivienda.DistribucionOperatoria;
 
-/**
- * @author Manuel
- * @version 1.0
- * @created 02-dic-2010 12:41:58
- */
 @Entity
 public class Financiacion implements Serializable {
-private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    @ManyToOne
-    private Ciudad cuidad;
-    @ManyToOne
-    private SectorEconomico sectorEconomico;
-    @ManyToOne
-    private Operatoria operatoria;
-    @ManyToOne
-    private DistribucionFinanciacion distribucionFinanciacion;
+    @OneToMany(mappedBy="financiacion")
+    private List<DistribucionFinanciacion> distribucionesFinanciacion;
+    @OneToOne
+    private DistribucionOperatoria distribucionOperatoria;
 
     public Financiacion() {
     }
 
-    public Ciudad getCuidad() {
-        return cuidad;
+    public DistribucionOperatoria getDistribucionOperatoria() {
+        return distribucionOperatoria;
     }
 
-    public void setCuidad(Ciudad cuidad) {
-        this.cuidad = cuidad;
+    public void setDistribucionOperatoria(DistribucionOperatoria distribucionOperatoria) {
+        this.distribucionOperatoria = distribucionOperatoria;
     }
 
-    public DistribucionFinanciacion getDistribucionFinanciacion() {
-        return distribucionFinanciacion;
+    public List<DistribucionFinanciacion> getDistribucionesFinanciacion() {
+        return distribucionesFinanciacion;
     }
 
-    public void setDistribucionFinanciacion(DistribucionFinanciacion distribucionFinanciacion) {
-        this.distribucionFinanciacion = distribucionFinanciacion;
+    public void setDistribucionesFinanciacion(List<DistribucionFinanciacion> distribucionesFinanciacion) {
+        this.distribucionesFinanciacion = distribucionesFinanciacion;
     }
 
     public Long getId() {
@@ -64,22 +56,6 @@ private static final long serialVersionUID = 1L;
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Operatoria getOperatoria() {
-        return operatoria;
-    }
-
-    public void setOperatoria(Operatoria operatoria) {
-        this.operatoria = operatoria;
-    }
-
-    public SectorEconomico getSectorEconomico() {
-        return sectorEconomico;
-    }
-
-    public void setSectorEconomico(SectorEconomico sectorEconomico) {
-        this.sectorEconomico = sectorEconomico;
     }
 
     @Override
@@ -108,7 +84,4 @@ private static final long serialVersionUID = 1L;
     public String toString() {
         return nombre;
     }
-
-
-
 }
