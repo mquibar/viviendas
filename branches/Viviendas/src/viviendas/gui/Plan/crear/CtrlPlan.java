@@ -112,7 +112,7 @@ public class CtrlPlan implements ICalculable {
             dto.setAños(((Number) _pantalla.getSpinAños().getValue()).intValue());
             String cantidadViviendas = _pantalla.getTexViviendas().getText();
             if (cantidadViviendas == null || cantidadViviendas.equals("")) {
-                throw new MissingData("Cantidad Vivienda");
+                throw new MissingData("Viviendas x Año");
             }
             dto.setCantidadViviendas(Integer.parseInt(cantidadViviendas));
             if (_pantalla.getTexNombre().getText() == null || _pantalla.getTexNombre().getText().equals("")) {
@@ -122,8 +122,7 @@ public class CtrlPlan implements ICalculable {
             dto.setDistribucionProvincial(((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).getAllRow());
             TipoPlan plan = ((ModelComboTipoPlan) _pantalla.getComTipoPlan().getModel()).getSelected();
             if (plan == null) {
-                mostrarMensaje("Seleccione un Tipo del Plan");
-                return;
+                throw new MissingData("Tipo Plan");
             }
             dto.setTipo(plan);
             _gestor.crearNuevoPlan(dto);
