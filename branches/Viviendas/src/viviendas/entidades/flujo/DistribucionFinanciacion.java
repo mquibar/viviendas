@@ -1,6 +1,7 @@
 package viviendas.entidades.flujo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class DistribucionFinanciacion implements Serializable {
     @ManyToOne
     private Financiacion financiacion;
     @OneToMany(mappedBy = "distribucionFinanciacion")
-    private DetalleDistribucionFinanciacion detalleDistribucionFinanciacion;
+    private List<DetalleDistribucionFinanciacion> detallesDistribucionesFinanciacion;
 
     public DistribucionFinanciacion() {
     }
@@ -32,13 +33,15 @@ public class DistribucionFinanciacion implements Serializable {
         this.id = id;
     }
 
-    public DetalleDistribucionFinanciacion getDetalleDistribucionFinanciacion() {
-        return detalleDistribucionFinanciacion;
+    public List<DetalleDistribucionFinanciacion> getDetallesDistribucionesFinanciacion() {
+        return detallesDistribucionesFinanciacion;
     }
 
-    public void setDetalleDistribucionFinanciacion(DetalleDistribucionFinanciacion detalleDistribucionFinanciacion) {
-        this.detalleDistribucionFinanciacion = detalleDistribucionFinanciacion;
+    public void setDetallesDistribucionesFinanciacion(List<DetalleDistribucionFinanciacion> detallesDistribucionesFinanciacion) {
+        this.detallesDistribucionesFinanciacion = detallesDistribucionesFinanciacion;
     }
+
+
 
     public Financiacion getFinanciacion() {
         return financiacion;

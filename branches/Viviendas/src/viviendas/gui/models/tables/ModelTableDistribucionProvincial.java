@@ -53,6 +53,8 @@ public class ModelTableDistribucionProvincial extends AbstractTableModel<Distrib
                 return String.class;
             case 1:
                 return Double.class;
+            case 2:
+                return Double.class;
             default:
                 return Object.class;
         }
