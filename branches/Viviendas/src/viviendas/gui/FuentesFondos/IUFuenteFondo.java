@@ -12,6 +12,8 @@
 package viviendas.gui.FuentesFondos;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -32,6 +34,22 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
         return btnCancelar;
     }
 
+    public JButton getBtnAgregar() {
+        return btnAgregar;
+    }
+
+    public JButton getBtnQuitar() {
+        return btnQuitar;
+    }
+
+    public JTable getTbFuentesFondos() {
+        return tbFuentesFondos;
+    }
+
+    public JTextField getTxtPorcentajeTotal() {
+        return txtPorcentajeTotal;
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -43,7 +61,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUsosFondos = new javax.swing.JTable();
+        tbFuentesFondos = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnQuitar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -57,7 +75,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        tbUsosFondos.setModel(new javax.swing.table.DefaultTableModel(
+        tbFuentesFondos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -68,7 +86,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tbUsosFondos);
+        jScrollPane1.setViewportView(tbFuentesFondos);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/+.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -125,8 +143,6 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 821, Short.MAX_VALUE)
-            .addGap(0, 821, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(168, 168, 168)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,8 +156,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
-            .addGap(0, 428, Short.MAX_VALUE)
+            .addGap(0, 432, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +164,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,7 +179,7 @@ public class IUFuenteFondo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbUsosFondos;
+    private javax.swing.JTable tbFuentesFondos;
     private javax.swing.JTextField txtPorcentajeTotal;
     // End of variables declaration//GEN-END:variables
 

@@ -27,16 +27,16 @@ public class DistribucionFlujoFondo implements Serializable {
     @OneToOne
     private Operatoria operatoria;
     @OneToOne
-    private FlujoFondo flujoFondo;
+    private FuenteFondo flujoFondo;
 
     public DistribucionFlujoFondo() {
     }
 
-    public FlujoFondo getFlujoFondo() {
+    public FuenteFondo getFlujoFondo() {
         return flujoFondo;
     }
 
-    public void setFlujoFondo(FlujoFondo flujoFondo) {
+    public void setFlujoFondo(FuenteFondo flujoFondo) {
         this.flujoFondo = flujoFondo;
     }
 

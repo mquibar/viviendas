@@ -19,7 +19,7 @@ public class DetalleDistribucionFinanciacion implements Serializable {
     @ManyToOne
     private UsoFondo usoFondo;
     @ManyToOne
-    private FlujoFondo flujoFondo;
+    private FuenteFondo flujoFondo;
 
     public Long getId() {
         return id;
@@ -29,11 +29,11 @@ public class DetalleDistribucionFinanciacion implements Serializable {
         this.id = id;
     }
 
-    public FlujoFondo getFlujoFondo() {
+    public FuenteFondo getFlujoFondo() {
         return flujoFondo;
     }
 
-    public void setFlujoFondo(FlujoFondo flujoFondo) {
+    public void setFlujoFondo(FuenteFondo flujoFondo) {
         this.flujoFondo = flujoFondo;
     }
 
