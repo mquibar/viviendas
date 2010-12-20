@@ -6,28 +6,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-
-
-/**
- * @author Manuel
- * @version 1.0
- * @created 02-dic-2010 12:42:06
- */
 @Entity
 public class DistribucionFinanciacion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-	private int porcentajeFinanciacion;
-        @ManyToOne
-	public LoQueFinancio loQueFinancio;
+    private Double porcentajeFinanciacion;
+    @ManyToOne
+    private Financiacion financiacion;
+    @OneToMany(mappedBy = "distribucionFinanciacion")
+    private DetalleDistribucionFinanciacion detalleDistribucionFinanciacion;
 
-	public DistribucionFinanciacion(){
-
-	}
-
+    public DistribucionFinanciacion() {
+    }
 
     public Long getId() {
         return id;
@@ -37,19 +32,27 @@ public class DistribucionFinanciacion implements Serializable {
         this.id = id;
     }
 
-    public LoQueFinancio getLoQueFinancio() {
-        return loQueFinancio;
+    public DetalleDistribucionFinanciacion getDetalleDistribucionFinanciacion() {
+        return detalleDistribucionFinanciacion;
     }
 
-    public void setLoQueFinancio(LoQueFinancio loQueFinancio) {
-        this.loQueFinancio = loQueFinancio;
+    public void setDetalleDistribucionFinanciacion(DetalleDistribucionFinanciacion detalleDistribucionFinanciacion) {
+        this.detalleDistribucionFinanciacion = detalleDistribucionFinanciacion;
     }
 
-    public int getPorcentajeFinanciacion() {
+    public Financiacion getFinanciacion() {
+        return financiacion;
+    }
+
+    public void setFinanciacion(Financiacion financiacion) {
+        this.financiacion = financiacion;
+    }
+
+    public Double getPorcentajeFinanciacion() {
         return porcentajeFinanciacion;
     }
 
-    public void setPorcentajeFinanciacion(int porcentajeFinanciacion) {
+    public void setPorcentajeFinanciacion(Double porcentajeFinanciacion) {
         this.porcentajeFinanciacion = porcentajeFinanciacion;
     }
 
@@ -79,7 +82,4 @@ public class DistribucionFinanciacion implements Serializable {
     public String toString() {
         return String.valueOf(porcentajeFinanciacion);
     }
-
-
-
 }

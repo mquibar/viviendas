@@ -24,7 +24,7 @@ public class Valor implements Serializable {
     private Ciudad cuidad;
     
     @ManyToOne
-    private LoQueFinancio financio;
+    private UsoFondo financio;
 
     public Valor() {
     }
@@ -53,11 +53,11 @@ public class Valor implements Serializable {
         this.porcentaje = porcentaje;
     }
 
-    public LoQueFinancio getFinancio() {
+    public UsoFondo getFinancio() {
         return financio;
     }
 
-    public void setFinancio(LoQueFinancio financio) {
+    public void setFinancio(UsoFondo financio) {
         this.financio = financio;
     }
 
