@@ -11,6 +11,11 @@
 
 package viviendas.gui.financiacion.crear;
 
+import javax.swing.JButton;
+import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author batte
@@ -30,9 +35,10 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        labNombre = new javax.swing.JLabel();
+        _texNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         _btnOk = new javax.swing.JButton();
@@ -43,18 +49,44 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         _btnAdd = new javax.swing.JButton();
         _btnDel = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        _tabPaneFinanciacion = new javax.swing.JTabbedPane();
+        _spinPorcentaje = new javax.swing.JSpinner();
+        labPorcentaje = new javax.swing.JLabel();
+        _btnCrearFinanciacion = new javax.swing.JButton();
+        _texRestante = new javax.swing.JTextField();
+        _texTotal = new javax.swing.JTextField();
 
-        jLabel1.setText("Nombre");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        labNombre.setText("Nombre");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
+        getContentPane().add(labNombre, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
+        getContentPane().add(_texNombre, gridBagConstraints);
 
         jLabel2.setText("MENDOZA - 20.000 - BAJO - COOPERATIVA");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
+        getContentPane().add(jLabel2, gridBagConstraints);
 
         jToolBar1.setRollover(true);
 
         _btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Save.png"))); // NOI18N
+        _btnOk.setEnabled(false);
         jToolBar1.add(_btnOk);
 
         _btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
@@ -66,6 +98,7 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         jToolBar1.add(_btnDropDetails);
 
         _btnViewDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Next_16x16.png"))); // NOI18N
+        _btnViewDetails.setEnabled(false);
         jToolBar1.add(_btnViewDetails);
         jToolBar1.add(jSeparator2);
 
@@ -76,68 +109,72 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         jToolBar1.add(_btnAdd);
 
         _btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/-.png"))); // NOI18N
+        _btnDel.setEnabled(false);
         _btnDel.setFocusable(false);
         _btnDel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         _btnDel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(_btnDel);
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(100.0d, 0.0d, 100.0d, 0.10000000000000009d));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
+        getContentPane().add(jToolBar1, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
+        getContentPane().add(_tabPaneFinanciacion, gridBagConstraints);
 
-        jLabel3.setText("Porcentaje: ");
+        _spinPorcentaje.setModel(new javax.swing.SpinnerNumberModel(100.0d, 0.0d, 100.0d, 0.10000000000000009d));
+        _spinPorcentaje.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
+        getContentPane().add(_spinPorcentaje, gridBagConstraints);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Accept.png"))); // NOI18N
+        labPorcentaje.setText("Porcentaje: ");
+        labPorcentaje.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
+        getContentPane().add(labPorcentaje, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
-                        .addGap(22, 22, 22))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)))
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton1)
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
-        );
+        _btnCrearFinanciacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Accept.png"))); // NOI18N
+        _btnCrearFinanciacion.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
+        getContentPane().add(_btnCrearFinanciacion, gridBagConstraints);
+
+        _texRestante.setEditable(false);
+        _texRestante.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Restante", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        _texRestante.setMinimumSize(new java.awt.Dimension(88, 44));
+        _texRestante.setPreferredSize(new java.awt.Dimension(88, 44));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
+        getContentPane().add(_texRestante, gridBagConstraints);
+
+        _texTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        _texTotal.setMinimumSize(new java.awt.Dimension(88, 44));
+        _texTotal.setPreferredSize(new java.awt.Dimension(88, 44));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
+        getContentPane().add(_texTotal, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -146,20 +183,117 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton _btnAdd;
     private javax.swing.JButton _btnCancel;
+    private javax.swing.JButton _btnCrearFinanciacion;
     private javax.swing.JButton _btnDel;
     private javax.swing.JButton _btnDropDetails;
     private javax.swing.JButton _btnOk;
     private javax.swing.JButton _btnViewDetails;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSpinner _spinPorcentaje;
+    private javax.swing.JTabbedPane _tabPaneFinanciacion;
+    private javax.swing.JTextField _texNombre;
+    private javax.swing.JTextField _texRestante;
+    private javax.swing.JTextField _texTotal;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JLabel labNombre;
+    private javax.swing.JLabel labPorcentaje;
     // End of variables declaration//GEN-END:variables
 
+    public JButton getBtnAdd() {
+        return _btnAdd;
+    }
+
+    public void setBtnAdd(JButton _btnAdd) {
+        this._btnAdd = _btnAdd;
+    }
+
+    public JButton getBtnCancel() {
+        return _btnCancel;
+    }
+
+    public void setBtnCancel(JButton _btnCancel) {
+        this._btnCancel = _btnCancel;
+    }
+
+    public JButton getBtnCrearFinanciacion() {
+        return _btnCrearFinanciacion;
+    }
+
+    public void setBtnCrearFinanciacion(JButton _btnCrearFinanciacion) {
+        this._btnCrearFinanciacion = _btnCrearFinanciacion;
+    }
+
+    public JButton getBtnDel() {
+        return _btnDel;
+    }
+
+    public void setBtnDel(JButton _btnDel) {
+        this._btnDel = _btnDel;
+    }
+
+    public JButton getBtnDropDetails() {
+        return _btnDropDetails;
+    }
+
+    public void setBtnDropDetails(JButton _btnDropDetails) {
+        this._btnDropDetails = _btnDropDetails;
+    }
+
+    public JButton getBtnOk() {
+        return _btnOk;
+    }
+
+    public void setBtnOk(JButton _btnOk) {
+        this._btnOk = _btnOk;
+    }
+
+    public JButton getBtnViewDetails() {
+        return _btnViewDetails;
+    }
+
+    public void setBtnViewDetails(JButton _btnViewDetails) {
+        this._btnViewDetails = _btnViewDetails;
+    }
+
+    public JTabbedPane getTabPaneFinanciacion() {
+        return _tabPaneFinanciacion;
+    }
+
+    public void setTabPaneFinanciacion(JTabbedPane _tabPaneFinanciacion) {
+        this._tabPaneFinanciacion = _tabPaneFinanciacion;
+    }
+
+    public JTextField getTexNombre() {
+        return _texNombre;
+    }
+
+    public void setTexNombre(JTextField _texNombre) {
+        this._texNombre = _texNombre;
+    }
+
+    public JSpinner getSpinPorcentaje() {
+        return _spinPorcentaje;
+    }
+
+    public void setSpinPorcentaje(JSpinner _spinPorcentaje) {
+        this._spinPorcentaje = _spinPorcentaje;
+    }
+
+    public JTextField getTexRestante() {
+        return _texRestante;
+    }
+
+    public void setTexRestante(JTextField _texRestante) {
+        this._texRestante = _texRestante;
+    }
+
+    public JTextField getTexTotal() {
+        return _texTotal;
+    }
+
+    public void setTexTotal(JTextField _texTotal) {
+        this._texTotal = _texTotal;
+    }
 }
