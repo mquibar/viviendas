@@ -93,7 +93,6 @@ public class CtrlOperatoria {
         pp.setPorcenteaje(0d);
         op.setParametro(pp);
         _modelo.addRow(op);
-        System.out.println("ID: " + op.getId());
     }
 
     private void quitar(){

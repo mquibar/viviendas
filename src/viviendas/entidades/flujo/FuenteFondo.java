@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import viviendas.entidades.vivienda.ParametrosPlan;
 
 /**
  * @author Manuel
@@ -13,14 +15,16 @@ import javax.persistence.Id;
  * @created 02-dic-2010 12:42:08
  */
 @Entity
-public class FlujoFondo implements Serializable {
+public class FuenteFondo implements Serializable {
 private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
+    @OneToOne
+    private ParametrosPlan parametro;
 
-    public FlujoFondo() {
+    public FuenteFondo() {
     }
 
     public Long getId() {
@@ -39,6 +43,14 @@ private static final long serialVersionUID = 1L;
         this.nombre = nombre;
     }
 
+    public ParametrosPlan getParametro() {
+        return parametro;
+    }
+
+    public void setParametro(ParametrosPlan parametro) {
+        this.parametro = parametro;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -54,7 +66,7 @@ private static final long serialVersionUID = 1L;
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final FlujoFondo other = (FlujoFondo) obj;
+        final FuenteFondo other = (FuenteFondo) obj;
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }

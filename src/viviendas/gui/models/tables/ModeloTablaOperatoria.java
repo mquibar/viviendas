@@ -26,10 +26,10 @@ public class ModeloTablaOperatoria extends AbstractTableModel<Operatoria>{
                 case 1:
                     return _lista.get(rowIndex).getParametro().getPorcenteaje();
                 default:
-                    return "0";
+                    return "";
             }
         }catch(Exception e){
-            return "0";
+            return "";
         }
     }
 
