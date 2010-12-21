@@ -69,6 +69,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         _btnAdd = new javax.swing.JButton();
         _btnDel = new javax.swing.JButton();
+        _btnAddFinanciacion = new javax.swing.JButton();
         _txtTotal = new javax.swing.JTextField();
         _txtRestante = new javax.swing.JTextField();
         _lblUbicacion = new javax.swing.JLabel();
@@ -261,6 +262,12 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         _btnDel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(_btnDel);
 
+        _btnAddFinanciacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/dinero.png"))); // NOI18N
+        _btnAddFinanciacion.setFocusable(false);
+        _btnAddFinanciacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        _btnAddFinanciacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(_btnAddFinanciacion);
+
         _txtTotal.setEditable(false);
         _txtTotal.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         _txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -271,7 +278,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
         _txtRestante.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         _txtRestante.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "% Restante", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        _lblUbicacion.setFont(new java.awt.Font("DejaVu Sans", 1, 13)); // NOI18N
+        _lblUbicacion.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -304,7 +311,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
                     .addComponent(_txtTotal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(_contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
@@ -313,6 +320,7 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton _btnAdd;
+    private javax.swing.JButton _btnAddFinanciacion;
     private javax.swing.JButton _btnCancel;
     private javax.swing.JButton _btnDel;
     private javax.swing.JButton _btnDropDetails;
@@ -441,5 +449,11 @@ public class IUModificarPlan extends javax.swing.JInternalFrame {
     public JLabel getLblUbicacion() {
         return _lblUbicacion;
     }
+
+    public JButton getBtnAddFinanciacion() {
+        return _btnAddFinanciacion;
+    }
+
+    
 
 }

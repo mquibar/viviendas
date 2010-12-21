@@ -127,14 +127,17 @@ public class GestorModificarPlan {
             for (AñoPlan aPlan : plan_a_modificar.getListaAñoPlan()) {
                 Facade.getInstance().actualizar(aPlan);
             }
-            for (Object object : aEliminar) {
-                Facade.getInstance().eliminar(object);
-            }
+            if(aEliminar!=null)
+                for (Object object : aEliminar) {
+                    Facade.getInstance().eliminar(object);
+                }
             Facade.getInstance().commitTx();
         } catch (PersistException persistException) {
             Facade.getInstance().rollBackTx();
             throw new BusinessOperationException("actualización");
         }
+        if(aEliminar!=null)
+            aEliminar.clear();
 
     }
 
