@@ -59,7 +59,7 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        labNombre.setText("Nombre");
+        labNombre.setText("Nombre:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;

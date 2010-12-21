@@ -6,6 +6,7 @@ package viviendas.persistencia;
 
 import java.util.HashMap;
 import java.util.Map;
+import viviendas.entidades.flujo.UsoFondo;
 import viviendas.entidades.vivienda.AñoPlan;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.DistribucionCiudad;
@@ -32,7 +33,7 @@ class MediatorFactory {
     private enum intermediarios {
 
         DISTRIBUCIONCIUDAD, DISTRIBUCIONPROVINCIAL, DISTRIBUCIONSECTOR, DISTRIBUCIONOPERATORIA, PLAN, AÑOPLAN,
-        USUARIO, OPERATORIA, SECTORECONOMICO, CIUDAD, PROVINCIA, TIPOPLAN, PARAMETROSPLAN
+        USUARIO, OPERATORIA, SECTORECONOMICO, CIUDAD, PROVINCIA, TIPOPLAN, PARAMETROSPLAN, USOFONDO, FUENTEFONDO
     }
 
     private MediatorFactory() {
@@ -91,8 +92,15 @@ class MediatorFactory {
             case AÑOPLAN:
                 interm = new Intermediario<AñoPlan>("AñoPlan");
                 break;
+//            case USOFONDO:
+//                interm = new Intermediario<UsoFondo>("UsoFondo");
+//                break;
             case PARAMETROSPLAN:
                 interm = new Intermediario<ParametrosPlan>(c.getSimpleName());
+                break;
+            default:
+                interm = new Intermediario(c.getSimpleName());
+
         }
 
         _mapaIntermediarios.put(c, interm);

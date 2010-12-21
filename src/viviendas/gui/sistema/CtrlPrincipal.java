@@ -2,6 +2,7 @@ package viviendas.gui.sistema;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import viviendas.gui.FuentesFondos.CtrlFuenteFondo;
@@ -12,16 +13,13 @@ import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
 import viviendas.gui.provincia.CtrlProvincia;
 
-/**
- *
- * @author Maximiliano.
- */
-
 public class CtrlPrincipal {
+
     private IUPantallaPrincipal _pantalla;
     private static final String _VERSION = "Viviendas 1.0";
+    private static CtrlPrincipal instance;
 
-    public CtrlPrincipal() {
+    private CtrlPrincipal() {
         _pantalla = new IUPantallaPrincipal();
         _pantalla.setLocationRelativeTo(null);
         _pantalla.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -82,51 +80,60 @@ public class CtrlPrincipal {
 
     }
 
-    public void abrirPantallaPrincipal(){
+    public static CtrlPrincipal getInstance() {
+        if (instance == null) {
+            instance = new CtrlPrincipal();
+        }
+        return instance;
+    }
+
+    public void abrirPantallaPrincipal() {
         _pantalla.setVisible(true);
     }
 
-    private void abrirIUTiposCiudades(){
+    private void abrirIUTiposCiudades() {
         new CtrlTipoCiudad(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUSegmentoEconomico(){
+    private void abrirIUSegmentoEconomico() {
         new CtrlSegmentoEconomico(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUOperatoria(){
+    private void abrirIUOperatoria() {
         new CtrlOperatoria(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUFuentesFondos(){
+    private void abrirIUFuentesFondos() {
         new CtrlFuenteFondo(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUPlan(){
+    private void abrirIUPlan() {
         new CtrlPlan(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUAbrirPlan(){
+    private void abrirIUAbrirPlan() {
         new ctrlAbrirPlan(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUAbrirProvincias(){
+    private void abrirIUAbrirProvincias() {
         new CtrlProvincia(_pantalla.getDesktopPane());
     }
 
-    private void abrirReporteDistribGenProvincias(){
-        
+    private void abrirReporteDistribGenProvincias() {
+    }
+
+    public JDesktopPane getDesktopPane() {
+        return _pantalla.getDesktopPane();
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new CtrlPrincipal().iniciar();
+        CtrlPrincipal.getInstance().iniciar();
     }
 
-    private void iniciar(){
+    private void iniciar() {
         new CtrlUsuario(this);
     }
-
 }

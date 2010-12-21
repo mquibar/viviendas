@@ -27,6 +27,7 @@ import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.SectorEconomico;
+import viviendas.gui.financiacion.crear.CtrlCrearFinanciacion;
 import viviendas.gui.tool.ICalculable;
 import viviendas.gui.models.tables.ModelTableAño;
 import viviendas.gui.models.tables.ModelTableDistribucionCiudad;
@@ -530,6 +531,7 @@ public class ctrlModificarPlan implements ICalculable {
 
     void pressAddFinanciacionButton(){
         _pantalla.setEnabled(false);
+        new CtrlCrearFinanciacion(getDistOperatoriaSeleccionada(), this);
     }
     public void desbloquear(){
         _pantalla.setEnabled(true);
