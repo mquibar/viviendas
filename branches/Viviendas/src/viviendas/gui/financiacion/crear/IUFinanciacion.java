@@ -12,6 +12,7 @@
 package viviendas.gui.financiacion.crear;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -39,7 +40,7 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
 
         labNombre = new javax.swing.JLabel();
         _texNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        _labCombinacion = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         _btnOk = new javax.swing.JButton();
         _btnCancel = new javax.swing.JButton();
@@ -56,6 +57,7 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         _texRestante = new javax.swing.JTextField();
         _texTotal = new javax.swing.JTextField();
 
+        setResizable(true);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -74,14 +76,14 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
         getContentPane().add(_texNombre, gridBagConstraints);
 
-        jLabel2.setText("MENDOZA - 20.000 - BAJO - COOPERATIVA");
+        _labCombinacion.setText("MENDOZA - 20.000 - BAJO - COOPERATIVA");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        getContentPane().add(jLabel2, gridBagConstraints);
+        getContentPane().add(_labCombinacion, gridBagConstraints);
 
         jToolBar1.setRollover(true);
 
@@ -188,12 +190,12 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
     private javax.swing.JButton _btnDropDetails;
     private javax.swing.JButton _btnOk;
     private javax.swing.JButton _btnViewDetails;
+    private javax.swing.JLabel _labCombinacion;
     private javax.swing.JSpinner _spinPorcentaje;
     private javax.swing.JTabbedPane _tabPaneFinanciacion;
     private javax.swing.JTextField _texNombre;
     private javax.swing.JTextField _texRestante;
     private javax.swing.JTextField _texTotal;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jToolBar1;
@@ -296,4 +298,14 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
     public void setTexTotal(JTextField _texTotal) {
         this._texTotal = _texTotal;
     }
+
+    public JLabel getLabCombinacion() {
+        return _labCombinacion;
+    }
+
+    public void setLabCombinacion(JLabel _labCombinacion) {
+        this._labCombinacion = _labCombinacion;
+    }
+
+    
 }
