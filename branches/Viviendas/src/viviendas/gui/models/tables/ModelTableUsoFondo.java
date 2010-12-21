@@ -21,7 +21,7 @@ public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         try {
             switch (columnIndex) {
-                case 1:
+                case 0:
                     return _lista.get(rowIndex).getNombre();
                 default:
                     return "";
@@ -40,9 +40,7 @@ public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return String.class;
-            case 1:
-                return Double.class;
+                return String.class;            
             default:
                 return Object.class;
         }
@@ -51,9 +49,10 @@ public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         switch(columnIndex){
-            case 1:
+            case 0:
                 _lista.get(rowIndex).setNombre(aValue.toString());
-                break;            
+                break;
+
         }
     }
 }

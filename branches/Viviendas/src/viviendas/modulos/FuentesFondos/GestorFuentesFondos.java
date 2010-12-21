@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import viviendas.entidades.flujo.FuenteFondo;
 import viviendas.entidades.vivienda.Operatoria;
+import viviendas.entidades.vivienda.ParametrosPlan;
 import viviendas.modulos.Operatoria.GestorOperatoria;
 import viviendas.persistencia.Facade;
 
@@ -48,5 +49,20 @@ public class GestorFuentesFondos {
         } catch (Exception ex) {
             Logger.getLogger(GestorOperatoria.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List obtenerFuentesFondos(){
+        List<FuenteFondo> listado = Facade.getInstance().findAll(FuenteFondo.class);
+        if(listado == null){
+            ParametrosPlan parametro = new ParametrosPlan();
+            parametro.setNombreParametro("-");
+            parametro.setPorcenteaje(0d);
+            FuenteFondo fuente = new FuenteFondo();
+            fuente.setNombre("-");
+            fuente.setParametro(parametro);
+            listado.add(fuente);
+            return listado;
+        }
+        return listado;
     }
 }

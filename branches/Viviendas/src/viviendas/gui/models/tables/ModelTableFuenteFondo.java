@@ -22,9 +22,9 @@ public class ModelTableFuenteFondo extends AbstractTableModel<FuenteFondo>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         try {
             switch(columnIndex){
-                case 1:
+                case 0:
                     return _lista.get(rowIndex).getNombre();
-                case 2:
+                case 1:
                     return _lista.get(rowIndex).getParametro();
                 default:
                     return "";
@@ -54,10 +54,10 @@ public class ModelTableFuenteFondo extends AbstractTableModel<FuenteFondo>{
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         switch(columnIndex){
-            case 1:
+            case 0:
                 _lista.get(rowIndex).setNombre(aValue.toString());
                 break;
-            case 2:
+            case 1:
                 _lista.get(rowIndex).getParametro().setPorcenteaje(Double.valueOf(aValue.toString()));
                 break;
         }

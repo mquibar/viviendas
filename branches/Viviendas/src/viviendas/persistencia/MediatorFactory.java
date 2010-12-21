@@ -6,6 +6,7 @@ package viviendas.persistencia;
 
 import java.util.HashMap;
 import java.util.Map;
+import viviendas.entidades.flujo.FuenteFondo;
 import viviendas.entidades.flujo.UsoFondo;
 import viviendas.entidades.vivienda.AñoPlan;
 import viviendas.entidades.vivienda.Ciudad;
@@ -98,9 +99,12 @@ class MediatorFactory {
             case PARAMETROSPLAN:
                 interm = new Intermediario<ParametrosPlan>(c.getSimpleName());
                 break;
-            default:
-                interm = new Intermediario(c.getSimpleName());
-
+            case USOFONDO:
+                interm = new Intermediario<UsoFondo>(c.getSimpleName());
+                break;
+            case FUENTEFONDO:
+                interm = new Intermediario<FuenteFondo>(c.getSimpleName());
+                break;
         }
 
         _mapaIntermediarios.put(c, interm);

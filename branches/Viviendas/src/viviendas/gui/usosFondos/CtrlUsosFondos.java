@@ -50,6 +50,12 @@ public class CtrlUsosFondos {
                 quitar();
             }
         });
+        _modelo = new ModelTableUsoFondo(_gestor.obtenerUsosFondos());
+        _pantalla.getTbUsosFondos().setModel(_modelo);
+
+        _pantalla.setVisible(true);
+        _pantalla.toFront();
+        desktop.add(_pantalla);
     }
 
     private void guardar(){
