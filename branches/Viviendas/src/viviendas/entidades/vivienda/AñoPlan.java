@@ -25,9 +25,9 @@ public class AñoPlan implements Serializable {
     private Integer año;
     private Integer cantViviendasAño;
     @OneToMany(mappedBy = "añoPlan", cascade=CascadeType.ALL)
-    private List<DistribucionCiudad> listaProvinciaCiudad;
+    private List<DistribucionCiudad> _distribucionCiudad;
     @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
-    private List<DistribucionProvincial> listaDistribucionProvincial;
+    private List<DistribucionProvincial> _distribucionProvincia;
     @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
     private List<DistribucionSector> distribucionSector;
     @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
@@ -67,20 +67,20 @@ public class AñoPlan implements Serializable {
         this.id = id;
     }
 
-    public List<DistribucionProvincial> getListaDistribucionProvincial() {
-        return listaDistribucionProvincial;
+    public List<DistribucionProvincial> getDistribucionProvincia() {
+        return _distribucionProvincia;
     }
 
-    public void setListaDistribucionProvincial(List<DistribucionProvincial> listaDistribucionProvincial) {
-        this.listaDistribucionProvincial = listaDistribucionProvincial;
+    public void setDistribucionProvincia(List<DistribucionProvincial> dProvinciaList) {
+        this._distribucionProvincia = dProvinciaList;
     }
 
-    public List<DistribucionCiudad> getListaProvinciaCiudad() {
-        return listaProvinciaCiudad;
+    public List<DistribucionCiudad> getDistribucionCiudad() {
+        return _distribucionCiudad;
     }
 
-    public void setListaProvinciaCiudad(List<DistribucionCiudad> listaProvinciaCiudad) {
-        this.listaProvinciaCiudad = listaProvinciaCiudad;
+    public void setDistribucionCiudad(List<DistribucionCiudad> dCiudadList) {
+        this._distribucionCiudad = dCiudadList;
     }
 
     public List<DistribucionOperatoria> getDistribucionOperatoria() {
