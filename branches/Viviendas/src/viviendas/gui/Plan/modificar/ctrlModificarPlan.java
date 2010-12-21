@@ -14,6 +14,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import viviendas.entidades.vivienda.AñoPlan;
@@ -117,6 +118,13 @@ public class ctrlModificarPlan implements ICalculable {
             }
         });
 
+        _pantalla.getBtnAddFinanciacion().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                pressAddFinanciacionButton();
+            }
+        });
+
         //DATOS DEL PLAN
         _pantalla.getTxtNombre().setText(plan.getNombre());
         _pantalla.getTxtTipo().setText(plan.getTipoPlan().getNombre());
@@ -128,26 +136,31 @@ public class ctrlModificarPlan implements ICalculable {
         _pantalla.getTblAños().setModel(_tablaAños);
         _pantalla.getTblAños().addMouseListener(mnuDerecho);
         _pantalla.getScrAño().addMouseListener(mnuDerecho);
+        _pantalla.getTblAños().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA PROVINCIA
         _pantalla.getTblProvincia().setModel(_distProvincial);
         _pantalla.getTblProvincia().addMouseListener(mnuDerecho);
         _pantalla.getScrProvincia().setVisible(false);
         _pantalla.getScrProvincia().addMouseListener(mnuDerecho);
+        _pantalla.getTblProvincia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA CIUDAD
         _pantalla.getTblCiudad().setModel(_distCiudad);
         _pantalla.getTblCiudad().addMouseListener(mnuDerecho);
         _pantalla.getScrCiudad().setVisible(false);
         _pantalla.getScrCiudad().addMouseListener(mnuDerecho);
+        _pantalla.getTblCiudad().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA SECTOR ECONOMICO
         _pantalla.getTblSectorEconomico().setModel(_distSEconomico);
         _pantalla.getTblSectorEconomico().addMouseListener(mnuDerecho);
         _pantalla.getScrSectEconom().setVisible(false);
         _pantalla.getScrSectEconom().addMouseListener(mnuDerecho);
+        _pantalla.getTblSectorEconomico().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA OPERATORIA
         _pantalla.getTblOperatoria().setModel(_distOperatoria);
         _pantalla.getTblOperatoria().addMouseListener(mnuDerecho);
         _pantalla.getScrOperatoria().setVisible(false);
         _pantalla.getScrOperatoria().addMouseListener(mnuDerecho);
+        _pantalla.getTblOperatoria().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         _pantalla.getBtnViewDetails().addActionListener(new ActionListener() {
 
@@ -256,62 +269,54 @@ public class ctrlModificarPlan implements ICalculable {
     }
 
     void viewCiudad() {
-        int rowIndex = _pantalla.getTblProvincia().getSelectedRow();
-        if (rowIndex < 0) {
-            rowIndex = 0;
-            _pantalla.getTblProvincia().setRowSelectionInterval(0, 0);
-        }
-        _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), _distProvincial.getSelectedIndex(rowIndex)));//LLAMAR ACA TB AL GESTOR
+        _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), getDistProvincialSeleccionada()));//LLAMAR ACA TB AL GESTOR
         _pantalla.getTblProvincia().setEnabled(false);
         _pantalla.getScrCiudad().setVisible(true);
-        _pantalla.getLblUbicacion().setText(_distProvincial.getSelectedIndex(rowIndex).getProvincia().getNombre());
+        _pantalla.getLblUbicacion().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
         if (_distCiudad.getAllRow().isEmpty()) {
             ocultarTablas();
+        } else {
+            _pantalla.getTblCiudad().setRowSelectionInterval(0, 0);
         }
     }
 
     void viewSectEconomico() {
-        int rowIndex = _pantalla.getTblCiudad().getSelectedRow();
-        if (rowIndex < 0) {
-            rowIndex = 0;
-            _pantalla.getTblCiudad().setRowSelectionInterval(0, 0);
-        }
-        _distSEconomico.setList(_gestor.listarDistribucionSector(getAñoSeleccionado(), _distCiudad.getSelectedIndex(rowIndex)));//GESTOR
+        _distSEconomico.setList(_gestor.listarDistribucionSector(getAñoSeleccionado(), getDistCiudadSeleccionada()));//GESTOR
         if (_distSEconomico.getAllRow().isEmpty()) {
             ocultarTablas();
             return;
+        } else {
+            _pantalla.getTblSectorEconomico().setRowSelectionInterval(0, 0);
         }
         _pantalla.getTblCiudad().setEnabled(false);
         _pantalla.getScrSectEconom().setVisible(true);
-        _pantalla.getLblUbicacion().setText(_distCiudad.getSelectedIndex(rowIndex).getCuidad().getNombre());
+        _pantalla.getLblUbicacion().setText(getDistCiudadSeleccionada().getCuidad().getNombre());
     }
 
     void viewOperatoria() {
-        int rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
-        if (rowIndex < 0) {
-            rowIndex = 0;
-            _pantalla.getTblSectorEconomico().setRowSelectionInterval(rowIndex, rowIndex);
-        }
-        _distOperatoria.setList(_gestor.listarDistribucionOperatoria(getAñoSeleccionado(), _distSEconomico.getSelectedIndex(rowIndex)));//GESTOR
+
+        _distOperatoria.setList(_gestor.listarDistribucionOperatoria(getAñoSeleccionado(), getDistSectorSeleccionado()));//GESTOR
         if (_distOperatoria.getAllRow().isEmpty()) {
             ocultarTablas();
             return;
+        }else{
+            _pantalla.getTblOperatoria().setRowSelectionInterval(0, 0);
         }
         _pantalla.getTblSectorEconomico().setEnabled(false);
         _pantalla.getScrOperatoria().setVisible(true);
-        _pantalla.getLblUbicacion().setText(_distSEconomico.getSelectedIndex(rowIndex).getSectorEconomico().getNombre());
+        _pantalla.getLblUbicacion().setText(getDistSectorSeleccionado().getSectorEconomico().getNombre());
     }
 
     void dropOperatoria() {
         _pantalla.getTblSectorEconomico().setEnabled(true);
         _pantalla.getScrOperatoria().setVisible(false);
-        _pantalla.getLblUbicacion().setText(_distCiudad.getSelectedIndex(_pantalla.getTblCiudad().getSelectedRow()).getCuidad().getNombre());
+        _pantalla.getLblUbicacion().setText(getDistCiudadSeleccionada().getCuidad().getNombre());
     }
 
     void dropSectEconomico() {
         _pantalla.getTblCiudad().setEnabled(true);
         _pantalla.getScrSectEconom().setVisible(false);
-        _pantalla.getLblUbicacion().setText(_distProvincial.getSelectedIndex(_pantalla.getTblProvincia().getSelectedRow()).getProvincia().getNombre());
+        _pantalla.getLblUbicacion().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
     }
 
     void dropCiudad() {
@@ -326,13 +331,49 @@ public class ctrlModificarPlan implements ICalculable {
         _pantalla.getLblUbicacion().setText("");
     }
 
-    private AñoPlan getAñoSeleccionado() {
+    AñoPlan getAñoSeleccionado() {
         int idx = _pantalla.getTblAños().getSelectedRow();
         if (idx < 0) {
             idx = 0;
             _pantalla.getTblAños().setRowSelectionInterval(0, 0);
         }
         return _tablaAños.getSelectedIndex(idx);
+    }
+
+    DistribucionProvincial getDistProvincialSeleccionada() {
+        int rowIndex = _pantalla.getTblProvincia().getSelectedRow();
+        if (rowIndex < 0) {
+            rowIndex = 0;
+            _pantalla.getTblProvincia().setRowSelectionInterval(rowIndex, rowIndex);
+        }
+        return _distProvincial.getSelectedIndex(rowIndex);
+    }
+
+    DistribucionCiudad getDistCiudadSeleccionada() {
+        int rowIndex = _pantalla.getTblCiudad().getSelectedRow();
+        if (rowIndex < 0) {
+            rowIndex = 0;
+            _pantalla.getTblCiudad().setRowSelectionInterval(rowIndex, rowIndex);
+        }
+        return _distCiudad.getSelectedIndex(rowIndex);
+    }
+
+    DistribucionSector getDistSectorSeleccionado() {
+        int rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
+        if (rowIndex < 0) {
+            rowIndex = 0;
+            _pantalla.getTblSectorEconomico().setRowSelectionInterval(rowIndex, rowIndex);
+        }
+        return _distSEconomico.getSelectedIndex(rowIndex);
+    }
+
+    DistribucionOperatoria getDistOperatoriaSeleccionada() {
+        int rowIndex = _pantalla.getTblOperatoria().getSelectedRow();
+        if (rowIndex < 0) {
+            rowIndex = 0;
+            _pantalla.getTblOperatoria().setRowSelectionInterval(rowIndex, rowIndex);
+        }
+        return _distOperatoria.getSelectedIndex(rowIndex);
     }
 
     public void actualizarPorcentaje() {
@@ -416,36 +457,21 @@ public class ctrlModificarPlan implements ICalculable {
         int rowIndex = 0;
         switch (tablaOnTop) {
             case PROVINCIA:
-                rowIndex = _pantalla.getTblProvincia().getSelectedRow();
-                if (rowIndex < 0) {
-                    return;
-                }
-                _gestor.removeDistribucion(getAñoSeleccionado(), _distProvincial.getSelectedIndex(rowIndex));
-                _distProvincial.delRow(rowIndex);
+                _gestor.removeDistribucion(getAñoSeleccionado(), getDistProvincialSeleccionada());
+                _distProvincial.fireTableDataChanged();
                 break;
             case CIUDAD:
-                rowIndex = _pantalla.getTblCiudad().getSelectedRow();
-                if (rowIndex < 0) {
-                    return;
-                }
-                _gestor.removeDistribucion(getAñoSeleccionado(), _distCiudad.getSelectedIndex(rowIndex));
-                _distCiudad.delRow(rowIndex);
+                _gestor.removeDistribucion(getAñoSeleccionado(), getDistCiudadSeleccionada());
+                _distCiudad.fireTableDataChanged();
                 break;
             case SECTORECONOMICO:
-                rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
-                if (rowIndex < 0) {
-                    return;
-                }
-                _gestor.removeDistribucion(getAñoSeleccionado(), _distSEconomico.getSelectedIndex(rowIndex));
-                _distSEconomico.delRow(rowIndex);
+
+                _gestor.removeDistribucion(getAñoSeleccionado(), getDistSectorSeleccionado());
+                _distSEconomico.fireTableDataChanged();
                 break;
             case OPERATORIA:
-                rowIndex = _pantalla.getTblOperatoria().getSelectedRow();
-                if (rowIndex < 0) {
-                    return;
-                }
-                _gestor.removeDistribucion(getAñoSeleccionado(), _distOperatoria.getSelectedIndex(rowIndex));
-                _distOperatoria.delRow(rowIndex);
+                _gestor.removeDistribucion(getAñoSeleccionado(), getDistOperatoriaSeleccionada());
+                _distOperatoria.fireTableDataChanged();
                 break;
         }
     }
@@ -480,8 +506,15 @@ public class ctrlModificarPlan implements ICalculable {
     void pressCancelButtonSeleccion() {
         _seleccion.setVisible(false);
     }
-    void pressOkButtonSeleccion(){
-        
+
+    void pressOkButtonSeleccion() {
+    }
+
+    void pressAddFinanciacionButton(){
+        _pantalla.setEnabled(false);
+    }
+    public void desbloquear(){
+        _pantalla.setEnabled(true);
     }
 }
 
@@ -547,7 +580,7 @@ class TablaCiudad extends ModeloTableCiudad {
     }
 }
 
-class TablaSector extends ModeloTablaSectorEconomico{
+class TablaSector extends ModeloTablaSectorEconomico {
 
     public TablaSector(List<SectorEconomico> lista) {
         super(lista);
@@ -558,10 +591,9 @@ class TablaSector extends ModeloTablaSectorEconomico{
     public int getColumnCount() {
         return 1;
     }
-
 }
 
-class TablaOperatoria extends ModeloTablaOperatoria{
+class TablaOperatoria extends ModeloTablaOperatoria {
 
     public TablaOperatoria(List<Operatoria> lista) {
         super(lista);
@@ -572,7 +604,4 @@ class TablaOperatoria extends ModeloTablaOperatoria{
     public int getColumnCount() {
         return 1;
     }
-
-
-
 }
