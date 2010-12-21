@@ -12,6 +12,7 @@ import viviendas.entidades.flujo.Financiacion;
 import viviendas.entidades.flujo.FuenteFondo;
 import viviendas.entidades.flujo.UsoFondo;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
+import viviendas.gui.financiacion.crear.DtoDetalleDistribucion;
 import viviendas.persistencia.Facade;
 
 /**
@@ -30,16 +31,29 @@ public class GestorCrearFinanciacion {
     }
 
     public void crearDistribucion(Double porcentaje) {
+        List<DtoDetalleDistribucion> dtoDetallesDistribucion = new ArrayList<DtoDetalleDistribucion>();
         String nombre = "Financiacion " + (distribucionesfinanciacion.size() + 1);
         nombre += " - " + porcentaje;
         DistribucionFinanciacion distribucionFinanciacion = new DistribucionFinanciacion();
         distribucionFinanciacion.setFinanciacion(financiacion);
         distribucionFinanciacion.setPorcentajeFinanciacion(porcentaje);
-        DetalleDistribucionFinanciacion detalleDistribucionFinanciacion = new DetalleDistribucionFinanciacion();
         List<UsoFondo> usosFondo = Facade.getInstance().findAll(UsoFondo.class);
         List<FuenteFondo> fuenteFondos = Facade.getInstance().findAll(FuenteFondo.class);
-        for (FuenteFondo fuenteFondo : fuenteFondos) {
-            
+        for (UsoFondo usoFondo : usosFondo) {
+            DtoDetalleDistribucion dto = new DtoDetalleDistribucion();
+            dto.setEstaActivo(Boolean.TRUE);
+            dto.setUsoFondo(usoFondo);
+            List<DetalleDistribucionFinanciacion> listaDetalles = new ArrayList<DetalleDistribucionFinanciacion>();
+            for (FuenteFondo fuenteFondo : fuenteFondos) {
+                DetalleDistribucionFinanciacion detalle = new DetalleDistribucionFinanciacion();
+                detalle.setDistribucionFinanciacion(distribucionFinanciacion);
+                detalle.setFlujoFondo(fuenteFondo);
+                detalle.setPorcentaje(0.0);
+                detalle.setUsoFondo(usoFondo);
+                listaDetalles.add(detalle);
+            }
+            dto.setDetallesDistribucionesFinanciacion(listaDetalles);
+            dtoDetallesDistribucion.add(dto);
         }
         distribucionesfinanciacion.add(distribucionFinanciacion);
     }

@@ -9,14 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
+import viviendas.gui.Plan.modificar.ctrlModificarPlan;
+import viviendas.gui.sistema.CtrlPrincipal;
 
 public class CtrlCrearFinanciacion {
 
     private GestorCrearFinanciacion _gestor;
     private IUFinanciacion _pantalla;
+    private final ctrlModificarPlan ctrlModificarPlan;
 
-    public CtrlCrearFinanciacion(DistribucionOperatoria distribucionOperatoria) {
+    public CtrlCrearFinanciacion(DistribucionOperatoria distribucionOperatoria, ctrlModificarPlan ctrlModificarPlan) {
         _gestor = new GestorCrearFinanciacion(distribucionOperatoria);
+        this.ctrlModificarPlan = ctrlModificarPlan;
         _pantalla = new IUFinanciacion();
         _pantalla.getBtnAdd().addActionListener(new ActionListener() {
 
@@ -60,6 +64,8 @@ public class CtrlCrearFinanciacion {
                 presionaViewDetails();
             }
         });
+        CtrlPrincipal.getInstance().getDesktopPane().add(_pantalla);
+        _pantalla.setVisible(true);
     }
 
     private void presionaViewDetails() {
@@ -75,7 +81,8 @@ public class CtrlCrearFinanciacion {
     }
 
     private void presionaBtnOk() {
-        throw new UnsupportedOperationException("Not yet implemented");
+//TODO falta persistir el plan
+        ctrlModificarPlan.desbloquear();
     }
 
     private void presionaDropDetails() {
@@ -103,7 +110,7 @@ public class CtrlCrearFinanciacion {
         JTable tabla = new JTable();
         _pantalla.getTabPaneFinanciacion().addTab("Financiacion i++", tabla);
         _pantalla.getBtnDropDetails().setEnabled(true);
-        _pantalla.getTabPaneFinanciacion().setSelectedIndex(_pantalla.getTabPaneFinanciacion().getTabCount()-1);
+        _pantalla.getTabPaneFinanciacion().setSelectedIndex(_pantalla.getTabPaneFinanciacion().getTabCount() - 1);
     }
 
     private void presionaAgregar() {
@@ -119,6 +126,7 @@ public class CtrlCrearFinanciacion {
         _pantalla.dispose();
         _pantalla = null;
         _gestor = null;
+        ctrlModificarPlan.desbloquear();
     }
 
     private void verificarTotal() {

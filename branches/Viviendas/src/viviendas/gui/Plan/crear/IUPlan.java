@@ -224,6 +224,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         jPanel3.add(jSeparator1, gridBagConstraints);
 
+        tabProvincias.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tabProvincias);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -246,6 +247,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
 
             }
         ));
+        tabProvinciasSeleccionadas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tabProvinciasSeleccionadas);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
