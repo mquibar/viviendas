@@ -12,6 +12,7 @@ import viviendas.gui.Plan.modificar.ctrlAbrirPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
 import viviendas.gui.provincia.CtrlProvincia;
+import viviendas.gui.usosFondos.CtrlUsosFondos;
 
 public class CtrlPrincipal {
 
@@ -77,6 +78,12 @@ public class CtrlPrincipal {
                 abrirIUAbrirProvincias();
             }
         });
+        _pantalla.getMnuUsosFondos().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUUsosFondos();
+            }
+        });
 
     }
 
@@ -119,7 +126,12 @@ public class CtrlPrincipal {
         new CtrlProvincia(_pantalla.getDesktopPane());
     }
 
-    private void abrirReporteDistribGenProvincias() {
+    private void abrirIUUsosFondos(){
+        new CtrlUsosFondos(_pantalla.getDesktopPane());
+    }
+
+    private void abrirReporteDistribGenProvincias(){
+        
     }
 
     public JDesktopPane getDesktopPane() {

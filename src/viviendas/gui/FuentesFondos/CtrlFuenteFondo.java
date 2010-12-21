@@ -28,6 +28,8 @@ public class CtrlFuenteFondo {
     private ModelTableFuenteFondo _modelo;
 
     public CtrlFuenteFondo(JDesktopPane desktop) {
+        _gestor = new GestorFuentesFondos();
+        
         _pantalla = new IUFuenteFondo();
         _pantalla.getBtnAceptar().addActionListener(new ActionListener() {
 
@@ -54,7 +56,11 @@ public class CtrlFuenteFondo {
             }
         });
 
+        _modelo = new ModelTableFuenteFondo(_gestor.obtenerFuentesFondos());
+        _pantalla.getTbFuentesFondos().setModel(_modelo);
+
         _pantalla.setVisible(true);
+        _pantalla.toFront();
         desktop.add(_pantalla);
     }
 
@@ -80,6 +86,7 @@ public class CtrlFuenteFondo {
         FuenteFondo fuente = new FuenteFondo();
         fuente.setNombre("");
         fuente.setParametro(parametro);
+        _modelo.addRow(fuente);
     }
 
     private void quitar(){
