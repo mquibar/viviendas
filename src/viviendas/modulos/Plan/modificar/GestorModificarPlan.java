@@ -50,20 +50,20 @@ public class GestorModificarPlan {
 
         plan_a_modificar = plan;
         for (AñoPlan aPlan : plan_a_modificar.getListaAñoPlan()) {
-            aPlan.setListaDistribucionProvincial(gestor.listarDistProv(aPlan));
-            aPlan.setListaProvinciaCiudad(gestor.listarDistCiud(aPlan));
+            aPlan.setDistribucionProvincia(gestor.listarDistProv(aPlan));
+            aPlan.setDistribucionCiudad(gestor.listarDistCiud(aPlan));
             aPlan.setDistribucionSector(gestor.listarDistSEcono(aPlan));
             aPlan.setDistribucionOperatoria(gestor.listarDistOper(aPlan));
         }
     }
 
     public List<DistribucionProvincial> listarDistribucionProvincial(AñoPlan aplan) {
-        return aplan.getListaDistribucionProvincial();
+        return aplan.getDistribucionProvincia();
     }
 
     public List<DistribucionCiudad> listarDistribucionCiudad(AñoPlan aPlan, DistribucionProvincial dProvincial) {
         List<DistribucionCiudad> dc = new ArrayList<DistribucionCiudad>();
-        for (DistribucionCiudad dCiudad : aPlan.getListaProvinciaCiudad()) {
+        for (DistribucionCiudad dCiudad : aPlan.getDistribucionCiudad()) {
             if (dCiudad.getDistribucionProvincial().equals(dProvincial)) {
                 dc.add(dCiudad);
             }
@@ -109,12 +109,12 @@ public class GestorModificarPlan {
             for (DistribucionSector dSector : listarDistribucionSector(aPlan, (DistribucionCiudad) distribucion)) {
                 removeDistribucion(aPlan, dSector);
             }
-            aPlan.getListaProvinciaCiudad().remove(distribucion);
+            aPlan.getDistribucionCiudad().remove(distribucion);
         } else if (distribucion instanceof DistribucionProvincial) {
             for (DistribucionCiudad dCiudad : listarDistribucionCiudad(aPlan, (DistribucionProvincial) distribucion)) {
                 removeDistribucion(aPlan, dCiudad);
             }
-            aPlan.getListaDistribucionProvincial().remove(distribucion);
+            aPlan.getDistribucionProvincia().remove(distribucion);
         }
 
         aEliminar.add(distribucion);
@@ -145,7 +145,7 @@ public class GestorModificarPlan {
         List<Provincia> list = (new GestorProvincia()).obtenerProvincias();
         List<Provincia> noAsignadas = new ArrayList<Provincia>(list);
         for (Provincia provincia : list) {
-            for (DistribucionProvincial dProvincial : aplan.getListaDistribucionProvincial()) {
+            for (DistribucionProvincial dProvincial : aplan.getDistribucionProvincia()) {
                 if (dProvincial.getProvincia().equals(provincia)) {
                     noAsignadas.remove(provincia);
                 }
@@ -155,13 +155,13 @@ public class GestorModificarPlan {
         return noAsignadas;
     }
 
-    public List<Ciudad> ciudadesNoAsignadas(AñoPlan aPlan){
+    public List<Ciudad> ciudadesNoAsignadas(AñoPlan aPlan, List<DistribucionCiudad> dCiudadList){
         List<Ciudad> list, noAsignadas;
         list = (new GestorProvincia()).obtenerCiudades();
         noAsignadas = new ArrayList<Ciudad>(list);
 
         for (Ciudad ciudad : list) {
-            for (DistribucionCiudad dCiudad : aPlan.getListaProvinciaCiudad()) {
+            for (DistribucionCiudad dCiudad : dCiudadList) {
                 if(dCiudad.getCuidad().equals(ciudad))
                     noAsignadas.remove(ciudad);
             }
@@ -170,12 +170,12 @@ public class GestorModificarPlan {
         return noAsignadas;
     }
 
-    public List<SectorEconomico> sectoresNoAsignados(AñoPlan aPlan){
+    public List<SectorEconomico> sectoresNoAsignados(AñoPlan aPlan, List<DistribucionSector> dSectorList){
         List<SectorEconomico> list, noAsignadas;
         list = (new GestorSectorEconomico()).obtenerSectoresEconomicos();
         noAsignadas = new ArrayList<SectorEconomico>(list);
         for (SectorEconomico sector : list) {
-            for (DistribucionSector dSector : aPlan.getDistribucionSector()) {
+            for (DistribucionSector dSector : dSectorList) {
                 if(dSector.getSectorEconomico().equals(sector))
                     noAsignadas.remove(sector);
             }
@@ -185,12 +185,12 @@ public class GestorModificarPlan {
         return noAsignadas;
     }
 
-    public List<Operatoria> operatoriasNoAsignadas(AñoPlan aPlan){
+    public List<Operatoria> operatoriasNoAsignadas(AñoPlan aPlan, List<DistribucionOperatoria> dOperatoriaList){
         List<Operatoria> list, noAsignadas;
         list = (new GestorOperatoria()).obtenerOperatorias();
         noAsignadas = new ArrayList<Operatoria>(list);
         for (Operatoria operatoria : list) {
-            for (DistribucionOperatoria dOperatoria : aPlan.getDistribucionOperatoria()) {
+            for (DistribucionOperatoria dOperatoria : dOperatoriaList) {
                 if(dOperatoria.getOperatoria().equals(operatoria))
                     noAsignadas.remove(operatoria);
             }
@@ -198,5 +198,51 @@ public class GestorModificarPlan {
 
         viviendas.utiles.Utiles.ordena(noAsignadas, "nombre");
         return noAsignadas;
+    }
+
+    public DistribucionProvincial addDistribucion(AñoPlan aPlan, Provincia provincia){
+        if(aPlan == null || provincia == null)
+            return null;
+        DistribucionProvincial dProv = new DistribucionProvincial();
+        dProv.setAñoPlan(aPlan);
+        dProv.setProvincia(provincia);
+        dProv.setPorcentajeDistribucion(0.0);
+        return dProv;
+    }
+
+    public DistribucionCiudad addDistribucion(AñoPlan aPlan, Ciudad ciudad, DistribucionProvincial dProvincial){
+        if(aPlan == null || ciudad == null || dProvincial == null)
+            return null;
+        DistribucionCiudad dCiud = new DistribucionCiudad();
+        dCiud.setAñoPlan(aPlan);
+        dCiud.setCuidad(ciudad);
+        dCiud.setPorcentajeDistribucion(0.0);
+        dCiud.setDistribucionProvincial(dProvincial);
+        aPlan.getDistribucionCiudad().add(dCiud);
+        return dCiud;
+    }
+
+    public DistribucionSector addDistribucion(AñoPlan aPlan, SectorEconomico sector, DistribucionCiudad dCiudad){
+        if(aPlan == null || sector == null || dCiudad == null)
+            return null;
+        DistribucionSector dSec = new DistribucionSector();
+        dSec.setAñoPlan(aPlan);
+        dSec.setSectorEconomico(sector);
+        dSec.setDistribucionCiudad(dCiudad);
+        dSec.setPorcentajeDistribucion(0.0);
+        aPlan.getDistribucionSector().add(dSec);
+        return dSec;
+    }
+
+    public DistribucionOperatoria addDistribucion(AñoPlan aPlan, Operatoria operatoria, DistribucionSector dSector){
+        if(aPlan==null || operatoria== null || dSector == null)
+            return null;
+        DistribucionOperatoria dOper = new DistribucionOperatoria();
+        dOper.setAñoPlan(aPlan);
+        dOper.setDistribucionSector(dSector);
+        dOper.setOperatoria(operatoria);
+        dOper.setPorcentajeDistribucion(0.0);
+        aPlan.getDistribucionOperatoria().add(dOper);
+        return dOper;
     }
 }

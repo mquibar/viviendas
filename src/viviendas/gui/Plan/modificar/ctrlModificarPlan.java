@@ -124,6 +124,7 @@ public class ctrlModificarPlan implements ICalculable {
                 pressAddFinanciacionButton();
             }
         });
+        _pantalla.getBtnAddFinanciacion().setEnabled(false);
 
         //DATOS DEL PLAN
         _pantalla.getTxtNombre().setText(plan.getNombre());
@@ -181,6 +182,13 @@ public class ctrlModificarPlan implements ICalculable {
                 pressCancelButtonSeleccion();
             }
         });
+        _seleccion.getBtnAccept().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                pressOkButtonSeleccion();
+            }
+        });
+        _seleccion.getTblSeleccion().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
     }
 
@@ -217,6 +225,7 @@ public class ctrlModificarPlan implements ICalculable {
             case OPERATORIA:
                 viewOperatoria();
                 _pantalla.getBtnViewDetails().setEnabled(false);
+                _pantalla.getBtnAddFinanciacion().setEnabled(true);
                 break;
             default:
                 tablaOnTop--;
@@ -243,6 +252,7 @@ public class ctrlModificarPlan implements ICalculable {
             case OPERATORIA:
                 dropOperatoria();
                 _pantalla.getBtnViewDetails().setEnabled(true);
+                _pantalla.getBtnAddFinanciacion().setEnabled(false);
                 break;
             default:
                 if (tablaOnTop < AÑO) {
@@ -264,7 +274,7 @@ public class ctrlModificarPlan implements ICalculable {
         _pantalla.getScrProvincia().setVisible(true);
         _pantalla.getLblUbicacion().setText(getAñoSeleccionado().toString());
         if (_distProvincial.getAllRow().isEmpty()) {
-            ocultarTablas();
+            _pantalla.getBtnViewDetails();
         }
     }
 
@@ -274,7 +284,7 @@ public class ctrlModificarPlan implements ICalculable {
         _pantalla.getScrCiudad().setVisible(true);
         _pantalla.getLblUbicacion().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
         if (_distCiudad.getAllRow().isEmpty()) {
-            ocultarTablas();
+            _pantalla.getBtnViewDetails();
         } else {
             _pantalla.getTblCiudad().setRowSelectionInterval(0, 0);
         }
@@ -283,8 +293,7 @@ public class ctrlModificarPlan implements ICalculable {
     void viewSectEconomico() {
         _distSEconomico.setList(_gestor.listarDistribucionSector(getAñoSeleccionado(), getDistCiudadSeleccionada()));//GESTOR
         if (_distSEconomico.getAllRow().isEmpty()) {
-            ocultarTablas();
-            return;
+            _pantalla.getBtnViewDetails();
         } else {
             _pantalla.getTblSectorEconomico().setRowSelectionInterval(0, 0);
         }
@@ -297,8 +306,7 @@ public class ctrlModificarPlan implements ICalculable {
 
         _distOperatoria.setList(_gestor.listarDistribucionOperatoria(getAñoSeleccionado(), getDistSectorSeleccionado()));//GESTOR
         if (_distOperatoria.getAllRow().isEmpty()) {
-            ocultarTablas();
-            return;
+            _pantalla.getBtnViewDetails();
         }else{
             _pantalla.getTblOperatoria().setRowSelectionInterval(0, 0);
         }
@@ -483,14 +491,14 @@ public class ctrlModificarPlan implements ICalculable {
                 _seleccion.getTblSeleccion().setModel(_provincias);
                 break;
             case CIUDAD:
-                _ciudades = new TablaCiudad(_gestor.ciudadesNoAsignadas(getAñoSeleccionado()));
+                _ciudades = new TablaCiudad(_gestor.ciudadesNoAsignadas(getAñoSeleccionado(),_distCiudad.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_ciudades);
                 break;
             case SECTORECONOMICO:
-                _sectores = new TablaSector(_gestor.sectoresNoAsignados(getAñoSeleccionado()));
+                _sectores = new TablaSector(_gestor.sectoresNoAsignados(getAñoSeleccionado(),_distSEconomico.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_sectores);
             case OPERATORIA:
-                _operatorias = new TablaOperatoria(_gestor.operatoriasNoAsignadas(getAñoSeleccionado()));
+                _operatorias = new TablaOperatoria(_gestor.operatoriasNoAsignadas(getAñoSeleccionado(),_distOperatoria.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_operatorias);
 
         }
@@ -508,6 +516,16 @@ public class ctrlModificarPlan implements ICalculable {
     }
 
     void pressOkButtonSeleccion() {
+        int rowIndex = _seleccion.getTblSeleccion().getSelectedRow();
+        switch(tablaOnTop){
+            case PROVINCIA:
+                _distProvincial.addRow(_gestor.addDistribucion(getAñoSeleccionado(), _provincias.getSelectedIndex(rowIndex)));
+                break;
+            case CIUDAD:
+                _distCiudad.addRow(_gestor.addDistribucion(getAñoSeleccionado(), _ciudades.getSelectedIndex(rowIndex), getDistProvincialSeleccionada()));
+                break;
+        }
+        _seleccion.setVisible(false);
     }
 
     void pressAddFinanciacionButton(){

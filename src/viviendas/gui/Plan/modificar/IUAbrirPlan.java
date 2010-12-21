@@ -59,6 +59,7 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
 
             }
         ));
+        _tblPlane.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(_tblPlane);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
