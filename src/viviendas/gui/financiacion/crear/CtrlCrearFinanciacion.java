@@ -7,10 +7,15 @@ package viviendas.gui.financiacion.crear;
 import viviendas.modulos.financiacion.crear.GestorCrearFinanciacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.gui.Plan.modificar.ctrlModificarPlan;
+import viviendas.gui.models.tables.ModelTableDetalleDistribucion;
 import viviendas.gui.sistema.CtrlPrincipal;
+import viviendas.modulos.financiacion.crear.DtoConstruccionFinanciacion;
+import viviendas.systemException.MissingData;
 
 public class CtrlCrearFinanciacion {
 
@@ -22,6 +27,7 @@ public class CtrlCrearFinanciacion {
         _gestor = new GestorCrearFinanciacion(distribucionOperatoria);
         this.ctrlModificarPlan = ctrlModificarPlan;
         _pantalla = new IUFinanciacion();
+        _pantalla.getLabCombinacion().setText(_gestor.getNombreCompletoCombinacion());
         _pantalla.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -82,7 +88,14 @@ public class CtrlCrearFinanciacion {
 
     private void presionaBtnOk() {
 //TODO falta persistir el plan
-        ctrlModificarPlan.desbloquear();
+        try {
+            if (_pantalla.getTexNombre().getText().equals("") || _pantalla.getTexNombre().getText() == null) {
+                throw new MissingData("Nombre");
+            }
+            ctrlModificarPlan.desbloquear();
+        } catch (MissingData md) {
+            mostrarMensaje(md.getLocalizedMessage());
+        }
     }
 
     private void presionaDropDetails() {
@@ -105,10 +118,16 @@ public class CtrlCrearFinanciacion {
         _pantalla.getTexNombre().setEnabled(false);
         _pantalla.getSpinPorcentaje().setEnabled(false);
         _pantalla.getBtnCrearFinanciacion().setEnabled(false);
-        _gestor.crearDistribucion(((Number) _pantalla.getSpinPorcentaje().getValue()).doubleValue());
+        DtoConstruccionFinanciacion dto = _gestor.crearDistribucion(((Number) _pantalla.getSpinPorcentaje().getValue()).doubleValue());
         verificarTotal();
+
+        JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         JTable tabla = new JTable();
-        _pantalla.getTabPaneFinanciacion().addTab("Financiacion i++", tabla);
+        jScrollPane1.setViewportView(tabla);
+        tabla.setModel(new ModelTableDetalleDistribucion(dto.getDtoDetallesDistribuciones(), dto.getColumas()));
+        _pantalla.getTabPaneFinanciacion().addTab(dto.getNombre(), jScrollPane1);
+        tabla.setVisible(true);
+        jScrollPane1.setVisible(true);
         _pantalla.getBtnDropDetails().setEnabled(true);
         _pantalla.getTabPaneFinanciacion().setSelectedIndex(_pantalla.getTabPaneFinanciacion().getTabCount() - 1);
     }
@@ -135,6 +154,11 @@ public class CtrlCrearFinanciacion {
         _pantalla.getTexTotal().setText(String.valueOf(total));
         if (total.compareTo(100.0) == 0) {
             _pantalla.getBtnOk().setEnabled(true);
+            _pantalla.getBtnCrearFinanciacion().setEnabled(false);
         }
+    }
+
+    private void mostrarMensaje(String string) {
+        JOptionPane.showMessageDialog(_pantalla, string, "", JOptionPane.INFORMATION_MESSAGE);
     }
 }

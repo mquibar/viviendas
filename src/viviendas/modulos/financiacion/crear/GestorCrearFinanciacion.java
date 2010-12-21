@@ -30,15 +30,24 @@ public class GestorCrearFinanciacion {
         financiacion.setDistribucionOperatoria(distribucionOperatoria);
     }
 
-    public void crearDistribucion(Double porcentaje) {
+    public DtoConstruccionFinanciacion crearDistribucion(Double porcentaje) {
+        DtoConstruccionFinanciacion dtoContruccion = new DtoConstruccionFinanciacion();
         List<DtoDetalleDistribucion> dtoDetallesDistribucion = new ArrayList<DtoDetalleDistribucion>();
         String nombre = "Financiacion " + (distribucionesfinanciacion.size() + 1);
         nombre += " - " + porcentaje;
+        dtoContruccion.setNombre(nombre);
+
         DistribucionFinanciacion distribucionFinanciacion = new DistribucionFinanciacion();
         distribucionFinanciacion.setFinanciacion(financiacion);
         distribucionFinanciacion.setPorcentajeFinanciacion(porcentaje);
         List<UsoFondo> usosFondo = Facade.getInstance().findAll(UsoFondo.class);
         List<FuenteFondo> fuenteFondos = Facade.getInstance().findAll(FuenteFondo.class);
+        String[] columnas = new String[fuenteFondos.size()];
+        for (int i = 0; i < fuenteFondos.size(); i++) {
+            columnas[i] = fuenteFondos.get(i).getNombre();
+
+        }
+        dtoContruccion.setColumas(columnas);
         for (UsoFondo usoFondo : usosFondo) {
             DtoDetalleDistribucion dto = new DtoDetalleDistribucion();
             dto.setEstaActivo(Boolean.TRUE);
@@ -56,6 +65,8 @@ public class GestorCrearFinanciacion {
             dtoDetallesDistribucion.add(dto);
         }
         distribucionesfinanciacion.add(distribucionFinanciacion);
+        dtoContruccion.setDtoDetallesDistribuciones(dtoDetallesDistribucion);
+        return dtoContruccion;
     }
 
     public Double calcularPorcentaje() {
@@ -64,5 +75,14 @@ public class GestorCrearFinanciacion {
             porcentajeTotal += distribucionFinanciacion.getPorcentajeFinanciacion();
         }
         return porcentajeTotal;
+    }
+
+    public String getNombreCompletoCombinacion() {
+        DistribucionOperatoria distribucion = financiacion.getDistribucionOperatoria();
+        String provincia = distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getProvincia().getNombre();
+        String ciudad = distribucion.getDistribucionSector().getDistribucionCiudad().getCuidad().getNombre();
+        String sector = distribucion.getDistribucionSector().getSectorEconomico().getNombre();
+        String operatoria = distribucion.getOperatoria().getNombre();
+        return provincia + " - " + ciudad + " - " + sector + " - " + operatoria;
     }
 }
