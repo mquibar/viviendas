@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import viviendas.entidades.flujo.InversionPlan;
 
 /**
  * @author Manuel
@@ -29,6 +30,8 @@ public class Plan implements Serializable {
     private TipoPlan tipoPlan;
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
     private List<AñoPlan> listaAñoPlan;
+    @OneToMany
+    private List<InversionPlan> listaInversion;
 
     public Plan() {
     }
@@ -79,6 +82,14 @@ public class Plan implements Serializable {
 
     public void setTipoPlan(TipoPlan tipoPlan) {
         this.tipoPlan = tipoPlan;
+    }
+
+    public List<InversionPlan> getListaInversion() {
+        return listaInversion;
+    }
+
+    public void setListaInversion(List<InversionPlan> listaInversion) {
+        this.listaInversion = listaInversion;
     }
 
     @Override
