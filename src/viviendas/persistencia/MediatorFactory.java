@@ -93,9 +93,6 @@ class MediatorFactory {
             case AÑOPLAN:
                 interm = new Intermediario<AñoPlan>("AñoPlan");
                 break;
-//            case USOFONDO:
-//                interm = new Intermediario<UsoFondo>("UsoFondo");
-//                break;
             case PARAMETROSPLAN:
                 interm = new Intermediario<ParametrosPlan>(c.getSimpleName());
                 break;

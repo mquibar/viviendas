@@ -25,7 +25,7 @@ public class ModelTableFuenteFondo extends AbstractTableModel<FuenteFondo>{
                 case 0:
                     return _lista.get(rowIndex).getNombre();
                 case 1:
-                    return _lista.get(rowIndex).getParametro();
+                    return _lista.get(rowIndex).getParametro().getPorcenteaje();
                 default:
                     return "";
             }
@@ -55,7 +55,7 @@ public class ModelTableFuenteFondo extends AbstractTableModel<FuenteFondo>{
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                _lista.get(rowIndex).setNombre(aValue.toString());
+                _lista.get(rowIndex).setNombre(aValue.toString().toUpperCase());
                 break;
             case 1:
                 _lista.get(rowIndex).getParametro().setPorcenteaje(Double.valueOf(aValue.toString()));
