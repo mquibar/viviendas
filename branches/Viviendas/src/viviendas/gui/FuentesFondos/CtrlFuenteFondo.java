@@ -8,6 +8,8 @@ package viviendas.gui.FuentesFondos;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
@@ -55,10 +57,19 @@ public class CtrlFuenteFondo {
                 quitar();
             }
         });
+        _pantalla.getTbFuentesFondos().addPropertyChangeListener(new PropertyChangeListener() {
+
+            public void propertyChange(PropertyChangeEvent evt) {
+                if(_modelo.getSelectedIndex(_pantalla.getTbFuentesFondos().getSelectedRow()) != null){
+                    verificarPorcentajes();
+                }
+            }
+        });
 
         _modelo = new ModelTableFuenteFondo(_gestor.obtenerFuentesFondos());
         _pantalla.getTbFuentesFondos().setModel(_modelo);
-
+        verificarPorcentajes();
+        
         _pantalla.setVisible(true);
         _pantalla.toFront();
         desktop.add(_pantalla);
@@ -87,6 +98,7 @@ public class CtrlFuenteFondo {
         fuente.setNombre("");
         fuente.setParametro(parametro);
         _modelo.addRow(fuente);
+        verificarPorcentajes();
     }
 
     private void quitar(){

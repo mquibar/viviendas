@@ -52,17 +52,18 @@ public class GestorFuentesFondos {
     }
 
     public List obtenerFuentesFondos(){
-        List<FuenteFondo> listado = Facade.getInstance().findAll(FuenteFondo.class);
-        if(listado == null){
-            ParametrosPlan parametro = new ParametrosPlan();
-            parametro.setNombreParametro("-");
-            parametro.setPorcenteaje(0d);
-            FuenteFondo fuente = new FuenteFondo();
-            fuente.setNombre("-");
-            fuente.setParametro(parametro);
-            listado.add(fuente);
-            return listado;
-        }
-        return listado;
+        return Facade.getInstance().findAll(FuenteFondo.class);
+//        List<FuenteFondo> listado = Facade.getInstance().findAll(FuenteFondo.class);
+//        if(listado == null){
+//            ParametrosPlan parametro = new ParametrosPlan();
+//            parametro.setNombreParametro("dfsdfsdfs");
+//            parametro.setPorcenteaje(25d);
+//            FuenteFondo fuente = new FuenteFondo();
+//            fuente.setNombre("dsfsss");
+//            fuente.setParametro(parametro);
+//            listado.add(fuente);
+//            return listado;
+//        }
+//        return listado;
     }
 }
