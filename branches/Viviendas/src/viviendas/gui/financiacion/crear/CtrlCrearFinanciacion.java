@@ -7,6 +7,8 @@ package viviendas.gui.financiacion.crear;
 import viviendas.modulos.financiacion.crear.GestorCrearFinanciacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -14,17 +16,22 @@ import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.gui.Plan.modificar.ctrlModificarPlan;
 import viviendas.gui.models.tables.ModelTableDetalleDistribucion;
 import viviendas.gui.sistema.CtrlPrincipal;
+import viviendas.gui.tool.ICalculable;
+import viviendas.gui.tool.SubscriptorTotal;
 import viviendas.modulos.financiacion.crear.DtoConstruccionFinanciacion;
 import viviendas.systemException.MissingData;
 
-public class CtrlCrearFinanciacion {
+public class CtrlCrearFinanciacion implements ICalculable {
 
+    private HashMap<Integer, JTable> hashIndiceTabla;
     private GestorCrearFinanciacion _gestor;
     private IUFinanciacion _pantalla;
     private final ctrlModificarPlan ctrlModificarPlan;
 
     public CtrlCrearFinanciacion(DistribucionOperatoria distribucionOperatoria, ctrlModificarPlan ctrlModificarPlan) {
+        hashIndiceTabla = new HashMap<Integer, JTable>();
         _gestor = new GestorCrearFinanciacion(distribucionOperatoria);
+        SubscriptorTotal.getInstance().añadir(this);
         this.ctrlModificarPlan = ctrlModificarPlan;
         _pantalla = new IUFinanciacion();
         _pantalla.getLabCombinacion().setText(_gestor.getNombreCompletoCombinacion());
@@ -111,24 +118,22 @@ public class CtrlCrearFinanciacion {
 
     private void presionaEliminar() {
         _pantalla.getTabPaneFinanciacion().remove(_pantalla.getTabPaneFinanciacion().getSelectedIndex());
-        verificarTotal();
     }
 
     private void presionaCrearFinanciacion() {
         _pantalla.getTexNombre().setEnabled(false);
         _pantalla.getSpinPorcentaje().setEnabled(false);
         _pantalla.getBtnCrearFinanciacion().setEnabled(false);
-        DtoConstruccionFinanciacion dto = _gestor.crearDistribucion(((Number) _pantalla.getSpinPorcentaje().getValue()).doubleValue());
-        verificarTotal();
-
+        DtoConstruccionFinanciacion dto = new CtrlModeloDetalleFinanciacion().crearDistribucion(((Number) _pantalla.getSpinPorcentaje().getValue()).doubleValue());
         JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         JTable tabla = new JTable();
-        jScrollPane1.setViewportView(tabla);
         tabla.setModel(new ModelTableDetalleDistribucion(dto.getDtoDetallesDistribuciones(), dto.getColumas()));
+        jScrollPane1.setViewportView(tabla);
+        hashIndiceTabla.put(_pantalla.getTabPaneFinanciacion().getTabCount(), tabla);
         _pantalla.getTabPaneFinanciacion().addTab(dto.getNombre(), jScrollPane1);
-        tabla.setVisible(true);
-        jScrollPane1.setVisible(true);
-        _pantalla.getBtnDropDetails().setEnabled(true);
+        if (_pantalla.getTabPaneFinanciacion().getTabCount() > 1) {
+            _pantalla.getBtnDropDetails().setEnabled(true);
+        }
         _pantalla.getTabPaneFinanciacion().setSelectedIndex(_pantalla.getTabPaneFinanciacion().getTabCount() - 1);
     }
 
@@ -136,8 +141,8 @@ public class CtrlCrearFinanciacion {
         _pantalla.getTexNombre().setEnabled(true);
         _pantalla.getSpinPorcentaje().setEnabled(true);
         _pantalla.getBtnCrearFinanciacion().setEnabled(true);
-        Double total = _gestor.calcularPorcentaje();
-        _pantalla.getSpinPorcentaje().setModel(new javax.swing.SpinnerNumberModel(100.0d - total, 0.0d, 100.0d - total, 0.10000000000000009d));
+        Double total = 0.0;
+        _pantalla.getSpinPorcentaje().setModel(new javax.swing.SpinnerNumberModel(100.0d - total, 0.0d, 100.0d - total, 0.1d));
 
     }
 
@@ -145,20 +150,18 @@ public class CtrlCrearFinanciacion {
         _pantalla.dispose();
         _pantalla = null;
         _gestor = null;
+        SubscriptorTotal.getInstance().remove(this);
         ctrlModificarPlan.desbloquear();
-    }
-
-    private void verificarTotal() {
-        Double total = _gestor.calcularPorcentaje();
-        _pantalla.getTexRestante().setText(String.valueOf(100.0d - total));
-        _pantalla.getTexTotal().setText(String.valueOf(total));
-        if (total.compareTo(100.0) == 0) {
-            _pantalla.getBtnOk().setEnabled(true);
-            _pantalla.getBtnCrearFinanciacion().setEnabled(false);
-        }
     }
 
     private void mostrarMensaje(String string) {
         JOptionPane.showMessageDialog(_pantalla, string, "", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void actualizarPorcentaje() {
+        JTable tabla = hashIndiceTabla.get(_pantalla.getTabPaneFinanciacion().getSelectedIndex());
+        List<DtoDetalleDistribucion> listaDto = ((ModelTableDetalleDistribucion) tabla.getModel()).getAllRow();
+        _gestor.actualizarPorcentaje(listaDto);
+
     }
 }
