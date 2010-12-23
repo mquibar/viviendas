@@ -77,6 +77,11 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         return mnuSegmentoEconomico;
     }
 
+    public JMenuItem getMnuInversion() {
+        return mnuInversion;
+    }
+
+
 
 
     /** This method is called from within the constructor to
@@ -101,6 +106,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuProvincias = new javax.swing.JMenuItem();
         mnuFuenteFondos = new javax.swing.JMenuItem();
         mnuUsosFondos = new javax.swing.JMenuItem();
+        mnuInversion = new javax.swing.JMenuItem();
         mnuParametrosReportes = new javax.swing.JMenu();
         mnuReporteDistribGenProvincias = new javax.swing.JMenuItem();
         mnuConfiguracion = new javax.swing.JMenu();
@@ -156,6 +162,10 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuUsosFondos.setText("Usos Fondos");
         mnuParametros.add(mnuUsosFondos);
 
+        mnuInversion.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        mnuInversion.setText("Inversion");
+        mnuParametros.add(mnuInversion);
+
         mnuParametrosReportes.setText("Reportes");
 
         mnuReporteDistribGenProvincias.setText("Distrib. General Provincia");
@@ -203,6 +213,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar mnuBarSistema;
     private javax.swing.JMenu mnuConfiguracion;
     private javax.swing.JMenuItem mnuFuenteFondos;
+    private javax.swing.JMenuItem mnuInversion;
     private javax.swing.JMenuItem mnuNuevoPlan;
     private javax.swing.JMenuItem mnuOperatoria;
     private javax.swing.JMenu mnuParametros;

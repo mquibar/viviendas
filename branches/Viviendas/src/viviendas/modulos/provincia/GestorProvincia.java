@@ -33,10 +33,10 @@ public class GestorProvincia {
     }
 
     public List obtenerProvincias() {
-        return  Facade.getInstance().findAll(Provincia.class);
+        return  Facade.getInstance().findInOrder(Provincia.class, "nombre");
     }
 
     public List obtenerCiudades() {
-        return  Facade.getInstance().findAll(Ciudad.class);
+        return  Facade.getInstance().findInOrder(Ciudad.class, "nombre");
     }
 }

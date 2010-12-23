@@ -88,6 +88,14 @@
                 <Property name="text" type="java.lang.String" value="Usos Fondos"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuInversion">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+I"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Inversion"/>
+              </Properties>
+            </MenuItem>
             <Menu class="javax.swing.JMenu" name="mnuParametrosReportes">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Reportes"/>

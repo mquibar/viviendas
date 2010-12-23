@@ -23,6 +23,7 @@ private static final long serialVersionUID = 1L;
     private String nombre;
     @OneToOne
     private ParametrosPlan parametro;
+    private Boolean vigente;
 
     public FuenteFondo() {
     }
@@ -49,6 +50,14 @@ private static final long serialVersionUID = 1L;
 
     public void setParametro(ParametrosPlan parametro) {
         this.parametro = parametro;
+    }
+
+    public Boolean getVigente() {
+        return vigente;
+    }
+
+    public void setVigente(Boolean vigente) {
+        this.vigente = vigente;
     }
 
     @Override

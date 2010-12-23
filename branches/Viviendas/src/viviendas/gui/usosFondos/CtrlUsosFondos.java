@@ -76,6 +76,7 @@ public class CtrlUsosFondos {
     private void agregar(){
         UsoFondo uso = new UsoFondo();
         uso.setNombre("");
+        uso.setVigente(true);
         _modelo.addRow(uso);
     }
 

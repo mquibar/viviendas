@@ -22,6 +22,7 @@ public class Operatoria implements Serializable {
     private String nombre;
     @OneToOne
     private ParametrosPlan parametro;
+    private Boolean vigente;
 
     public Operatoria() {
     }
@@ -48,6 +49,14 @@ public class Operatoria implements Serializable {
 
     public void setParametro(ParametrosPlan parametro) {
         this.parametro = parametro;
+    }
+
+    public Boolean getVigente() {
+        return vigente;
+    }
+
+    public void setVigente(Boolean vigente) {
+        this.vigente = vigente;
     }
 
     @Override
