@@ -67,7 +67,7 @@ public class ctrlAbrirPlan {
         if(idx<0)
             return;
         _gestor.cargarPlan(_tablaPlan.getSelectedIndex(idx));
-        new ctrlModificarPlan(_gestor,_panel);
+        new CtrlGrande(_gestor,_panel);
         _pantalla.dispose();
         /**
          * ACA REALIZO LA LLAMADA AL NUEVO CONTROL PARA REALIZAR LAS MODIFICACIONES NECESARIAS.

@@ -4,13 +4,13 @@
  */
 package viviendas.gui.Plan.modificar;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
@@ -27,7 +27,6 @@ import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.SectorEconomico;
-import viviendas.gui.financiacion.crear.CtrlCrearFinanciacion;
 import viviendas.gui.tool.ICalculable;
 import viviendas.gui.models.tables.ModelTableAño;
 import viviendas.gui.models.tables.ModelTableDistribucionCiudad;
@@ -46,9 +45,9 @@ import viviendas.systemException.BusinessOperationException;
  *
  * @author desarrollo
  */
-public class ctrlModificarPlan implements ICalculable {
+public class ctrlModificarPlanNew implements ICalculable {
 
-    private IUModificarPlan _pantalla;
+    private IUModificarPlanNew _pantalla;
     private PanelTablasPlan _panel;
     private ModelTableAño _tablaAños;
     private ModelTableDistribucionProvincial _distProvincial;
@@ -67,10 +66,12 @@ public class ctrlModificarPlan implements ICalculable {
     private final int OPERATORIA = 4;
     private int tablaOnTop = AÑO;
     private IUSeleccionRestantes _seleccion;
+    private boolean activo=true;
 
-    public ctrlModificarPlan(GestorModificarPlan gestor, JDesktopPane panel) {
+    public ctrlModificarPlanNew(GestorModificarPlan gestor, IUModificarPlanNew pantalla) {
         _gestor = gestor;
-        _pantalla = new IUModificarPlan();
+        _pantalla = pantalla;
+        _panel = new PanelTablasPlan();
         _tablaAños = new ModelTableAño(null);
         _distProvincial = new ModelTableDistribucionProvincial(null);
         _distCiudad = new ModelTableDistribucionCiudad(null);
@@ -78,45 +79,47 @@ public class ctrlModificarPlan implements ICalculable {
         _distOperatoria = new ModelTableDistribucionOperatoria(null);
         _seleccion = new IUSeleccionRestantes(null, true);
         cargarPantalla();
-        panel.add(_pantalla);
-        _pantalla.setVisible(true);
-        _pantalla.toFront();
         SubscriptorTotal.getInstance().añadir(this);
     }
 
     final void cargarPantalla() {
         Plan plan = _gestor.getPlan();
-        MenuClickDerecho mnuDerecho = new MenuClickDerecho(this, _pantalla);
+        MenuClickDerechoNew mnuDerecho = new MenuClickDerechoNew(this, _pantalla);
         _pantalla.addInternalFrameListener(new InternalFrameAdapter() {
 
             @Override
             public void internalFrameClosing(InternalFrameEvent e) {
-                pressCancelButton();
+                if(activo)
+                    pressCancelButton();
             }
         });
         _pantalla.getBtnOk().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                pressOkButton();
+                if(activo)
+                    pressOkButton();
             }
         });
         _pantalla.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                pressCancelButton();
+                if(activo)
+                    pressCancelButton();
             }
         });
         _pantalla.getBtnDel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                pressDelButton();
+                if(activo)
+                    pressDelButton();
             }
         });
 
         _pantalla.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                pressAddButton();
+                if(activo)
+                    pressAddButton();
             }
         });
 
@@ -136,62 +139,75 @@ public class ctrlModificarPlan implements ICalculable {
 
         _tablaAños.setList(_gestor.getPlan().getListaAñoPlan());
         //MANEJO DE EVENTOS PARA LA TABLA AÑO
-        _pantalla.getTblAños().setModel(_tablaAños);
-        _pantalla.getTblAños().addMouseListener(mnuDerecho);
-        _pantalla.getScrAño().addMouseListener(mnuDerecho);
-        _pantalla.getTblAños().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        _panel.getTblAños().setModel(_tablaAños);
+        _panel.getTblAños().addMouseListener(mnuDerecho);
+        _panel.getScrAño().addMouseListener(mnuDerecho);
+        _panel.getTblAños().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA PROVINCIA
-        _pantalla.getTblProvincia().setModel(_distProvincial);
-        _pantalla.getTblProvincia().addMouseListener(mnuDerecho);
-        _pantalla.getScrProvincia().setVisible(false);
-        _pantalla.getScrProvincia().addMouseListener(mnuDerecho);
-        _pantalla.getTblProvincia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        _panel.getTblProvincia().setModel(_distProvincial);
+        _panel.getTblProvincia().addMouseListener(mnuDerecho);
+        _panel.getScrProvincia().setVisible(false);
+        _panel.getScrProvincia().addMouseListener(mnuDerecho);
+        _panel.getTblProvincia().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA CIUDAD
-        _pantalla.getTblCiudad().setModel(_distCiudad);
-        _pantalla.getTblCiudad().addMouseListener(mnuDerecho);
-        _pantalla.getScrCiudad().setVisible(false);
-        _pantalla.getScrCiudad().addMouseListener(mnuDerecho);
-        _pantalla.getTblCiudad().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        _panel.getTblCiudad().setModel(_distCiudad);
+        _panel.getTblCiudad().addMouseListener(mnuDerecho);
+        _panel.getScrCiudad().setVisible(false);
+        _panel.getScrCiudad().addMouseListener(mnuDerecho);
+        _panel.getTblCiudad().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA SECTOR ECONOMICO
-        _pantalla.getTblSectorEconomico().setModel(_distSEconomico);
-        _pantalla.getTblSectorEconomico().addMouseListener(mnuDerecho);
-        _pantalla.getScrSectEconom().setVisible(false);
-        _pantalla.getScrSectEconom().addMouseListener(mnuDerecho);
-        _pantalla.getTblSectorEconomico().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        _panel.getTblSectorEconomico().setModel(_distSEconomico);
+        _panel.getTblSectorEconomico().addMouseListener(mnuDerecho);
+        _panel.getScrSectEconom().setVisible(false);
+        _panel.getScrSectEconom().addMouseListener(mnuDerecho);
+        _panel.getTblSectorEconomico().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //MANEJO DE EVENTOS PARA LA TABLA OPERATORIA
-        _pantalla.getTblOperatoria().setModel(_distOperatoria);
-        _pantalla.getTblOperatoria().addMouseListener(mnuDerecho);
-        _pantalla.getScrOperatoria().setVisible(false);
-        _pantalla.getScrOperatoria().addMouseListener(mnuDerecho);
-        _pantalla.getTblOperatoria().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        _panel.getTblOperatoria().setModel(_distOperatoria);
+        _panel.getTblOperatoria().addMouseListener(mnuDerecho);
+        _panel.getScrOperatoria().setVisible(false);
+        _panel.getScrOperatoria().addMouseListener(mnuDerecho);
+        _panel.getTblOperatoria().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         _pantalla.getBtnViewDetails().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                verTablas();
+                if(activo)
+                    verTablas();
             }
         });
 
         _pantalla.getBtnDropDetails().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                ocultarTablas();
+                if(activo)
+                    ocultarTablas();
             }
         });
         _seleccion.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                pressCancelButtonSeleccion();
+                if(activo)
+                    pressCancelButtonSeleccion();
             }
         });
         _seleccion.getBtnAccept().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                pressOkButtonSeleccion();
+                if(activo)
+                    pressOkButtonSeleccion();
             }
         });
         _seleccion.getTblSeleccion().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        _panel.setVisible(true);
+        _pantalla.setPnlCentral(_panel);
+    }
 
+    public void activar(){
+        activo=true;
+    }
+
+    public void desactivar(){
+        activo=false;
     }
 
     void pressOkButton() {
@@ -272,9 +288,9 @@ public class ctrlModificarPlan implements ICalculable {
 
     void viewProvincia() {
         _distProvincial.setList(_gestor.listarDistribucionProvincial(getAñoSeleccionado()));//LLAMAR AL GESTOR PARA QUE ME RECUPERE EL LISTADO
-        _pantalla.getTblAños().setEnabled(false);
-        _pantalla.getScrProvincia().setVisible(true);
-        _pantalla.getLblUbicacion().setText(getAñoSeleccionado().toString());
+        _panel.getTblAños().setEnabled(false);
+        _panel.getScrProvincia().setVisible(true);
+        _pantalla.getLblProvincia().setText(getAñoSeleccionado().toString());
         if (_distProvincial.getAllRow().isEmpty()) {
             _pantalla.getBtnViewDetails();
         }
@@ -282,13 +298,13 @@ public class ctrlModificarPlan implements ICalculable {
 
     void viewCiudad() {
         _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), getDistProvincialSeleccionada()));//LLAMAR ACA TB AL GESTOR
-        _pantalla.getTblProvincia().setEnabled(false);
-        _pantalla.getScrCiudad().setVisible(true);
-        _pantalla.getLblUbicacion().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
+        _panel.getTblProvincia().setEnabled(false);
+        _panel.getScrCiudad().setVisible(true);
+        _pantalla.getLblCiudad().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
         if (_distCiudad.getAllRow().isEmpty()) {
             _pantalla.getBtnViewDetails();
         } else {
-            _pantalla.getTblCiudad().setRowSelectionInterval(0, 0);
+            _panel.getTblCiudad().setRowSelectionInterval(0, 0);
         }
     }
 
@@ -297,11 +313,11 @@ public class ctrlModificarPlan implements ICalculable {
         if (_distSEconomico.getAllRow().isEmpty()) {
             _pantalla.getBtnViewDetails();
         } else {
-            _pantalla.getTblSectorEconomico().setRowSelectionInterval(0, 0);
+            _panel.getTblSectorEconomico().setRowSelectionInterval(0, 0);
         }
-        _pantalla.getTblCiudad().setEnabled(false);
-        _pantalla.getScrSectEconom().setVisible(true);
-        _pantalla.getLblUbicacion().setText(getDistCiudadSeleccionada().getCuidad().getNombre());
+        _panel.getTblCiudad().setEnabled(false);
+        _panel.getScrSectEconom().setVisible(true);
+        _pantalla.getLblSector().setText(getDistCiudadSeleccionada().getCuidad().getNombre());
     }
 
     void viewOperatoria() {
@@ -310,78 +326,78 @@ public class ctrlModificarPlan implements ICalculable {
         if (_distOperatoria.getAllRow().isEmpty()) {
             _pantalla.getBtnViewDetails();
         }else{
-            _pantalla.getTblOperatoria().setRowSelectionInterval(0, 0);
+            _panel.getTblOperatoria().setRowSelectionInterval(0, 0);
         }
-        _pantalla.getTblSectorEconomico().setEnabled(false);
-        _pantalla.getScrOperatoria().setVisible(true);
-        _pantalla.getLblUbicacion().setText(getDistSectorSeleccionado().getSectorEconomico().getNombre());
+        _panel.getTblSectorEconomico().setEnabled(false);
+        _panel.getScrOperatoria().setVisible(true);
+        _pantalla.getLblOperatoria().setText(getDistSectorSeleccionado().getSectorEconomico().getNombre());
     }
 
     void dropOperatoria() {
-        _pantalla.getTblSectorEconomico().setEnabled(true);
-        _pantalla.getScrOperatoria().setVisible(false);
-        _pantalla.getLblUbicacion().setText(getDistCiudadSeleccionada().getCuidad().getNombre());
+        _panel.getTblSectorEconomico().setEnabled(true);
+        _panel.getScrOperatoria().setVisible(false);
+        _pantalla.getLblOperatoria().setText("");
     }
 
     void dropSectEconomico() {
-        _pantalla.getTblCiudad().setEnabled(true);
-        _pantalla.getScrSectEconom().setVisible(false);
-        _pantalla.getLblUbicacion().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
+        _panel.getTblCiudad().setEnabled(true);
+        _panel.getScrSectEconom().setVisible(false);
+        _pantalla.getLblSector().setText("");
     }
 
     void dropCiudad() {
-        _pantalla.getTblProvincia().setEnabled(true);
-        _pantalla.getScrCiudad().setVisible(false);
-        _pantalla.getLblUbicacion().setText(getAñoSeleccionado().toString());
+        _panel.getTblProvincia().setEnabled(true);
+        _panel.getScrCiudad().setVisible(false);
+        _pantalla.getLblCiudad().setText("");
     }
 
     void dropProvincia() {
-        _pantalla.getTblAños().setEnabled(true);
-        _pantalla.getScrProvincia().setVisible(false);
-        _pantalla.getLblUbicacion().setText("");
+        _panel.getTblAños().setEnabled(true);
+        _panel.getScrProvincia().setVisible(false);
+        _pantalla.getLblProvincia().setText("");
     }
 
     AñoPlan getAñoSeleccionado() {
-        int idx = _pantalla.getTblAños().getSelectedRow();
+        int idx = _panel.getTblAños().getSelectedRow();
         if (idx < 0) {
             idx = 0;
-            _pantalla.getTblAños().setRowSelectionInterval(0, 0);
+            _panel.getTblAños().setRowSelectionInterval(0, 0);
         }
         return _tablaAños.getSelectedIndex(idx);
     }
 
     DistribucionProvincial getDistProvincialSeleccionada() {
-        int rowIndex = _pantalla.getTblProvincia().getSelectedRow();
+        int rowIndex = _panel.getTblProvincia().getSelectedRow();
         if (rowIndex < 0) {
             rowIndex = 0;
-            _pantalla.getTblProvincia().setRowSelectionInterval(rowIndex, rowIndex);
+            _panel.getTblProvincia().setRowSelectionInterval(rowIndex, rowIndex);
         }
         return _distProvincial.getSelectedIndex(rowIndex);
     }
 
     DistribucionCiudad getDistCiudadSeleccionada() {
-        int rowIndex = _pantalla.getTblCiudad().getSelectedRow();
+        int rowIndex = _panel.getTblCiudad().getSelectedRow();
         if (rowIndex < 0) {
             rowIndex = 0;
-            _pantalla.getTblCiudad().setRowSelectionInterval(rowIndex, rowIndex);
+            _panel.getTblCiudad().setRowSelectionInterval(rowIndex, rowIndex);
         }
         return _distCiudad.getSelectedIndex(rowIndex);
     }
 
     DistribucionSector getDistSectorSeleccionado() {
-        int rowIndex = _pantalla.getTblSectorEconomico().getSelectedRow();
+        int rowIndex = _panel.getTblSectorEconomico().getSelectedRow();
         if (rowIndex < 0) {
             rowIndex = 0;
-            _pantalla.getTblSectorEconomico().setRowSelectionInterval(rowIndex, rowIndex);
+            _panel.getTblSectorEconomico().setRowSelectionInterval(rowIndex, rowIndex);
         }
         return _distSEconomico.getSelectedIndex(rowIndex);
     }
 
     DistribucionOperatoria getDistOperatoriaSeleccionada() {
-        int rowIndex = _pantalla.getTblOperatoria().getSelectedRow();
+        int rowIndex = _panel.getTblOperatoria().getSelectedRow();
         if (rowIndex < 0) {
             rowIndex = 0;
-            _pantalla.getTblOperatoria().setRowSelectionInterval(rowIndex, rowIndex);
+            _panel.getTblOperatoria().setRowSelectionInterval(rowIndex, rowIndex);
         }
         return _distOperatoria.getSelectedIndex(rowIndex);
     }
@@ -492,18 +508,18 @@ public class ctrlModificarPlan implements ICalculable {
     void pressAddButton() {
         switch (tablaOnTop) {
             case PROVINCIA:
-                _provincias = new TablaProvincias(_gestor.provinciasNoAsignadas(getAñoSeleccionado()));
+                _provincias = new TablaProvinciasNew(_gestor.provinciasNoAsignadas(getAñoSeleccionado()));
                 _seleccion.getTblSeleccion().setModel(_provincias);
                 break;
             case CIUDAD:
-                _ciudades = new TablaCiudad(_gestor.ciudadesNoAsignadas(getAñoSeleccionado(),_distCiudad.getAllRow()));
+                _ciudades = new TablaCiudadNew(_gestor.ciudadesNoAsignadas(getAñoSeleccionado(),_distCiudad.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_ciudades);
                 break;
             case SECTORECONOMICO:
-                _sectores = new TablaSector(_gestor.sectoresNoAsignados(getAñoSeleccionado(),_distSEconomico.getAllRow()));
+                _sectores = new TablaSectorNew(_gestor.sectoresNoAsignados(getAñoSeleccionado(),_distSEconomico.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_sectores);
             case OPERATORIA:
-                _operatorias = new TablaOperatoria(_gestor.operatoriasNoAsignadas(getAñoSeleccionado(),_distOperatoria.getAllRow()));
+                _operatorias = new TablaOperatoriaNew(_gestor.operatoriasNoAsignadas(getAñoSeleccionado(),_distOperatoria.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_operatorias);
 
         }
@@ -535,20 +551,19 @@ public class ctrlModificarPlan implements ICalculable {
 
     void pressAddFinanciacionButton(){
         _pantalla.setEnabled(false);
-        new CtrlCrearFinanciacion(getDistOperatoriaSeleccionada(), this);
     }
     public void desbloquear(){
         _pantalla.setEnabled(true);
     }
 }
 
-class MenuClickDerecho extends MouseAdapter {
+class MenuClickDerechoNew extends MouseAdapter {
 
     private JPopupMenu _menu;
     private JMenuItem _mnuAdd;
-    private IUModificarPlan _pantalla;
+    private IUModificarPlanNew _pantalla;
 
-    public MenuClickDerecho(final ctrlModificarPlan control, IUModificarPlan _pantalla) {
+    public MenuClickDerechoNew(final ctrlModificarPlanNew control, IUModificarPlanNew _pantalla) {
         this._pantalla = _pantalla;
         _menu = new JPopupMenu("Detalles");
         _mnuAdd = new JMenuItem("Mostrar Detalles");
@@ -573,14 +588,14 @@ class MenuClickDerecho extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent e) {
         if (e.isPopupTrigger()) {
-            _menu.show(_pantalla.getContenedor(), e.getX(), e.getY());
+            _menu.show(_pantalla.getPnlCentral(), e.getX(), e.getY());
         }
     }
 }
 
-class TablaProvincias extends ModelTableProvincia {
+class TablaProvinciasNew extends ModelTableProvincia {
 
-    public TablaProvincias(List<Provincia> provincias) {
+    public TablaProvinciasNew(List<Provincia> provincias) {
         super(provincias);
         fireTableDataChanged();
     }
@@ -591,9 +606,9 @@ class TablaProvincias extends ModelTableProvincia {
     }
 }
 
-class TablaCiudad extends ModeloTableCiudad {
+class TablaCiudadNew extends ModeloTableCiudad {
 
-    public TablaCiudad(List<Ciudad> lista) {
+    public TablaCiudadNew(List<Ciudad> lista) {
         super(lista);
         fireTableDataChanged();
     }
@@ -604,9 +619,9 @@ class TablaCiudad extends ModeloTableCiudad {
     }
 }
 
-class TablaSector extends ModeloTablaSectorEconomico {
+class TablaSectorNew extends ModeloTablaSectorEconomico {
 
-    public TablaSector(List<SectorEconomico> lista) {
+    public TablaSectorNew(List<SectorEconomico> lista) {
         super(lista);
         fireTableDataChanged();
     }
@@ -617,9 +632,9 @@ class TablaSector extends ModeloTablaSectorEconomico {
     }
 }
 
-class TablaOperatoria extends ModeloTablaOperatoria {
+class TablaOperatoriaNew extends ModeloTablaOperatoria {
 
-    public TablaOperatoria(List<Operatoria> lista) {
+    public TablaOperatoriaNew(List<Operatoria> lista) {
         super(lista);
         fireTableDataChanged();
     }
