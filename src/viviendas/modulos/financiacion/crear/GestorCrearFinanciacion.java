@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package viviendas.modulos.financiacion.crear;
 
 import java.util.ArrayList;
@@ -15,10 +11,6 @@ import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.gui.financiacion.crear.DtoDetalleDistribucion;
 import viviendas.persistencia.Facade;
 
-/**
- *
- * @author danamar
- */
 public class GestorCrearFinanciacion {
 
     private List<DistribucionFinanciacion> distribucionesfinanciacion;
@@ -30,28 +22,13 @@ public class GestorCrearFinanciacion {
         financiacion.setDistribucionOperatoria(distribucionOperatoria);
     }
 
-    public DtoConstruccionFinanciacion crearDistribucion(Double porcentaje) {
-        DtoConstruccionFinanciacion dtoContruccion = new DtoConstruccionFinanciacion();
-        List<DtoDetalleDistribucion> dtoDetallesDistribucion = new ArrayList<DtoDetalleDistribucion>();
-        String nombre = "Financiacion " + (distribucionesfinanciacion.size() + 1);
-        nombre += " - " + porcentaje;
-        dtoContruccion.setNombre(nombre);
-
+    public void crearDistribucion(Double porcentaje) {
         DistribucionFinanciacion distribucionFinanciacion = new DistribucionFinanciacion();
         distribucionFinanciacion.setFinanciacion(financiacion);
         distribucionFinanciacion.setPorcentajeFinanciacion(porcentaje);
         List<UsoFondo> usosFondo = Facade.getInstance().findAll(UsoFondo.class);
         List<FuenteFondo> fuenteFondos = Facade.getInstance().findAll(FuenteFondo.class);
-        String[] columnas = new String[fuenteFondos.size()];
-        for (int i = 0; i < fuenteFondos.size(); i++) {
-            columnas[i] = fuenteFondos.get(i).getNombre();
-
-        }
-        dtoContruccion.setColumas(columnas);
         for (UsoFondo usoFondo : usosFondo) {
-            DtoDetalleDistribucion dto = new DtoDetalleDistribucion();
-            dto.setEstaActivo(Boolean.TRUE);
-            dto.setUsoFondo(usoFondo);
             List<DetalleDistribucionFinanciacion> listaDetalles = new ArrayList<DetalleDistribucionFinanciacion>();
             for (FuenteFondo fuenteFondo : fuenteFondos) {
                 DetalleDistribucionFinanciacion detalle = new DetalleDistribucionFinanciacion();
@@ -61,28 +38,32 @@ public class GestorCrearFinanciacion {
                 detalle.setUsoFondo(usoFondo);
                 listaDetalles.add(detalle);
             }
-            dto.setDetallesDistribucionesFinanciacion(listaDetalles);
-            dtoDetallesDistribucion.add(dto);
+            distribucionFinanciacion.setDetallesDistribucionesFinanciacion(listaDetalles);
         }
-        distribucionesfinanciacion.add(distribucionFinanciacion);
-        dtoContruccion.setDtoDetallesDistribuciones(dtoDetallesDistribucion);
-        return dtoContruccion;
-    }
-
-    public Double calcularPorcentaje() {
-        Double porcentajeTotal = 0.0;
-        for (DistribucionFinanciacion distribucionFinanciacion : distribucionesfinanciacion) {
-            porcentajeTotal += distribucionFinanciacion.getPorcentajeFinanciacion();
-        }
-        return porcentajeTotal;
     }
 
     public String getNombreCompletoCombinacion() {
         DistribucionOperatoria distribucion = financiacion.getDistribucionOperatoria();
+        String año = distribucion.getAñoPlan().getAño().toString();
         String provincia = distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getProvincia().getNombre();
         String ciudad = distribucion.getDistribucionSector().getDistribucionCiudad().getCuidad().getNombre();
         String sector = distribucion.getDistribucionSector().getSectorEconomico().getNombre();
         String operatoria = distribucion.getOperatoria().getNombre();
-        return provincia + " - " + ciudad + " - " + sector + " - " + operatoria;
+        return año + " - " + provincia + " - " + ciudad + " - " + sector + " - " + operatoria;
+    }
+
+    public void actualizarPorcentaje(List<DtoDetalleDistribucion> listaDto) {
+        for (DtoDetalleDistribucion dtoDetalleDistribucion : listaDto) {
+            DetalleDistribucionFinanciacion detalle = null;
+            Double total = 0.0;
+            for (DetalleDistribucionFinanciacion detalleDistribucionFinanciacion : dtoDetalleDistribucion.getDetallesDistribucionesFinanciacion()) {
+                if (!detalleDistribucionFinanciacion.getUsoFondo().getNombre().equals("OTROS APORTES")) {
+                    total += detalleDistribucionFinanciacion.getPorcentaje();
+                } else {
+                    detalle = detalleDistribucionFinanciacion;
+                }
+            }
+            detalle.setPorcentaje(100.0 - total);
+        }
     }
 }

@@ -5,6 +5,8 @@
 package viviendas;
 
 import java.util.List;
+import viviendas.entidades.flujo.FuenteFondo;
+import viviendas.entidades.flujo.UsoFondo;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Provincia;
@@ -49,23 +51,7 @@ public class MainCargaInicial {
      */
     public static void main(String[] args) throws PersistException, Exception {
         //PRIMERO EJECUTAR LOS INSERTS
-        Facade.getInstance().beginTx();
-        Ciudad ciudad = new Ciudad();
-        ciudad.setNombre("RURAL");
-        ciudad.setDesde(0);
-        ciudad.setHasta(10000);
-        Facade.getInstance().guardar(ciudad);
-        Ciudad ciudad1 = new Ciudad();
-        ciudad1.setNombre("CHICA");
-        ciudad1.setDesde(10000);
-        ciudad1.setHasta(100000);
-        Facade.getInstance().guardar(ciudad1);
-        Ciudad ciudad2 = new Ciudad();
-        ciudad2.setNombre("MEDIANA");
-        ciudad2.setDesde(100000);
-        ciudad2.setHasta(1000000);
-        Facade.getInstance().guardar(ciudad2);
-        Facade.getInstance().commitTx();
+
         List<Ciudad> ciudades = Facade.getInstance().findAll(Ciudad.class);
         Facade.getInstance().beginTx();
         for (Provincia provincia : (List<Provincia>) Facade.getInstance().findAll(Provincia.class)) {
@@ -81,24 +67,25 @@ public class MainCargaInicial {
         Facade.getInstance().guardar(tipo1);
         Facade.getInstance().commitTx();
         Facade.getInstance().beginTx();
-        SectorEconomico sector = new SectorEconomico();
-        sector.setNombre("Bajo");
-        SectorEconomico sector1 = new SectorEconomico();
-        sector1.setNombre("Medio Bajo");
-        SectorEconomico sector2 = new SectorEconomico();
-        sector2.setNombre("Medio");
-        Operatoria operatoria = new Operatoria();
-        operatoria.setNombre("Cooperativa");
-        Operatoria operatoria1 = new Operatoria();
-        operatoria1.setNombre("Obra Publica");
-        Operatoria operatoria2 = new Operatoria();
-        operatoria2.setNombre("Propia");
-        Facade.getInstance().guardar(sector);
-        Facade.getInstance().guardar(sector1);
-        Facade.getInstance().guardar(sector2);
-        Facade.getInstance().guardar(operatoria);
-        Facade.getInstance().guardar(operatoria1);
-        Facade.getInstance().guardar(operatoria2);
+
+        FuenteFondo fuente = new FuenteFondo();
+        fuente.setNombre("FUENTE 1");
+        FuenteFondo fuente1 = new FuenteFondo();
+        fuente1.setNombre("FUENTE 2");
+        FuenteFondo fuente2 = new FuenteFondo();
+        fuente2.setNombre("FUENTE 3");
+        Facade.getInstance().guardar(fuente);
+        Facade.getInstance().guardar(fuente1);
+        Facade.getInstance().guardar(fuente2);
+        UsoFondo uso = new UsoFondo();
+        uso.setNombre("USO 1");
+        UsoFondo uso1 = new UsoFondo();
+        uso1.setNombre("USO 2");
+        UsoFondo uso2 = new UsoFondo();
+        uso2.setNombre("USO 3");
+        Facade.getInstance().guardar(uso);
+        Facade.getInstance().guardar(uso1);
+        Facade.getInstance().guardar(uso2);
         Facade.getInstance().commitTx();
     }
 }
