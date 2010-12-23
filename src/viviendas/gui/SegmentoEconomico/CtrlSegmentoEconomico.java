@@ -56,8 +56,6 @@ public class CtrlSegmentoEconomico {
                 quitar();
             }
         });
-        _modelo = new ModeloTablaSectorEconomico(_gestor.obtenerSectoresEconomicos());
-        _pantalla.getTbSegmentoEconomico().setModel(_modelo);
         _pantalla.getTbSegmentoEconomico().addPropertyChangeListener(new PropertyChangeListener() {
 
             public void propertyChange(PropertyChangeEvent evt) {
@@ -66,6 +64,10 @@ public class CtrlSegmentoEconomico {
                 }
             }
         });
+
+        _modelo = new ModeloTablaSectorEconomico(_gestor.obtenerSectoresEconomicos());
+        _pantalla.getTbSegmentoEconomico().setModel(_modelo);
+
         _pantalla.setVisible(true);
         verificarPorcentajes();
         desktop.add(_pantalla);
@@ -92,6 +94,7 @@ public class CtrlSegmentoEconomico {
         pp.setNombreParametro("");
         pp.setPorcenteaje(0d);
         se.setParametro(pp);
+        se.setVigente(true);
         _modelo.addRow(se);
     }
 

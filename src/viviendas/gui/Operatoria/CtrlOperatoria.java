@@ -92,6 +92,7 @@ public class CtrlOperatoria {
         pp.setNombreParametro("");
         pp.setPorcenteaje(0d);
         op.setParametro(pp);
+        op.setVigente(true);
         _modelo.addRow(op);
     }
 

@@ -24,6 +24,7 @@ public class Ciudad implements Serializable {
     private Integer hasta;
     @OneToOne
     private ParametrosPlan parametro;
+    private Boolean vigente;
 
     public Ciudad() {
     }
@@ -66,6 +67,14 @@ public class Ciudad implements Serializable {
 
     public void setParametro(ParametrosPlan parametro) {
         this.parametro = parametro;
+    }
+
+    public Boolean getVigente() {
+        return vigente;
+    }
+
+    public void setVigente(Boolean vigente) {
+        this.vigente = vigente;
     }
 
     @Override

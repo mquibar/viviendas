@@ -97,17 +97,19 @@ public class CtrlFuenteFondo {
         FuenteFondo fuente = new FuenteFondo();
         fuente.setNombre("");
         fuente.setParametro(parametro);
+        fuente.setVigente(true);
         _modelo.addRow(fuente);
         verificarPorcentajes();
     }
 
     private void quitar(){
-        if(_pantalla.getTbFuentesFondos().getSelectedRow() > -1){
-            _modelo.delRow(_pantalla.getTbFuentesFondos().getSelectedRow());
-            verificarPorcentajes();
-        }
-        else
-            JOptionPane.showMessageDialog(_pantalla, "No ha seleccionado ninguna fila.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+        if(!_modelo.getSelectedIndex(_pantalla.getTbFuentesFondos().getSelectedRow()).getNombre().equals(GestorFuentesFondos.OTROSAPORTES))
+            if(_pantalla.getTbFuentesFondos().getSelectedRow() > -1){
+                _modelo.delRow(_pantalla.getTbFuentesFondos().getSelectedRow());
+                verificarPorcentajes();
+            }
+            else
+                JOptionPane.showMessageDialog(_pantalla, "No ha seleccionado ninguna fila.", "Viviendas", JOptionPane.ERROR_MESSAGE);
     }
 
     private void verificarPorcentajes(){

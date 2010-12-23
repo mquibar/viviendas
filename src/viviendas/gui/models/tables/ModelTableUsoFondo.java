@@ -15,7 +15,7 @@ import viviendas.entidades.flujo.UsoFondo;
 public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
 
     public ModelTableUsoFondo(List<UsoFondo> lista) {
-        super(lista, "Nombre");
+        super(lista, "Nombre", "importe");
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -23,6 +23,8 @@ public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
             switch (columnIndex) {
                 case 0:
                     return _lista.get(rowIndex).getNombre();
+                case 1:
+                    return _lista.get(rowIndex).getImporte();
                 default:
                     return "";
             }
@@ -40,7 +42,9 @@ public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return String.class;            
+                return String.class;
+            case 1:
+                return Double.class;
             default:
                 return Object.class;
         }
@@ -51,8 +55,9 @@ public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
         switch(columnIndex){
             case 0:
                 _lista.get(rowIndex).setNombre(aValue.toString());
+            case 1:
+                _lista.get(rowIndex).setImporte(Double.valueOf(aValue.toString()));
                 break;
-
         }
     }
 }

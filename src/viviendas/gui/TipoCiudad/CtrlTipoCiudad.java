@@ -90,6 +90,7 @@ public class CtrlTipoCiudad {
         pp.setNombreParametro("");
         pp.setPorcenteaje(0d);
         c.setParametro(pp);
+        c.setVigente(true);
         _modelo.addRow(c);
     }
 

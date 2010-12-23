@@ -11,6 +11,7 @@ import viviendas.gui.Plan.crear.CtrlPlan;
 import viviendas.gui.Plan.modificar.ctrlAbrirPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
+import viviendas.gui.inversion.CtrlInversion;
 import viviendas.gui.provincia.CtrlProvincia;
 import viviendas.gui.usosFondos.CtrlUsosFondos;
 
@@ -84,6 +85,12 @@ public class CtrlPrincipal {
                 abrirIUUsosFondos();
             }
         });
+        _pantalla.getMnuInversion().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUInversion();
+            }
+        });
 
     }
 
@@ -128,6 +135,10 @@ public class CtrlPrincipal {
 
     private void abrirIUUsosFondos(){
         new CtrlUsosFondos(_pantalla.getDesktopPane());
+    }
+
+    private void abrirIUInversion(){
+        new CtrlInversion(_pantalla.getDesktopPane());
     }
 
     private void abrirReporteDistribGenProvincias(){
