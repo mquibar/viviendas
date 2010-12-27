@@ -67,6 +67,8 @@ public class ctrlModificarPlanNew implements ICalculable {
     private int tablaOnTop = AÑO;
     private IUSeleccionRestantes _seleccion;
     private boolean activo=true;
+    private boolean estadoBtnDrop;
+    private boolean estadoBtnView;
 
     public ctrlModificarPlanNew(GestorModificarPlan gestor, IUModificarPlanNew pantalla) {
         _gestor = gestor;
@@ -199,27 +201,6 @@ public class ctrlModificarPlanNew implements ICalculable {
         });
         _seleccion.getTblSeleccion().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         _panel.setVisible(true);
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-        javax.swing.GroupLayout _pnlCentralLayout = new javax.swing.GroupLayout(_pantalla.getPnlCentral());
-        _pantalla.getPnlCentral().setLayout(_pnlCentralLayout);
-        _pnlCentralLayout.setHorizontalGroup(
-            _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, _pnlCentralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        _pnlCentralLayout.setVerticalGroup(
-            _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(_pnlCentralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
-        //_pantalla.getPnlCentral().add(_panel);
-        //_pantalla.setPnlCentral(_panel);
 
     }
 
@@ -229,11 +210,15 @@ public class ctrlModificarPlanNew implements ICalculable {
     public void activar(){
         activo=true;
         _panel.setVisible(true);
+        _pantalla.getBtnDropDetails().setEnabled(estadoBtnDrop);
+        _pantalla.getBtnViewDetails().setEnabled(estadoBtnView);
     }
 
     public void desactivar(){
         activo=false;
         _panel.setVisible(false);
+        estadoBtnDrop = _pantalla.getBtnDropDetails().isEnabled();
+        estadoBtnView = _pantalla.getBtnViewDetails().isEnabled();
     }
 
     void pressOkButton() {
@@ -255,7 +240,8 @@ public class ctrlModificarPlanNew implements ICalculable {
         switch (tablaOnTop) {
             case AÑO:
                 _pantalla.getBtnDropDetails().setEnabled(false);
-                break;
+                verTablas();
+                return;
             case PROVINCIA:
                 _pantalla.getBtnDropDetails().setEnabled(true);
                 viewProvincia();
@@ -272,7 +258,13 @@ public class ctrlModificarPlanNew implements ICalculable {
                 _pantalla.getBtnAddFinanciacion().setEnabled(true);
                 break;
             default:
-                tablaOnTop--;
+                if (tablaOnTop <= AÑO) {
+                    verTablas();
+                    return;
+                } else if (tablaOnTop > OPERATORIA) {
+                    _pantalla.getBtnViewDetails().setEnabled(true);
+                    tablaOnTop = OPERATORIA;
+                }
         }
         actualizarPorcentaje();
     }
@@ -299,7 +291,7 @@ public class ctrlModificarPlanNew implements ICalculable {
                 _pantalla.getBtnAddFinanciacion().setEnabled(false);
                 break;
             default:
-                if (tablaOnTop < AÑO) {
+                if (tablaOnTop <= AÑO) {
                     _pantalla.getBtnDropDetails().setEnabled(false);
                     tablaOnTop = AÑO + 1;
                 } else if (tablaOnTop > OPERATORIA) {
@@ -316,7 +308,7 @@ public class ctrlModificarPlanNew implements ICalculable {
         _distProvincial.setList(_gestor.listarDistribucionProvincial(getAñoSeleccionado()));//LLAMAR AL GESTOR PARA QUE ME RECUPERE EL LISTADO
         _panel.getTblAños().setEnabled(false);
         _panel.getScrProvincia().setVisible(true);
-        _pantalla.getLblProvincia().setText(getAñoSeleccionado().toString());
+        _pantalla.getLblAño().setText(getAñoSeleccionado().toString());
         if (_distProvincial.getAllRow().isEmpty()) {
             _pantalla.getBtnViewDetails();
         }
@@ -326,7 +318,7 @@ public class ctrlModificarPlanNew implements ICalculable {
         _distCiudad.setList(_gestor.listarDistribucionCiudad(getAñoSeleccionado(), getDistProvincialSeleccionada()));//LLAMAR ACA TB AL GESTOR
         _panel.getTblProvincia().setEnabled(false);
         _panel.getScrCiudad().setVisible(true);
-        _pantalla.getLblCiudad().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
+        _pantalla.getLblProvincia().setText(getDistProvincialSeleccionada().getProvincia().getNombre());
         if (_distCiudad.getAllRow().isEmpty()) {
             _pantalla.getBtnViewDetails();
         } else {
@@ -343,7 +335,7 @@ public class ctrlModificarPlanNew implements ICalculable {
         }
         _panel.getTblCiudad().setEnabled(false);
         _panel.getScrSectEconom().setVisible(true);
-        _pantalla.getLblSector().setText(getDistCiudadSeleccionada().getCuidad().getNombre());
+        _pantalla.getLblCiudad().setText(getDistCiudadSeleccionada().getCuidad().getNombre());
     }
 
     void viewOperatoria() {
@@ -356,7 +348,7 @@ public class ctrlModificarPlanNew implements ICalculable {
         }
         _panel.getTblSectorEconomico().setEnabled(false);
         _panel.getScrOperatoria().setVisible(true);
-        _pantalla.getLblOperatoria().setText(getDistSectorSeleccionado().getSectorEconomico().getNombre());
+        _pantalla.getLblSector().setText(getDistSectorSeleccionado().getSectorEconomico().getNombre());
     }
 
     void dropOperatoria() {

@@ -47,13 +47,12 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _txtTotViviendas = new javax.swing.JTextField();
         _txtAños = new javax.swing.JTextField();
         jToolBar1 = new javax.swing.JToolBar();
-        _btnDropDetails = new javax.swing.JButton();
         _btnViewDetails = new javax.swing.JButton();
+        _btnDropDetails = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         _btnAdd = new javax.swing.JButton();
         _btnDel = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        _btnAddFinanciacion = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         _btnOk = new javax.swing.JButton();
         _btnCancel = new javax.swing.JButton();
@@ -66,6 +65,10 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _lblSector = new javax.swing.JLabel();
         _lblOperatoria = new javax.swing.JLabel();
         _pnlCentral = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        _btnAddFinanciacion = new javax.swing.JButton();
+        _btnPlan = new javax.swing.JButton();
+        _btnInversion = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -82,6 +85,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1, gridBagConstraints);
 
         _txtNombre.setEditable(false);
+        _txtNombre.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -99,6 +103,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel2, gridBagConstraints);
 
         _txtTipo.setEditable(false);
+        _txtTipo.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -126,6 +131,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel4, gridBagConstraints);
 
         _txtTotViviendas.setEditable(false);
+        _txtTotViviendas.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -136,22 +142,22 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         jPanel1.add(_txtTotViviendas, gridBagConstraints);
 
         _txtAños.setEditable(false);
-        _txtAños.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        _txtAños.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
+        _txtAños.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         jPanel1.add(_txtAños, gridBagConstraints);
 
         jToolBar1.setFloatable(false);
-        jToolBar1.setOrientation(1);
         jToolBar1.setRollover(true);
+
+        _btnViewDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Next_16x16.png"))); // NOI18N
+        jToolBar1.add(_btnViewDetails);
 
         _btnDropDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Previous_16x16.png"))); // NOI18N
         _btnDropDetails.setEnabled(false);
         jToolBar1.add(_btnDropDetails);
-
-        _btnViewDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Next_16x16.png"))); // NOI18N
-        jToolBar1.add(_btnViewDetails);
         jToolBar1.add(jSeparator2);
 
         _btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/+.png"))); // NOI18N
@@ -166,12 +172,6 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _btnDel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(_btnDel);
         jToolBar1.add(jSeparator3);
-
-        _btnAddFinanciacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/dinero.png"))); // NOI18N
-        _btnAddFinanciacion.setFocusable(false);
-        _btnAddFinanciacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        _btnAddFinanciacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(_btnAddFinanciacion);
         jToolBar1.add(jSeparator1);
 
         _btnOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Save.png"))); // NOI18N
@@ -192,15 +192,15 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         _txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "% Total", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        _lblAño.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        _lblAño.setBorder(null);
 
-        _lblProvincia.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        _lblProvincia.setBorder(null);
 
-        _lblCiudad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        _lblCiudad.setBorder(null);
 
-        _lblSector.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        _lblSector.setBorder(null);
 
-        _lblOperatoria.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        _lblOperatoria.setBorder(null);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,7 +222,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
                         .addComponent(_lblSector, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(_lblOperatoria, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +245,53 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _pnlCentral.setLayout(_pnlCentralLayout);
         _pnlCentralLayout.setHorizontalGroup(
             _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 718, Short.MAX_VALUE)
         );
         _pnlCentralLayout.setVerticalGroup(
             _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGap(0, 581, Short.MAX_VALUE)
+        );
+
+        _btnAddFinanciacion.setText("Financiacion");
+        _btnAddFinanciacion.setBorderPainted(false);
+        _btnAddFinanciacion.setFocusable(false);
+        _btnAddFinanciacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        _btnAddFinanciacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        _btnAddFinanciacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        _btnPlan.setText("Plan");
+        _btnPlan.setBorderPainted(false);
+        _btnPlan.setFocusable(false);
+        _btnPlan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        _btnPlan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        _btnPlan.setSelected(true);
+        _btnPlan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        _btnInversion.setText("Inversion");
+        _btnInversion.setBorderPainted(false);
+        _btnInversion.setFocusable(false);
+        _btnInversion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        _btnInversion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        _btnInversion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(_btnPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addComponent(_btnAddFinanciacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(_btnInversion, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(_btnPlan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(_btnAddFinanciacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(_btnInversion)
+                .addGap(126, 126, 126))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -258,13 +300,15 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(_pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                            .addComponent(_pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -275,10 +319,12 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-                    .addComponent(_pnlCentral, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(_pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -291,7 +337,9 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
     private javax.swing.JButton _btnCancel;
     private javax.swing.JButton _btnDel;
     private javax.swing.JButton _btnDropDetails;
+    private javax.swing.JButton _btnInversion;
     private javax.swing.JButton _btnOk;
+    private javax.swing.JButton _btnPlan;
     private javax.swing.JButton _btnViewDetails;
     private javax.swing.JLabel _lblAño;
     private javax.swing.JLabel _lblCiudad;
@@ -311,6 +359,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
@@ -396,4 +445,12 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
     public void setPnlCentral(JPanel _pnlCentral) {
         this._pnlCentral.add(_pnlCentral);
     }
+    public JButton getBtnInversion() {
+        return _btnInversion;
+    }
+
+    public JButton getBtnPlan() {
+        return _btnPlan;
+    }
+
 }

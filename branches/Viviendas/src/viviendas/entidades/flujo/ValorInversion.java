@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import viviendas.entidades.vivienda.Ciudad;
 
 /**
  * @author Administrador
@@ -23,6 +22,7 @@ public class ValorInversion implements Serializable {
     private Inversion inversion;
     @ManyToOne
     private UsoFondo financio;
+    private Double valorInversion;
 
     public ValorInversion() {
     }
@@ -56,6 +56,14 @@ public class ValorInversion implements Serializable {
 
     public void setInversion(Inversion inversion) {
         this.inversion = inversion;
+    }
+
+    public Double getValorInversion() {
+        return valorInversion;
+    }
+
+    public void setValorInversion(Double valorInversion) {
+        this.valorInversion = valorInversion;
     }
 
     @Override
