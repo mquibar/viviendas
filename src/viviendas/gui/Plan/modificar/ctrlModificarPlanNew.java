@@ -199,15 +199,38 @@ public class ctrlModificarPlanNew implements ICalculable {
         });
         _seleccion.getTblSeleccion().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         _panel.setVisible(true);
-        _pantalla.setPnlCentral(_panel);
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        javax.swing.GroupLayout _pnlCentralLayout = new javax.swing.GroupLayout(_pantalla.getPnlCentral());
+        _pantalla.getPnlCentral().setLayout(_pnlCentralLayout);
+        _pnlCentralLayout.setHorizontalGroup(
+            _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, _pnlCentralLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        _pnlCentralLayout.setVerticalGroup(
+            _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(_pnlCentralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(_panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
+        //_pantalla.getPnlCentral().add(_panel);
+        //_pantalla.setPnlCentral(_panel);
+
     }
 
     public void activar(){
         activo=true;
+        _panel.setVisible(true);
     }
 
     public void desactivar(){
         activo=false;
+        _panel.setVisible(false);
     }
 
     void pressOkButton() {

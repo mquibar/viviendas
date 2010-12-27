@@ -35,6 +35,9 @@ public class PanelTablasPlan extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        _contenedor = new javax.swing.JLayeredPane();
+        _scrOperatoria = new javax.swing.JScrollPane();
+        _tblOperatoria = new javax.swing.JTable();
         _scrSectEconom = new javax.swing.JScrollPane();
         _tblSectorEconomico = new javax.swing.JTable();
         _scrCiudad = new javax.swing.JScrollPane();
@@ -43,110 +46,10 @@ public class PanelTablasPlan extends javax.swing.JPanel {
         _tblProvincia = new javax.swing.JTable();
         _scrAño = new javax.swing.JScrollPane();
         _tblAños = new javax.swing.JTable();
-        _scrOperatoria = new javax.swing.JScrollPane();
-        _tblOperatoria = new javax.swing.JTable();
 
         setLayout(new java.awt.GridBagLayout());
 
-        _tblSectorEconomico.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        _scrSectEconom.setViewportView(_tblSectorEconomico);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 4.0;
-        gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        add(_scrSectEconom, gridBagConstraints);
-
-        _tblCiudad.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        _scrCiudad.setViewportView(_tblCiudad);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 4.0;
-        gridBagConstraints.weighty = 4.0;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        add(_scrCiudad, gridBagConstraints);
-
-        _tblProvincia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        _scrProvincia.setViewportView(_tblProvincia);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.weightx = 4.0;
-        gridBagConstraints.weighty = 6.0;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        add(_scrProvincia, gridBagConstraints);
-
-        _tblAños.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        _scrAño.setViewportView(_tblAños);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.weightx = 3.0;
-        gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        add(_scrAño, gridBagConstraints);
+        _contenedor.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         _tblOperatoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -161,20 +64,83 @@ public class PanelTablasPlan extends javax.swing.JPanel {
         ));
         _scrOperatoria.setViewportView(_tblOperatoria);
 
+        _scrOperatoria.setBounds(190, 10, 290, 440);
+        _contenedor.add(_scrOperatoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        _tblSectorEconomico.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        _scrSectEconom.setViewportView(_tblSectorEconomico);
+
+        _scrSectEconom.setBounds(150, 10, 300, 450);
+        _contenedor.add(_scrSectEconom, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        _tblCiudad.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        _scrCiudad.setViewportView(_tblCiudad);
+
+        _scrCiudad.setBounds(100, 10, 310, 460);
+        _contenedor.add(_scrCiudad, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        _tblProvincia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        _scrProvincia.setViewportView(_tblProvincia);
+
+        _scrProvincia.setBounds(60, 10, 320, 470);
+        _contenedor.add(_scrProvincia, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        _tblAños.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        _scrAño.setViewportView(_tblAños);
+
+        _scrAño.setBounds(20, 10, 280, 480);
+        _contenedor.add(_scrAño, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.weightx = 5.0;
-        gridBagConstraints.weighty = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(1, 1, 1, 1);
-        add(_scrOperatoria, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(_contenedor, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane _contenedor;
     private javax.swing.JScrollPane _scrAño;
     private javax.swing.JScrollPane _scrCiudad;
     private javax.swing.JScrollPane _scrOperatoria;
