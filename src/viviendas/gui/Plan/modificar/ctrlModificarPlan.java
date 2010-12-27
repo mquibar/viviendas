@@ -120,12 +120,6 @@ public class ctrlModificarPlan implements ICalculable {
             }
         });
 
-        _pantalla.getBtnAddFinanciacion().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                pressAddFinanciacionButton();
-            }
-        });
         _pantalla.getBtnAddFinanciacion().setEnabled(false);
 
         //DATOS DEL PLAN
@@ -533,13 +527,6 @@ public class ctrlModificarPlan implements ICalculable {
         _seleccion.setVisible(false);
     }
 
-    void pressAddFinanciacionButton(){
-        _pantalla.setEnabled(false);
-        new CtrlCrearFinanciacion(getDistOperatoriaSeleccionada(), this);
-    }
-    public void desbloquear(){
-        _pantalla.setEnabled(true);
-    }
 }
 
 class MenuClickDerecho extends MouseAdapter {
