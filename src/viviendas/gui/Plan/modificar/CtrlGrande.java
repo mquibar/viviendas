@@ -27,7 +27,7 @@ public class CtrlGrande {
         _gestor = gestor;
         _pantalla = new IUModificarPlanNew();
         CtrlPrincipal.getInstance().getDesktopPane().add(_pantalla);
-        _controlModificar = new ctrlModificarPlanNew(gestor, _pantalla);
+        _controlModificar = new ctrlModificarPlanNew(_gestor, _pantalla);
         agregarPanel(_controlModificar.getPanel());
         try {
             _pantalla.setMaximum(true);
@@ -40,7 +40,14 @@ public class CtrlGrande {
                 pressAddFinanciacionButton();
             }
         });
+        _pantalla.getBtnPlan().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                pressPlanButton();
+            }
+        });
         _pantalla.setVisible(true);
+        _pantalla.getBtnPlan().setEnabled(false);
         _pantalla.toFront();
     }
 
@@ -60,6 +67,20 @@ public class CtrlGrande {
             agregarPanel(_controlFinanciacion.getPanFinanciacion());
             _controlFinanciacion.iniciar();
         }
+        _pantalla.getLblOperatoria().setText(_controlModificar.getDistOperatoriaSeleccionada().getOperatoria().getNombre());
         _controlFinanciacion.activar();
+        _pantalla.getBtnPlan().setSelected(false);
+        _pantalla.getBtnAddFinanciacion().setSelected(true);
+        _pantalla.getBtnInversion().setSelected(false);
+        _pantalla.getBtnPlan().setEnabled(true);
+    }
+
+    void pressPlanButton(){
+        _controlFinanciacion.desactivar();
+        _pantalla.getBtnPlan().setSelected(true);
+        _pantalla.getBtnAddFinanciacion().setSelected(false);
+        _pantalla.getBtnInversion().setSelected(false);
+        _controlModificar.activar();
+        _pantalla.getBtnPlan().setEnabled(false);
     }
 }

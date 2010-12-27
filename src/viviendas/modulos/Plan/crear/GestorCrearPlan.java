@@ -2,6 +2,8 @@ package viviendas.modulos.Plan.crear;
 
 import java.util.ArrayList;
 import java.util.List;
+import viviendas.entidades.flujo.InversionParametro;
+import viviendas.entidades.flujo.InversionPlan;
 import viviendas.entidades.vivienda.AñoPlan;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.DistribucionCiudad;
@@ -82,6 +84,7 @@ public class GestorCrearPlan {
             añosPlan.add(añoPlan);
         }
         plan.setListaAñoPlan(añosPlan);
+        crearInversion(plan);
         Facade.getInstance().guardar(plan);
         Facade.getInstance().commitTx();
     }
@@ -108,5 +111,13 @@ public class GestorCrearPlan {
             }
         }
         return porcentajeTotal;
+    }
+
+    private void crearInversion(Plan plan){
+        List<InversionParametro> lista = Facade.getInstance().findAll(InversionParametro.class);
+        plan.setListaInversion(new ArrayList<InversionPlan>());
+        for (InversionParametro inversion : lista) {
+            plan.getListaInversion().add(new InversionPlan(inversion));
+        }
     }
 }

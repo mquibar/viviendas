@@ -34,7 +34,7 @@ class MediatorFactory {
     private enum intermediarios {
 
         DISTRIBUCIONCIUDAD, DISTRIBUCIONPROVINCIAL, DISTRIBUCIONSECTOR, DISTRIBUCIONOPERATORIA, PLAN, AÑOPLAN,
-        USUARIO, OPERATORIA, SECTORECONOMICO, CIUDAD, PROVINCIA, TIPOPLAN, PARAMETROSPLAN, USOFONDO, FUENTEFONDO
+        USUARIO, OPERATORIA, SECTORECONOMICO, CIUDAD, PROVINCIA, TIPOPLAN, PARAMETROSPLAN, USOFONDO, FUENTEFONDO, OTHER
     }
 
     private MediatorFactory() {
@@ -56,7 +56,14 @@ class MediatorFactory {
 
         Intermediario interm = null;
 
-        switch (intermediarios.valueOf(c.getSimpleName().toUpperCase())) {
+        intermediarios option;
+        try{
+        option = intermediarios.valueOf(c.getSimpleName().toUpperCase());}
+        catch(IllegalArgumentException iex){
+            option = intermediarios.OTHER;
+        }
+
+        switch (option) {
             case PROVINCIA:
                 interm = new Intermediario<Provincia>(c.getSimpleName());
                 break;
@@ -101,6 +108,9 @@ class MediatorFactory {
                 break;
             case FUENTEFONDO:
                 interm = new Intermediario<FuenteFondo>(c.getSimpleName());
+                break;
+            case OTHER:
+                interm = new Intermediario(c.getSimpleName());
                 break;
         }
 
