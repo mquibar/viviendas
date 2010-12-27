@@ -4,7 +4,6 @@
  */
 package viviendas.gui.Plan.modificar;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +12,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.InternalFrameAdapter;
@@ -223,6 +223,9 @@ public class ctrlModificarPlanNew implements ICalculable {
 
     }
 
+    public JPanel getPanel(){
+        return _panel;
+    }
     public void activar(){
         activo=true;
         _panel.setVisible(true);
