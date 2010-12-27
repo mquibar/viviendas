@@ -44,31 +44,22 @@ public class CtrlGrande {
         _pantalla.toFront();
     }
 
-    private void agregarPanel(JPanel panel){
+    private void agregarPanel(JPanel panel) {
         javax.swing.GroupLayout _pnlCentralLayout = new javax.swing.GroupLayout(_pantalla.getPnlCentral());
         _pantalla.getPnlCentral().setLayout(_pnlCentralLayout);
         _pnlCentralLayout.setHorizontalGroup(
-            _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, _pnlCentralLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1820, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+                _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, _pnlCentralLayout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 1820, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap()));
         _pnlCentralLayout.setVerticalGroup(
-            _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(_pnlCentralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+                _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(_pnlCentralLayout.createSequentialGroup().addContainerGap().addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
     }
 
-    void pressAddFinanciacionButton(){
+    void pressAddFinanciacionButton() {
         _controlModificar.desactivar();
-        if(_controlFinanciacion!=null){
-            _controlFinanciacion = new CtrlCrearFinanciacion(_controlModificar.getDistOperatoriaSeleccionada(), null);
-            //agregarPanel(_controlFinanciacion.getPanel);
+        if (_controlFinanciacion == null) {
+            _controlFinanciacion = new CtrlCrearFinanciacion(_controlModificar.getDistOperatoriaSeleccionada(), _pantalla);
+            agregarPanel(_controlFinanciacion.getPanFinanciacion());
+            _controlFinanciacion.iniciar();
         }
-        //_controlFinanciacion.activar();
+        _controlFinanciacion.activar();
     }
 }

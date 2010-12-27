@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
-import viviendas.gui.Plan.modificar.ctrlModificarPlan;
+import viviendas.gui.Plan.modificar.IUModificarPlanNew;
 import viviendas.gui.models.tables.ModelTableDetalleDistribucion;
 import viviendas.gui.sistema.CtrlPrincipal;
 import viviendas.gui.tool.ICalculable;
@@ -25,66 +25,74 @@ public class CtrlCrearFinanciacion implements ICalculable {
 
     private HashMap<Integer, JTable> hashIndiceTabla;
     private GestorCrearFinanciacion _gestor;
-    private IUFinanciacion _pantalla;
-    private final ctrlModificarPlan ctrlModificarPlan;
+    private IUPanelCrearFinanciacion _panFinanciacion;
+    private IUModificarPlanNew _pantalla;
+    private Boolean activo;
 
-    public CtrlCrearFinanciacion(DistribucionOperatoria distribucionOperatoria, ctrlModificarPlan ctrlModificarPlan) {
+    public CtrlCrearFinanciacion(DistribucionOperatoria distribucionOperatoria, IUModificarPlanNew pantalla) {
         hashIndiceTabla = new HashMap<Integer, JTable>();
+        _pantalla = pantalla;
+        _pantalla.getBtnDropDetails().setEnabled(false);
         _gestor = new GestorCrearFinanciacion(distribucionOperatoria);
         SubscriptorTotal.getInstance().añadir(this);
-        this.ctrlModificarPlan = ctrlModificarPlan;
-        _pantalla = new IUFinanciacion();
-        _pantalla.getLabCombinacion().setText(_gestor.getNombreCompletoCombinacion());
+        _panFinanciacion = new IUPanelCrearFinanciacion();
+        _panFinanciacion.getTexNombre().setText(_gestor.getNombreCompletoCombinacion());
         _pantalla.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                presionaAgregar();
+                if (activo) {
+                    presionaAgregar();
+                }
             }
         });
         _pantalla.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                presionaCancelar();
-            }
-        });
-        _pantalla.getBtnCrearFinanciacion().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                presionaCrearFinanciacion();
+                if (activo) {
+                    presionaCancelar();
+                }
             }
         });
         _pantalla.getBtnDel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                presionaEliminar();
+                if (activo) {
+                    presionaEliminar();
+                }
             }
         });
         _pantalla.getBtnDropDetails().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                presionaDropDetails();
+                if (activo) {
+                    presionaDropDetails();
+                }
             }
         });
         _pantalla.getBtnOk().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                presionaBtnOk();
+                if (activo) {
+                    presionaBtnOk();
+                }
             }
         });
         _pantalla.getBtnViewDetails().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                presionaViewDetails();
+                if (activo) {
+                    presionaViewDetails();
+                }
             }
         });
-        CtrlPrincipal.getInstance().getDesktopPane().add(_pantalla);
-        _pantalla.setVisible(true);
+        CtrlPrincipal.getInstance().getDesktopPane().add(_panFinanciacion);
+        _panFinanciacion.setVisible(true);
     }
 
     private void presionaViewDetails() {
-        int indice = _pantalla.getTabPaneFinanciacion().getSelectedIndex();
-        _pantalla.getTabPaneFinanciacion().setSelectedIndex(indice + 1);
-        int total = _pantalla.getTabPaneFinanciacion().getTabCount();
+        int indice = _panFinanciacion.getTabPaneFinanciacion().getSelectedIndex();
+        _panFinanciacion.getTabPaneFinanciacion().setSelectedIndex(indice + 1);
+        int total = _panFinanciacion.getTabPaneFinanciacion().getTabCount();
         if (indice + 2 == total) {
             _pantalla.getBtnViewDetails().setEnabled(false);
         } else {
@@ -96,18 +104,17 @@ public class CtrlCrearFinanciacion implements ICalculable {
     private void presionaBtnOk() {
 //TODO falta persistir el plan
         try {
-            if (_pantalla.getTexNombre().getText().equals("") || _pantalla.getTexNombre().getText() == null) {
+            if (_panFinanciacion.getTexNombre().getText().equals("") || _panFinanciacion.getTexNombre().getText() == null) {
                 throw new MissingData("Nombre");
             }
-            ctrlModificarPlan.desbloquear();
         } catch (MissingData md) {
             mostrarMensaje(md.getLocalizedMessage());
         }
     }
 
     private void presionaDropDetails() {
-        int indice = _pantalla.getTabPaneFinanciacion().getSelectedIndex();
-        _pantalla.getTabPaneFinanciacion().setSelectedIndex(indice - 1);
+        int indice = _panFinanciacion.getTabPaneFinanciacion().getSelectedIndex();
+        _panFinanciacion.getTabPaneFinanciacion().setSelectedIndex(indice - 1);
         if (indice - 1 == 0) {
             _pantalla.getBtnDropDetails().setEnabled(false);
         } else {
@@ -117,51 +124,66 @@ public class CtrlCrearFinanciacion implements ICalculable {
     }
 
     private void presionaEliminar() {
-        _pantalla.getTabPaneFinanciacion().remove(_pantalla.getTabPaneFinanciacion().getSelectedIndex());
+        _panFinanciacion.getTabPaneFinanciacion().remove(_panFinanciacion.getTabPaneFinanciacion().getSelectedIndex());
     }
 
-    private void presionaCrearFinanciacion() {
-        _pantalla.getTexNombre().setEnabled(false);
-        _pantalla.getSpinPorcentaje().setEnabled(false);
-        _pantalla.getBtnCrearFinanciacion().setEnabled(false);
-        DtoConstruccionFinanciacion dto = new CtrlModeloDetalleFinanciacion().crearDistribucion(((Number) _pantalla.getSpinPorcentaje().getValue()).doubleValue());
+    public void iniciar() {
+        _panFinanciacion.getTexNombre().setEnabled(false);
+        _panFinanciacion.getSpinPorcentaje().setEnabled(false);
+        _panFinanciacion.getBtnCrearFinanciacion().setEnabled(false);
+        DtoConstruccionFinanciacion dto = new CtrlModeloDetalleFinanciacion().crearDistribucion(((Number) _panFinanciacion.getSpinPorcentaje().getValue()).doubleValue());
         JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         JTable tabla = new JTable();
         tabla.setModel(new ModelTableDetalleDistribucion(dto.getDtoDetallesDistribuciones(), dto.getColumas()));
         jScrollPane1.setViewportView(tabla);
-        hashIndiceTabla.put(_pantalla.getTabPaneFinanciacion().getTabCount(), tabla);
-        _pantalla.getTabPaneFinanciacion().addTab(dto.getNombre(), jScrollPane1);
-        if (_pantalla.getTabPaneFinanciacion().getTabCount() > 1) {
+        hashIndiceTabla.put(_panFinanciacion.getTabPaneFinanciacion().getTabCount(), tabla);
+        _panFinanciacion.getTabPaneFinanciacion().addTab(dto.getNombre(), jScrollPane1);
+        if (_panFinanciacion.getTabPaneFinanciacion().getTabCount() > 1) {
             _pantalla.getBtnDropDetails().setEnabled(true);
         }
-        _pantalla.getTabPaneFinanciacion().setSelectedIndex(_pantalla.getTabPaneFinanciacion().getTabCount() - 1);
+        _panFinanciacion.getTabPaneFinanciacion().setSelectedIndex(_panFinanciacion.getTabPaneFinanciacion().getTabCount() - 1);
     }
 
     private void presionaAgregar() {
-        _pantalla.getTexNombre().setEnabled(true);
-        _pantalla.getSpinPorcentaje().setEnabled(true);
-        _pantalla.getBtnCrearFinanciacion().setEnabled(true);
+        _panFinanciacion.getLabPorcentaje().setEnabled(true);
+        _panFinanciacion.getSpinPorcentaje().setEnabled(true);
+        _panFinanciacion.getBtnCrearFinanciacion().setEnabled(true);
         Double total = 0.0;
-        _pantalla.getSpinPorcentaje().setModel(new javax.swing.SpinnerNumberModel(100.0d - total, 0.0d, 100.0d - total, 0.1d));
+        _panFinanciacion.getSpinPorcentaje().setModel(new javax.swing.SpinnerNumberModel(100.0d - total, 0.0d, 100.0d - total, 0.1d));
 
     }
 
     private void presionaCancelar() {
         _pantalla.dispose();
-        _pantalla = null;
+        _panFinanciacion = null;
         _gestor = null;
         SubscriptorTotal.getInstance().remove(this);
-        ctrlModificarPlan.desbloquear();
     }
 
     private void mostrarMensaje(String string) {
-        JOptionPane.showMessageDialog(_pantalla, string, "", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(_panFinanciacion, string, "", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void actualizarPorcentaje() {
-        JTable tabla = hashIndiceTabla.get(_pantalla.getTabPaneFinanciacion().getSelectedIndex());
-        List<DtoDetalleDistribucion> listaDto = ((ModelTableDetalleDistribucion) tabla.getModel()).getAllRow();
-        _gestor.actualizarPorcentaje(listaDto);
+        JTable tabla = hashIndiceTabla.get(_panFinanciacion.getTabPaneFinanciacion().getSelectedIndex());
+        if (tabla != null) {
+            List<DtoDetalleDistribucion> listaDto = ((ModelTableDetalleDistribucion) tabla.getModel()).getAllRow();
+            _gestor.actualizarPorcentaje(listaDto);
+        }
 
+    }
+
+    public IUPanelCrearFinanciacion getPanFinanciacion() {
+        return _panFinanciacion;
+    }
+
+    public void activar() {
+        activo = true;
+        _panFinanciacion.setVisible(true);
+    }
+
+    public void desactivar() {
+        activo = false;
+        _panFinanciacion.setVisible(false);
     }
 }

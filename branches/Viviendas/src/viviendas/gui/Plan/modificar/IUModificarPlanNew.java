@@ -396,6 +396,4 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
     public void setPnlCentral(JPanel _pnlCentral) {
         this._pnlCentral.add(_pnlCentral);
     }
-    
-
 }
