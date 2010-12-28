@@ -5,13 +5,8 @@
 package viviendas;
 
 import java.util.List;
-import viviendas.entidades.flujo.FuenteFondo;
-import viviendas.entidades.flujo.UsoFondo;
 import viviendas.entidades.vivienda.Ciudad;
-import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Provincia;
-import viviendas.entidades.vivienda.SectorEconomico;
-import viviendas.entidades.vivienda.TipoPlan;
 import viviendas.persistencia.Facade;
 import viviendas.persistencia.exceptions.PersistException;
 
@@ -58,34 +53,34 @@ public class MainCargaInicial {
             provincia.setListaCuidad(ciudades);
         }
         Facade.getInstance().commitTx();
-        Facade.getInstance().beginTx();
-        TipoPlan tipo = new TipoPlan();
-        tipo.setNombre("VIVIENDAS");
-        Facade.getInstance().guardar(tipo);
-        TipoPlan tipo1 = new TipoPlan();
-        tipo1.setNombre("SOLUCIONES");
-        Facade.getInstance().guardar(tipo1);
-        Facade.getInstance().commitTx();
-        Facade.getInstance().beginTx();
-
-        FuenteFondo fuente = new FuenteFondo();
-        fuente.setNombre("FUENTE 1");
-        FuenteFondo fuente1 = new FuenteFondo();
-        fuente1.setNombre("FUENTE 2");
-        FuenteFondo fuente2 = new FuenteFondo();
-        fuente2.setNombre("FUENTE 3");
-        Facade.getInstance().guardar(fuente);
-        Facade.getInstance().guardar(fuente1);
-        Facade.getInstance().guardar(fuente2);
-        UsoFondo uso = new UsoFondo();
-        uso.setNombre("USO 1");
-        UsoFondo uso1 = new UsoFondo();
-        uso1.setNombre("USO 2");
-        UsoFondo uso2 = new UsoFondo();
-        uso2.setNombre("USO 3");
-        Facade.getInstance().guardar(uso);
-        Facade.getInstance().guardar(uso1);
-        Facade.getInstance().guardar(uso2);
-        Facade.getInstance().commitTx();
+//        Facade.getInstance().beginTx();
+//        TipoPlan tipo = new TipoPlan();
+//        tipo.setNombre("VIVIENDAS");
+//        Facade.getInstance().guardar(tipo);
+//        TipoPlan tipo1 = new TipoPlan();
+//        tipo1.setNombre("SOLUCIONES");
+//        Facade.getInstance().guardar(tipo1);
+//        Facade.getInstance().commitTx();
+//        Facade.getInstance().beginTx();
+//
+//        FuenteFondo fuente = new FuenteFondo();
+//        fuente.setNombre("FUENTE 1");
+//        FuenteFondo fuente1 = new FuenteFondo();
+//        fuente1.setNombre("FUENTE 2");
+//        FuenteFondo fuente2 = new FuenteFondo();
+//        fuente2.setNombre("FUENTE 3");
+//        Facade.getInstance().guardar(fuente);
+//        Facade.getInstance().guardar(fuente1);
+//        Facade.getInstance().guardar(fuente2);
+//        UsoFondo uso = new UsoFondo();
+//        uso.setNombre("USO 1");
+//        UsoFondo uso1 = new UsoFondo();
+//        uso1.setNombre("USO 2");
+//        UsoFondo uso2 = new UsoFondo();
+//        uso2.setNombre("USO 3");
+//        Facade.getInstance().guardar(uso);
+//        Facade.getInstance().guardar(uso1);
+//        Facade.getInstance().guardar(uso2);
+//        Facade.getInstance().commitTx();
     }
 }

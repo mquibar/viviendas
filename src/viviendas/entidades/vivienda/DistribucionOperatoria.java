@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import viviendas.entidades.flujo.Financiacion;
 
 @Entity
 public class DistribucionOperatoria implements Serializable {
@@ -23,6 +25,8 @@ public class DistribucionOperatoria implements Serializable {
     private Operatoria operatoria;
     @ManyToOne
     private AñoPlan añoPlan;
+    @OneToOne(mappedBy="distribucionOperatoria")
+    private Financiacion financiacion;
 
     public AñoPlan getAñoPlan() {
         return añoPlan;
@@ -64,6 +68,15 @@ public class DistribucionOperatoria implements Serializable {
         this.distribucionSector = distribucionSector;
     }
 
+    public Financiacion getFinanciacion() {
+        return financiacion;
+    }
+
+    public void setFinanciacion(Financiacion financiacion) {
+        this.financiacion = financiacion;
+    }
+
+     
     @Override
     public int hashCode() {
         int hash = 0;

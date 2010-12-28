@@ -2,6 +2,7 @@ package viviendas.entidades.flujo;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ public class Financiacion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    @OneToMany(mappedBy="financiacion")
+    @OneToMany(mappedBy="financiacion",cascade=CascadeType.ALL)
     private List<DistribucionFinanciacion> distribucionesFinanciacion;
     @OneToOne
     private DistribucionOperatoria distribucionOperatoria;

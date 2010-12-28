@@ -2,16 +2,36 @@
 <persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
   <persistence-unit name="ViviendasPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
-    <class>viviendas.entidades.vivienda.Usuario</class>
+    <class>viviendas.entidades.flujo.DetalleDistribucionFinanciacion</class>
+    <class>viviendas.entidades.flujo.DistribucionFinanciacion</class>
+    <class>viviendas.entidades.flujo.DistribucionFlujoFondo</class>
+    <class>viviendas.entidades.flujo.Financiacion</class>
+    <class>viviendas.entidades.flujo.FuenteFondo</class>
+    <class>viviendas.entidades.flujo.Inversion</class>
+    <class>viviendas.entidades.flujo.InversionParametro</class>
+    <class>viviendas.entidades.flujo.InversionPlan</class>
+    <class>viviendas.entidades.flujo.UsoFondo</class>
+    <class>viviendas.entidades.flujo.ValorInversion</class>
+    <class>viviendas.entidades.vivienda.AñoPlan</class>
+    <class>viviendas.entidades.vivienda.Ciudad</class>
+    <class>viviendas.entidades.vivienda.DistribucionCiudad</class>
+    <class>viviendas.entidades.vivienda.DistribucionOperatoria</class>
+    <class>viviendas.entidades.vivienda.DistribucionProvincial</class>
+    <class>viviendas.entidades.vivienda.DistribucionSector</class>
+    <class>viviendas.entidades.vivienda.Operatoria</class>
     <class>viviendas.entidades.vivienda.ParametrosPlan</class>
+    <class>viviendas.entidades.vivienda.Plan</class>
+    <class>viviendas.entidades.vivienda.Provincia</class>
+    <class>viviendas.entidades.vivienda.SectorEconomico</class>
+    <class>viviendas.entidades.vivienda.TipoPlan</class>
+    <class>viviendas.entidades.vivienda.Usuario</class>
     <properties>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
       <property name="hibernate.connection.password" value="root"/>
-      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/viviendas"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/viviendas"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <property name="hibernate.show_sql" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>

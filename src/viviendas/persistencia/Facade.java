@@ -41,7 +41,7 @@ public class Facade {
         MediatorFactory.getInstance().getMediator(entidad.getClass()).guardar(entidad);
     }
 
-    public void eliminar(Object entidad) throws PersistException{
+    public void eliminar(Object entidad) throws PersistException {
         MediatorFactory.getInstance().getMediator(entidad.getClass()).eliminar(entidad);
     }
 
@@ -49,12 +49,16 @@ public class Facade {
         MediatorFactory.getInstance().getMediator(entidad.getClass()).actualizar(entidad);
     }
 
+    public void refresh(Object entidad) {
+        ConectionAdmin.getInstance().getManager().refresh(entidad);
+    }
+
     public List findAll(Class entidad) {
         return MediatorFactory.getInstance().getMediator(entidad).findAll();
     }
 
     public List findInOrder(Class entidad, String orden) {
-            return MediatorFactory.getInstance().getMediator(entidad).findInOrden(orden);
+        return MediatorFactory.getInstance().getMediator(entidad).findInOrden(orden);
     }
 
     public List findByCriterio(Class entidad, Criterio criterio) {
