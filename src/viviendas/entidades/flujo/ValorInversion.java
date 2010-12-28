@@ -22,7 +22,7 @@ public class ValorInversion implements Serializable {
     private Inversion inversion;
     @ManyToOne
     private UsoFondo financio;
-    private Double valorInversion;
+    private Double importe;
 
     public ValorInversion() {
     }
@@ -58,13 +58,14 @@ public class ValorInversion implements Serializable {
         this.inversion = inversion;
     }
 
-    public Double getValorInversion() {
-        return valorInversion;
+    public Double getImporte() {
+        return importe;
     }
 
-    public void setValorInversion(Double valorInversion) {
-        this.valorInversion = valorInversion;
+    public void setImporte(Double importe) {
+        this.importe = importe;
     }
+    
 
     @Override
     public int hashCode() {
