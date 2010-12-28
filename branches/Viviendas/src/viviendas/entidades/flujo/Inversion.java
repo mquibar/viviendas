@@ -67,6 +67,10 @@ public class Inversion implements Serializable {
     public void setValoresInversion(List<ValorInversion> valoresInversion) {
         this.valoresInversion = valoresInversion;
     }
+
+    public void setValorInversion(ValorInversion valor){
+        this.valoresInversion.add(valor);
+    }
     
 
     @Override

@@ -37,10 +37,6 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         return mnuFuenteFondos;
     }
 
-    public JMenuItem getMnuReporteDistribGenProvincias() {
-        return mnuReporteDistribGenProvincias;
-    }
-
     public JMenuItem getMnuUsosFondos() {
         return mnuUsosFondos;
     }
@@ -107,8 +103,6 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuFuenteFondos = new javax.swing.JMenuItem();
         mnuUsosFondos = new javax.swing.JMenuItem();
         mnuInversion = new javax.swing.JMenuItem();
-        mnuParametrosReportes = new javax.swing.JMenu();
-        mnuReporteDistribGenProvincias = new javax.swing.JMenuItem();
         mnuConfiguracion = new javax.swing.JMenu();
         mnuSistema = new javax.swing.JMenu();
         mnuAcercaDe = new javax.swing.JMenuItem();
@@ -166,13 +160,6 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuInversion.setText("Inversion");
         mnuParametros.add(mnuInversion);
 
-        mnuParametrosReportes.setText("Reportes");
-
-        mnuReporteDistribGenProvincias.setText("Distrib. General Provincia");
-        mnuParametrosReportes.add(mnuReporteDistribGenProvincias);
-
-        mnuParametros.add(mnuParametrosReportes);
-
         mnuBarSistema.add(mnuParametros);
 
         mnuConfiguracion.setText("Configuración");
@@ -217,10 +204,8 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuNuevoPlan;
     private javax.swing.JMenuItem mnuOperatoria;
     private javax.swing.JMenu mnuParametros;
-    private javax.swing.JMenu mnuParametrosReportes;
     private javax.swing.JMenu mnuPlanes;
     private javax.swing.JMenuItem mnuProvincias;
-    private javax.swing.JMenuItem mnuReporteDistribGenProvincias;
     private javax.swing.JMenuItem mnuReportes;
     private javax.swing.JMenuItem mnuSalir;
     private javax.swing.JMenuItem mnuSegmentoEconomico;
