@@ -99,7 +99,7 @@ public class CtrlCrearFinanciacion implements ICalculable {
         });
         _pantalla.getBtnDel().setEnabled(false);
         CtrlPrincipal.getInstance().getDesktopPane().add(_panFinanciacion);
-        _panFinanciacion.setVisible(true);
+        _panFinanciacion.setVisible(false);
     }
 
     private void presionaViewDetails() {

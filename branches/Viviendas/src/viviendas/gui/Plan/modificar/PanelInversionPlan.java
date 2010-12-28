@@ -11,6 +11,8 @@
 
 package viviendas.gui.Plan.modificar;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author desarrollo
@@ -34,7 +36,7 @@ public class PanelInversionPlan extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         _tblInversion = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        _tblUsosInversion = new javax.swing.JTable();
 
         _tblInversion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -46,7 +48,7 @@ public class PanelInversionPlan extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(_tblInversion);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        _tblUsosInversion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -54,7 +56,7 @@ public class PanelInversionPlan extends javax.swing.JPanel {
 
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(_tblUsosInversion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,7 +64,7 @@ public class PanelInversionPlan extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -71,19 +73,27 @@ public class PanelInversionPlan extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable _tblInversion;
+    private javax.swing.JTable _tblUsosInversion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getTblInversion() {
+        return _tblInversion;
+    }
+
+    public JTable getTblUsosInversion() {
+        return _tblUsosInversion;
+    }
 
 }
