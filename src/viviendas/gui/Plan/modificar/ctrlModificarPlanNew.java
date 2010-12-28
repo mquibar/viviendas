@@ -421,6 +421,8 @@ public class ctrlModificarPlanNew implements ICalculable {
     }
 
     public void actualizarPorcentaje() {
+        if(!activo)
+            return;
         switch (tablaOnTop) {
             case AÑO:
                 colorTotal(100);

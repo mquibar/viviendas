@@ -47,8 +47,8 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _txtTotViviendas = new javax.swing.JTextField();
         _txtAños = new javax.swing.JTextField();
         jToolBar1 = new javax.swing.JToolBar();
-        _btnViewDetails = new javax.swing.JButton();
         _btnDropDetails = new javax.swing.JButton();
+        _btnViewDetails = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         _btnAdd = new javax.swing.JButton();
         _btnDel = new javax.swing.JButton();
@@ -152,12 +152,12 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        _btnViewDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Next_16x16.png"))); // NOI18N
-        jToolBar1.add(_btnViewDetails);
-
         _btnDropDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Previous_16x16.png"))); // NOI18N
         _btnDropDetails.setEnabled(false);
         jToolBar1.add(_btnDropDetails);
+
+        _btnViewDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Next_16x16.png"))); // NOI18N
+        jToolBar1.add(_btnViewDetails);
         jToolBar1.add(jSeparator2);
 
         _btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/+.png"))); // NOI18N
@@ -249,7 +249,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         );
         _pnlCentralLayout.setVerticalGroup(
             _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 581, Short.MAX_VALUE)
+            .addGap(0, 582, Short.MAX_VALUE)
         );
 
         _btnAddFinanciacion.setText("Financiacion");
@@ -322,7 +322,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(_pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

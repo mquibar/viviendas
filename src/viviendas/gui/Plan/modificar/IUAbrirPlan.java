@@ -82,9 +82,9 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
-        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.ipadx = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 150);
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 150);
         getContentPane().add(_btnOpen, gridBagConstraints);
 
         _btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
@@ -94,7 +94,7 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 4);
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 4);
         getContentPane().add(_btnCancel, gridBagConstraints);
 
         pack();

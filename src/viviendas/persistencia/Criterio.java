@@ -15,11 +15,11 @@ import java.util.Map;
  */
 public class Criterio {
 
-    private String atributo;
+    protected String atributo;
     protected String operador;
     private Object valor;
     private static Integer contador = 0;
-    private Integer gui;
+    protected Integer gui;
 
     public Criterio(String atributo, String operador, Object valor) {
         this.atributo = atributo;
