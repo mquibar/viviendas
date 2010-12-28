@@ -63,24 +63,26 @@ public class CtrlGrande {
     void pressAddFinanciacionButton() {
         _controlModificar.desactivar();
         if (_controlFinanciacion == null) {
-            _controlFinanciacion = new CtrlCrearFinanciacion(_controlModificar.getDistOperatoriaSeleccionada(), _pantalla);
+            _controlFinanciacion = new CtrlCrearFinanciacion(_pantalla);
             agregarPanel(_controlFinanciacion.getPanFinanciacion());
-            _controlFinanciacion.iniciar();
         }
+        _controlFinanciacion.iniciar(_controlModificar.getDistOperatoriaSeleccionada());
         _pantalla.getLblOperatoria().setText(_controlModificar.getDistOperatoriaSeleccionada().getOperatoria().getNombre());
         _controlFinanciacion.activar();
         _pantalla.getBtnPlan().setSelected(false);
         _pantalla.getBtnAddFinanciacion().setSelected(true);
+        _pantalla.getBtnAddFinanciacion().setEnabled(false);
         _pantalla.getBtnInversion().setSelected(false);
         _pantalla.getBtnPlan().setEnabled(true);
     }
 
-    void pressPlanButton(){
+    void pressPlanButton() {
         _controlFinanciacion.desactivar();
         _pantalla.getBtnPlan().setSelected(true);
         _pantalla.getBtnAddFinanciacion().setSelected(false);
         _pantalla.getBtnInversion().setSelected(false);
         _controlModificar.activar();
         _pantalla.getBtnPlan().setEnabled(false);
+        _pantalla.getBtnAddFinanciacion().setEnabled(true);
     }
 }

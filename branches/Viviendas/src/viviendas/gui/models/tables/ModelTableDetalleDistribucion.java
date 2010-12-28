@@ -3,6 +3,7 @@ package viviendas.gui.models.tables;
 import viviendas.gui.financiacion.crear.DtoDetalleDistribucion;
 import java.util.List;
 import viviendas.gui.tool.SubscriptorTotal;
+import viviendas.modulos.FuentesFondos.GestorFuentesFondos;
 
 public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalleDistribucion> {
 
@@ -19,8 +20,7 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
                     case 0:
                         return dto.getEstaActivo();
                     case 1:
-                        return dto.getUsoFondo().toString();
-
+                        return dto.getDetallesDistribucionesFinanciacion().get(0).getUsoFondo().getNombre();
                     default:
                         return "@1";
                 }
@@ -28,8 +28,8 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
                 return "@2";
             }
         } else {
-            if (columnIndex  <= dto.getDetallesDistribucionesFinanciacion().size() + 2) {
-                return dto.getDetallesDistribucionesFinanciacion().get(columnIndex -2).getPorcentaje();
+            if (columnIndex <= dto.getDetallesDistribucionesFinanciacion().size() + 2) {
+                return dto.getDetallesDistribucionesFinanciacion().get(columnIndex - 2).getPorcentaje();
             } else {
                 return "@3";
             }
@@ -38,12 +38,19 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex != 1 && columnIndex != _lista.size()-1;
+        if (columnIndex < 2) {
+            return columnIndex != 1;
+        } else {
+            DtoDetalleDistribucion dtoDetalle = _lista.get(rowIndex);
+            return !dtoDetalle.getDetallesDistribucionesFinanciacion().get(columnIndex - 2).getFuenteFondo().getNombre().equals(GestorFuentesFondos.OTROSAPORTES);
+        }
+
+
     }
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        if(columnIndex > 1 && _lista.size()+1>=columnIndex){
+        if (columnIndex > 1 && _lista.size() + 1 >= columnIndex) {
             return Double.class;
         }
         switch (columnIndex) {
@@ -77,5 +84,4 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
         SubscriptorTotal.getInstance().notificar();
         super.fireTableDataChanged();
     }
-
 }

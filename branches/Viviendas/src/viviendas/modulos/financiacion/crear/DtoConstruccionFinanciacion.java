@@ -41,6 +41,6 @@ public class DtoConstruccionFinanciacion {
         this.nombre = nombre;
     }
 
-    
+
 
 }
