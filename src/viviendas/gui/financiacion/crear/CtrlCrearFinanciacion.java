@@ -35,7 +35,7 @@ public class CtrlCrearFinanciacion implements ICalculable {
 
     public CtrlCrearFinanciacion(IUModificarPlanNew pantalla) {
         hashIndiceTabla = new HashMap<Integer, JTable>();
-        hashEstadoBoton = new HashMap<JButton, Boolean>(4);
+        hashEstadoBoton = new HashMap<JButton, Boolean>(6);
 
 
         this._pantalla = pantalla;
@@ -190,12 +190,13 @@ public class CtrlCrearFinanciacion implements ICalculable {
     }
 
     public void actualizarPorcentaje() {
-        JTable tabla = hashIndiceTabla.get(_panFinanciacion.getTabPaneFinanciacion().getSelectedIndex());
-        if (tabla != null) {
-            List<DtoDetalleDistribucion> listaDto = ((ModelTableDetalleDistribucion) tabla.getModel()).getAllRow();
-            _gestor.actualizarPorcentaje(listaDto);
+        if (activo) {
+            JTable tabla = hashIndiceTabla.get(_panFinanciacion.getTabPaneFinanciacion().getSelectedIndex());
+            if (tabla != null) {
+                List<DtoDetalleDistribucion> listaDto = ((ModelTableDetalleDistribucion) tabla.getModel()).getAllRow();
+                _gestor.actualizarPorcentaje(listaDto);
+            }
         }
-
     }
 
     public IUPanelCrearFinanciacion getPanFinanciacion() {
