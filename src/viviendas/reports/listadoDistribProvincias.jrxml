@@ -1,42 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listadoDistribProvincias" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     Provincia.`nombre` AS nombre,
+     ParametrosPlan.`porcenteaje` AS porcenteaje
+FROM
+     `ParametrosPlan` ParametrosPlan INNER JOIN `Provincia` Provincia ON ParametrosPlan.`id` = Provincia.`id`,
+     `DistribucionProvincial` DistribucionProvincial]]>
+	</queryString>
 	<field name="nombre" class="java.lang.String"/>
-	<field name="porcenteaje" class="java.lang.String"/>
-	<group name="Group1">
-		<groupHeader>
-			<band/>
-		</groupHeader>
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<group name="Group2">
-		<groupHeader>
-			<band/>
-		</groupHeader>
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<group name="Group3">
-		<groupHeader>
-			<band/>
-		</groupHeader>
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
-	<group name="Group4">
-		<groupHeader>
-			<band/>
-		</groupHeader>
-		<groupFooter>
-			<band/>
-		</groupFooter>
-	</group>
+	<field name="porcenteaje" class="java.lang.Double"/>
+	<group name="Group1"/>
+	<group name="Group2"/>
+	<group name="Group3"/>
+	<group name="Group4"/>
 	<background>
 		<band/>
 	</background>
@@ -58,21 +38,21 @@
 		<band height="13"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="54">
+		<band height="48">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="555" height="45" forecolor="#666666" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[            Provincias]]></text>
+			</staticText>
 			<line>
-				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+				<reportElement x="0" y="46" width="555" height="1" forecolor="#666666"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="1" y="21" width="345" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[Provincias]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="369" y="21" width="186" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
-				<textElement>
-					<font size="12"/>
+				<reportElement mode="Opaque" x="329" y="1" width="186" height="45" forecolor="#666666" backcolor="#E6E6E6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Porcentaje de Distribución]]></text>
 			</staticText>
@@ -81,15 +61,15 @@
 	<detail>
 		<band height="23">
 			<textField>
-				<reportElement mode="Opaque" x="1" y="0" width="345" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<reportElement mode="Opaque" x="48" y="0" width="231" height="20" forecolor="#006699"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="368" y="0" width="186" height="19" forecolor="#006699" backcolor="#E6E6E6"/>
-				<textElement>
+			<textField pattern="#,##0.00 %">
+				<reportElement mode="Opaque" x="280" y="0" width="89" height="19" forecolor="#006699"/>
+				<textElement textAlignment="Right">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{porcenteaje}]]></textFieldExpression>

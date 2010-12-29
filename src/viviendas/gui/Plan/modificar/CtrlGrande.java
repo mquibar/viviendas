@@ -58,6 +58,12 @@ public class CtrlGrande {
                 pressInversionButton();
             }
         });
+        _pantalla.getBtnCancel().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                _pantalla.dispose();
+            }
+        });
 
         //INSTANCIA EL RESTO DE LOS CONTROLADORES Y AGREGA PANELES
         _controlInversion = new CtrlModificarInversion(_pantalla, _gestor.getPlan());
@@ -92,19 +98,25 @@ public class CtrlGrande {
 
         _pantalla.getBtnAddFinanciacion().setEnabled(false);
         _pantalla.getBtnPlan().setEnabled(true);
+        _pantalla.getBtnInversion().setEnabled(true);
     }
 
     void pressPlanButton() {
-        _controlFinanciacion.desactivar();
-        _controlInversion.desactivar();
+        if(_controlFinanciacion!=null)
+            _controlFinanciacion.desactivar();
+        if(_controlInversion!=null)
+            _controlInversion.desactivar();
         _controlModificar.activar();
         _pantalla.getBtnPlan().setEnabled(false);
         _pantalla.getBtnAddFinanciacion().setEnabled(false);
+        _pantalla.getBtnInversion().setEnabled(true);
     }
 
     void pressInversionButton(){
-        _controlModificar.desactivar();
-        _controlFinanciacion.desactivar();
+        if(_controlModificar!=null)
+            _controlModificar.desactivar();
+        if(_controlFinanciacion!=null)
+            _controlFinanciacion.desactivar();
         if(_controlInversion== null){
             _controlInversion = new CtrlModificarInversion(_pantalla, _gestor.getPlan());
             agregarPanel(_controlInversion.getPanel());
