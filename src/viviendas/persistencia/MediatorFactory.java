@@ -118,6 +118,9 @@ class MediatorFactory {
             case VALORINVERSION:
                 interm = new Intermediario<ValorInversion>(c.getSimpleName());
                 break;
+            case OTHER:
+                interm = new Intermediario(c.getSimpleName());
+                break;
         }
 
         _mapaIntermediarios.put(c, interm);
