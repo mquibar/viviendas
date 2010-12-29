@@ -12,6 +12,7 @@
 package viviendas.gui.sistema;
 
 import javax.swing.JDesktopPane;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 /**
@@ -77,8 +78,9 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         return mnuInversion;
     }
 
-
-
+    public JMenuItem getMnuAbrirFlujoFondos() {
+        return mnuAbrirFlujoFondos;
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -103,7 +105,8 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuFuenteFondos = new javax.swing.JMenuItem();
         mnuUsosFondos = new javax.swing.JMenuItem();
         mnuInversion = new javax.swing.JMenuItem();
-        mnuConfiguracion = new javax.swing.JMenu();
+        mnuFlujoFondos = new javax.swing.JMenu();
+        mnuAbrirFlujoFondos = new javax.swing.JMenuItem();
         mnuSistema = new javax.swing.JMenu();
         mnuAcercaDe = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
@@ -162,8 +165,12 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         mnuBarSistema.add(mnuParametros);
 
-        mnuConfiguracion.setText("Configuración");
-        mnuBarSistema.add(mnuConfiguracion);
+        mnuFlujoFondos.setText("Flujo de Fondos");
+
+        mnuAbrirFlujoFondos.setText("Abrir");
+        mnuFlujoFondos.add(mnuAbrirFlujoFondos);
+
+        mnuBarSistema.add(mnuFlujoFondos);
 
         mnuSistema.setText("Sistema");
 
@@ -195,10 +202,11 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
+    private javax.swing.JMenuItem mnuAbrirFlujoFondos;
     private javax.swing.JMenuItem mnuAbrirPlan;
     private javax.swing.JMenuItem mnuAcercaDe;
     private javax.swing.JMenuBar mnuBarSistema;
-    private javax.swing.JMenu mnuConfiguracion;
+    private javax.swing.JMenu mnuFlujoFondos;
     private javax.swing.JMenuItem mnuFuenteFondos;
     private javax.swing.JMenuItem mnuInversion;
     private javax.swing.JMenuItem mnuNuevoPlan;

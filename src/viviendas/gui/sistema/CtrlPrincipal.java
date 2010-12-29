@@ -13,6 +13,7 @@ import viviendas.gui.Plan.crear.CtrlPlan;
 import viviendas.gui.Plan.modificar.ctrlAbrirPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
+import viviendas.gui.flujoFondos.CtrlFlujoFondos;
 import viviendas.gui.inversion.CtrlInversion;
 import viviendas.gui.provincia.CtrlProvincia;
 import viviendas.gui.usosFondos.CtrlUsosFondos;
@@ -93,6 +94,12 @@ public class CtrlPrincipal {
                 abrirIUInversion();
             }
         });
+        _pantalla.getMnuAbrirFlujoFondos().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUFlujoFondos();
+            }
+        });
 
     }
 
@@ -143,6 +150,10 @@ public class CtrlPrincipal {
         new CtrlInversion(_pantalla.getDesktopPane());
     }
 
+    private void abrirIUFlujoFondos(){
+        new CtrlFlujoFondos(_pantalla.getDesktopPane());
+    }
+
     private void abrirReporteDistribGenProvincias(){
         
     }
@@ -155,18 +166,18 @@ public class CtrlPrincipal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            try {
-                //                    javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaBlueMoonLookAndFeel());
-                javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaSkyMetallicLookAndFeel());
-            } catch (UnsupportedLookAndFeelException ex) {
-                System.out.println(ex.getMessage());
-            }
-
-        } catch (ParseException ex) {
-            System.out.println(ex.getMessage() + "**********");
-            ex.getStackTrace();
-        }
+//        try {
+//            try {
+//                                    javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaBlueMoonLookAndFeel());
+//                javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaSkyMetallicLookAndFeel());
+//            } catch (UnsupportedLookAndFeelException ex) {
+//                System.out.println(ex.getMessage());
+//            }
+//
+//        } catch (ParseException ex) {
+//            System.out.println(ex.getMessage() + "**********");
+//            ex.getStackTrace();
+//        }
         CtrlPrincipal.getInstance().iniciar();
     }
 
