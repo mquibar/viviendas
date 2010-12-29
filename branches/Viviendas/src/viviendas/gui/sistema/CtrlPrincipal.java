@@ -155,18 +155,18 @@ public class CtrlPrincipal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        try {
-//            try {
-//                //                    javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaBlueMoonLookAndFeel());
-//                javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaSkyMetallicLookAndFeel());
-//            } catch (UnsupportedLookAndFeelException ex) {
-//                System.out.println(ex.getMessage());
-//            }
-//
-//        } catch (ParseException ex) {
-//            System.out.println(ex.getMessage() + "**********");
-//            ex.getStackTrace();
-//        }
+        try {
+            try {
+                //                    javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaBlueMoonLookAndFeel());
+                javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaSkyMetallicLookAndFeel());
+            } catch (UnsupportedLookAndFeelException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage() + "**********");
+            ex.getStackTrace();
+        }
         CtrlPrincipal.getInstance().iniciar();
     }
 
