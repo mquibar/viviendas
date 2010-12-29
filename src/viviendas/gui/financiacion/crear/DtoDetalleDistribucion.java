@@ -18,7 +18,7 @@ public class DtoDetalleDistribucion {
 
     public Boolean getEstaActivo() {
         return estaActivo;
-    }
+}
 
     public void setEstaActivo(Boolean estaActivo) {
         this.estaActivo = estaActivo;

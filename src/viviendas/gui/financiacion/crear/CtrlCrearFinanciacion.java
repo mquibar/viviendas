@@ -5,9 +5,11 @@
 package viviendas.gui.financiacion.crear;
 
 import java.awt.Color;
+import java.beans.PropertyChangeEvent;
 import viviendas.modulos.financiacion.crear.GestorCrearFinanciacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JButton;
@@ -21,7 +23,6 @@ import viviendas.gui.models.tables.ModelTableDetalleDistribucion;
 import viviendas.gui.sistema.CtrlPrincipal;
 import viviendas.gui.tool.ICalculable;
 import viviendas.gui.tool.SubscriptorTotal;
-import viviendas.modulos.financiacion.crear.DtoConstruccionFinanciacion;
 import viviendas.persistencia.exceptions.PersistException;
 
 public class CtrlCrearFinanciacion implements ICalculable {
@@ -34,11 +35,16 @@ public class CtrlCrearFinanciacion implements ICalculable {
     private Boolean activo;
 
     public CtrlCrearFinanciacion(IUModificarPlanNew pantalla) {
+        this._pantalla = pantalla;
         hashIndiceTabla = new HashMap<Integer, JTable>();
         hashEstadoBoton = new HashMap<JButton, Boolean>(6);
+        hashEstadoBoton.put(_pantalla.getBtnAdd(), _pantalla.getBtnAdd().isEnabled());
+        hashEstadoBoton.put(_pantalla.getBtnDel(), _pantalla.getBtnDel().isEnabled());
+        hashEstadoBoton.put(_pantalla.getBtnOk(), _pantalla.getBtnOk().isEnabled());
+        hashEstadoBoton.put(_pantalla.getBtnCancel(), _pantalla.getBtnCancel().isEnabled());
+        hashEstadoBoton.put(_pantalla.getBtnViewDetails(), _pantalla.getBtnViewDetails().isEnabled());
+        hashEstadoBoton.put(_pantalla.getBtnDropDetails(), _pantalla.getBtnDropDetails().isEnabled());
 
-
-        this._pantalla = pantalla;
         _pantalla.getBtnDropDetails().setEnabled(false);
         _gestor = new GestorCrearFinanciacion();
         SubscriptorTotal.getInstance().añadir(this);
@@ -49,6 +55,7 @@ public class CtrlCrearFinanciacion implements ICalculable {
                 presionaCrearFinanciacion();
             }
         });
+
         _pantalla.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -99,7 +106,7 @@ public class CtrlCrearFinanciacion implements ICalculable {
         });
         _pantalla.getBtnDel().setEnabled(false);
         CtrlPrincipal.getInstance().getDesktopPane().add(_panFinanciacion);
-        _panFinanciacion.setVisible(false);
+        _panFinanciacion.setVisible(true);
     }
 
     private void presionaViewDetails() {
@@ -118,6 +125,7 @@ public class CtrlCrearFinanciacion implements ICalculable {
         try {
             _gestor.guardarFinanciacion(((ModelTableDetalleDistribucion) hashIndiceTabla.get(_panFinanciacion.getTabPaneFinanciacion().getSelectedIndex()).getModel()).getAllRow());
             mostrarMensaje("Se ha financiacion ha sido creada satisfactoriamente");
+            
         } catch (PersistException ex) {
             mostrarMensaje(ex.getLocalizedMessage());
         }

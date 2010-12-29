@@ -74,7 +74,11 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
             }
         }
         if (columnIndex > 1) {
-            dto.getDetallesDistribucionesFinanciacion().get(columnIndex - 2).setPorcentaje((Double) aValue);
+            Double valor = (Double) aValue;
+            if (valor < 0.0) {
+                return;
+            }
+            dto.getDetallesDistribucionesFinanciacion().get(columnIndex - 2).setPorcentaje(valor);
         }
         fireTableDataChanged();
     }
