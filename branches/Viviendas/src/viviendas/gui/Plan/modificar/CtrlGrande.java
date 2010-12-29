@@ -60,9 +60,6 @@ public class CtrlGrande {
         });
 
         //INSTANCIA EL RESTO DE LOS CONTROLADORES Y AGREGA PANELES
-        _controlFinanciacion = new CtrlCrearFinanciacion(_pantalla);
-        _controlFinanciacion.desactivar();
-        agregarPanel(_controlFinanciacion.getPanFinanciacion());
         _controlInversion = new CtrlModificarInversion(_pantalla, _gestor.getPlan());
         _controlInversion.desactivar();
         agregarPanel(_controlInversion.getPanel());
@@ -92,7 +89,6 @@ public class CtrlGrande {
         _controlFinanciacion.iniciar(_controlModificar.getDistOperatoriaSeleccionada());
         _pantalla.getLblOperatoria().setText(_controlModificar.getDistOperatoriaSeleccionada().getOperatoria().getNombre());
         _controlFinanciacion.activar();
-
 
         _pantalla.getBtnAddFinanciacion().setEnabled(false);
         _pantalla.getBtnPlan().setEnabled(true);

@@ -109,16 +109,10 @@ public class GestorCrearFinanciacion {
 
     public void guardarFinanciacion(List<DtoDetalleDistribucion> listaSeleccionada) throws PersistException {
         Facade.getInstance().beginTx();
-        List<DetalleDistribucionFinanciacion> detalles = new ArrayList<DetalleDistribucionFinanciacion>();
-        for (DistribucionFinanciacion distribucionFinanciacion : financiacion.getDistribucionesFinanciacion()) {
-            detalles.addAll(distribucionFinanciacion.getDetallesDistribucionesFinanciacion());
-        }
         for (DtoDetalleDistribucion dtoDetalleDistribucion : listaSeleccionada) {
-            for (DetalleDistribucionFinanciacion detalleDistribucionFinanciacion : dtoDetalleDistribucion.getDetallesDistribucionesFinanciacion()) {
                 if (!dtoDetalleDistribucion.getEstaActivo()) {
-                    detalles.remove(detalleDistribucionFinanciacion);
+                    listaSeleccionada.get(0).getDetallesDistribucionesFinanciacion().get(0).getDistribucionFinanciacion().getDetallesDistribucionesFinanciacion().removeAll(dtoDetalleDistribucion.getDetallesDistribucionesFinanciacion());
                 }
-            }
         }
         if (financiacion.getId() == null) {
             Facade.getInstance().guardar(financiacion);

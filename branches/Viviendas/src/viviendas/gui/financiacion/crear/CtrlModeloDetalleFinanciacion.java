@@ -6,7 +6,6 @@ import java.util.List;
 import viviendas.entidades.flujo.DetalleDistribucionFinanciacion;
 import viviendas.entidades.flujo.DistribucionFinanciacion;
 import viviendas.entidades.flujo.UsoFondo;
-import viviendas.modulos.financiacion.crear.DtoConstruccionFinanciacion;
 
 public class CtrlModeloDetalleFinanciacion {
 
