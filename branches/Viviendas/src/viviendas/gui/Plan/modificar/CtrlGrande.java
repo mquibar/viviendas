@@ -66,10 +66,10 @@ public class CtrlGrande {
         });
 
         //INSTANCIA EL RESTO DE LOS CONTROLADORES Y AGREGA PANELES
+        _controlFinanciacion = new CtrlCrearFinanciacion(_pantalla);
+        _controlFinanciacion.desactivar();
         _controlInversion = new CtrlModificarInversion(_pantalla, _gestor.getPlan());
         _controlInversion.desactivar();
-        agregarPanel(_controlInversion.getPanel());
-
         _pantalla.setVisible(true);
         _pantalla.getBtnPlan().setEnabled(false);
         _pantalla.toFront();
@@ -77,6 +77,7 @@ public class CtrlGrande {
     }
 
     private void agregarPanel(JPanel panel) {
+        _pantalla.getPnlCentral().removeAll();
         javax.swing.GroupLayout _pnlCentralLayout = new javax.swing.GroupLayout(_pantalla.getPnlCentral());
         _pantalla.getPnlCentral().setLayout(_pnlCentralLayout);
         _pnlCentralLayout.setHorizontalGroup(
@@ -90,8 +91,8 @@ public class CtrlGrande {
         _controlInversion.desactivar();
         if (_controlFinanciacion == null) {
             _controlFinanciacion = new CtrlCrearFinanciacion(_pantalla);
-            agregarPanel(_controlFinanciacion.getPanFinanciacion());
         }
+        agregarPanel(_controlFinanciacion.getPanFinanciacion());
         _controlFinanciacion.iniciar(_controlModificar.getDistOperatoriaSeleccionada());
         _pantalla.getLblOperatoria().setText(_controlModificar.getDistOperatoriaSeleccionada().getOperatoria().getNombre());
         _controlFinanciacion.activar();
@@ -102,25 +103,22 @@ public class CtrlGrande {
     }
 
     void pressPlanButton() {
-        if(_controlFinanciacion!=null)
-            _controlFinanciacion.desactivar();
-        if(_controlInversion!=null)
-            _controlInversion.desactivar();
+        _controlFinanciacion.desactivar();
+        _controlInversion.desactivar();
         _controlModificar.activar();
+        agregarPanel(_controlModificar.getPanel());
         _pantalla.getBtnPlan().setEnabled(false);
-        _pantalla.getBtnAddFinanciacion().setEnabled(false);
         _pantalla.getBtnInversion().setEnabled(true);
     }
 
     void pressInversionButton(){
-        if(_controlModificar!=null)
-            _controlModificar.desactivar();
-        if(_controlFinanciacion!=null)
-            _controlFinanciacion.desactivar();
+            
+        _controlModificar.desactivar();
+        _controlFinanciacion.desactivar();
         if(_controlInversion== null){
             _controlInversion = new CtrlModificarInversion(_pantalla, _gestor.getPlan());
-            agregarPanel(_controlInversion.getPanel());
         }
+        agregarPanel(_controlInversion.getPanel());
         _controlInversion.activar();
         _pantalla.getBtnInversion().setEnabled(false);
         _pantalla.getBtnAddFinanciacion().setEnabled(false);

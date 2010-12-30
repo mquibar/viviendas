@@ -42,6 +42,16 @@ public class GestorModificarPlan {
         return gestor.listarPlanes();
     }
 
+    public void eliminarPlan(Plan plan) throws BusinessOperationException{
+        try {
+            Facade.getInstance().beginTx();
+            Facade.getInstance().eliminar(plan);
+            Facade.getInstance().commitTx();
+        } catch (PersistException ex) {
+            Facade.getInstance().rollBackTx();
+            throw new BusinessOperationException("actualización");
+        }
+    }
     public Plan getPlan() {
         return plan_a_modificar;
     }
