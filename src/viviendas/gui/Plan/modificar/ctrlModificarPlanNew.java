@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -69,6 +70,7 @@ public class ctrlModificarPlanNew implements ICalculable {
     private boolean activo=true;
     private boolean estadoBtnDrop;
     private boolean estadoBtnView;
+    private Map<javax.swing.JButton,Boolean> _botonera;
 
     public ctrlModificarPlanNew(GestorModificarPlan gestor, IUModificarPlanNew pantalla) {
         _gestor = gestor;
@@ -80,6 +82,7 @@ public class ctrlModificarPlanNew implements ICalculable {
         _distSEconomico = new ModelTableDistribucionSectorEconomico(null);
         _distOperatoria = new ModelTableDistribucionOperatoria(null);
         _seleccion = new IUSeleccionRestantes(null, true);
+        _botonera = new java.util.HashMap<javax.swing.JButton,Boolean>();
         cargarPantalla();
         SubscriptorTotal.getInstance().añadir(this);
     }
@@ -209,16 +212,20 @@ public class ctrlModificarPlanNew implements ICalculable {
     }
     public void activar(){
         activo=true;
-        _panel.setVisible(true);
-        _pantalla.getBtnDropDetails().setEnabled(estadoBtnDrop);
-        _pantalla.getBtnViewDetails().setEnabled(estadoBtnView);
+        _pantalla.getBtnDropDetails().setEnabled(_botonera.get(_pantalla.getBtnDropDetails()));
+        _pantalla.getBtnViewDetails().setEnabled(_botonera.get(_pantalla.getBtnViewDetails()));
+        _pantalla.getBtnAdd().setEnabled(_botonera.get(_pantalla.getBtnAdd()));
+        _pantalla.getBtnDel().setEnabled(_botonera.get(_pantalla.getBtnDel()));
+        _pantalla.getBtnAddFinanciacion().setEnabled(_botonera.get(_pantalla.getBtnAddFinanciacion()));
     }
 
     public void desactivar(){
         activo=false;
-        _panel.setVisible(false);
-        estadoBtnDrop = _pantalla.getBtnDropDetails().isEnabled();
-        estadoBtnView = _pantalla.getBtnViewDetails().isEnabled();
+        _botonera.put(_pantalla.getBtnDropDetails(),_pantalla.getBtnDropDetails().isEnabled());
+        _botonera.put(_pantalla.getBtnViewDetails(), _pantalla.getBtnViewDetails().isEnabled());
+        _botonera.put(_pantalla.getBtnAdd(), _pantalla.getBtnAdd().isEnabled());
+        _botonera.put(_pantalla.getBtnDel(), _pantalla.getBtnDel().isEnabled());
+        _botonera.put(_pantalla.getBtnAddFinanciacion(), _pantalla.getBtnAddFinanciacion().isEnabled());
     }
 
     void pressOkButton() {

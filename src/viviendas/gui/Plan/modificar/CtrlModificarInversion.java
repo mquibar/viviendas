@@ -87,7 +87,6 @@ public class CtrlModificarInversion {
 
     public void activar(){
         activo= true;
-        _panel.setVisible(true);
         //Desactivar de botones
         _pantalla.getBtnViewDetails().setEnabled(false);
         _pantalla.getBtnDropDetails().setEnabled(false);
@@ -97,7 +96,6 @@ public class CtrlModificarInversion {
 
     public void desactivar(){
         activo=false;
-        _panel.setVisible(false);
     }
 
 

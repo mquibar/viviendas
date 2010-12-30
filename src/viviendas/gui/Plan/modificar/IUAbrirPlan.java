@@ -37,8 +37,10 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         _tblPlane = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         _btnOpen = new javax.swing.JButton();
         _btnCancel = new javax.swing.JButton();
+        _btnDelete = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Abrir Plan");
@@ -73,6 +75,9 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
         _btnOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Open_16x16.png"))); // NOI18N
         _btnOpen.setText("Abrir");
         _btnOpen.setMaximumSize(new java.awt.Dimension(68, 29));
@@ -80,22 +85,36 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
         _btnOpen.setPreferredSize(new java.awt.Dimension(68, 29));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 150);
-        getContentPane().add(_btnOpen, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 0);
+        jPanel1.add(_btnOpen, gridBagConstraints);
 
         _btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
         _btnCancel.setText("Cancelar");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 4);
-        getContentPane().add(_btnCancel, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 3);
+        jPanel1.add(_btnCancel, gridBagConstraints);
+
+        _btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/-.png"))); // NOI18N
+        _btnDelete.setText("Eliminar");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(3, 5, 3, 5);
+        jPanel1.add(_btnDelete, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+        getContentPane().add(jPanel1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -103,8 +122,10 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton _btnCancel;
+    private javax.swing.JButton _btnDelete;
     private javax.swing.JButton _btnOpen;
     private javax.swing.JTable _tblPlane;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
@@ -118,6 +139,10 @@ public class IUAbrirPlan extends javax.swing.JInternalFrame {
 
     public JTable getTblPlane() {
         return _tblPlane;
+    }
+
+    public JButton getBtnDelete() {
+        return _btnDelete;
     }
 
     

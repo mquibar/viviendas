@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportPlan" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="252"/>
+	<queryString>
+		<![CDATA[SELECT
+     Plan.`añosPlan` AS Plan_añosPlan,
+     Plan.`nombre` AS Plan_nombre,
+     Plan.`numeroViviendas` AS Plan_numeroViviendas,
+     TipoPlan.`nombre` AS TipoPlan_nombre,
+     AñoPlan.`año` AS AñoPlan_año,
+     AñoPlan.`cantViviendasAño` AS AñoPlan_cantViviendasAño,
+     DistribucionOperatoria.`porcentajeDistribucion` AS DistribucionOperatoria_porcentajeDistribucion,
+     DistribucionProvincial.`porcentajeDistribucion` AS DistribucionProvincial_porcentajeDistribucion,
+     DistribucionCiudad.`porcentajeDistribucion` AS DistribucionCiudad_porcentajeDistribucion,
+     Ciudad.`nombre` AS Ciudad_nombre,
+     DistribucionSector.`porcentajeDistribucion` AS DistribucionSector_porcentajeDistribucion,
+     Provincia.`nombre` AS Provincia_nombre,
+     SectorEconomico.`nombre` AS SectorEconomico_nombre,
+     Operatoria.`nombre` AS Operatoria_nombre
+FROM
+     `Plan` Plan INNER JOIN `AñoPlan` AñoPlan ON Plan.`id` = AñoPlan.`plan_id`
+     INNER JOIN `DistribucionProvincial` DistribucionProvincial ON AñoPlan.`id` = DistribucionProvincial.`añoPlan_id`
+     INNER JOIN `DistribucionCiudad` DistribucionCiudad ON AñoPlan.`id` = DistribucionCiudad.`añoPlan_id`
+     INNER JOIN `DistribucionOperatoria` DistribucionOperatoria ON AñoPlan.`id` = DistribucionOperatoria.`añoPlan_id`
+     INNER JOIN `DistribucionProvincial` DistribucionProvincial_A ON AñoPlan.`id` = DistribucionProvincial_A.`añoPlan_id`
+     INNER JOIN `DistribucionSector` DistribucionSector ON AñoPlan.`id` = DistribucionSector.`añoPlan_id`
+     INNER JOIN `SectorEconomico` SectorEconomico ON DistribucionSector.`sectorEconomico_id` = SectorEconomico.`id`
+     INNER JOIN `Provincia` Provincia ON DistribucionProvincial_A.`provincia_id` = Provincia.`id`
+     AND DistribucionProvincial.`provincia_id` = Provincia.`id`
+     INNER JOIN `Operatoria` Operatoria ON DistribucionOperatoria.`operatoria_id` = Operatoria.`id`
+     INNER JOIN `Ciudad` Ciudad ON DistribucionCiudad.`cuidad_id` = Ciudad.`id`
+     INNER JOIN `TipoPlan` TipoPlan ON Plan.`tipoPlan_id` = TipoPlan.`id`,
+     `DistribucionFinanciacion` DistribucionFinanciacion,
+     `DistribucionFlujoFondo` DistribucionFlujoFondo]]>
+	</queryString>
+	<field name="Plan_añosPlan" class="java.lang.Integer"/>
+	<field name="Plan_nombre" class="java.lang.String"/>
+	<field name="Plan_numeroViviendas" class="java.lang.Integer"/>
+	<field name="TipoPlan_nombre" class="java.lang.String"/>
+	<field name="AñoPlan_año" class="java.lang.Integer"/>
+	<field name="AñoPlan_cantViviendasAño" class="java.lang.Integer"/>
+	<field name="DistribucionOperatoria_porcentajeDistribucion" class="java.lang.Double"/>
+	<field name="DistribucionProvincial_porcentajeDistribucion" class="java.lang.Double"/>
+	<field name="DistribucionCiudad_porcentajeDistribucion" class="java.lang.Double"/>
+	<field name="Ciudad_nombre" class="java.lang.String"/>
+	<field name="DistribucionSector_porcentajeDistribucion" class="java.lang.Double"/>
+	<field name="Provincia_nombre" class="java.lang.String"/>
+	<field name="SectorEconomico_nombre" class="java.lang.String"/>
+	<field name="Operatoria_nombre" class="java.lang.String"/>
+	<group name="Plan_nombre">
+		<groupExpression><![CDATA[$F{Plan_nombre}]]></groupExpression>
+		<groupHeader>
+			<band height="56">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Plan_nombre]]></text>
+				</staticText>
+				<textField>
+					<reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Plan_nombre}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="-20" y="32" width="595" height="1" forecolor="#666666"/>
+				</line>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="33" width="55" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Plan_añosPlan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="55" y="33" width="55" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{Plan_numeroViviendas}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="110" y="33" width="55" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{TipoPlan_nombre}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="AñoPlan_año">
+		<groupExpression><![CDATA[$F{AñoPlan_año}]]></groupExpression>
+		<groupHeader>
+			<band height="54">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699"/>
+					<textElement>
+						<font size="22" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{AñoPlan_año}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[AñoPlan_año]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="34" width="55" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Integer"><![CDATA[$F{AñoPlan_cantViviendasAño}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="DistribucionProvincial_porcentajeDistribucion">
+		<groupExpression><![CDATA[$F{DistribucionProvincial_porcentajeDistribucion}]]></groupExpression>
+		<groupHeader>
+			<band height="51">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{DistribucionProvincial_porcentajeDistribucion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[DistribucionProvincial_porcentajeDistribucion]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="31" width="55" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Provincia_nombre}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="DistribucionCiudad_porcentajeDistribucion">
+		<groupExpression><![CDATA[$F{DistribucionCiudad_porcentajeDistribucion}]]></groupExpression>
+		<groupHeader>
+			<band height="46">
+				<textField>
+					<reportElement x="100" y="0" width="455" height="32" forecolor="#006699"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{DistribucionCiudad_porcentajeDistribucion}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" forecolor="#666666"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[DistribucionCiudad_porcentajeDistribucion]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="26" width="55" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Ciudad_nombre}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="DistribucionSectorEconomico">
+		<groupExpression><![CDATA[$F{DistribucionSector_porcentajeDistribucion}]]></groupExpression>
+		<groupHeader>
+			<band height="44">
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="0" width="407" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$F{DistribucionSector_porcentajeDistribucion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="0" y="20" width="352" height="20"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{SectorEconomico_nombre}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TITLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Add a description here]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plan_añosPlan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="55" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plan_numeroViviendas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="110" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TipoPlan_nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="165" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AñoPlan_cantViviendasAño]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="220" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DistribucionOperatoria_porcentajeDistribucion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="275" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ciudad_nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DistribucionSector_porcentajeDistribucion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="385" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Provincia_nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SectorEconomico_nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="495" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Operatoria_nombre]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="495" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Operatoria_nombre}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="330" y="0" width="55" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{DistribucionOperatoria_porcentajeDistribucion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
