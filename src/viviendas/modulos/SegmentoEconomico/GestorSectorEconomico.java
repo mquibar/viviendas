@@ -9,6 +9,7 @@ import java.util.List;
 import viviendas.entidades.vivienda.SectorEconomico;
 import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
+import viviendas.systemException.BusinessOperationException;
 import viviendas.utiles.Utiles;
 
 /**
@@ -18,7 +19,7 @@ import viviendas.utiles.Utiles;
 public class  GestorSectorEconomico {
     public static final String NOMBRE_PARAM_SECTOR_ECONOMICO = "SECTOR-ECONOMICO_";
 
-    public void guardar(List<SectorEconomico> listaMod) throws Exception{
+    public void guardar(List<SectorEconomico> listaMod) throws BusinessOperationException{
         Criterio criterio = new Criterio("vigente", "=", true);
         List<SectorEconomico> listaDB = Facade.getInstance().findByCriterio(SectorEconomico.class, criterio);
 
@@ -52,7 +53,7 @@ public class  GestorSectorEconomico {
             }
             Facade.getInstance().commitTx();
         } catch (Exception ex) {
-            throw new Exception("Error al guardar.");
+            throw new BusinessOperationException("Error al guardar sectores económicos.");
         }
     }
 

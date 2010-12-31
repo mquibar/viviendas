@@ -6,11 +6,10 @@
 package viviendas.modulos.FuentesFondos;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import viviendas.entidades.flujo.FuenteFondo;
 import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
+import viviendas.systemException.BusinessOperationException;
 import viviendas.utiles.Utiles;
 
 /**
@@ -21,7 +20,7 @@ public class GestorFuentesFondos {
     public static final String NOMBRE_PARAM_FUENTEFONDO = "FUENTEFONDO_";
     public static final String OTROSAPORTES = "OTROS APORTES";
     
-    public void guardar(List<FuenteFondo> listaMod){
+    public void guardar(List<FuenteFondo> listaMod) throws BusinessOperationException{
         Criterio criterio = new Criterio("vigente", "=", true);
         List<FuenteFondo> listaDB = Facade.getInstance().findByCriterio(FuenteFondo.class, criterio);
 
@@ -55,7 +54,7 @@ public class GestorFuentesFondos {
             }
             Facade.getInstance().commitTx();
         } catch (Exception ex) {
-            Logger.getLogger(GestorFuentesFondos.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BusinessOperationException("Error al guardar Fuentes de Fondos.");
         }
     }
 

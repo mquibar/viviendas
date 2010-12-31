@@ -6,12 +6,10 @@
 package viviendas.modulos.usosFondos;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import viviendas.entidades.flujo.UsoFondo;
-import viviendas.modulos.Operatoria.GestorOperatoria;
 import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
+import viviendas.systemException.BusinessOperationException;
 import viviendas.utiles.Utiles;
 
 /**
@@ -19,7 +17,7 @@ import viviendas.utiles.Utiles;
  * @author Maximiliano.
  */
 public class GestorUsosFondos {
-    public void guardar(List<UsoFondo> listaMod){
+    public void guardar(List<UsoFondo> listaMod) throws BusinessOperationException{
         Criterio criterio = new Criterio("vigente", "=", true);
         List<UsoFondo> listaDB = Facade.getInstance().findByCriterio(UsoFondo.class, criterio);
 
@@ -37,8 +35,7 @@ public class GestorUsosFondos {
                         Facade.getInstance().guardar(listaMod.get(i_db));
                     }
                 }
-                else{
-                    System.out.println(listaMod.get(i_db).getNombre());
+                else{                    
                     Facade.getInstance().actualizar(listaMod.get(i_db));
                 }
             }
@@ -50,7 +47,7 @@ public class GestorUsosFondos {
             }
             Facade.getInstance().commitTx();
         } catch (Exception ex) {
-            Logger.getLogger(GestorOperatoria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BusinessOperationException("Error al guardar usos de fondos.");
         }
     }
 

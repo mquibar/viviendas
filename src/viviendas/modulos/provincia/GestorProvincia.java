@@ -6,12 +6,10 @@
 package viviendas.modulos.provincia;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.Provincia;
-import viviendas.modulos.Operatoria.GestorOperatoria;
 import viviendas.persistencia.Facade;
+import viviendas.systemException.BusinessOperationException;
 
 /**
  *
@@ -20,7 +18,7 @@ import viviendas.persistencia.Facade;
 public class GestorProvincia {
     public static final String NOMBRE_PARAM_PROVINCIA = "PROVINCIA_";
 
-    public void guardar(List<Provincia> listaMod){
+    public void guardar(List<Provincia> listaMod) throws BusinessOperationException{
         try {
             Facade.getInstance().beginTx();
             for(int i_db=0; i_db<listaMod.size(); i_db++){
@@ -28,7 +26,7 @@ public class GestorProvincia {
             }
             Facade.getInstance().commitTx();
         } catch (Exception ex) {
-            Logger.getLogger(GestorOperatoria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BusinessOperationException("Error al guardar operatorias.");
         }
     }
 

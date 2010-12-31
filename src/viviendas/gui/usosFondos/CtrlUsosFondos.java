@@ -56,6 +56,7 @@ public class CtrlUsosFondos {
         _pantalla.setVisible(true);
         _pantalla.toFront();
         desktop.add(_pantalla);
+        _pantalla.toFront();
     }
 
     private void guardar(){
