@@ -84,8 +84,8 @@ public class CtrlInversion {
         _pantalla.getCbCiudades().setModel(_modeloCiudad);
 
         _pantalla.setVisible(true);
-        _pantalla.toFront();
         desktop.add(_pantalla);
+        _pantalla.toFront();
     }
 
     private void cargarUsos(){

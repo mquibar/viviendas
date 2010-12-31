@@ -67,6 +67,7 @@ public class CtrlTipoCiudad {
         verificarPorcentajes();
         _pantalla.setVisible(true);
         desktop.add(_pantalla);
+        _pantalla.toFront();
     }
 
     private void cerrar(){
@@ -77,7 +78,7 @@ public class CtrlTipoCiudad {
     private void guardar(){
         try {
             _gestor.guardar(_modelo.getAllRow());
-            JOptionPane.showMessageDialog(_pantalla, "Valores guardados correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(_pantalla, "Valores guardados correctamente", "Viviendas", JOptionPane.INFORMATION_MESSAGE);
             cerrar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(_pantalla, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

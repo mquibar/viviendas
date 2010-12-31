@@ -69,7 +69,6 @@ public class GestorInversion {
                     Facade.getInstance().actualizar(inversion);
                     Facade.getInstance().commitTx();
                 } catch (PersistException ex) {
-                    Logger.getLogger(GestorInversion.class.getName()).log(Level.SEVERE, null, ex);
                     throw new BusinessOperationException("ERROR al guardar los datos.");
                 }
             }

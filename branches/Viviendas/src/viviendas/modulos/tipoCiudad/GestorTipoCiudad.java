@@ -9,6 +9,7 @@ import java.util.List;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
+import viviendas.systemException.BusinessOperationException;
 import viviendas.utiles.Utiles;
 
 /**
@@ -18,7 +19,7 @@ import viviendas.utiles.Utiles;
 public class GestorTipoCiudad {
     public static final String NOMBRE_PARAM_CIUDAD = "CIUDAD_";
 
-    public void guardar(List<Ciudad> listaMod) throws Exception{
+    public void guardar(List<Ciudad> listaMod) throws BusinessOperationException {
         Criterio criterio = new Criterio("vigente", "=", true);
         List<Ciudad> listaDB = Facade.getInstance().findByCriterio(Ciudad.class, criterio);
 
@@ -52,7 +53,7 @@ public class GestorTipoCiudad {
             }
             Facade.getInstance().commitTx();
         } catch (Exception ex) {
-            throw new Exception("Error al guardar.");
+            throw new BusinessOperationException("Error al guardar ciudades.");
         }
     }
 

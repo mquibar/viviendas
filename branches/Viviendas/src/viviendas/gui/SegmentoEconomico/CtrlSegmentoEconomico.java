@@ -71,6 +71,7 @@ public class CtrlSegmentoEconomico {
         _pantalla.setVisible(true);
         verificarPorcentajes();
         desktop.add(_pantalla);
+        _pantalla.toFront();
     }
 
     private void cerrar(){
@@ -81,7 +82,7 @@ public class CtrlSegmentoEconomico {
     private void guardar(){
         try {
             _gestor.guardar(_modelo.getAllRow());
-            JOptionPane.showMessageDialog(_pantalla, "Valores guardados correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(_pantalla, "Valores guardados correctamente", "Viviendas", JOptionPane.INFORMATION_MESSAGE);
             cerrar();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(_pantalla, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

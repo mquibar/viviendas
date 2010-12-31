@@ -18,6 +18,7 @@ public class CtrlFlujoFondos {
 
     public CtrlFlujoFondos(JDesktopPane desktop) {
         _gestor = new GestorFlujoFondos();
+        //_pantalla: internalFrame
         _pantalla = new IUFlujoFondos();
 
         

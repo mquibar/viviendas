@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
+import viviendas.systemException.BusinessOperationException;
 import viviendas.utiles.Utiles;
 
 /**
@@ -20,7 +21,7 @@ import viviendas.utiles.Utiles;
 public class GestorOperatoria {
     public static final String NOMBRE_PARAM_OPERATORIA = "OPERATORIA_";
 
-    public void guardar(List<Operatoria> listaMod){
+    public void guardar(List<Operatoria> listaMod) throws BusinessOperationException{
         Criterio criterio = new Criterio("vigente", "=", true);
         List<Operatoria> listaDB = Facade.getInstance().findByCriterio(Operatoria.class, criterio);
 
@@ -54,7 +55,7 @@ public class GestorOperatoria {
             }
             Facade.getInstance().commitTx();
         } catch (Exception ex) {
-            Logger.getLogger(GestorOperatoria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BusinessOperationException("Error al guardar operatorias.");
         }
     }
 
