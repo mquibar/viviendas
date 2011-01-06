@@ -1,6 +1,7 @@
 package viviendas.entidades.flujo;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,9 +28,10 @@ public class ValorInversion implements Serializable {
     public ValorInversion() {
     }
 
-    public ValorInversion(ValorInversion valor) {
-        this.inversion = valor.inversion;
+    public ValorInversion(ValorInversion valor, Inversion inversion) {
+        this.inversion = inversion;
         this.financio = valor.financio;
+        this.importe = valor.importe;
     }
 
 

@@ -25,8 +25,8 @@ public class InversionPlan extends Inversion{
         this.ciudad=inversion.ciudad;
         this.totalInversion= inversion.totalInversion;
         this.valoresInversion = new ArrayList<ValorInversion>();
-        for (ValorInversion valorInversion : inversion.valoresInversion) {
-            valoresInversion.add(new ValorInversion(valorInversion));
+        for (ValorInversion valorInversion : inversion.getValoresInversion()) {
+            valoresInversion.add(new ValorInversion(valorInversion, this));
         }
     }
 

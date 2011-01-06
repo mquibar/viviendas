@@ -57,6 +57,7 @@ public class GestorCrearPlan {
             throw new VerifyDataException("porcentaje Operatorias");
         }
         porcentajes = null;
+        crearInversion(plan);
         for (int i = 0; i < cantidadAños; i++) {
             AnioPlan añoPlan = new AnioPlan();
             añoPlan.setAnio(año++);
@@ -100,8 +101,10 @@ public class GestorCrearPlan {
             añosPlan.add(añoPlan);
         }
         plan.setListaAnioPlan(añosPlan);
+        for (InversionPlan inversionPlan : plan.getListaInversion()) {
+            Facade.getInstance().guardar(inversionPlan);
+        }
         Facade.getInstance().guardar(plan);
-        crearInversion(plan); 
         Facade.getInstance().commitTx();
     }
 

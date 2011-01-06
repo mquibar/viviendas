@@ -836,7 +836,7 @@ CREATE TABLE IF NOT EXISTS `tipoplan` (
 -- Dumping data for table `tipoplan`
 --
 
-INSERT INTO `tipoplan` (`id`, `nombre`) VALUES
+INSERT INTO `TipoPlan` (`id`, `nombre`) VALUES
 (1, 'VIVIENDAS'),
 (2, 'SOLUCIONES');
 
@@ -858,7 +858,7 @@ CREATE TABLE IF NOT EXISTS `usofondo` (
 -- Dumping data for table `usofondo`
 --
 
-INSERT INTO `usofondo` (`id`, `importe`, `nombre`, `vigente`) VALUES
+INSERT INTO `UsoFondo` (`id`, `importe`, `nombre`, `vigente`) VALUES
 (1, 10000, 'VIVIENDA', b'1'),
 (2, 50000, 'TERRENO', b'1'),
 (3, 20000, 'URBANIZACION E INFRAESTRUCTURA', b'1');
@@ -880,7 +880,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `contraseña`, `usuario`) VALUES
+INSERT INTO `Usuario` (`id`, `contraseña`, `usuario`) VALUES
 (1, 'luis', 'luis');
 
 -- --------------------------------------------------------
