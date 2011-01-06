@@ -8,6 +8,7 @@ package viviendas.entidades.flujo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ import viviendas.entidades.vivienda.Ciudad;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="DTYPE")
 public class Inversion implements Serializable {
     
     protected static final long serialVersionUID = 1L;

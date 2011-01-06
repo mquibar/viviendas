@@ -125,6 +125,7 @@ public class GestorInversion {
         double total = 0d;
         if(lista != null)
             for(ValorInversion valor : lista){
+                if(valor.getImporte()!=null)
                 total = total + valor.getImporte();
             }
             return String.valueOf(total);

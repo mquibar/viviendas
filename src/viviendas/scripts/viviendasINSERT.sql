@@ -7,10 +7,10 @@ INSERT INTO AnioPlan (`id`, `anio`, `cantViviendasAnio`, `plan_id`) VALUES
 
 
 INSERT INTO `Ciudad` (`id`, `desde`, `hasta`, `nombre`, `parametro_id`, `vigente`) VALUES
-(1, 0, 10000, 'RURAL', 8, b'1'),
-(2, 10000, 20000, '10000-20000', 9, b'1'),
-(3, 20000, 1000000, 'METROPOLI', 10, NULL),
-(4, NULL, NULL, '0-10000', 39, b'1');
+(1, 0, 10000, 'CHICA', 8, b'1'),
+(2, 10000, 20000, 'MEDIANA', 9, b'1'),
+(3, 20000, 100000, 'GRANDE', 10, b'1'),
+(4, 100000,150000, 'COMPLETA', 39, b'1');
 
 
 INSERT INTO `DistribucionCiudad` (`id`, `porcentajeDistribucion`, `anioPlan_id`, `cuidad_id`, `distribucionProvincial_id`) VALUES
