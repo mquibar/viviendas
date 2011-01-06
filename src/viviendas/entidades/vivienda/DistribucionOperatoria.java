@@ -24,16 +24,16 @@ public class DistribucionOperatoria implements Serializable {
     @ManyToOne
     private Operatoria operatoria;
     @ManyToOne
-    private AñoPlan añoPlan;
+    private AnioPlan anioPlan;
     @OneToOne(mappedBy="distribucionOperatoria")
     private Financiacion financiacion;
 
-    public AñoPlan getAñoPlan() {
-        return añoPlan;
+    public AnioPlan getAnioPlan() {
+        return anioPlan;
     }
 
-    public void setAñoPlan(AñoPlan añoPlan) {
-        this.añoPlan = añoPlan;
+    public void setAnioPlan(AnioPlan anioPlan) {
+        this.anioPlan = anioPlan;
     }
 
     public Long getId() {

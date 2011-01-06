@@ -2,123 +2,111 @@ package viviendas.modulos.financiacion.crear;
 
 import java.util.ArrayList;
 import java.util.List;
-import viviendas.entidades.flujo.DetalleDistribucionFinanciacion;
-import viviendas.entidades.flujo.DistribucionFinanciacion;
 import viviendas.entidades.flujo.Financiacion;
-import viviendas.entidades.flujo.FuenteFondo;
-import viviendas.entidades.flujo.UsoFondo;
+import viviendas.entidades.vivienda.AnioPlan;
+import viviendas.entidades.vivienda.Ciudad;
+import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
-import viviendas.gui.financiacion.crear.DtoDetalleDistribucion;
-import viviendas.modulos.FuentesFondos.GestorFuentesFondos;
+import viviendas.entidades.vivienda.DistribucionProvincial;
+import viviendas.entidades.vivienda.DistribucionSector;
+import viviendas.entidades.vivienda.Operatoria;
+import viviendas.entidades.vivienda.Plan;
+import viviendas.entidades.vivienda.Provincia;
+import viviendas.entidades.vivienda.SectorEconomico;
+import viviendas.modulos.financiacion.modificar.GestorModificarFinanciacion;
+import viviendas.modulos.parametros.GestorParametro;
 import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
 import viviendas.persistencia.exceptions.PersistException;
 
 public class GestorCrearFinanciacion {
 
-    private Financiacion financiacion;
+    private Plan _plan;
+    private final Financiacion _financiacion;
 
-    public GestorCrearFinanciacion() {
+    public GestorCrearFinanciacion(Financiacion financiacion) {
+        _financiacion = financiacion;
     }
 
-    public DistribucionFinanciacion crearDistribucion(Double porcentaje) {
-        //TODO verificar 100% uso fondo y fuentefondo en los parametros
-        DistribucionFinanciacion distribucionFinanciacion = new DistribucionFinanciacion();
-        distribucionFinanciacion.setFinanciacion(financiacion);
-        financiacion.getDistribucionesFinanciacion().add(distribucionFinanciacion);
-        distribucionFinanciacion.setDetallesDistribucionesFinanciacion(new ArrayList<DetalleDistribucionFinanciacion>());
-        distribucionFinanciacion.setPorcentajeFinanciacion(porcentaje);
-        Criterio criterioVigente = new Criterio("vigente", "=", true);
-        List<UsoFondo> usosFondo = Facade.getInstance().findByCriterio(UsoFondo.class, criterioVigente);
-        List<FuenteFondo> fuenteFondos = Facade.getInstance().findByCriterio(FuenteFondo.class, criterioVigente);
-        for (UsoFondo usoFondo : usosFondo) {
-            List<DetalleDistribucionFinanciacion> listaDetalles = new ArrayList<DetalleDistribucionFinanciacion>();
-            FuenteFondo fuenteOtrosAportes = null;
-            for (FuenteFondo fuenteFondo : fuenteFondos) {
-                if (fuenteFondo.getNombre().equals(GestorFuentesFondos.OTROSAPORTES)) {
-                    fuenteOtrosAportes = fuenteFondo;
-                } else {
-                    DetalleDistribucionFinanciacion detalle = new DetalleDistribucionFinanciacion();
-                    detalle.setDistribucionFinanciacion(distribucionFinanciacion);
-                    detalle.setFuenteFondo(fuenteFondo);
-                    detalle.setPorcentaje(0.0);
-                    detalle.setUsoFondo(usoFondo);
-                    listaDetalles.add(detalle);
+    public void setPlan(Plan selected) {
+        this._plan = selected;
+    }
 
+    public List<AnioPlan> obtenerAñosPlan() {
+        Criterio criterioAños = new Criterio("plan", "=", _plan);
+        return Facade.getInstance().findByCriterio(AnioPlan.class, criterioAños);
+    }
+
+    public List<Ciudad> obtenerCiudades() {
+        List<Ciudad> listaCiudades = new ArrayList<Ciudad>();
+        for (AnioPlan anioPlan : _plan.getListaAnioPlan()) {
+            for (DistribucionCiudad distribucionCiudad : anioPlan.getDistribucionCiudad()) {
+                if (!listaCiudades.contains(distribucionCiudad.getCuidad())) {
+                    listaCiudades.add(distribucionCiudad.getCuidad());
                 }
             }
-            DetalleDistribucionFinanciacion detalle = new DetalleDistribucionFinanciacion();
-            detalle.setDistribucionFinanciacion(distribucionFinanciacion);
-            detalle.setFuenteFondo(fuenteOtrosAportes);
-            detalle.setPorcentaje(100.0);
-            detalle.setUsoFondo(usoFondo);
-            listaDetalles.add(detalle);
-            distribucionFinanciacion.getDetallesDistribucionesFinanciacion().addAll(listaDetalles);
         }
-        return distribucionFinanciacion;
+        return listaCiudades;
     }
 
-    public String getNombreCompletoCombinacion() {
-        String año = financiacion.getDistribucionOperatoria().getAñoPlan().getAño().toString();
-        String provincia = financiacion.getDistribucionOperatoria().getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getProvincia().getNombre();
-        String ciudad = financiacion.getDistribucionOperatoria().getDistribucionSector().getDistribucionCiudad().getCuidad().getNombre();
-        String sector = financiacion.getDistribucionOperatoria().getDistribucionSector().getSectorEconomico().getNombre();
-        String operatoria = financiacion.getDistribucionOperatoria().getOperatoria().getNombre();
-        return año + " - " + provincia + " - " + ciudad + " - " + sector + " - " + operatoria;
-    }
-
-    public void actualizarPorcentaje(List<DtoDetalleDistribucion> listaDto) {
-        for (DtoDetalleDistribucion dtoDetalleDistribucion : listaDto) {
-            DetalleDistribucionFinanciacion detalle = null;
-            Double total = 0.0;
-            for (DetalleDistribucionFinanciacion detalleDistribucionFinanciacion : dtoDetalleDistribucion.getDetallesDistribucionesFinanciacion()) {
-                if (!detalleDistribucionFinanciacion.getFuenteFondo().getNombre().equals(GestorFuentesFondos.OTROSAPORTES)) {
-                    total += detalleDistribucionFinanciacion.getPorcentaje();
-                } else {
-                    detalle = detalleDistribucionFinanciacion;
+    public List<Operatoria> obtenerOperatorias() {
+        List<Operatoria> listaOperatoria = new ArrayList<Operatoria>();
+        for (AnioPlan anioPlan : _plan.getListaAnioPlan()) {
+            for (DistribucionOperatoria distribucionOperatoria : anioPlan.getDistribucionOperatoria()) {
+                if (!listaOperatoria.contains(distribucionOperatoria.getOperatoria())) {
+                    listaOperatoria.add(distribucionOperatoria.getOperatoria());
                 }
             }
-            detalle.setPorcentaje(100.0 - total);
         }
+        return listaOperatoria;
     }
 
-    public List<DistribucionFinanciacion> cargarFinanciacion(DistribucionOperatoria distribucionOperatoria) {
-        Criterio criterio = new Criterio("distribucionOperatoria", "=", distribucionOperatoria);
-        List<Financiacion> listaFinaciacion = Facade.getInstance().findByCriterio(Financiacion.class, criterio);
-        if (listaFinaciacion.isEmpty()) {
-            financiacion = new Financiacion();
-            financiacion.setDistribucionOperatoria(distribucionOperatoria);
-            financiacion.setNombre(getNombreCompletoCombinacion());
-            financiacion.setDistribucionesFinanciacion(new ArrayList<DistribucionFinanciacion>());
-            return null;
-        } else {
-            financiacion = listaFinaciacion.get(0);
-            return listaFinaciacion.get(0).getDistribucionesFinanciacion();
-
-        }
-
-    }
-
-    public Double calcularPorcentajeTotal() {
-        Double total = 0.0;
-        for (DistribucionFinanciacion distribucionFinanciacion : financiacion.getDistribucionesFinanciacion()) {
-            total += distribucionFinanciacion.getPorcentajeFinanciacion();
-        }
-        return total;
-    }
-
-    public void guardarFinanciacion(List<DtoDetalleDistribucion> listaSeleccionada) throws PersistException {
-        Facade.getInstance().beginTx();
-        for (DtoDetalleDistribucion dtoDetalleDistribucion : listaSeleccionada) {
-                if (!dtoDetalleDistribucion.getEstaActivo()) {
-                    listaSeleccionada.get(0).getDetallesDistribucionesFinanciacion().get(0).getDistribucionFinanciacion().getDetallesDistribucionesFinanciacion().removeAll(dtoDetalleDistribucion.getDetallesDistribucionesFinanciacion());
+    public List<Provincia> obtenerProvincias() {
+        List<Provincia> listaProvincia = new ArrayList<Provincia>();
+        for (AnioPlan anioPlan : _plan.getListaAnioPlan()) {
+            for (DistribucionProvincial distribucionProvincia : anioPlan.getDistribucionProvincia()) {
+                if (!listaProvincia.contains(distribucionProvincia.getProvincia())) {
+                    listaProvincia.add(distribucionProvincia.getProvincia());
                 }
+            }
         }
-        if (financiacion.getId() == null) {
-            Facade.getInstance().guardar(financiacion);
-        } else {
-            Facade.getInstance().actualizar(financiacion);
+        return listaProvincia;
+    }
+
+    public List<SectorEconomico> obtenerSectoresEconomicos() {
+        List<SectorEconomico> listaSector = new ArrayList<SectorEconomico>();
+        for (AnioPlan anioPlan : _plan.getListaAnioPlan()) {
+            for (DistribucionSector distribucionSector : anioPlan.getDistribucionSector()) {
+                if (!listaSector.contains(distribucionSector.getSectorEconomico())) {
+                    listaSector.add(distribucionSector.getSectorEconomico());
+                }
+            }
         }
-        Facade.getInstance().commitTx();
+        return listaSector;
+    }
+
+    public List<Plan> obtenerPlanes() {
+        return Facade.getInstance().findAll(Plan.class);
+    }
+
+    public void aplicarFinanciacion(AnioPlan anio, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
+        try {
+            Facade.getInstance().beginTx();
+            List<DistribucionOperatoria> listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_plan, provincia, ciudad, sector, operatoria);
+            System.out.println("Filtrado Combinacion: " + listaDistribucionOperatoria.size());
+            for (DistribucionOperatoria distribucionOperatoria : listaDistribucionOperatoria) {
+                if (distribucionOperatoria.getFinanciacion() != null) {
+                    Facade.getInstance().eliminar(distribucionOperatoria.getFinanciacion());
+                }
+                Financiacion financiacion = new Financiacion(_financiacion);
+                financiacion.setDistribucionOperatoria(distribucionOperatoria);
+                distribucionOperatoria.setFinanciacion(financiacion);
+                financiacion.setNombre(GestorModificarFinanciacion.getNombreCompletoCombinacion(distribucionOperatoria));
+                Facade.getInstance().guardar(financiacion);
+            }
+            Facade.getInstance().commitTx();
+        } catch (PersistException ex) {
+            ex.printStackTrace();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package viviendas.gui.financiacion.crear;
+package viviendas.gui.financiacion.modificar;
 
 import java.util.List;
 import viviendas.entidades.flujo.DetalleDistribucionFinanciacion;

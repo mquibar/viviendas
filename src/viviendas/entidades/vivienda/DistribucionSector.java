@@ -20,16 +20,16 @@ public class DistribucionSector implements Serializable {
     @ManyToOne(fetch=FetchType.EAGER)
     private SectorEconomico sectorEconomico;
     @ManyToOne
-    private AñoPlan añoPlan;
+    private AnioPlan anioPlan;
     @ManyToOne(cascade=CascadeType.MERGE)
     private DistribucionCiudad distribucionCiudad;
 
-    public AñoPlan getAñoPlan() {
-        return añoPlan;
+    public AnioPlan getAnioPlan() {
+        return anioPlan;
     }
 
-    public void setAñoPlan(AñoPlan añoPlan) {
-        this.añoPlan = añoPlan;
+    public void setAnioPlan(AnioPlan añoPlan) {
+        this.anioPlan = añoPlan;
     }
 
     public DistribucionSector() {

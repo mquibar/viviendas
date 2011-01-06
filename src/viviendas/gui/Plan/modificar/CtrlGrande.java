@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import javax.swing.JPanel;
-import viviendas.gui.financiacion.crear.CtrlCrearFinanciacion;
+import viviendas.gui.financiacion.modificar.CtrlModificarFinanciacion;
 import viviendas.gui.sistema.CtrlPrincipal;
 import viviendas.modulos.Plan.modificar.GestorModificarPlan;
 
@@ -20,7 +20,7 @@ public class CtrlGrande {
 
     private IUModificarPlanNew _pantalla;
     private ctrlModificarPlanNew _controlModificar;
-    private CtrlCrearFinanciacion _controlFinanciacion;
+    private CtrlModificarFinanciacion _controlFinanciacion;
     private CtrlModificarInversion _controlInversion;
     private GestorModificarPlan _gestor;
 
@@ -66,7 +66,7 @@ public class CtrlGrande {
         });
 
         //INSTANCIA EL RESTO DE LOS CONTROLADORES Y AGREGA PANELES
-        _controlFinanciacion = new CtrlCrearFinanciacion(_pantalla);
+        _controlFinanciacion = new CtrlModificarFinanciacion(_pantalla);
         _controlFinanciacion.desactivar();
         _controlInversion = new CtrlModificarInversion(_pantalla, _gestor.getPlan());
         _controlInversion.desactivar();
@@ -90,12 +90,12 @@ public class CtrlGrande {
         _controlModificar.desactivar();
         _controlInversion.desactivar();
         if (_controlFinanciacion == null) {
-            _controlFinanciacion = new CtrlCrearFinanciacion(_pantalla);
+            _controlFinanciacion = new CtrlModificarFinanciacion(_pantalla);
         }
         agregarPanel(_controlFinanciacion.getPanFinanciacion());
+        _controlFinanciacion.activar();
         _controlFinanciacion.iniciar(_controlModificar.getDistOperatoriaSeleccionada());
         _pantalla.getLblOperatoria().setText(_controlModificar.getDistOperatoriaSeleccionada().getOperatoria().getNombre());
-        _controlFinanciacion.activar();
 
         _pantalla.getBtnAddFinanciacion().setEnabled(false);
         _pantalla.getBtnPlan().setEnabled(true);

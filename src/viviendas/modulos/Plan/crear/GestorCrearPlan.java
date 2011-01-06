@@ -2,11 +2,9 @@ package viviendas.modulos.Plan.crear;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import viviendas.entidades.flujo.InversionParametro;
 import viviendas.entidades.flujo.InversionPlan;
-import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.AnioPlan;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
@@ -32,11 +30,11 @@ public class GestorCrearPlan {
         int cantidadAños = dto.getAños();
         int año = dto.getAñoInicial();
         Plan plan = new Plan();
-        plan.setAñosPlan(cantidadAños);
+        plan.setAniosPlan(cantidadAños);
         plan.setTipoPlan(dto.getTipo());
         plan.setNombre(dto.getNombre().toUpperCase());
         plan.setNumeroViviendas(cantidadAños * dto.getCantidadViviendas());
-        List<AñoPlan> añosPlan = new ArrayList<AñoPlan>();
+        List<AnioPlan> añosPlan = new ArrayList<AnioPlan>();
         Criterio criterioVigente = new Criterio("vigente", "=", true);
         List<SectorEconomico> sectoresEconomicos = Facade.getInstance().findByCriterio(SectorEconomico.class, criterioVigente);
         List<Double> porcentajes = new ArrayList<Double>();
@@ -60,9 +58,9 @@ public class GestorCrearPlan {
         }
         porcentajes = null;
         for (int i = 0; i < cantidadAños; i++) {
-            AñoPlan añoPlan = new AñoPlan();
-            añoPlan.setAño(año++);
-            añoPlan.setCantViviendasAño(dto.getCantidadViviendas());
+            AnioPlan añoPlan = new AnioPlan();
+            añoPlan.setAnio(año++);
+            añoPlan.setCantViviendasAnio(dto.getCantidadViviendas());
             añoPlan.setPlan(plan);
             List<DistribucionProvincial> distribucionesProvinciales = new ArrayList<DistribucionProvincial>(dto.getDistribucionProvincial());
             for (DistribucionProvincial distribucionProvincial : distribucionesProvinciales) {
@@ -72,39 +70,38 @@ public class GestorCrearPlan {
                     DistribucionCiudad distribucionCiudad = new DistribucionCiudad();
                     distribucionCiudad.setDistribucionProvincial(distribucionProvincialNueva);
                     distribucionCiudad.setCuidad(ciudad);
-                    distribucionCiudad.setAñoPlan(añoPlan);
+                    distribucionCiudad.setAnioPlan(añoPlan);
                     distribucionCiudad.setPorcentajeDistribucion(ciudad.getParametro().getPorcenteaje());
                     for (SectorEconomico sectorEconomico : sectoresEconomicos) {
 
                         DistribucionSector distribucionSector = new DistribucionSector();
-                        distribucionSector.setAñoPlan(añoPlan);
+                        distribucionSector.setAnioPlan(añoPlan);
                         distribucionSector.setDistribucionCiudad(distribucionCiudad);
                         distribucionSector.setSectorEconomico(sectorEconomico);
                         distribucionSector.setPorcentajeDistribucion(sectorEconomico.getParametro().getPorcenteaje());
                         for (Operatoria operatoria : operatorias) {
 
                             DistribucionOperatoria distribucionOperatoria = new DistribucionOperatoria();
-                            distribucionOperatoria.setAñoPlan(añoPlan);
+                            distribucionOperatoria.setAnioPlan(añoPlan);
                             distribucionOperatoria.setDistribucionSector(distribucionSector);
                             distribucionOperatoria.setOperatoria(operatoria);
                             distribucionOperatoria.setPorcentajeDistribucion(operatoria.getParametro().getPorcenteaje());
-                            distribucionOperatoria.setAñoPlan(añoPlan);
                             Facade.getInstance().guardar(distribucionOperatoria);
                         }
-                        distribucionSector.setAñoPlan(añoPlan);
+                        distribucionSector.setAnioPlan(añoPlan);
                         Facade.getInstance().guardar(distribucionSector);
                     }
-                    distribucionCiudad.setAñoPlan(añoPlan);
+                    distribucionCiudad.setAnioPlan(añoPlan);
                     Facade.getInstance().guardar(distribucionCiudad);
                 }
-                distribucionProvincialNueva.setAñoPlan(añoPlan);
+                distribucionProvincialNueva.setAnioPlan(añoPlan);
                 Facade.getInstance().guardar(distribucionProvincialNueva);
             }
             añosPlan.add(añoPlan);
         }
-        plan.setListaAñoPlan(añosPlan);
-        crearInversion(plan);
+        plan.setListaAnioPlan(añosPlan);
         Facade.getInstance().guardar(plan);
+        crearInversion(plan); 
         Facade.getInstance().commitTx();
     }
 

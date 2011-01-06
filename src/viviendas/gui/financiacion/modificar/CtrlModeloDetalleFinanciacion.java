@@ -1,4 +1,4 @@
-package viviendas.gui.financiacion.crear;
+package viviendas.gui.financiacion.modificar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +25,6 @@ public class CtrlModeloDetalleFinanciacion {
         String nombre = "Financiación ";
         nombre += " - " + distribucion.getPorcentajeFinanciacion();
         dtoConstruccion.setNombre(nombre);
-
         for (int i = 0; i < distribucion.getDetallesDistribucionesFinanciacion().size(); i++) {
             DetalleDistribucionFinanciacion detalleDistribucionFinanciacion = distribucion.getDetallesDistribucionesFinanciacion().get(i);
             if (hashMap.get(detalleDistribucionFinanciacion.getUsoFondo()) == null) {

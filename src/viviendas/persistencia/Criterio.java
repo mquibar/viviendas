@@ -33,12 +33,12 @@ public class Criterio {
 
     @Override
     public String toString() {
-        return "o." + atributo + operador + ":" + atributo + gui.toString();
+        return "o." + atributo + operador + ":" + atributo.replace(".", "") + gui.toString();
     }
 
     public Map<String, Object> toMap() {
         Map mapa = new HashMap<String, Object>();
-        mapa.put(atributo + gui, valor);
+        mapa.put(atributo.replace(".", "") + gui, valor);
         return mapa;
     }
 

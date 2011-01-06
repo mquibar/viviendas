@@ -1,6 +1,7 @@
 package viviendas.entidades.flujo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,12 +20,26 @@ public class Financiacion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    @OneToMany(mappedBy="financiacion",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "financiacion", cascade = CascadeType.ALL)
     private List<DistribucionFinanciacion> distribucionesFinanciacion;
     @OneToOne
     private DistribucionOperatoria distribucionOperatoria;
 
     public Financiacion() {
+    }
+
+    public Financiacion(Financiacion financiacion) {
+        distribucionOperatoria = financiacion.getDistribucionOperatoria();
+        nombre = financiacion.getNombre();
+        if (financiacion.getDistribucionesFinanciacion() != null) {
+            List<DistribucionFinanciacion> listaDistribucion = new ArrayList<DistribucionFinanciacion>();
+            for (DistribucionFinanciacion distribucionFinanciacion : financiacion.getDistribucionesFinanciacion()) {
+                DistribucionFinanciacion df = new DistribucionFinanciacion(distribucionFinanciacion);
+                df.setFinanciacion(this);
+                listaDistribucion.add(df);
+            }
+            distribucionesFinanciacion = listaDistribucion;
+        }
     }
 
     public DistribucionOperatoria getDistribucionOperatoria() {

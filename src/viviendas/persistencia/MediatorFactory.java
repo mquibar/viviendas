@@ -10,7 +10,7 @@ import viviendas.entidades.flujo.FuenteFondo;
 import viviendas.entidades.flujo.InversionParametro;
 import viviendas.entidades.flujo.UsoFondo;
 import viviendas.entidades.flujo.ValorInversion;
-import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.AnioPlan;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
@@ -101,7 +101,7 @@ class MediatorFactory {
                 interm = new Intermediario<Plan>(c.getSimpleName());
                 break;
             case AÑOPLAN:
-                interm = new Intermediario<AñoPlan>("AñoPlan");
+                interm = new Intermediario<AnioPlan>("AnioPlan");
                 break;
             case PARAMETROSPLAN:
                 interm = new Intermediario<ParametrosPlan>(c.getSimpleName());

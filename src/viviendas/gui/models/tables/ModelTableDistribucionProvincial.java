@@ -29,10 +29,10 @@ public class ModelTableDistribucionProvincial extends AbstractTableModel<Distrib
                 }
                 return 0.0;
             case 2:
-                if (distribucion.getPorcentajeDistribucion() == null || distribucion.getAñoPlan() == null) {
+                if (distribucion.getPorcentajeDistribucion() == null || distribucion.getAnioPlan() == null) {
                     return 0.0;
                 }
-                return viviendas.utiles.Utiles.round((distribucion.getAñoPlan().getCantViviendasAño() * distribucion.getPorcentajeDistribucion()) / 100.0, 3);
+                return viviendas.utiles.Utiles.round((distribucion.getAnioPlan().getCantViviendasAnio() * distribucion.getPorcentajeDistribucion()) / 100.0, 3);
             default:
                 return "";
         }
@@ -43,6 +43,11 @@ public class ModelTableDistribucionProvincial extends AbstractTableModel<Distrib
         DistribucionProvincial distribucion = _lista.get(rowIndex);
         switch (columnIndex) {
             case 1:
+                //TODO verificar
+                Double valor = (Double) aValue;
+                if (valor.compareTo(0.0) < 0) {
+                    return;
+                }
                 distribucion.setPorcentajeDistribucion((Double) aValue);
 
         }

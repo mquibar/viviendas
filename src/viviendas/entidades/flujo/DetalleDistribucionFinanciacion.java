@@ -21,6 +21,16 @@ public class DetalleDistribucionFinanciacion implements Serializable {
     @ManyToOne
     private FuenteFondo fuenteFondo;
 
+    public DetalleDistribucionFinanciacion() {
+    }
+
+    public DetalleDistribucionFinanciacion(DetalleDistribucionFinanciacion detalleDistribucionFinanciacion) {
+        distribucionFinanciacion = detalleDistribucionFinanciacion.getDistribucionFinanciacion();
+        porcentaje = detalleDistribucionFinanciacion.getPorcentaje();
+        usoFondo=detalleDistribucionFinanciacion.getUsoFondo();
+        fuenteFondo=detalleDistribucionFinanciacion.getFuenteFondo();
+    }
+
     public Long getId() {
         return id;
     }

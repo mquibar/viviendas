@@ -22,14 +22,14 @@ public class DistribucionCiudad implements Serializable {
     @ManyToOne(cascade=CascadeType.MERGE)
     private DistribucionProvincial distribucionProvincial;
     @ManyToOne
-    private AñoPlan añoPlan;
+    private AnioPlan anioPlan;
 
-    public AñoPlan getAñoPlan() {
-        return añoPlan;
+    public AnioPlan getAnioPlan() {
+        return anioPlan;
     }
 
-    public void setAñoPlan(AñoPlan añoPlan) {
-        this.añoPlan = añoPlan;
+    public void setAnioPlan(AnioPlan añoPlan) {
+        this.anioPlan = añoPlan;
     }
 
     public DistribucionCiudad() {
