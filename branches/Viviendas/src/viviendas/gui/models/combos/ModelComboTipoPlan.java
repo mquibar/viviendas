@@ -13,8 +13,8 @@ import viviendas.entidades.vivienda.TipoPlan;
  */
 public class ModelComboTipoPlan extends AbstractComboBoxModel<TipoPlan> {
 
-    public ModelComboTipoPlan(List<TipoPlan> tiposPlan) {
-        super(tiposPlan);
+    public ModelComboTipoPlan(List<TipoPlan> tiposPlan,String primerElemento) {
+        super(tiposPlan,primerElemento);
         for (TipoPlan tipoPlan : tiposPlan) {
             addElement(tipoPlan.getNombre());
         }

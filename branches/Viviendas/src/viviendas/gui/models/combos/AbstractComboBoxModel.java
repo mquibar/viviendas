@@ -16,9 +16,9 @@ public abstract class AbstractComboBoxModel<E> extends DefaultComboBoxModel{
 
     List<E> _lista;
 
-    public AbstractComboBoxModel(List<E> lista) {
+    public AbstractComboBoxModel(List<E> lista,String primerElemento) {
         this._lista = lista;
-        super.addElement("Selecione un Elemento");
+        super.addElement(primerElemento);
     }
     
 

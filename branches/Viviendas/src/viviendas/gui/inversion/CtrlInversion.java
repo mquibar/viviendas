@@ -80,7 +80,7 @@ public class CtrlInversion {
         _modeloValoresInversion = new ModelTableValoresInversion(null);
         _pantalla.getTbUsosFondos().setModel(_modeloValoresInversion);
 
-        _modeloCiudad = new ModelComboCiudad(_gestor.obtenerCiudades());
+        _modeloCiudad = new ModelComboCiudad(_gestor.obtenerCiudades(),"Seleccione ...");
         _pantalla.getCbCiudades().setModel(_modeloCiudad);
 
         _pantalla.setVisible(true);

@@ -34,7 +34,7 @@ public class CtrlPlan implements ICalculable {
         Utiles.ordena(listaProvincia, "nombre");
         _pantalla.getTabProvincias().setModel(new TablaProvincia(listaProvincia));
         _pantalla.getTabProvinciasSeleccionadas().setModel(new TablaDistribucionProvincial(new ArrayList<DistribucionProvincial>()));
-        _pantalla.getComTipoPlan().setModel(new ModelComboTipoPlan(_gestor.buscarTiposPlanes()));
+        _pantalla.getComTipoPlan().setModel(new ModelComboTipoPlan(_gestor.buscarTiposPlanes(),"Seleccione ..."));
         SubscriptorTotal.getInstance().añadir(this);
         _pantalla.getBtnAceptar().addActionListener(new java.awt.event.ActionListener() {
 

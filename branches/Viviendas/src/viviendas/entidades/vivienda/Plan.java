@@ -11,11 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import viviendas.entidades.flujo.InversionPlan;
 
-/**
- * @author Manuel
- * @version 1.0
- * @created 02-dic-2010 12:40:00
- */
 @Entity
 public class Plan implements Serializable {
 
@@ -24,12 +19,12 @@ public class Plan implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private Integer añosPlan;
+    private Integer aniosPlan;
     private Integer numeroViviendas;
     @ManyToOne
     private TipoPlan tipoPlan;
     @OneToMany(mappedBy = "plan", cascade = CascadeType.ALL)
-    private List<AñoPlan> listaAñoPlan;
+    private List<AnioPlan> listaAnioPlan;
     @OneToMany
     private List<InversionPlan> listaInversion;
 
@@ -44,12 +39,12 @@ public class Plan implements Serializable {
         this.nombre = nombre;
     }
 
-    public Integer getAñosPlan() {
-        return añosPlan;
+    public Integer getAniosPlan() {
+        return aniosPlan;
     }
 
-    public void setAñosPlan(Integer añosPlan) {
-        this.añosPlan = añosPlan;
+    public void setAniosPlan(Integer aniosPlan) {
+        this.aniosPlan = aniosPlan;
     }
 
     public Integer getNumeroViviendas() {
@@ -68,12 +63,12 @@ public class Plan implements Serializable {
         this.id = id;
     }
 
-    public List<AñoPlan> getListaAñoPlan() {
-        return listaAñoPlan;
+    public List<AnioPlan> getListaAnioPlan() {
+        return listaAnioPlan;
     }
 
-    public void setListaAñoPlan(List<AñoPlan> listaAñoPlan) {
-        this.listaAñoPlan = listaAñoPlan;
+    public void setListaAnioPlan(List<AnioPlan> listaAnioPlan) {
+        this.listaAnioPlan = listaAnioPlan;
     }
 
     public TipoPlan getTipoPlan() {

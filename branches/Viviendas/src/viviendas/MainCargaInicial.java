@@ -4,9 +4,13 @@
  */
 package viviendas;
 
-import java.util.List;
 import viviendas.entidades.vivienda.Ciudad;
+import viviendas.entidades.vivienda.Operatoria;
+import viviendas.entidades.vivienda.Plan;
 import viviendas.entidades.vivienda.Provincia;
+import viviendas.entidades.vivienda.SectorEconomico;
+import viviendas.modulos.parametros.GestorParametro;
+import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
 import viviendas.persistencia.exceptions.PersistException;
 
@@ -46,41 +50,25 @@ public class MainCargaInicial {
      */
     public static void main(String[] args) throws PersistException, Exception {
         //PRIMERO EJECUTAR LOS INSERTS
+        Criterio criterio = new Criterio("id", "=", 6l);
+        Plan plan =(Plan) Facade.getInstance().findByCriterio(Plan.class, criterio).get(0);
+        System.out.println(plan);
+        Criterio criterio1 = new Criterio("id", "=", 2l);
+        Provincia provincia =(Provincia) Facade.getInstance().findByCriterio(Provincia.class, criterio1).get(0);
+        System.out.println(provincia);
+        Criterio criterio2 = new Criterio("id", "=", 1l);
+        Ciudad ciudad =(Ciudad) Facade.getInstance().findByCriterio(Ciudad.class, criterio2).get(0);
+        System.out.println(ciudad);
+        Criterio criterio3 = new Criterio("id", "=", 1l);
+        SectorEconomico sectorEconomico =(SectorEconomico) Facade.getInstance().findByCriterio(SectorEconomico.class, criterio3).get(0);
+        System.out.println(sectorEconomico);
 
-        List<Ciudad> ciudades = Facade.getInstance().findAll(Ciudad.class);
-        Facade.getInstance().beginTx();
-        for (Provincia provincia : (List<Provincia>) Facade.getInstance().findAll(Provincia.class)) {
-            provincia.setListaCuidad(ciudades);
-        }
-        Facade.getInstance().commitTx();
-//        Facade.getInstance().beginTx();
-//        TipoPlan tipo = new TipoPlan();
-//        tipo.setNombre("VIVIENDAS");
-//        Facade.getInstance().guardar(tipo);
-//        TipoPlan tipo1 = new TipoPlan();
-//        tipo1.setNombre("SOLUCIONES");
-//        Facade.getInstance().guardar(tipo1);
-//        Facade.getInstance().commitTx();
-//        Facade.getInstance().beginTx();
-//
-//        FuenteFondo fuente = new FuenteFondo();
-//        fuente.setNombre("FUENTE 1");
-//        FuenteFondo fuente1 = new FuenteFondo();
-//        fuente1.setNombre("FUENTE 2");
-//        FuenteFondo fuente2 = new FuenteFondo();
-//        fuente2.setNombre("FUENTE 3");
-//        Facade.getInstance().guardar(fuente);
-//        Facade.getInstance().guardar(fuente1);
-//        Facade.getInstance().guardar(fuente2);
-//        UsoFondo uso = new UsoFondo();
-//        uso.setNombre("USO 1");
-//        UsoFondo uso1 = new UsoFondo();
-//        uso1.setNombre("USO 2");
-//        UsoFondo uso2 = new UsoFondo();
-//        uso2.setNombre("USO 3");
-//        Facade.getInstance().guardar(uso);
-//        Facade.getInstance().guardar(uso1);
-//        Facade.getInstance().guardar(uso2);
-//        Facade.getInstance().commitTx();
+        Criterio criterio4 = new Criterio("id", "=", 1l);
+        Operatoria operatoria =(Operatoria) Facade.getInstance().findByCriterio(Operatoria.class, criterio4).get(0);
+        System.out.println(operatoria);
+
+        
+        System.out.println(GestorParametro.obtenerDistribucionOperatoria(plan, provincia, ciudad, sectorEconomico, operatoria));
+//        System.out.println(GestorParametro.obtenerDistribucionOperatoria(plan, null, null, null, operatoria));
     }
 }

@@ -6,15 +6,15 @@
 package viviendas.gui.models.tables;
 
 import java.util.List;
-import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.AnioPlan;
 
 /**
  *
  * @author desarrollo
  */
-public class ModelTableAño extends AbstractTableModel<AñoPlan> {
+public class ModelTableAño extends AbstractTableModel<AnioPlan> {
 
-    public ModelTableAño(List<AñoPlan> _lista) {
+    public ModelTableAño(List<AnioPlan> _lista) {
         super(_lista,"Año", "Cant. Viviendas");
     }
 
@@ -23,9 +23,9 @@ public class ModelTableAño extends AbstractTableModel<AñoPlan> {
             return "-";
         switch(columnIndex){
             case 0:
-                return _lista.get(rowIndex).getAño();
+                return _lista.get(rowIndex).getAnio();
             case 1:
-                return _lista.get(rowIndex).getCantViviendasAño();
+                return _lista.get(rowIndex).getCantViviendasAnio();
             default:
                 return "-";
         }

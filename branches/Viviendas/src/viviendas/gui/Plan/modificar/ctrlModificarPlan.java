@@ -17,7 +17,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
-import viviendas.entidades.vivienda.AñoPlan;
+import viviendas.entidades.vivienda.AnioPlan;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
@@ -27,7 +27,7 @@ import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.SectorEconomico;
-import viviendas.gui.financiacion.crear.CtrlCrearFinanciacion;
+import viviendas.gui.financiacion.modificar.CtrlModificarFinanciacion;
 import viviendas.gui.tool.ICalculable;
 import viviendas.gui.models.tables.ModelTableAño;
 import viviendas.gui.models.tables.ModelTableDistribucionCiudad;
@@ -125,10 +125,10 @@ public class ctrlModificarPlan implements ICalculable {
         //DATOS DEL PLAN
         _pantalla.getTxtNombre().setText(plan.getNombre());
         _pantalla.getTxtTipo().setText(plan.getTipoPlan().getNombre());
-        _pantalla.getTxtAños().setText(plan.getAñosPlan().toString());
+        _pantalla.getTxtAños().setText(plan.getAniosPlan().toString());
         _pantalla.getTxtTotViviendas().setText(plan.getNumeroViviendas().toString());
 
-        _tablaAños.setList(_gestor.getPlan().getListaAñoPlan());
+        _tablaAños.setList(_gestor.getPlan().getListaAnioPlan());
         //MANEJO DE EVENTOS PARA LA TABLA AÑO
         _pantalla.getTblAños().setModel(_tablaAños);
         _pantalla.getTblAños().addMouseListener(mnuDerecho);
@@ -335,7 +335,7 @@ public class ctrlModificarPlan implements ICalculable {
         _pantalla.getLblUbicacion().setText("");
     }
 
-    AñoPlan getAñoSeleccionado() {
+    AnioPlan getAñoSeleccionado() {
         int idx = _pantalla.getTblAños().getSelectedRow();
         if (idx < 0) {
             idx = 0;

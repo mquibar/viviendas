@@ -3,13 +3,9 @@
  * and open the template in the editor.
  */
 
-/*
- * IUFinanciacion.java
- *
- * Created on 20/12/2010, 13:00:17
- */
 
-package viviendas.gui.financiacion.crear;
+
+package viviendas.gui.financiacion.modificar;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -17,14 +13,10 @@ import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-/**
- *
- * @author batte
- */
-public class IUFinanciacion extends javax.swing.JInternalFrame {
+public class IUPanelModificarFinanciacion extends javax.swing.JPanel {
 
-    /** Creates new form IUFinanciacion */
-    public IUFinanciacion() {
+    /** Creates new form IUPanelCrearFinanciacion */
+    public IUPanelModificarFinanciacion() {
         initComponents();
     }
 
@@ -38,31 +30,38 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        labPorcentaje = new javax.swing.JLabel();
+        _spinPorcentaje = new javax.swing.JSpinner();
+        _btnCrearFinanciacion = new javax.swing.JButton();
+        _tabPaneFinanciacion = new javax.swing.JTabbedPane();
         labNombre = new javax.swing.JLabel();
         _texNombre = new javax.swing.JTextField();
-        _tabPaneFinanciacion = new javax.swing.JTabbedPane();
-        _spinPorcentaje = new javax.swing.JSpinner();
-        labPorcentaje = new javax.swing.JLabel();
-        _btnCrearFinanciacion = new javax.swing.JButton();
+        _btnAplicarA = new javax.swing.JButton();
 
-        setResizable(true);
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
-        getContentPane().setLayout(new java.awt.GridBagLayout());
+        setLayout(new java.awt.GridBagLayout());
 
-        labNombre.setText("Nombre:");
+        labPorcentaje.setText("Porcentaje: ");
+        labPorcentaje.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        getContentPane().add(labNombre, gridBagConstraints);
+        add(labPorcentaje, gridBagConstraints);
+
+        _spinPorcentaje.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
-        getContentPane().add(_texNombre, gridBagConstraints);
+        add(_spinPorcentaje, gridBagConstraints);
+
+        _btnCrearFinanciacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Accept.png"))); // NOI18N
+        _btnCrearFinanciacion.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
+        add(_btnCrearFinanciacion, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -72,37 +71,36 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        getContentPane().add(_tabPaneFinanciacion, gridBagConstraints);
+        add(_tabPaneFinanciacion, gridBagConstraints);
 
-        _spinPorcentaje.setModel(new javax.swing.SpinnerNumberModel(100.0d, 0.0d, 100.0d, 0.10000000000000009d));
-        _spinPorcentaje.setEnabled(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
-        getContentPane().add(_spinPorcentaje, gridBagConstraints);
-
-        labPorcentaje.setText("Porcentaje: ");
-        labPorcentaje.setEnabled(false);
+        labNombre.setText("Nombre:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(10, 15, 10, 15);
-        getContentPane().add(labPorcentaje, gridBagConstraints);
+        add(labNombre, gridBagConstraints);
 
-        _btnCrearFinanciacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Accept.png"))); // NOI18N
-        _btnCrearFinanciacion.setEnabled(false);
+        _texNombre.setEnabled(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
+        add(_texNombre, gridBagConstraints);
+
+        _btnAplicarA.setText("Aplicar a:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(10, 30, 10, 15);
-        getContentPane().add(_btnCrearFinanciacion, gridBagConstraints);
-
-        pack();
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        add(_btnAplicarA, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton _btnAplicarA;
     private javax.swing.JButton _btnCrearFinanciacion;
     private javax.swing.JSpinner _spinPorcentaje;
     private javax.swing.JTabbedPane _tabPaneFinanciacion;
@@ -146,9 +144,21 @@ public class IUFinanciacion extends javax.swing.JInternalFrame {
         this._spinPorcentaje = _spinPorcentaje;
     }
 
- 
+    public JLabel getLabPorcentaje() {
+        return labPorcentaje;
+    }
 
+    public void setLabPorcentaje(JLabel labPorcentaje) {
+        this.labPorcentaje = labPorcentaje;
+    }
 
+    public JButton getBtnAplicarA() {
+        return _btnAplicarA;
+    }
+
+    public void setBtnAplicarA(JButton _btnAplicarA) {
+        this._btnAplicarA = _btnAplicarA;
+    }
 
     
 }

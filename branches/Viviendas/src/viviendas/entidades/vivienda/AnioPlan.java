@@ -16,21 +16,21 @@ import javax.persistence.OneToMany;
  * @created 02-dic-2010 12:40:00
  */
 @Entity
-public class AñoPlan implements Serializable {
+public class AnioPlan implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer año;
-    private Integer cantViviendasAño;
-    @OneToMany(mappedBy = "añoPlan", cascade=CascadeType.ALL)
+    private Integer anio;
+    private Integer cantViviendasAnio;
+    @OneToMany(mappedBy = "anioPlan", cascade=CascadeType.ALL)
     private List<DistribucionCiudad> _distribucionCiudad;
-    @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "anioPlan",cascade=CascadeType.ALL)
     private List<DistribucionProvincial> _distribucionProvincia;
-    @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "anioPlan",cascade=CascadeType.ALL)
     private List<DistribucionSector> distribucionSector;
-    @OneToMany(mappedBy = "añoPlan",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "anioPlan",cascade=CascadeType.ALL)
     private List<DistribucionOperatoria> distribucionOperatoria;
     @ManyToOne
     private Plan plan;
@@ -43,20 +43,20 @@ public class AñoPlan implements Serializable {
         this.plan = plan;
     }
 
-    public Integer getAño() {
-        return año;
+    public Integer getAnio() {
+        return anio;
     }
 
-    public void setAño(Integer año) {
-        this.año = año;
+    public void setAnio(Integer año) {
+        this.anio = año;
     }
 
-    public Integer getCantViviendasAño() {
-        return cantViviendasAño;
+    public Integer getCantViviendasAnio() {
+        return cantViviendasAnio;
     }
 
-    public void setCantViviendasAño(Integer cantViviendasAño) {
-        this.cantViviendasAño = cantViviendasAño;
+    public void setCantViviendasAnio(Integer cantViviendasAño) {
+        this.cantViviendasAnio = cantViviendasAño;
     }
 
     public Long getId() {
@@ -116,7 +116,7 @@ public class AñoPlan implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final AñoPlan other = (AñoPlan) obj;
+        final AnioPlan other = (AnioPlan) obj;
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
@@ -125,7 +125,7 @@ public class AñoPlan implements Serializable {
 
     @Override
     public String toString() {
-        return String.valueOf(año);
+        return String.valueOf(anio);
     }
 
 

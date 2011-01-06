@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 
-package viviendas.gui.financiacion.crear;
+package viviendas.gui.financiacion.modificar;
 
 import java.util.List;
-import viviendas.gui.financiacion.crear.DtoDetalleDistribucion;
+import viviendas.gui.financiacion.modificar.DtoDetalleDistribucion;
 
 /**
  *

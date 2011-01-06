@@ -14,8 +14,8 @@ import viviendas.entidades.vivienda.Ciudad;
  */
 public class ModelComboCiudad extends AbstractComboBoxModel<Ciudad>{
 
-    public ModelComboCiudad(List<Ciudad> lista){
-        super(lista);
+    public ModelComboCiudad(List<Ciudad> lista,String primerElemento){
+        super(lista,primerElemento);
         for(Ciudad ciudad: lista){
             addElement(ciudad.getNombre());
         }

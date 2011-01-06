@@ -8,6 +8,7 @@ package viviendas.modulos.provincia;
 import java.util.List;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.Provincia;
+import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
 import viviendas.systemException.BusinessOperationException;
 
@@ -17,6 +18,11 @@ import viviendas.systemException.BusinessOperationException;
  */
 public class GestorProvincia {
     public static final String NOMBRE_PARAM_PROVINCIA = "PROVINCIA_";
+
+//    public List<Provincia> obtenerProvincias(){
+//        Criterio criterioVigente = new Criterio("vigente", "=", true);
+//        return Facade.getInstance().findByCriterio(Provincia.class, criterioVigente);
+//    }
 
     public void guardar(List<Provincia> listaMod) throws BusinessOperationException{
         try {

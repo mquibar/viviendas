@@ -1,19 +1,19 @@
 
-INSERT INTO `añoplan` (`id`, `año`, `cantViviendasAño`, `plan_id`) VALUES
+INSERT INTO AnioPlan (`id`, `anio`, `cantViviendasAnio`, `plan_id`) VALUES
 (1, 2010, 1000, 1),
 (2, 2011, 1000, 1),
 (3, 2012, 1000, 1),
 (4, 2013, 1000, 1);
 
 
-INSERT INTO `ciudad` (`id`, `desde`, `hasta`, `nombre`, `parametro_id`, `vigente`) VALUES
+INSERT INTO `Ciudad` (`id`, `desde`, `hasta`, `nombre`, `parametro_id`, `vigente`) VALUES
 (1, 0, 10000, 'RURAL', 8, b'1'),
 (2, 10000, 20000, '10000-20000', 9, b'1'),
 (3, 20000, 1000000, 'METROPOLI', 10, NULL),
 (4, NULL, NULL, '0-10000', 39, b'1');
 
 
-INSERT INTO `distribucionciudad` (`id`, `porcentajeDistribucion`, `añoPlan_id`, `cuidad_id`, `distribucionProvincial_id`) VALUES
+INSERT INTO `DistribucionCiudad` (`id`, `porcentajeDistribucion`, `anioPlan_id`, `cuidad_id`, `distribucionProvincial_id`) VALUES
 (1, 25, 1, 3, 2),
 (2, 75, 1, 1, 2),
 (3, 33.333, 2, 3, 6),
@@ -23,7 +23,7 @@ INSERT INTO `distribucionciudad` (`id`, `porcentajeDistribucion`, `añoPlan_id`,
 (7, 33.333, 4, 3, 14),
 (8, 33.333, 4, 1, 14);
 
-INSERT INTO `distribucionoperatoria` (`id`, `porcentajeDistribucion`, `añoPlan_id`, `distribucionSector_id`, `operatoria_id`) VALUES
+INSERT INTO `DistribucionOperatoria` (`id`, `porcentajeDistribucion`, `anioPlan_id`, `distribucionSector_id`, `operatoria_id`) VALUES
 (1, 33.333, 1, 1, 1),
 (2, 33.333, 1, 1, 2),
 (3, 33.333, 1, 1, 3),
@@ -218,7 +218,7 @@ INSERT INTO `distribucionoperatoria` (`id`, `porcentajeDistribucion`, `añoPlan_
 (192, 33.333, 4, 32, 6);
 
 
-INSERT INTO `distribucionprovincial` (`id`, `porcentajeDistribucion`, `añoPlan_id`, `provincia_id`) VALUES
+INSERT INTO `DistribucionProvincial` (`id`, `porcentajeDistribucion`, `anioPlan_id`, `provincia_id`) VALUES
 (1, 25, 1, 1),
 (2, 25, 1, 12),
 (3, 25, 1, 11),
@@ -236,7 +236,7 @@ INSERT INTO `distribucionprovincial` (`id`, `porcentajeDistribucion`, `añoPlan_
 (15, 25, 4, 11),
 (16, 25, 4, 14);
 
-INSERT INTO `distribucionsector` (`id`, `porcentajeDistribucion`, `añoPlan_id`, `distribucionCiudad_id`, `sectorEconomico_id`) VALUES
+INSERT INTO `DistribucionSector` (`id`, `porcentajeDistribucion`, `anioPlan_id`, `distribucionCiudad_id`, `sectorEconomico_id`) VALUES
 (1, 33.333, 1, 1, 1),
 (2, 33.333, 1, 1, 2),
 (3, 33.333, 1, 1, 3),
@@ -270,7 +270,7 @@ INSERT INTO `distribucionsector` (`id`, `porcentajeDistribucion`, `añoPlan_id`,
 (31, 33.333, 4, 8, 3),
 (32, 33.333, 4, 8, 4);
 
-INSERT INTO `fuentefondo` (`id`, `nombre`, `vigente`, `parametro_id`) VALUES
+INSERT INTO `FuenteFondo` (`id`, `nombre`, `vigente`, `parametro_id`) VALUES
 (1, 'DEVOLUCION CREDITOS', b'1', 42),
 (2, 'AHORRO PREVIO', b'1', 43),
 (3, 'OTROS APORTES', b'1', 44),
@@ -279,14 +279,14 @@ INSERT INTO `fuentefondo` (`id`, `nombre`, `vigente`, `parametro_id`) VALUES
 (6, 'APORTES PROVINCIALES', b'1', 47),
 (7, 'APORTES MUNICIPALES', b'1', 48);
 
-INSERT INTO `inversion` (`DTYPE`, `id`, `totalInversion`, `ciudad_id`) VALUES
+INSERT INTO `Inversion` (`DTYPE`, `id`, `totalInversion`, `ciudad_id`) VALUES
 ('IParam', 1, 0, NULL),
 ('IParam', 2, 80000, 1),
 ('IParam', 3, 80000, 2),
 ('IParam', 4, 80000, 4);
 
 
-INSERT INTO `operatoria` (`id`, `nombre`, `parametro_id`, `vigente`) VALUES
+INSERT INTO `Operatoria` (`id`, `nombre`, `parametro_id`, `vigente`) VALUES
 (1, 'OBRA PÚBLICA', 1, b'1'),
 (2, 'ADMINISTRACIÓN POR COOPERATIVA', 2, b'1'),
 (3, 'COOPERATIVA DE TRABAJO', 3, NULL),
@@ -296,7 +296,7 @@ INSERT INTO `operatoria` (`id`, `nombre`, `parametro_id`, `vigente`) VALUES
 (8, 'COOP. TRABAJO', 40, b'1'),
 (9, 'COMPRA VIVIENDA NUEVA O USADA', 41, b'1');
 
-INSERT INTO `parametrosplan` (`id`, `nombreParametro`, `porcenteaje`) VALUES
+INSERT INTO `ParametrosPlan` (`id`, `nombreParametro`, `porcenteaje`) VALUES
 (1, 'OPERATORIA_OBRA_PUBLICA', 100),
 (2, 'OPERATORIA_ADM_COOPERATIVA', 0),
 (3, 'OPERATORIA_COOPERATIVA_TRABAJO', 0),
@@ -346,10 +346,10 @@ INSERT INTO `parametrosplan` (`id`, `nombreParametro`, `porcenteaje`) VALUES
 (47, 'FUENTEFONDO_APORTES PROVINCIALES', 0),
 (48, 'FUENTEFONDO_APORTES MUNICIPALES', 0);
 
-INSERT INTO `plan` (`id`, `añosPlan`, `nombre`, `numeroViviendas`, `tipoPlan_id`) VALUES
+INSERT INTO `Plan` (`id`, `aniosPlan`, `nombre`, `numeroViviendas`, `tipoPlan_id`) VALUES
 (1, 4, 'PLAN_1', 4000, 1);
 
-INSERT INTO `provincia` (`id`, `nombre`, `parametro_id`) VALUES
+INSERT INTO `Provincia` (`id`, `nombre`, `parametro_id`) VALUES
 (1, 'SAN JUAN', 11),
 (2, 'BUENOS AIRES', 12),
 (3, 'TIERRA DEL FUEGO', 13),
@@ -375,33 +375,33 @@ INSERT INTO `provincia` (`id`, `nombre`, `parametro_id`) VALUES
 (23, 'SANTA FE', 33),
 (24, 'CAPITAL FEDERAL', 34);
 
-INSERT INTO `provincia_ciudad` (`Provincia_id`, `listaCuidad_id`) VALUES
+INSERT INTO `Provincia_Ciudad` (`Provincia_id`, `listaCuidad_id`) VALUES
 (12, 2),
 (12, 1),
 (12, 3),
 (2, 3),
 (6, 1);
 
-INSERT INTO `sectoreconomico` (`id`, `nombre`, `parametro_id`, `vigente`) VALUES
+INSERT INTO `SectorEconomico` (`id`, `nombre`, `parametro_id`, `vigente`) VALUES
 (1, 'INGRESOS ALTOS', 35, b'1'),
 (2, 'INGRESOS MEDIOS', 36, b'1'),
 (3, 'INGRESOS BAJOS', 37, b'1'),
 (4, 'INGRESOS MEDIOS BAJOS', 38, b'1');
 
-INSERT INTO `tipoplan` (`id`, `nombre`) VALUES
+INSERT INTO `TipoPlan` (`id`, `nombre`) VALUES
 (1, 'VIVIENDAS'),
 (2, 'SOLUCIONES');
 
 
-INSERT INTO `usofondo` (`id`, `importe`, `nombre`, `vigente`) VALUES
+INSERT INTO `UsoFondo` (`id`, `importe`, `nombre`, `vigente`) VALUES
 (1, 10000, 'VIVIENDA', b'1'),
 (2, 50000, 'TERRENO', b'1'),
 (3, 20000, 'URBANIZACION E INFRAESTRUCTURA', b'1');
 
-INSERT INTO `usuario` (`id`, `contraseña`, `usuario`) VALUES
+INSERT INTO `Usuario` (`id`, `contraseña`, `usuario`) VALUES
 (1, 'luis', 'luis');
 
-INSERT INTO `valorinversion` (`id`, `importe`, `financio_id`, `inversion_id`) VALUES
+INSERT INTO `ValorInversion` (`id`, `importe`, `financio_id`, `inversion_id`) VALUES
 (1, 10000, 1, 2),
 (2, 50000, 2, 2),
 (3, 20000, 3, 2),

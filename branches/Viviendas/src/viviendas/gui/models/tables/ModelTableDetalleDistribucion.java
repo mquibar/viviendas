@@ -1,6 +1,6 @@
 package viviendas.gui.models.tables;
 
-import viviendas.gui.financiacion.crear.DtoDetalleDistribucion;
+import viviendas.gui.financiacion.modificar.DtoDetalleDistribucion;
 import java.util.List;
 import viviendas.gui.tool.SubscriptorTotal;
 import viviendas.modulos.FuentesFondos.GestorFuentesFondos;
@@ -12,7 +12,6 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        //TODO cambiar el @ por vacio
         DtoDetalleDistribucion dto = _lista.get(rowIndex);
         if (columnIndex < 2) {
             try {
@@ -22,16 +21,16 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
                     case 1:
                         return dto.getDetallesDistribucionesFinanciacion().get(0).getUsoFondo().getNombre();
                     default:
-                        return "@1";
+                        return "";
                 }
             } catch (Exception e) {
-                return "@2";
+                return "";
             }
         } else {
             if (columnIndex <= dto.getDetallesDistribucionesFinanciacion().size() + 2) {
                 return dto.getDetallesDistribucionesFinanciacion().get(columnIndex - 2).getPorcentaje();
             } else {
-                return "@3";
+                return "";
             }
         }
     }
@@ -50,7 +49,7 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        if (columnIndex > 1 && _lista.size() + 1 >= columnIndex) {
+        if (columnIndex > 1 && columnIndex <_columnNames.length ) {
             return Double.class;
         }
         switch (columnIndex) {

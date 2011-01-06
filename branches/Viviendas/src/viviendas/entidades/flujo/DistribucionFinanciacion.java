@@ -1,6 +1,7 @@
 package viviendas.entidades.flujo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,6 +25,20 @@ public class DistribucionFinanciacion implements Serializable {
     private List<DetalleDistribucionFinanciacion> detallesDistribucionesFinanciacion;
 
     public DistribucionFinanciacion() {
+    }
+
+    public DistribucionFinanciacion(DistribucionFinanciacion distribucionFinanciacion) {
+        porcentajeFinanciacion = distribucionFinanciacion.getPorcentajeFinanciacion();
+        financiacion = distribucionFinanciacion.getFinanciacion();
+        if (distribucionFinanciacion.getDetallesDistribucionesFinanciacion() != null) {
+            List<DetalleDistribucionFinanciacion> listaDetalles = new ArrayList<DetalleDistribucionFinanciacion>();
+            for (DetalleDistribucionFinanciacion detalleDistribucionFinanciacion : distribucionFinanciacion.getDetallesDistribucionesFinanciacion()) {
+                DetalleDistribucionFinanciacion ddf = new DetalleDistribucionFinanciacion(detalleDistribucionFinanciacion);
+                ddf.setDistribucionFinanciacion(this);
+                listaDetalles.add(ddf);
+            }
+            detallesDistribucionesFinanciacion = listaDetalles;
+        }
     }
 
     public Long getId() {

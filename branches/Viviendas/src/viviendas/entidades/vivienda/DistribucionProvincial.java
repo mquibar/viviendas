@@ -23,21 +23,21 @@ public class DistribucionProvincial implements Serializable {
     @ManyToOne
     private Provincia provincia;
     @ManyToOne
-    private AñoPlan añoPlan;
+    private AnioPlan anioPlan;
 
-    public AñoPlan getAñoPlan() {
-        return añoPlan;
+    public AnioPlan getAnioPlan() {
+        return anioPlan;
     }
 
-    public void setAñoPlan(AñoPlan añoPlan) {
-        this.añoPlan = añoPlan;
+    public void setAnioPlan(AnioPlan añoPlan) {
+        this.anioPlan = añoPlan;
     }
 
     public DistribucionProvincial() {
     }
 
     public DistribucionProvincial(DistribucionProvincial distribucionProvincial) {
-        this.añoPlan = distribucionProvincial.getAñoPlan();
+        this.anioPlan = distribucionProvincial.getAnioPlan();
         this.porcentajeDistribucion = distribucionProvincial.getPorcentajeDistribucion();
         this.provincia = distribucionProvincial.getProvincia();
     }

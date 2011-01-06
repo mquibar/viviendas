@@ -29,7 +29,7 @@ public class ModelTableDistribucionOperatoria extends AbstractTableModel<Distrib
             case 1:
                 return viviendas.utiles.Utiles.round(_lista.get(rowIndex).getPorcentajeDistribucion(),3);
             case 2:
-                return viviendas.utiles.Utiles.round(distribucion.getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getDistribucionCiudad().getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getAñoPlan().getCantViviendasAño() * distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getPorcentajeDistribucion() / 100.0 ,3);
+                return viviendas.utiles.Utiles.round(distribucion.getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getDistribucionCiudad().getPorcentajeDistribucion() / 100 * distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getAnioPlan().getCantViviendasAnio() * distribucion.getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getPorcentajeDistribucion() / 100.0 ,3);
             default:
                 return "-";
         }

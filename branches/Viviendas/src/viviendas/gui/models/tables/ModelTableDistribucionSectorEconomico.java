@@ -30,7 +30,7 @@ public class ModelTableDistribucionSectorEconomico extends AbstractTableModel<Di
             case 1:
                 return viviendas.utiles.Utiles.round(_lista.get(rowIndex).getPorcentajeDistribucion(),3);
             case 2:
-                return viviendas.utiles.Utiles.round(distribucion.getPorcentajeDistribucion()/100 * (distribucion.getDistribucionCiudad().getPorcentajeDistribucion()/100) * (distribucion.getDistribucionCiudad().getDistribucionProvincial().getAñoPlan().getCantViviendasAño() * distribucion.getDistribucionCiudad().getDistribucionProvincial().getPorcentajeDistribucion() / 100.0) ,3 );
+                return viviendas.utiles.Utiles.round(distribucion.getPorcentajeDistribucion()/100 * (distribucion.getDistribucionCiudad().getPorcentajeDistribucion()/100) * (distribucion.getDistribucionCiudad().getDistribucionProvincial().getAnioPlan().getCantViviendasAnio() * distribucion.getDistribucionCiudad().getDistribucionProvincial().getPorcentajeDistribucion() / 100.0) ,3 );
 
 
             default:
