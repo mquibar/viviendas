@@ -67,11 +67,11 @@ public class ModelDinamicTable extends javax.swing.table.AbstractTableModel {
             ivaPeriodo = new ArrayList<Double>();
             flujoPrestamo = new ArrayList<Double>();
 
-            for (int columnIndex = 0; columnIndex < _cantAños; columnIndex++) {
+            for (int columnIndex = 0; columnIndex < (_cantAños * 4)+1; columnIndex++) {
                 calcularCapitalCredito(columnIndex);
                 calcularSaldoCapital(columnIndex);
-                calcularDevolucionCapital(columnIndex);
                 calcularInteresCredito(columnIndex);
+                calcularDevolucionCapital(columnIndex);
                 calcularComicionOtorgamiento(columnIndex);
                 calcularGastosAdministrativos(columnIndex);
                 calcularIva(columnIndex);
@@ -101,23 +101,40 @@ public class ModelDinamicTable extends javax.swing.table.AbstractTableModel {
             case 0:
                 return ROWS[rowIndex];
             default:
+                int newColumnIndex = ((columnIndex-1) * 4)+1;
                 switch(rowIndex){
                     case 0:
-                        return capitalCredito.get(columnIndex-1);
+                        return testModelo.round(
+                                capitalCredito.get(newColumnIndex) + capitalCredito.get(newColumnIndex+1) + capitalCredito.get(newColumnIndex+2) + capitalCredito.get(newColumnIndex+3)
+                                ,2);
                     case 1:
-                        return devolucionCapital.get(columnIndex-1);
+                        return testModelo.round(
+                                devolucionCapital.get(newColumnIndex) + devolucionCapital.get(newColumnIndex+1) + devolucionCapital.get(newColumnIndex+2)+ devolucionCapital.get(newColumnIndex+3)
+                                ,2);
                     case 2:
-                        return interesPeriodo.get(columnIndex-1);
+                        return testModelo.round(
+                                interesPeriodo.get(newColumnIndex)+interesPeriodo.get(newColumnIndex+1)+interesPeriodo.get(newColumnIndex+2)+interesPeriodo.get(newColumnIndex+3)
+                                ,2);
                     case 3:
-                        return comicionPeriodo.get(columnIndex-1);
+                        return testModelo.round(
+                                comicionPeriodo.get(newColumnIndex)+comicionPeriodo.get(newColumnIndex+1)+comicionPeriodo.get(newColumnIndex+2)+comicionPeriodo.get(newColumnIndex+3)
+                                ,2);
                     case 4:
-                        return gastosPeriodo.get(columnIndex-1);
+                        return testModelo.round(
+                                gastosPeriodo.get(newColumnIndex)+gastosPeriodo.get(newColumnIndex+1)+gastosPeriodo.get(newColumnIndex+2)+gastosPeriodo.get(newColumnIndex+3)
+                                ,2);
                     case 5:
-                        return ivaPeriodo.get(columnIndex-1);
+                        return testModelo.round(
+                                ivaPeriodo.get(newColumnIndex)+ivaPeriodo.get(newColumnIndex+1)+ivaPeriodo.get(newColumnIndex+2)+ivaPeriodo.get(newColumnIndex+3)
+                                ,2);
                     case 6:
-                        return flujoPrestamo.get(columnIndex-1);
+                        return testModelo.round(
+                                flujoPrestamo.get(newColumnIndex)+flujoPrestamo.get(newColumnIndex+1)+flujoPrestamo.get(newColumnIndex+2)+flujoPrestamo.get(newColumnIndex+3)
+                                ,2);
                     case 7:
-                        return calcularCostoSinIva(columnIndex-1);
+                        return testModelo.round(
+                                calcularCostoSinIva(newColumnIndex)+calcularCostoSinIva(newColumnIndex+1)+calcularCostoSinIva(newColumnIndex+2)+calcularCostoSinIva(newColumnIndex+3)
+                                ,2);
                     case 8:
                     default:
                         return "-";
@@ -155,8 +172,8 @@ public class ModelDinamicTable extends javax.swing.table.AbstractTableModel {
         }
         if(columnIndex<momentoFinGracia){
             double saldo = 0.0;
-            saldo = capSolicitado*(1+intTrimestral);
-            saldo = java.lang.Math.pow(saldo, (columnIndex-momentoOtorgamiento)/3);
+            //saldo = capSolicitado*(1+intTrimestral);
+            saldo = capSolicitado * java.lang.Math.pow((1+intTrimestral), ((columnIndex*4)-momentoOtorgamiento)/4);
             saldoCapital.add(columnIndex, saldo);
             return;
         }
@@ -168,7 +185,7 @@ public class ModelDinamicTable extends javax.swing.table.AbstractTableModel {
             saldoCapital.add(columnIndex, saldoCapital.get(columnIndex-1)*(1+intTrimestral));
             return;
         }
-        saldoCapital.add(columnIndex, saldoCapital.get(columnIndex-1)+gastosPeriodo.get(columnIndex-1));
+        saldoCapital.add(columnIndex, saldoCapital.get(columnIndex-1)+devolucionCapital.get(columnIndex-1));
 
     }
 
@@ -214,7 +231,7 @@ public class ModelDinamicTable extends javax.swing.table.AbstractTableModel {
     }
 
     private void calcularFlujoPrestamo(int columnIndex){
-        flujoPrestamo.add(columnIndex, saldoCapital.get(columnIndex) + devolucionCapital.get(columnIndex) +
+        flujoPrestamo.add(columnIndex, capitalCredito.get(columnIndex) + devolucionCapital.get(columnIndex) +
                                        interesPeriodo.get(columnIndex) + comicionPeriodo.get(columnIndex) +
                                        gastosPeriodo.get(columnIndex) + ivaPeriodo.get(columnIndex));
     }

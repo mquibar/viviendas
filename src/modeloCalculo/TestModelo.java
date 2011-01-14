@@ -81,7 +81,7 @@ public class TestModelo extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    double capSolicitado=190;
+    double capSolicitado=190000;
     double TNA=0.06;
     double comicionOtorgamiento=0.01;
     double gastosAdministrativos=0.01;
