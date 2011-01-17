@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import viviendas.entidades.flujo.Financiacion;
+import viviendas.entidades.flujo.ParametrosFlujoFondo;
 
 @Entity
 public class DistribucionOperatoria implements Serializable {
@@ -27,6 +28,8 @@ public class DistribucionOperatoria implements Serializable {
     private AnioPlan anioPlan;
     @OneToOne(mappedBy="distribucionOperatoria")
     private Financiacion financiacion;
+    @OneToOne
+    private ParametrosFlujoFondo parametrosFlujoFondo;
 
     public AnioPlan getAnioPlan() {
         return anioPlan;
@@ -76,7 +79,14 @@ public class DistribucionOperatoria implements Serializable {
         this.financiacion = financiacion;
     }
 
-     
+    public ParametrosFlujoFondo getParametrosFlujoFondo() {
+        return parametrosFlujoFondo;
+    }
+
+    public void setParametrosFlujoFondo(ParametrosFlujoFondo parametrosFlujoFondo) {
+        this.parametrosFlujoFondo = parametrosFlujoFondo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -103,5 +113,4 @@ public class DistribucionOperatoria implements Serializable {
     public String toString() {
         return String.valueOf(porcentajeDistribucion);
     }
-
 }
