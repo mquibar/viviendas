@@ -100,6 +100,12 @@ public class CtrlPrincipal {
                 abrirIUFlujoFondos();
             }
         });
+        _pantalla.getMnuParamFlujoFondos().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUParamFlujoFondo();
+            }
+        });
 
     }
 
@@ -154,6 +160,10 @@ public class CtrlPrincipal {
         new CtrlFlujoFondos(_pantalla.getDesktopPane());
     }
 
+    private void abrirIUParamFlujoFondo(){
+        new CtrlFlujoFondos(_pantalla.getDesktopPane());
+    }
+
     private void abrirReporteDistribGenProvincias(){
         
     }
@@ -168,6 +178,7 @@ public class CtrlPrincipal {
     public static void main(String[] args) {
         try {
             try {
+
 //                                    javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaBlueMoonLookAndFeel());
                 javax.swing.UIManager.setLookAndFeel(new de.javasoft.plaf.synthetica.SyntheticaSkyMetallicLookAndFeel());
             } catch (UnsupportedLookAndFeelException ex) {
