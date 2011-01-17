@@ -82,6 +82,10 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         return mnuAbrirFlujoFondos;
     }
 
+    public JMenuItem getMnuParamFlujoFondos() {
+        return mnuParamFlujoFondos;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -105,6 +109,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuFuenteFondos = new javax.swing.JMenuItem();
         mnuUsosFondos = new javax.swing.JMenuItem();
         mnuInversion = new javax.swing.JMenuItem();
+        mnuParamFlujoFondos = new javax.swing.JMenuItem();
         mnuFlujoFondos = new javax.swing.JMenu();
         mnuAbrirFlujoFondos = new javax.swing.JMenuItem();
         mnuSistema = new javax.swing.JMenu();
@@ -163,6 +168,9 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuInversion.setText("Inversion");
         mnuParametros.add(mnuInversion);
 
+        mnuParamFlujoFondos.setText("Flujo Fondo");
+        mnuParametros.add(mnuParamFlujoFondos);
+
         mnuBarSistema.add(mnuParametros);
 
         mnuFlujoFondos.setText("Flujo de Fondos");
@@ -211,6 +219,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuInversion;
     private javax.swing.JMenuItem mnuNuevoPlan;
     private javax.swing.JMenuItem mnuOperatoria;
+    private javax.swing.JMenuItem mnuParamFlujoFondos;
     private javax.swing.JMenu mnuParametros;
     private javax.swing.JMenu mnuPlanes;
     private javax.swing.JMenuItem mnuProvincias;

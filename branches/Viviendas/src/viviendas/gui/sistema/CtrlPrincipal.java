@@ -14,6 +14,7 @@ import viviendas.gui.Plan.modificar.ctrlAbrirPlan;
 import viviendas.gui.SegmentoEconomico.CtrlSegmentoEconomico;
 import viviendas.gui.TipoCiudad.CtrlTipoCiudad;
 import viviendas.gui.flujoFondos.CtrlFlujoFondos;
+import viviendas.gui.flujoFondos.CtrlParametrosFlujoFondos;
 import viviendas.gui.inversion.CtrlInversion;
 import viviendas.gui.provincia.CtrlProvincia;
 import viviendas.gui.usosFondos.CtrlUsosFondos;
@@ -94,16 +95,10 @@ public class CtrlPrincipal {
                 abrirIUInversion();
             }
         });
-        _pantalla.getMnuAbrirFlujoFondos().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                abrirIUFlujoFondos();
-            }
-        });
         _pantalla.getMnuParamFlujoFondos().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                abrirIUParamFlujoFondo();
+                abrirIUParamInversion();
             }
         });
 
@@ -154,14 +149,10 @@ public class CtrlPrincipal {
 
     private void abrirIUInversion(){
         new CtrlInversion(_pantalla.getDesktopPane());
-    }
+    }    
 
-    private void abrirIUFlujoFondos(){
-        new CtrlFlujoFondos(_pantalla.getDesktopPane());
-    }
-
-    private void abrirIUParamFlujoFondo(){
-        new CtrlFlujoFondos(_pantalla.getDesktopPane());
+    private void abrirIUParamInversion(){
+        new CtrlParametrosFlujoFondos(_pantalla.getDesktopPane());
     }
 
     private void abrirReporteDistribGenProvincias(){
