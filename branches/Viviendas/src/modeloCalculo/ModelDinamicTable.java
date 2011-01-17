@@ -104,35 +104,35 @@ public class ModelDinamicTable extends javax.swing.table.AbstractTableModel {
                 int newColumnIndex = ((columnIndex-1) * 4)+1;
                 switch(rowIndex){
                     case 0:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 capitalCredito.get(newColumnIndex) + capitalCredito.get(newColumnIndex+1) + capitalCredito.get(newColumnIndex+2) + capitalCredito.get(newColumnIndex+3)
                                 ,2);
                     case 1:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 devolucionCapital.get(newColumnIndex) + devolucionCapital.get(newColumnIndex+1) + devolucionCapital.get(newColumnIndex+2)+ devolucionCapital.get(newColumnIndex+3)
                                 ,2);
                     case 2:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 interesPeriodo.get(newColumnIndex)+interesPeriodo.get(newColumnIndex+1)+interesPeriodo.get(newColumnIndex+2)+interesPeriodo.get(newColumnIndex+3)
                                 ,2);
                     case 3:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 comicionPeriodo.get(newColumnIndex)+comicionPeriodo.get(newColumnIndex+1)+comicionPeriodo.get(newColumnIndex+2)+comicionPeriodo.get(newColumnIndex+3)
                                 ,2);
                     case 4:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 gastosPeriodo.get(newColumnIndex)+gastosPeriodo.get(newColumnIndex+1)+gastosPeriodo.get(newColumnIndex+2)+gastosPeriodo.get(newColumnIndex+3)
                                 ,2);
                     case 5:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 ivaPeriodo.get(newColumnIndex)+ivaPeriodo.get(newColumnIndex+1)+ivaPeriodo.get(newColumnIndex+2)+ivaPeriodo.get(newColumnIndex+3)
                                 ,2);
                     case 6:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 flujoPrestamo.get(newColumnIndex)+flujoPrestamo.get(newColumnIndex+1)+flujoPrestamo.get(newColumnIndex+2)+flujoPrestamo.get(newColumnIndex+3)
                                 ,2);
                     case 7:
-                        return testModelo.round(
+                        return testModelo1.round(
                                 calcularCostoSinIva(newColumnIndex)+calcularCostoSinIva(newColumnIndex+1)+calcularCostoSinIva(newColumnIndex+2)+calcularCostoSinIva(newColumnIndex+3)
                                 ,2);
                     case 8:
