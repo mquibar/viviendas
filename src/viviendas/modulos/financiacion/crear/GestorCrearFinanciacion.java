@@ -92,7 +92,7 @@ public class GestorCrearFinanciacion {
     public void aplicarFinanciacion(AnioPlan anio, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
         try {
             Facade.getInstance().beginTx();
-            List<DistribucionOperatoria> listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_plan, provincia, ciudad, sector, operatoria);
+            List<DistribucionOperatoria> listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_plan, anio, provincia, ciudad, sector, operatoria);
             System.out.println("Filtrado Combinacion: " + listaDistribucionOperatoria.size());
             for (DistribucionOperatoria distribucionOperatoria : listaDistribucionOperatoria) {
                 if (distribucionOperatoria.getFinanciacion() != null) {
@@ -108,5 +108,9 @@ public class GestorCrearFinanciacion {
         } catch (PersistException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public int getCantidadRegistros(AnioPlan anio, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
+        return GestorParametro.obtenerDistribucionOperatoria(_plan, anio, provincia, ciudad, sector, operatoria).size();
     }
 }

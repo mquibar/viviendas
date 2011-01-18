@@ -67,10 +67,10 @@ public class ctrlModificarPlanNew implements ICalculable {
     private final int OPERATORIA = 4;
     private int tablaOnTop = AÑO;
     private IUSeleccionRestantes _seleccion;
-    private boolean activo=true;
+    private boolean activo = true;
     private boolean estadoBtnDrop;
     private boolean estadoBtnView;
-    private Map<javax.swing.JButton,Boolean> _botonera;
+    private Map<javax.swing.JButton, Boolean> _botonera;
 
     public ctrlModificarPlanNew(GestorModificarPlan gestor, IUModificarPlanNew pantalla) {
         _gestor = gestor;
@@ -82,7 +82,7 @@ public class ctrlModificarPlanNew implements ICalculable {
         _distSEconomico = new ModelTableDistribucionSectorEconomico(null);
         _distOperatoria = new ModelTableDistribucionOperatoria(null);
         _seleccion = new IUSeleccionRestantes(null, true);
-        _botonera = new java.util.HashMap<javax.swing.JButton,Boolean>();
+        _botonera = new java.util.HashMap<javax.swing.JButton, Boolean>();
         cargarPantalla();
         SubscriptorTotal.getInstance().añadir(this);
     }
@@ -94,37 +94,42 @@ public class ctrlModificarPlanNew implements ICalculable {
 
             @Override
             public void internalFrameClosing(InternalFrameEvent e) {
-                if(activo)
+                if (activo) {
                     pressCancelButton();
+                }
             }
         });
         _pantalla.getBtnOk().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     pressOkButton();
+                }
             }
         });
         _pantalla.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     pressCancelButton();
+                }
             }
         });
         _pantalla.getBtnDel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     pressDelButton();
+                }
             }
         });
 
         _pantalla.getBtnAdd().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     pressAddButton();
+                }
             }
         });
 
@@ -176,30 +181,34 @@ public class ctrlModificarPlanNew implements ICalculable {
         _pantalla.getBtnViewDetails().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     verTablas();
+                }
             }
         });
 
         _pantalla.getBtnDropDetails().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     ocultarTablas();
+                }
             }
         });
         _seleccion.getBtnCancel().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     pressCancelButtonSeleccion();
+                }
             }
         });
         _seleccion.getBtnAccept().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                if(activo)
+                if (activo) {
                     pressOkButtonSeleccion();
+                }
             }
         });
         _seleccion.getTblSeleccion().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -207,25 +216,30 @@ public class ctrlModificarPlanNew implements ICalculable {
 
     }
 
-    public JPanel getPanel(){
+    public JPanel getPanel() {
         return _panel;
     }
-    public void activar(){
-        activo=true;
-        _pantalla.getBtnDropDetails().setEnabled(_botonera.get(_pantalla.getBtnDropDetails()));
-        _pantalla.getBtnViewDetails().setEnabled(_botonera.get(_pantalla.getBtnViewDetails()));
-        _pantalla.getBtnAdd().setEnabled(_botonera.get(_pantalla.getBtnAdd()));
-        _pantalla.getBtnDel().setEnabled(_botonera.get(_pantalla.getBtnDel()));
-        _pantalla.getBtnAddFinanciacion().setEnabled(_botonera.get(_pantalla.getBtnAddFinanciacion()));
+
+    public void activar() {
+        if (activo == false) {
+            activo = true;
+            _pantalla.getBtnDropDetails().setEnabled(_botonera.get(_pantalla.getBtnDropDetails()));
+            _pantalla.getBtnViewDetails().setEnabled(_botonera.get(_pantalla.getBtnViewDetails()));
+            _pantalla.getBtnAdd().setEnabled(_botonera.get(_pantalla.getBtnAdd()));
+            _pantalla.getBtnDel().setEnabled(_botonera.get(_pantalla.getBtnDel()));
+            _pantalla.getBtnAddFinanciacion().setEnabled(_botonera.get(_pantalla.getBtnAddFinanciacion()));
+        }
     }
 
-    public void desactivar(){
-        activo=false;
-        _botonera.put(_pantalla.getBtnDropDetails(),_pantalla.getBtnDropDetails().isEnabled());
-        _botonera.put(_pantalla.getBtnViewDetails(), _pantalla.getBtnViewDetails().isEnabled());
-        _botonera.put(_pantalla.getBtnAdd(), _pantalla.getBtnAdd().isEnabled());
-        _botonera.put(_pantalla.getBtnDel(), _pantalla.getBtnDel().isEnabled());
-        _botonera.put(_pantalla.getBtnAddFinanciacion(), _pantalla.getBtnAddFinanciacion().isEnabled());
+    public void desactivar() {
+        if (activo == true) {
+            activo = false;
+            _botonera.put(_pantalla.getBtnDropDetails(), _pantalla.getBtnDropDetails().isEnabled());
+            _botonera.put(_pantalla.getBtnViewDetails(), _pantalla.getBtnViewDetails().isEnabled());
+            _botonera.put(_pantalla.getBtnAdd(), _pantalla.getBtnAdd().isEnabled());
+            _botonera.put(_pantalla.getBtnDel(), _pantalla.getBtnDel().isEnabled());
+            _botonera.put(_pantalla.getBtnAddFinanciacion(), _pantalla.getBtnAddFinanciacion().isEnabled());
+        }
     }
 
     void pressOkButton() {
@@ -350,7 +364,7 @@ public class ctrlModificarPlanNew implements ICalculable {
         _distOperatoria.setList(_gestor.listarDistribucionOperatoria(getAñoSeleccionado(), getDistSectorSeleccionado()));//GESTOR
         if (_distOperatoria.getAllRow().isEmpty()) {
             _pantalla.getBtnViewDetails();
-        }else{
+        } else {
             _panel.getTblOperatoria().setRowSelectionInterval(0, 0);
         }
         _panel.getTblSectorEconomico().setEnabled(false);
@@ -428,8 +442,9 @@ public class ctrlModificarPlanNew implements ICalculable {
     }
 
     public void actualizarPorcentaje() {
-        if(!activo)
+        if (!activo) {
             return;
+        }
         switch (tablaOnTop) {
             case AÑO:
                 colorTotal(100);
@@ -469,7 +484,7 @@ public class ctrlModificarPlanNew implements ICalculable {
             _pantalla.getBtnDropDetails().setEnabled(true);
             if (tablaOnTop != OPERATORIA) {
                 _pantalla.getBtnViewDetails().setEnabled(true);
-            }else{
+            } else {
                 _pantalla.getBtnAddFinanciacion().setEnabled(true);
             }
             if (tablaOnTop != AÑO) {
@@ -539,14 +554,14 @@ public class ctrlModificarPlanNew implements ICalculable {
                 _seleccion.getTblSeleccion().setModel(_provincias);
                 break;
             case CIUDAD:
-                _ciudades = new TablaCiudadNew(_gestor.ciudadesNoAsignadas(getAñoSeleccionado(),_distCiudad.getAllRow()));
+                _ciudades = new TablaCiudadNew(_gestor.ciudadesNoAsignadas(getAñoSeleccionado(), _distCiudad.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_ciudades);
                 break;
             case SECTORECONOMICO:
-                _sectores = new TablaSectorNew(_gestor.sectoresNoAsignados(getAñoSeleccionado(),_distSEconomico.getAllRow()));
+                _sectores = new TablaSectorNew(_gestor.sectoresNoAsignados(getAñoSeleccionado(), _distSEconomico.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_sectores);
             case OPERATORIA:
-                _operatorias = new TablaOperatoriaNew(_gestor.operatoriasNoAsignadas(getAñoSeleccionado(),_distOperatoria.getAllRow()));
+                _operatorias = new TablaOperatoriaNew(_gestor.operatoriasNoAsignadas(getAñoSeleccionado(), _distOperatoria.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_operatorias);
 
         }
@@ -565,7 +580,7 @@ public class ctrlModificarPlanNew implements ICalculable {
 
     void pressOkButtonSeleccion() {
         int rowIndex = _seleccion.getTblSeleccion().getSelectedRow();
-        switch(tablaOnTop){
+        switch (tablaOnTop) {
             case PROVINCIA:
                 _distProvincial.addRow(_gestor.addDistribucion(getAñoSeleccionado(), _provincias.getSelectedIndex(rowIndex)));
                 break;
@@ -576,10 +591,11 @@ public class ctrlModificarPlanNew implements ICalculable {
         _seleccion.setVisible(false);
     }
 
-    void pressAddFinanciacionButton(){
+    void pressAddFinanciacionButton() {
         _pantalla.setEnabled(false);
     }
-    public void desbloquear(){
+
+    public void desbloquear() {
         _pantalla.setEnabled(true);
     }
 }
