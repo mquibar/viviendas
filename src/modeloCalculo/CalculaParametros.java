@@ -36,19 +36,19 @@ public class CalculaParametros {
     }
 
     public static double calculaMontoCuotaTrimestral(double interesTrimestral, int cuotasTrimestrales, double montoDevengado){
-        return (montoDevengado * (java.lang.Math.pow((1+interesTrimestral),cuotasTrimestrales)*interesTrimestral)/(java.lang.Math.pow((1+interesTrimestral),cuotasTrimestrales)-1));
+        return (montoDevengado * ((java.lang.Math.pow((1+interesTrimestral),cuotasTrimestrales)*interesTrimestral)/(java.lang.Math.pow((1+interesTrimestral),cuotasTrimestrales)-1)));
     }
 
     public static int calculaMomentoFinGracia(int momentoOtorgamiento, int plazoGracia){
-        return momentoOtorgamiento + plazoGracia * 12;
+        return momentoOtorgamiento + (plazoGracia * 4);
     }
 
     public static int calculaPrimerPago(int momentoFinGracia){
         return momentoFinGracia+3;
     }
 
-    public static int calculaUltimoPago(int plazoGracia, int plazoAnios, int momentoFinGracia){
-        return (plazoAnios - plazoGracia) * 12 + momentoFinGracia;
+    public static int calculaUltimoPago(int plazoGracia, int cantAnios, int momentoFinGracia){
+        return (cantAnios - plazoGracia) * 4 + momentoFinGracia;
     }
     
     

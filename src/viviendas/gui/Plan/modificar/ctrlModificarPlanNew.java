@@ -68,8 +68,6 @@ public class ctrlModificarPlanNew implements ICalculable {
     private int tablaOnTop = AÑO;
     private IUSeleccionRestantes _seleccion;
     private boolean activo = true;
-    private boolean estadoBtnDrop;
-    private boolean estadoBtnView;
     private Map<javax.swing.JButton, Boolean> _botonera;
 
     public ctrlModificarPlanNew(GestorModificarPlan gestor, IUModificarPlanNew pantalla) {
@@ -90,6 +88,7 @@ public class ctrlModificarPlanNew implements ICalculable {
     final void cargarPantalla() {
         Plan plan = _gestor.getPlan();
         MenuClickDerechoNew mnuDerecho = new MenuClickDerechoNew(this, _pantalla);
+        _pantalla.getBtnDel().setVisible(true);
         _pantalla.addInternalFrameListener(new InternalFrameAdapter() {
 
             @Override
