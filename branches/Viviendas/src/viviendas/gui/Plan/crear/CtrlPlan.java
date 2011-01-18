@@ -126,8 +126,8 @@ public class CtrlPlan implements ICalculable {
             }
             dto.setTipo(plan);
             _gestor.crearNuevoPlan(dto);
-            mostrarMensaje("Se ha guardado el Plan correctamente");
-            _pantalla.dispose();
+            mostrarMensaje("Se ha guardado el plan correctamente");
+            _pantalla.getBtnAceptar().setEnabled(false);
         } catch (VerifyDataException ex) {
             mostrarMensaje(ex.getLocalizedMessage());
         } catch (PersistException ex) {

@@ -68,7 +68,7 @@ public class MainCargaInicial {
         System.out.println(operatoria);
 
         
-        System.out.println(GestorParametro.obtenerDistribucionOperatoria(plan, provincia, ciudad, sectorEconomico, operatoria));
+//        System.out.println(GestorParametro.obtenerDistribucionOperatoria(plan, provincia, ciudad, sectorEconomico, operatoria));
 //        System.out.println(GestorParametro.obtenerDistribucionOperatoria(plan, null, null, null, operatoria));
     }
 }

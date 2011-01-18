@@ -12,6 +12,7 @@ import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.SectorEconomico;
+import viviendas.gui.Plan.modificar.IUModificarPlanNew;
 import viviendas.gui.models.combos.ModelComboAnioPlan;
 import viviendas.gui.models.combos.ModelComboCiudad;
 import viviendas.gui.models.combos.ModelComboOperatoria;
@@ -26,7 +27,7 @@ public class CtrlCrearFinanciacion {
     private IUCrearFinanciacion _pantalla;
     private GestorCrearFinanciacion _gestor;
 
-    public CtrlCrearFinanciacion(Financiacion financiacion) {
+    public CtrlCrearFinanciacion(IUModificarPlanNew _pantallaSecundaria,Financiacion financiacion) {
         _pantalla = new IUCrearFinanciacion();
         _gestor = new GestorCrearFinanciacion(financiacion);
         _pantalla.getComPlan().addActionListener(new ActionListener() {
@@ -81,13 +82,21 @@ public class CtrlCrearFinanciacion {
     }
 
     private void presionaAceptar() {
-        _gestor.aplicarFinanciacion(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
-                ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
-                ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
-                ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
-                ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
-        _pantalla.getBtnAceptar().setEnabled(false);
-        JOptionPane.showMessageDialog(_pantalla, "Financiaciones creadas", "", JOptionPane.INFORMATION_MESSAGE);
+        Integer cantidad = _gestor.getCantidadRegistros(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
+                    ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
+                    ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
+                    ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
+                    ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
+        int rta = JOptionPane.showConfirmDialog(_pantalla, "Se van a modificar " + cantidad+ " registros, \nLa operacion tardará unos segundos ¿Desea Continuar?", "", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (rta == JOptionPane.OK_OPTION) {
+            _gestor.aplicarFinanciacion(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
+                    ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
+                    ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
+                    ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
+                    ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
+            _pantalla.getBtnAceptar().setEnabled(false);
+            JOptionPane.showMessageDialog(_pantalla, "Financiaciones creadas", "", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private void presionaCancelar() {

@@ -1,22 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * UICrearFinanciacion.java
- *
- * Created on 31/12/2010, 16:42:30
- */
 package viviendas.gui.financiacion.crear;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-/**
- *
- * @author danamar
- */
 public class IUCrearFinanciacion extends javax.swing.JInternalFrame {
 
     /** Creates new form UICrearFinanciacion */

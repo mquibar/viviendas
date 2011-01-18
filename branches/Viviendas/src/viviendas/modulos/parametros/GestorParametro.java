@@ -2,6 +2,7 @@ package viviendas.modulos.parametros;
 
 import java.util.ArrayList;
 import java.util.List;
+import viviendas.entidades.vivienda.AnioPlan;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.entidades.vivienda.Operatoria;
@@ -14,13 +15,17 @@ import viviendas.persistencia.Facade;
 
 public class GestorParametro {
 
-    public static List<DistribucionOperatoria> obtenerDistribucionOperatoria(Plan plan, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
+    public static List<DistribucionOperatoria> obtenerDistribucionOperatoria(Plan plan, AnioPlan anioPlan, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
         List<Criterio> listaCriterio = new ArrayList<Criterio>();
         if (plan == null) {
             throw new VerifyError("plan inexistente");
         }
         Criterio criterioPlan = new Criterio("anioPlan.plan", "=", plan);
         listaCriterio.add(criterioPlan);
+        if (anioPlan != null) {
+            Criterio criterioAnioPlan = new Criterio("anioPlan", "=", anioPlan);
+            listaCriterio.add(criterioAnioPlan);
+        }
         if (provincia != null) {
             Criterio criterioProvincia = new Criterio("distribucionSector.distribucionCiudad.distribucionProvincial.provincia", "=", provincia);
             listaCriterio.add(criterioProvincia);
