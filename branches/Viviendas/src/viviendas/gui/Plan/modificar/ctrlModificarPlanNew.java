@@ -559,9 +559,11 @@ public class ctrlModificarPlanNew implements ICalculable {
             case SECTORECONOMICO:
                 _sectores = new TablaSectorNew(_gestor.sectoresNoAsignados(getAñoSeleccionado(), _distSEconomico.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_sectores);
+                break;
             case OPERATORIA:
                 _operatorias = new TablaOperatoriaNew(_gestor.operatoriasNoAsignadas(getAñoSeleccionado(), _distOperatoria.getAllRow()));
                 _seleccion.getTblSeleccion().setModel(_operatorias);
+                break;
 
         }
         if (_seleccion.getTblSeleccion().getRowCount() <= 0) {
@@ -585,6 +587,12 @@ public class ctrlModificarPlanNew implements ICalculable {
                 break;
             case CIUDAD:
                 _distCiudad.addRow(_gestor.addDistribucion(getAñoSeleccionado(), _ciudades.getSelectedIndex(rowIndex), getDistProvincialSeleccionada()));
+                break;
+            case SECTORECONOMICO:
+                _distSEconomico.addRow(_gestor.addDistribucion(getAñoSeleccionado(), _sectores.getSelectedIndex(rowIndex), getDistCiudadSeleccionada()));
+                break;
+            case OPERATORIA:
+                _distOperatoria.addRow(_gestor.addDistribucion(getAñoSeleccionado(), _operatorias.getSelectedIndex(rowIndex), getDistSectorSeleccionado()));
                 break;
         }
         _seleccion.setVisible(false);
