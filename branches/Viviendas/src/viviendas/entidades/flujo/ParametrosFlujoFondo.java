@@ -24,40 +24,47 @@ public class ParametrosFlujoFondo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double devCredTna;
-    private Double devCredGastosOtorgamiento;
-    private Double devCredGastosAdministrativos;
-    private Integer titulosAniosDevol;
-    private Double titulosTna;
-    private Double perdidaIncobrables;
+    private Double tna;
+    private Double comisionOtorgamiento;
+    private Double gastosAdministrativos;
+    private Integer momentoOtorgamiento;
+    private Integer anioGracia;
     @OneToOne(mappedBy="parametrosFlujoFondo")
     private DistribucionOperatoria distribucionOperatoria;
 
     public ParametrosFlujoFondo() {
     }
 
-    public Double getDevCredGastosAdministrativos() {
-        return devCredGastosAdministrativos;
+    public Integer getAnioGracia() {
+        return anioGracia;
     }
 
-    public void setDevCredGastosAdministrativos(Double devCredGastosAdministrativos) {
-        this.devCredGastosAdministrativos = devCredGastosAdministrativos;
+    public void setAnioGracia(Integer anioGracia) {
+        this.anioGracia = anioGracia;
     }
 
-    public Double getDevCredGastosOtorgamiento() {
-        return devCredGastosOtorgamiento;
+    public Double getComisionOtorgamiento() {
+        return comisionOtorgamiento;
     }
 
-    public void setDevCredGastosOtorgamiento(Double devCredGastosOtorgamiento) {
-        this.devCredGastosOtorgamiento = devCredGastosOtorgamiento;
+    public void setComisionOtorgamiento(Double comisionOtorgamiento) {
+        this.comisionOtorgamiento = comisionOtorgamiento;
     }
 
-    public Double getDevCredTna() {
-        return devCredTna;
+    public DistribucionOperatoria getDistribucionOperatoria() {
+        return distribucionOperatoria;
     }
 
-    public void setDevCredTna(Double devCredTna) {
-        this.devCredTna = devCredTna;
+    public void setDistribucionOperatoria(DistribucionOperatoria distribucionOperatoria) {
+        this.distribucionOperatoria = distribucionOperatoria;
+    }
+
+    public Double getGastosAdministrativos() {
+        return gastosAdministrativos;
+    }
+
+    public void setGastosAdministrativos(Double gastosAdministrativos) {
+        this.gastosAdministrativos = gastosAdministrativos;
     }
 
     public Long getId() {
@@ -68,36 +75,20 @@ public class ParametrosFlujoFondo implements Serializable {
         this.id = id;
     }
 
-    public Double getPerdidaIncobrables() {
-        return perdidaIncobrables;
+    public Integer getMomentoOtorgamiento() {
+        return momentoOtorgamiento;
     }
 
-    public void setPerdidaIncobrables(Double perdidaIncobrables) {
-        this.perdidaIncobrables = perdidaIncobrables;
+    public void setMomentoOtorgamiento(Integer momentoOtorgamiento) {
+        this.momentoOtorgamiento = momentoOtorgamiento;
     }
 
-    public Integer getTitulosAniosDevol() {
-        return titulosAniosDevol;
+    public Double getTna() {
+        return tna;
     }
 
-    public void setTitulosAniosDevol(Integer titulosAniosDevol) {
-        this.titulosAniosDevol = titulosAniosDevol;
-    }
-
-    public Double getTitulosTna() {
-        return titulosTna;
-    }
-
-    public void setTitulosTna(Double titulosTna) {
-        this.titulosTna = titulosTna;
-    }
-
-    public DistribucionOperatoria getDistribucionOperatoria() {
-        return distribucionOperatoria;
-    }
-
-    public void setDistribucionOperatoria(DistribucionOperatoria distribucionOperatoria) {
-        this.distribucionOperatoria = distribucionOperatoria;
+    public void setTna(Double tna) {
+        this.tna = tna;
     }
 
     @Override

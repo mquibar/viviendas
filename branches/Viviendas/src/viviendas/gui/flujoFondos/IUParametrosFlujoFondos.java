@@ -38,28 +38,24 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
         return btnCancelar;
     }
 
-    public JTextField getTxtAnioDevolucion() {
-        return txtAnioDevolucion;
+    public JTextField getTxtComsionOtorgamiento() {
+        return txtComsionOtorgamiento;
     }
 
     public JTextField getTxtGastosAdministrativos() {
         return txtGastosAdministrativos;
     }
 
-    public JTextField getTxtGastosOtorgamiento() {
-        return txtGastosOtorgamiento;
+    public JTextField getTxtMomentoOtorg() {
+        return txtMomentoOtorg;
     }
 
-    public JTextField getTxtPerdidaIncobrables() {
-        return txtPerdidaIncobrables;
+    public JTextField getTxtPlazoGracia() {
+        return txtPlazoGracia;
     }
 
-    public JTextField getTxtTNADevolCred() {
-        return txtTNADevolCred;
-    }
-
-    public JTextField getTxtTNATitulos() {
-        return txtTNATitulos;
+    public JTextField getTxtTNA() {
+        return txtTNA;
     }
 
     public JComboBox getCmbCiudades() {
@@ -99,19 +95,16 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
         panelDevolCred = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtGastosAdministrativos = new javax.swing.JTextField();
-        txtTNADevolCred = new javax.swing.JTextField();
-        txtGastosOtorgamiento = new javax.swing.JTextField();
+        txtTNA = new javax.swing.JTextField();
+        txtComsionOtorgamiento = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtMomentoOtorg = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtPlazoGracia = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        panelTitulos = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        txtAnioDevolucion = new javax.swing.JTextField();
-        txtTNATitulos = new javax.swing.JTextField();
-        panelIncobrables = new javax.swing.JPanel();
-        txtPerdidaIncobrables = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -129,7 +122,7 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
 
         panelDevolCred.setBackground(new java.awt.Color(204, 204, 204));
-        panelDevolCred.setBorder(javax.swing.BorderFactory.createTitledBorder("Devol. Créditos"));
+        panelDevolCred.setBorder(javax.swing.BorderFactory.createTitledBorder("Parámetros"));
         panelDevolCred.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("% de Interes (TNA)");
@@ -161,12 +154,12 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                 }
             });
 
-            txtTNADevolCred.setPreferredSize(new java.awt.Dimension(50, 20));
+            txtTNA.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
             gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
             gridBagConstraints.insets = new java.awt.Insets(6, 8, 6, 8);
-            panelDevolCred.add(txtTNADevolCred, gridBagConstraints);
-            txtTNADevolCred.setInputVerifier(new InputVerifier()
+            panelDevolCred.add(txtTNA, gridBagConstraints);
+            txtTNA.setInputVerifier(new InputVerifier()
                 {
                     public boolean verify(JComponent input) {
                         JTextField tf = (JTextField) input;
@@ -180,14 +173,14 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                     }
                 });
 
-                txtGastosOtorgamiento.setMinimumSize(new java.awt.Dimension(50, 20));
-                txtGastosOtorgamiento.setPreferredSize(new java.awt.Dimension(50, 20));
+                txtComsionOtorgamiento.setMinimumSize(new java.awt.Dimension(50, 20));
+                txtComsionOtorgamiento.setPreferredSize(new java.awt.Dimension(50, 20));
                 gridBagConstraints = new java.awt.GridBagConstraints();
                 gridBagConstraints.gridx = 1;
                 gridBagConstraints.gridy = 1;
                 gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 0);
-                panelDevolCred.add(txtGastosOtorgamiento, gridBagConstraints);
-                txtGastosOtorgamiento.setInputVerifier(new InputVerifier()
+                panelDevolCred.add(txtComsionOtorgamiento, gridBagConstraints);
+                txtComsionOtorgamiento.setInputVerifier(new InputVerifier()
                     {
                         public boolean verify(JComponent input) {
                             JTextField tf = (JTextField) input;
@@ -201,7 +194,7 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                         }
                     });
 
-                    jLabel2.setText("Gastos de Otorgamiento");
+                    jLabel2.setText("Comisión de Otorgamiento");
                     gridBagConstraints = new java.awt.GridBagConstraints();
                     gridBagConstraints.gridx = 0;
                     gridBagConstraints.gridy = 1;
@@ -215,37 +208,17 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                     panelDevolCred.add(jLabel3, gridBagConstraints);
 
-                    btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Save.png"))); // NOI18N
-                    btnAceptar.setText("Guardar");
-
-                    btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Delete.png"))); // NOI18N
-                    btnCancelar.setText("Cancelar");
-
-                    panelTitulos.setBackground(new java.awt.Color(204, 204, 204));
-                    panelTitulos.setBorder(javax.swing.BorderFactory.createTitledBorder("Títulos"));
-                    panelTitulos.setLayout(new java.awt.GridBagLayout());
-
-                    jLabel9.setText("Años Devolución");
-                    gridBagConstraints = new java.awt.GridBagConstraints();
-                    gridBagConstraints.gridx = 2;
-                    gridBagConstraints.gridy = 0;
-                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                    panelTitulos.add(jLabel9, gridBagConstraints);
-
-                    jLabel10.setText("Tasa de Interes Anual");
-                    gridBagConstraints = new java.awt.GridBagConstraints();
-                    gridBagConstraints.gridx = 2;
-                    gridBagConstraints.gridy = 1;
-                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                    panelTitulos.add(jLabel10, gridBagConstraints);
-
-                    txtAnioDevolucion.setMinimumSize(new java.awt.Dimension(50, 20));
-                    txtAnioDevolucion.setPreferredSize(new java.awt.Dimension(50, 20));
+                    jLabel9.setText("Momento Otorgamiento");
                     gridBagConstraints = new java.awt.GridBagConstraints();
                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                    panelDevolCred.add(jLabel9, gridBagConstraints);
+
+                    txtMomentoOtorg.setMinimumSize(new java.awt.Dimension(50, 20));
+                    txtMomentoOtorg.setPreferredSize(new java.awt.Dimension(50, 20));
+                    gridBagConstraints = new java.awt.GridBagConstraints();
                     gridBagConstraints.insets = new java.awt.Insets(6, 8, 6, 8);
-                    panelTitulos.add(txtAnioDevolucion, gridBagConstraints);
-                    txtAnioDevolucion.setInputVerifier(new InputVerifier()
+                    panelDevolCred.add(txtMomentoOtorg, gridBagConstraints);
+                    txtMomentoOtorg.setInputVerifier(new InputVerifier()
                         {
                             public boolean verify(JComponent input) {
                                 JTextField tf = (JTextField) input;
@@ -259,15 +232,21 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                             }
                         });
 
-                        txtTNATitulos.setMinimumSize(new java.awt.Dimension(50, 20));
-                        txtTNATitulos.setPreferredSize(new java.awt.Dimension(50, 20));
+                        jLabel10.setText("Plazo Gracia");
+                        gridBagConstraints = new java.awt.GridBagConstraints();
+                        gridBagConstraints.gridx = 2;
+                        gridBagConstraints.gridy = 1;
+                        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                        panelDevolCred.add(jLabel10, gridBagConstraints);
+
+                        txtPlazoGracia.setMinimumSize(new java.awt.Dimension(50, 20));
+                        txtPlazoGracia.setPreferredSize(new java.awt.Dimension(50, 20));
                         gridBagConstraints = new java.awt.GridBagConstraints();
                         gridBagConstraints.gridx = 3;
                         gridBagConstraints.gridy = 1;
-                        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
                         gridBagConstraints.insets = new java.awt.Insets(6, 8, 6, 8);
-                        panelTitulos.add(txtTNATitulos, gridBagConstraints);
-                        txtTNATitulos.setInputVerifier(new InputVerifier()
+                        panelDevolCred.add(txtPlazoGracia, gridBagConstraints);
+                        txtPlazoGracia.setInputVerifier(new InputVerifier()
                             {
                                 public boolean verify(JComponent input) {
                                     JTextField tf = (JTextField) input;
@@ -281,160 +260,126 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                                 }
                             });
 
-                            panelIncobrables.setBackground(new java.awt.Color(204, 204, 204));
-                            panelIncobrables.setBorder(javax.swing.BorderFactory.createTitledBorder("Perdida por Incobrables"));
+                            btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Save.png"))); // NOI18N
+                            btnAceptar.setText("Guardar");
 
-                            javax.swing.GroupLayout panelIncobrablesLayout = new javax.swing.GroupLayout(panelIncobrables);
-                            panelIncobrables.setLayout(panelIncobrablesLayout);
-                            panelIncobrablesLayout.setHorizontalGroup(
-                                panelIncobrablesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(panelIncobrablesLayout.createSequentialGroup()
-                                    .addGap(32, 32, 32)
-                                    .addComponent(txtPerdidaIncobrables, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap(84, Short.MAX_VALUE))
+                            btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Delete.png"))); // NOI18N
+                            btnCancelar.setText("Cancelar");
+
+                            jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+                            jPanel1.setLayout(new java.awt.GridBagLayout());
+
+                            jLabel4.setText("Provincias");
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 0;
+                            gridBagConstraints.gridy = 2;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                            gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                            gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+                            jPanel1.add(jLabel4, gridBagConstraints);
+
+                            jLabel5.setText("Ciudades");
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 0;
+                            gridBagConstraints.gridy = 4;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                            gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                            gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+                            jPanel1.add(jLabel5, gridBagConstraints);
+
+                            jLabel6.setText("Seg. Econom.");
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 0;
+                            gridBagConstraints.gridy = 6;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                            gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                            gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+                            jPanel1.add(jLabel6, gridBagConstraints);
+
+                            jLabel7.setText("Operatorias");
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 0;
+                            gridBagConstraints.gridy = 8;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                            gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+                            gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+                            jPanel1.add(jLabel7, gridBagConstraints);
+
+                            cmbProvincias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 1;
+                            gridBagConstraints.gridy = 2;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                            gridBagConstraints.ipadx = 100;
+                            jPanel1.add(cmbProvincias, gridBagConstraints);
+
+                            cmbCiudades.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 1;
+                            gridBagConstraints.gridy = 4;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                            jPanel1.add(cmbCiudades, gridBagConstraints);
+
+                            cmbSectorEconomico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 1;
+                            gridBagConstraints.gridy = 6;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                            jPanel1.add(cmbSectorEconomico, gridBagConstraints);
+
+                            cmbOperatorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.gridx = 1;
+                            gridBagConstraints.gridy = 8;
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                            jPanel1.add(cmbOperatorias, gridBagConstraints);
+
+                            jLabel8.setText("Plan");
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                            gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
+                            jPanel1.add(jLabel8, gridBagConstraints);
+
+                            cmbPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+                            gridBagConstraints = new java.awt.GridBagConstraints();
+                            gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+                            jPanel1.add(cmbPlan, gridBagConstraints);
+
+                            javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+                            getContentPane().setLayout(layout);
+                            layout.setHorizontalGroup(
+                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(188, 188, 188)
+                                            .addComponent(btnAceptar)
+                                            .addGap(87, 87, 87)
+                                            .addComponent(btnCancelar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(140, 140, 140)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(panelDevolCred, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addContainerGap(165, Short.MAX_VALUE))
                             );
-                            panelIncobrablesLayout.setVerticalGroup(
-                                panelIncobrablesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtPerdidaIncobrables, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            layout.setVerticalGroup(
+                                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(30, 30, 30)
+                                    .addComponent(panelDevolCred, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(25, 25, 25))
                             );
 
-                            txtPerdidaIncobrables.setInputVerifier(new InputVerifier()
-                                {
-                                    public boolean verify(JComponent input) {
-                                        JTextField tf = (JTextField) input;
-                                        String cadena = tf.getText();
-
-                                        if(!Utiles.validarStringNumericoDouble(cadena)){
-                                            JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
-                                            return false;
-                                        }
-                                        return true;
-                                    }
-                                });
-
-                                jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-                                jPanel1.setLayout(new java.awt.GridBagLayout());
-
-                                jLabel4.setText("Provincias");
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 0;
-                                gridBagConstraints.gridy = 2;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-                                gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-                                jPanel1.add(jLabel4, gridBagConstraints);
-
-                                jLabel5.setText("Ciudades");
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 0;
-                                gridBagConstraints.gridy = 4;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-                                gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-                                jPanel1.add(jLabel5, gridBagConstraints);
-
-                                jLabel6.setText("Seg. Econom.");
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 0;
-                                gridBagConstraints.gridy = 6;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-                                gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-                                jPanel1.add(jLabel6, gridBagConstraints);
-
-                                jLabel7.setText("Operatorias");
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 0;
-                                gridBagConstraints.gridy = 8;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                                gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-                                gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-                                jPanel1.add(jLabel7, gridBagConstraints);
-
-                                cmbProvincias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 1;
-                                gridBagConstraints.gridy = 2;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                                gridBagConstraints.ipadx = 100;
-                                jPanel1.add(cmbProvincias, gridBagConstraints);
-
-                                cmbCiudades.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 1;
-                                gridBagConstraints.gridy = 4;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                                jPanel1.add(cmbCiudades, gridBagConstraints);
-
-                                cmbSectorEconomico.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 1;
-                                gridBagConstraints.gridy = 6;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                                jPanel1.add(cmbSectorEconomico, gridBagConstraints);
-
-                                cmbOperatorias.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.gridx = 1;
-                                gridBagConstraints.gridy = 8;
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                                jPanel1.add(cmbOperatorias, gridBagConstraints);
-
-                                jLabel8.setText("Plan");
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                                gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-                                jPanel1.add(jLabel8, gridBagConstraints);
-
-                                cmbPlan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-                                gridBagConstraints = new java.awt.GridBagConstraints();
-                                gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-                                jPanel1.add(cmbPlan, gridBagConstraints);
-
-                                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-                                getContentPane().setLayout(layout);
-                                layout.setHorizontalGroup(
-                                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(137, 137, 137)
-                                                .addComponent(panelDevolCred, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(10, 10, 10)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(panelIncobrables, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(panelTitulos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(163, 163, 163)
-                                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(210, 210, 210)
-                                                .addComponent(btnAceptar)
-                                                .addGap(87, 87, 87)
-                                                .addComponent(btnCancelar)))
-                                        .addContainerGap(137, Short.MAX_VALUE))
-                                );
-                                layout.setVerticalGroup(
-                                    layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(31, 31, 31)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(panelTitulos, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(panelIncobrables, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(panelDevolCred, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addContainerGap())
-                                );
-
-                                pack();
-                            }// </editor-fold>//GEN-END:initComponents
+                            pack();
+                        }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -457,14 +402,11 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelDevolCred;
-    private javax.swing.JPanel panelIncobrables;
-    private javax.swing.JPanel panelTitulos;
-    private javax.swing.JTextField txtAnioDevolucion;
+    private javax.swing.JTextField txtComsionOtorgamiento;
     private javax.swing.JTextField txtGastosAdministrativos;
-    private javax.swing.JTextField txtGastosOtorgamiento;
-    private javax.swing.JTextField txtPerdidaIncobrables;
-    private javax.swing.JTextField txtTNADevolCred;
-    private javax.swing.JTextField txtTNATitulos;
+    private javax.swing.JTextField txtMomentoOtorg;
+    private javax.swing.JTextField txtPlazoGracia;
+    private javax.swing.JTextField txtTNA;
     // End of variables declaration//GEN-END:variables
 
 }

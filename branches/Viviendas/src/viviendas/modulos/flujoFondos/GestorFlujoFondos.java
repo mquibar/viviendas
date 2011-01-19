@@ -64,12 +64,11 @@ public class GestorFlujoFondos {
 
         if (!listaDistribucionOperatoria.isEmpty()) {
             ParametrosFlujoFondo parametroFlujoFondo = new ParametrosFlujoFondo();
-            parametroFlujoFondo.setDevCredTna(_dto.getDevCredTna());
-            parametroFlujoFondo.setDevCredGastosOtorgamiento(_dto.getDevCredGastosOtorgamiento());
-            parametroFlujoFondo.setDevCredGastosAdministrativos(_dto.getDevCredGastosAdministrativos());
-            parametroFlujoFondo.setTitulosTna(_dto.getTitilosTna());
-            parametroFlujoFondo.setTitulosAniosDevol(_dto.getTitulosAniosDevolucion());
-            parametroFlujoFondo.setPerdidaIncobrables(_dto.getPerdidaIncobrables());
+            parametroFlujoFondo.setTna(_dto.getTna());
+            parametroFlujoFondo.setGastosAdministrativos(_dto.getGastosAdministrativos());
+            parametroFlujoFondo.setComisionOtorgamiento(_dto.getComisionOtorgamiento());
+            parametroFlujoFondo.setMomentoOtorgamiento(_dto.getMomentoOtorgamiento());
+            parametroFlujoFondo.setAnioGracia(_dto.getPlazoGracia());
 
             try {
                 Facade.getInstance().beginTx();
