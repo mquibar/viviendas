@@ -36,7 +36,7 @@
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jToolBar1" alignment="1" pref="722" max="32767" attributes="1"/>
+                          <Component id="jToolBar1" alignment="1" pref="723" max="32767" attributes="1"/>
                           <Component id="_pnlCentral" alignment="0" max="32767" attributes="1"/>
                       </Group>
                   </Group>
@@ -56,7 +56,7 @@
               <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanel3" min="-2" pref="213" max="-2" attributes="0"/>
                   <Component id="_pnlCentral" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -325,39 +325,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="_lblA&#xf1;o">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="_lblProvincia">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="_lblCiudad">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="_lblSector">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="_lblOperatoria">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="null"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -373,12 +348,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="718" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="719" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="585" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="589" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -388,9 +363,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="_btnPlan" alignment="0" pref="90" max="32767" attributes="0"/>
+              <Component id="_btnPlan" alignment="0" pref="91" max="32767" attributes="0"/>
               <Component id="_btnAddFinanciacion" alignment="0" max="32767" attributes="0"/>
-              <Component id="_btnInversion" alignment="0" pref="90" max="32767" attributes="0"/>
+              <Component id="_btnInversion" alignment="0" pref="91" max="32767" attributes="0"/>
+              <Component id="_btnFlujoFondo" alignment="0" pref="91" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -402,7 +378,9 @@
                   <Component id="_btnAddFinanciacion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="_btnInversion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="_btnFlujoFondo" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -437,6 +415,11 @@
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="_btnFlujoFondo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Flujo Fondo"/>
           </Properties>
         </Component>
       </SubComponents>

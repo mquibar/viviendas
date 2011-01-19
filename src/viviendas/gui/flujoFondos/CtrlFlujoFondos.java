@@ -55,7 +55,8 @@ public class CtrlFlujoFondos {
             return;
         }
 
-        //_modelo = new ModelDinamicTable(totalInversion, distOp.getParametrosFlujoFondo().getDevCredTna(), comicionOtorgamiento, distOp.getParametrosFlujoFondo().getDevCredGastosAdministrativos(), momentoOtorgamiento, plazoGracia)
+        _modelo = new ModelDinamicTable(totalInversion, distOp.getParametrosFlujoFondo().getTna(), distOp.getParametrosFlujoFondo().getComisionOtorgamiento(), distOp.getParametrosFlujoFondo().getGastosAdministrativos(), distOp.getParametrosFlujoFondo().getMomentoOtorgamiento(), distOp.getParametrosFlujoFondo().getAnioGracia());
+        _modelo.setCantAños(distOp.getAnioPlan().getPlan().getAniosPlan());
         _pantalla.getTbFlujoFondos().setModel(_modelo);
     }
 

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import viviendas.entidades.flujo.FuenteFondo;
 import viviendas.entidades.flujo.InversionParametro;
+import viviendas.entidades.flujo.ParametrosFlujoFondo;
 import viviendas.entidades.flujo.UsoFondo;
 import viviendas.entidades.flujo.ValorInversion;
 import viviendas.entidades.vivienda.AnioPlan;
@@ -37,7 +38,7 @@ class MediatorFactory {
 
         DISTRIBUCIONCIUDAD, DISTRIBUCIONPROVINCIAL, DISTRIBUCIONSECTOR, DISTRIBUCIONOPERATORIA, PLAN, AÑOPLAN,
         USUARIO, OPERATORIA, SECTORECONOMICO, CIUDAD, PROVINCIA, TIPOPLAN, PARAMETROSPLAN, USOFONDO, FUENTEFONDO,
-        INVERSIONPARAMETRO, VALORINVERSION, OTHER
+        INVERSIONPARAMETRO, VALORINVERSION, PARAMETROFLUJOFONDO, OTHER
     }
 
     private MediatorFactory() {
@@ -117,6 +118,9 @@ class MediatorFactory {
                 break;
             case VALORINVERSION:
                 interm = new Intermediario<ValorInversion>(c.getSimpleName());
+                break;
+            case PARAMETROFLUJOFONDO:
+                interm = new Intermediario<ParametrosFlujoFondo>(c.getSimpleName());
                 break;
             case OTHER:
                 interm = new Intermediario(c.getSimpleName());

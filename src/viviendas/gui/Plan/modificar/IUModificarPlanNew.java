@@ -69,13 +69,14 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _btnAddFinanciacion = new javax.swing.JButton();
         _btnPlan = new javax.swing.JButton();
         _btnInversion = new javax.swing.JButton();
+        _btnFlujoFondo = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Modificar Plan");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Home.png"))); // NOI18N
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos Plan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 12), java.awt.Color.gray)); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos Plan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), java.awt.Color.gray)); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("Nombre");
@@ -192,16 +193,6 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         _txtTotal.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "% Total", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
-        _lblAño.setBorder(null);
-
-        _lblProvincia.setBorder(null);
-
-        _lblCiudad.setBorder(null);
-
-        _lblSector.setBorder(null);
-
-        _lblOperatoria.setBorder(null);
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -245,11 +236,11 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _pnlCentral.setLayout(_pnlCentralLayout);
         _pnlCentralLayout.setHorizontalGroup(
             _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGap(0, 719, Short.MAX_VALUE)
         );
         _pnlCentralLayout.setVerticalGroup(
             _pnlCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 582, Short.MAX_VALUE)
+            .addGap(0, 589, Short.MAX_VALUE)
         );
 
         _btnAddFinanciacion.setText("Financiacion");
@@ -274,13 +265,16 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         _btnInversion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         _btnInversion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
+        _btnFlujoFondo.setText("Flujo Fondo");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(_btnPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addComponent(_btnPlan, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
             .addComponent(_btnAddFinanciacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(_btnInversion, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+            .addComponent(_btnInversion, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+            .addComponent(_btnFlujoFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,7 +285,9 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
                 .addComponent(_btnAddFinanciacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(_btnInversion)
-                .addGap(126, 126, 126))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(_btnFlujoFondo)
+                .addGap(92, 92, 92))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -307,7 +303,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                            .addComponent(jToolBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
                             .addComponent(_pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -322,7 +318,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(_pnlCentral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -337,6 +333,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
     private javax.swing.JButton _btnCancel;
     private javax.swing.JButton _btnDel;
     private javax.swing.JButton _btnDropDetails;
+    private javax.swing.JButton _btnFlujoFondo;
     private javax.swing.JButton _btnInversion;
     private javax.swing.JButton _btnOk;
     private javax.swing.JButton _btnPlan;
@@ -453,4 +450,7 @@ public class IUModificarPlanNew extends javax.swing.JInternalFrame {
         return _btnPlan;
     }
 
+    public JButton getBtnFlujoFondo() {
+        return _btnFlujoFondo;
+    }
 }

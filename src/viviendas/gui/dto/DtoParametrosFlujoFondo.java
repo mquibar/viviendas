@@ -16,25 +16,16 @@ import viviendas.entidades.vivienda.SectorEconomico;
  * @author Maximiliano.
  */
 public class DtoParametrosFlujoFondo {
-    private Double devCredTna;
-    private Double devCredGastosOtorgamiento;
-    private Double devCredGastosAdministrativos;
-    private Integer titulosAniosDevolucion;
-    private Double titilosTna;
-    private Double perdidaIncobrables;
+    private Double tna;
+    private Double gastosAdministrativos;
+    private Double comisionOtorgamiento;
+    private Integer momentoOtorgamiento;
+    private Integer plazoGracia;
     private Plan plan;
     private Provincia provincia;
     private Ciudad ciudad;
     private SectorEconomico sectorEconomico;
     private Operatoria operatoria;
-
-    public Plan getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Plan plan) {
-        this.plan = plan;
-    }
 
     public Ciudad getCiudad() {
         return ciudad;
@@ -44,28 +35,28 @@ public class DtoParametrosFlujoFondo {
         this.ciudad = ciudad;
     }
 
-    public Double getDevCredGastosAdministrativos() {
-        return devCredGastosAdministrativos;
+    public Double getComisionOtorgamiento() {
+        return comisionOtorgamiento;
     }
 
-    public void setDevCredGastosAdministrativos(Double devCredGastosAdministrativos) {
-        this.devCredGastosAdministrativos = devCredGastosAdministrativos;
+    public void setComisionOtorgamiento(Double comisionOtorgamiento) {
+        this.comisionOtorgamiento = comisionOtorgamiento;
     }
 
-    public Double getDevCredGastosOtorgamiento() {
-        return devCredGastosOtorgamiento;
+    public Double getGastosAdministrativos() {
+        return gastosAdministrativos;
     }
 
-    public void setDevCredGastosOtorgamiento(Double devCredGastosOtorgamiento) {
-        this.devCredGastosOtorgamiento = devCredGastosOtorgamiento;
+    public void setGastosAdministrativos(Double gastosAdministrativos) {
+        this.gastosAdministrativos = gastosAdministrativos;
     }
 
-    public Double getDevCredTna() {
-        return devCredTna;
+    public Integer getMomentoOtorgamiento() {
+        return momentoOtorgamiento;
     }
 
-    public void setDevCredTna(Double devCredTna) {
-        this.devCredTna = devCredTna;
+    public void setMomentoOtorgamiento(Integer momentoOtorgamiento) {
+        this.momentoOtorgamiento = momentoOtorgamiento;
     }
 
     public Operatoria getOperatoria() {
@@ -76,12 +67,20 @@ public class DtoParametrosFlujoFondo {
         this.operatoria = operatoria;
     }
 
-    public Double getPerdidaIncobrables() {
-        return perdidaIncobrables;
+    public Plan getPlan() {
+        return plan;
     }
 
-    public void setPerdidaIncobrables(Double perdidaIncobrables) {
-        this.perdidaIncobrables = perdidaIncobrables;
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public Integer getPlazoGracia() {
+        return plazoGracia;
+    }
+
+    public void setPlazoGracia(Integer plazoGracia) {
+        this.plazoGracia = plazoGracia;
     }
 
     public Provincia getProvincia() {
@@ -100,19 +99,11 @@ public class DtoParametrosFlujoFondo {
         this.sectorEconomico = sectorEconomico;
     }
 
-    public Double getTitilosTna() {
-        return titilosTna;
+    public Double getTna() {
+        return tna;
     }
 
-    public void setTitilosTna(Double titilosTna) {
-        this.titilosTna = titilosTna;
-    }
-
-    public Integer getTitulosAniosDevolucion() {
-        return titulosAniosDevolucion;
-    }
-
-    public void setTitulosAniosDevolucion(Integer titulosAniosDevolucion) {
-        this.titulosAniosDevolucion = titulosAniosDevolucion;
+    public void setTna(Double tna) {
+        this.tna = tna;
     }
 }

@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
-import modeloCalculo.ModelDinamicTable;
 import viviendas.gui.dto.DtoParametrosFlujoFondo;
 import viviendas.gui.models.combos.ModelComboCiudad;
 import viviendas.gui.models.combos.ModelComboOperatoria;
@@ -103,12 +102,12 @@ public class CtrlParametrosFlujoFondos {
 
     private void guardar(){
         //datos.
-        _dto.setDevCredTna(Double.valueOf(_pantalla.getTxtTNADevolCred().getText()));
-        _dto.setDevCredGastosOtorgamiento(Double.valueOf(_pantalla.getTxtGastosOtorgamiento().getText()));
-        _dto.setDevCredGastosAdministrativos(Double.valueOf(_pantalla.getTxtGastosAdministrativos().getText()));
-        _dto.setTitilosTna(Double.valueOf(_pantalla.getTxtTNATitulos().getText()));
-        _dto.setTitulosAniosDevolucion(Integer.valueOf(_pantalla.getTxtAnioDevolucion().getText()));
-        _dto.setPerdidaIncobrables(Double.valueOf(_pantalla.getTxtPerdidaIncobrables().getText()));
+        _dto.setTna(Double.valueOf(_pantalla.getTxtTNA().getText()));
+        _dto.setGastosAdministrativos(Double.valueOf(_pantalla.getTxtGastosAdministrativos().getText()));
+        _dto.setComisionOtorgamiento(Double.valueOf(_pantalla.getTxtComsionOtorgamiento().getText()));
+        _dto.setMomentoOtorgamiento(Integer.valueOf(_pantalla.getTxtMomentoOtorg().getText()));
+        _dto.setPlazoGracia(Integer.valueOf(_pantalla.getTxtPlazoGracia().getText()));
+
         //criterios.
         if(_pantalla.getCmbPlan().getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(_pantalla, "El plan es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
