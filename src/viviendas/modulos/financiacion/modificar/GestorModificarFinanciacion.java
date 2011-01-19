@@ -91,6 +91,11 @@ public class GestorModificarFinanciacion {
     }
 
     public List<DistribucionFinanciacion> cargarFinanciacion(DistribucionOperatoria distribucionOperatoria) {
+        if (_financiacion != null) {
+            if (_financiacion.getDistribucionOperatoria() == distribucionOperatoria) {
+                return _financiacion.getDistribucionesFinanciacion();
+            }
+        }
         Criterio criterio = new Criterio("distribucionOperatoria", "=", distribucionOperatoria);
         List<Financiacion> listaFinaciacion = Facade.getInstance().findByCriterio(Financiacion.class, criterio);
         if (listaFinaciacion.isEmpty()) {

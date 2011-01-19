@@ -171,6 +171,7 @@ public class GestorModificarPlan {
         noAsignadas = new ArrayList<Ciudad>(list);
 
         for (Ciudad ciudad : list) {
+            if(dCiudadList==null)break;
             for (DistribucionCiudad dCiudad : dCiudadList) {
                 if(dCiudad.getCuidad().equals(ciudad))
                     noAsignadas.remove(ciudad);
@@ -185,6 +186,7 @@ public class GestorModificarPlan {
         list = (new GestorSectorEconomico()).obtenerSectoresEconomicos();
         noAsignadas = new ArrayList<SectorEconomico>(list);
         for (SectorEconomico sector : list) {
+            if(dSectorList==null)break;
             for (DistribucionSector dSector : dSectorList) {
                 if(dSector.getSectorEconomico().equals(sector))
                     noAsignadas.remove(sector);
@@ -200,6 +202,7 @@ public class GestorModificarPlan {
         list = (new GestorOperatoria()).obtenerOperatorias();
         noAsignadas = new ArrayList<Operatoria>(list);
         for (Operatoria operatoria : list) {
+            if(dOperatoriaList==null)break;
             for (DistribucionOperatoria dOperatoria : dOperatoriaList) {
                 if(dOperatoria.getOperatoria().equals(operatoria))
                     noAsignadas.remove(operatoria);
