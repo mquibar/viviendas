@@ -29,7 +29,9 @@ public class CtrlFlujoFondos {
         _pantalla = new IUFlujoFondos();
 
         cargarTabla(distOp, plan);
-
+        
+        desktop.add(_pantalla);
+        _pantalla.setVisible(true);
     }
 
     private void cargarTabla(DistribucionOperatoria distOp, Plan plan){

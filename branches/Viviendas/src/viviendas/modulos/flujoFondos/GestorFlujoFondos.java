@@ -63,19 +63,24 @@ public class GestorFlujoFondos {
         listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_dto.getPlan(), null, _dto.getProvincia(), _dto.getCiudad(), _dto.getSectorEconomico(), _dto.getOperatoria());
 
         if (!listaDistribucionOperatoria.isEmpty()) {
-            ParametrosFlujoFondo parametroFlujoFondo = new ParametrosFlujoFondo();
-            parametroFlujoFondo.setTna(_dto.getTna());
-            parametroFlujoFondo.setGastosAdministrativos(_dto.getGastosAdministrativos());
-            parametroFlujoFondo.setComisionOtorgamiento(_dto.getComisionOtorgamiento());
-            parametroFlujoFondo.setMomentoOtorgamiento(_dto.getMomentoOtorgamiento());
-            parametroFlujoFondo.setAnioGracia(_dto.getPlazoGracia());
+            ParametrosFlujoFondo parametroFlujoFondo;           
 
             try {
-                Facade.getInstance().beginTx();
-                Facade.getInstance().guardar(parametroFlujoFondo);
+                Facade.getInstance().beginTx();                
                 for (DistribucionOperatoria distribucionOperatoria : listaDistribucionOperatoria) {
+                    parametroFlujoFondo = new ParametrosFlujoFondo();
+                    parametroFlujoFondo.setTna(_dto.getTna());
+                    parametroFlujoFondo.setGastosAdministrativos(_dto.getGastosAdministrativos());
+                    parametroFlujoFondo.setComisionOtorgamiento(_dto.getComisionOtorgamiento());
+                    parametroFlujoFondo.setMomentoOtorgamiento(_dto.getMomentoOtorgamiento());
+                    parametroFlujoFondo.setAnioGracia(_dto.getPlazoGracia());
+                    
+                    Facade.getInstance().guardar(parametroFlujoFondo);
+
                     distribucionOperatoria.setParametrosFlujoFondo(parametroFlujoFondo);
                     Facade.getInstance().actualizar(distribucionOperatoria);
+
+                    parametroFlujoFondo = null;
                 }
                 Facade.getInstance().commitTx();
             } catch (PersistException ex) {

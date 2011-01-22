@@ -165,7 +165,7 @@ public class CtrlProvincia {
     private void mostrarProvincias(){
         Provincia provincia = null;
 
-        if(_pantalla.getTbProvincias().getSelectedRow() > 0){
+        if(_pantalla.getTbProvincias().getSelectedRow() >= 0){
             provincia = _modelo.getSelectedIndex(_pantalla.getTbProvincias().getSelectedRow());
         }
 
