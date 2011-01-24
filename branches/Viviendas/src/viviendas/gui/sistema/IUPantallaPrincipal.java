@@ -77,11 +77,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
     public JMenuItem getMnuInversion() {
         return mnuInversion;
     }
-
-    public JMenuItem getMnuAbrirFlujoFondos() {
-        return mnuAbrirFlujoFondos;
-    }
-
+    
     public JMenuItem getMnuParamFlujoFondos() {
         return mnuParamFlujoFondos;
     }
@@ -110,8 +106,6 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuUsosFondos = new javax.swing.JMenuItem();
         mnuInversion = new javax.swing.JMenuItem();
         mnuParamFlujoFondos = new javax.swing.JMenuItem();
-        mnuFlujoFondos = new javax.swing.JMenu();
-        mnuAbrirFlujoFondos = new javax.swing.JMenuItem();
         mnuSistema = new javax.swing.JMenu();
         mnuAcercaDe = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
@@ -173,13 +167,6 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         mnuBarSistema.add(mnuParametros);
 
-        mnuFlujoFondos.setText("Flujo de Fondos");
-
-        mnuAbrirFlujoFondos.setText("Abrir");
-        mnuFlujoFondos.add(mnuAbrirFlujoFondos);
-
-        mnuBarSistema.add(mnuFlujoFondos);
-
         mnuSistema.setText("Sistema");
 
         mnuAcercaDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Alert.png"))); // NOI18N
@@ -210,11 +197,9 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem mnuAbrirFlujoFondos;
     private javax.swing.JMenuItem mnuAbrirPlan;
     private javax.swing.JMenuItem mnuAcercaDe;
     private javax.swing.JMenuBar mnuBarSistema;
-    private javax.swing.JMenu mnuFlujoFondos;
     private javax.swing.JMenuItem mnuFuenteFondos;
     private javax.swing.JMenuItem mnuInversion;
     private javax.swing.JMenuItem mnuNuevoPlan;
