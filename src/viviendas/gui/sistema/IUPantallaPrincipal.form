@@ -103,18 +103,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuFlujoFondos">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Flujo de Fondos"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuAbrirFlujoFondos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Abrir"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="mnuSistema">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sistema"/>
