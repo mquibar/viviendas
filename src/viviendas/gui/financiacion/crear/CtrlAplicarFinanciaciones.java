@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import viviendas.entidades.flujo.Financiacion;
 import viviendas.entidades.vivienda.AnioPlan;
 import viviendas.entidades.vivienda.Ciudad;
@@ -22,14 +24,18 @@ import viviendas.gui.models.combos.ModelComboSectorEconomico;
 import viviendas.gui.sistema.CtrlPrincipal;
 import viviendas.modulos.financiacion.crear.GestorCrearFinanciacion;
 
-public class CtrlCrearFinanciacion {
+public class CtrlAplicarFinanciaciones {
 
-    private IUCrearFinanciacion _pantalla;
+    private IUAplicarFinanciaciones _pantalla;
     private GestorCrearFinanciacion _gestor;
+    private final IUModificarPlanNew _pantalaSecundaria;
 
-    public CtrlCrearFinanciacion(IUModificarPlanNew _pantallaSecundaria,Financiacion financiacion) {
-        _pantalla = new IUCrearFinanciacion();
+    public CtrlAplicarFinanciaciones(IUModificarPlanNew _pantallaSecundaria, Financiacion financiacion) {
+        _pantalla = new IUAplicarFinanciaciones();
         _gestor = new GestorCrearFinanciacion(financiacion);
+        this._pantalaSecundaria = _pantallaSecundaria;
+        _pantallaSecundaria.setVisible(false);
+
         _pantalla.getComPlan().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -52,10 +58,19 @@ public class CtrlCrearFinanciacion {
         _pantalla.setVisible(true);
         _pantalla.toFront();
         CtrlPrincipal.getInstance().getDesktopPane().add(_pantalla);
+        _pantalla.addInternalFrameListener(new InternalFrameAdapter() {
+
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                presionaCancelar();
+            }
+        });
+        iniciarPantalla();
     }
 
     private void seleccionaPlan() {
         if (((ModelComboPlan) _pantalla.getComPlan().getModel()).getSelected() == null) {
+            iniciarPantalla();
             return;
         }
         _gestor.setPlan(((ModelComboPlan) _pantalla.getComPlan().getModel()).getSelected());
@@ -79,15 +94,16 @@ public class CtrlCrearFinanciacion {
         _pantalla.getComSector().setEnabled(true);
         _pantalla.getComOperatoria().setEnabled(true);
         _pantalla.getComAñoPlan().setEnabled(true);
+        _pantalla.getBtnAceptar().setEnabled(true);
     }
 
     private void presionaAceptar() {
         Integer cantidad = _gestor.getCantidadRegistros(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
-                    ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
-                    ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
-                    ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
-                    ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
-        int rta = JOptionPane.showConfirmDialog(_pantalla, "Se van a modificar " + cantidad+ " registros, \nLa operacion tardará unos segundos ¿Desea Continuar?", "", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
+                ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
+                ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
+                ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
+        int rta = JOptionPane.showConfirmDialog(_pantalla, "Se van a modificar " + cantidad + " registros, \nLa operacion tardará unos segundos ¿Desea Continuar?", "", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (rta == JOptionPane.OK_OPTION) {
             _gestor.aplicarFinanciacion(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
                     ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
@@ -101,6 +117,17 @@ public class CtrlCrearFinanciacion {
 
     private void presionaCancelar() {
         _pantalla.dispose();
+        _pantalaSecundaria.setVisible(true);
+    }
+
+    private void iniciarPantalla() {
+        _pantalla.getComAñoPlan().setEnabled(false);
+        _pantalla.getComCiudad().setEnabled(false);
+        _pantalla.getComOperatoria().setEnabled(false);
+        _pantalla.getComPlan().setEnabled(true);
+        _pantalla.getComProvincia().setEnabled(false);
+        _pantalla.getComSector().setEnabled(false);
+        _pantalla.getBtnAceptar().setEnabled(false);
     }
 
     class ComparadorAñoPlan implements Comparator<AnioPlan> {

@@ -139,6 +139,7 @@ public class ctrlModificarPlanNew implements ICalculable {
             }
         });
         _pantalla.getBtnAddFinanciacion().setEnabled(false);
+        _pantalla.getBtnFlujoFondo().setEnabled(false);
 
         //DATOS DEL PLAN
         _pantalla.getTxtNombre().setText(plan.getNombre());
@@ -276,6 +277,7 @@ public class ctrlModificarPlanNew implements ICalculable {
                 viewOperatoria();
                 _pantalla.getBtnViewDetails().setEnabled(false);
                 _pantalla.getBtnAddFinanciacion().setEnabled(true);
+                _pantalla.getBtnFlujoFondo().setEnabled(true);
                 break;
             default:
                 if (tablaOnTop <= AÑO) {
@@ -309,6 +311,7 @@ public class ctrlModificarPlanNew implements ICalculable {
                 dropOperatoria();
                 _pantalla.getBtnViewDetails().setEnabled(true);
                 _pantalla.getBtnAddFinanciacion().setEnabled(false);
+                _pantalla.getBtnFlujoFondo().setEnabled(false);
                 break;
             default:
                 if (tablaOnTop <= AÑO) {
@@ -476,6 +479,7 @@ public class ctrlModificarPlanNew implements ICalculable {
             _pantalla.getBtnDropDetails().setEnabled(false);
             _pantalla.getBtnViewDetails().setEnabled(false);
             _pantalla.getBtnAddFinanciacion().setEnabled(false);
+            _pantalla.getBtnFlujoFondo().setEnabled(false);
         } else {
             _pantalla.getTxtTotal().setForeground(Color.BLUE);
             _pantalla.getTxtRestante().setForeground(Color.BLUE);
@@ -485,6 +489,7 @@ public class ctrlModificarPlanNew implements ICalculable {
                 _pantalla.getBtnViewDetails().setEnabled(true);
             } else {
                 _pantalla.getBtnAddFinanciacion().setEnabled(true);
+                _pantalla.getBtnFlujoFondo().setEnabled(true);
             }
             if (tablaOnTop != AÑO) {
                 _pantalla.getBtnDropDetails().setEnabled(true);

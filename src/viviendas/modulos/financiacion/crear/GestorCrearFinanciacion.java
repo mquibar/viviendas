@@ -93,7 +93,6 @@ public class GestorCrearFinanciacion {
         try {
             Facade.getInstance().beginTx();
             List<DistribucionOperatoria> listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_plan, null, provincia, ciudad, sector, operatoria);
-            System.out.println("Filtrado Combinacion: " + listaDistribucionOperatoria.size());
             for (DistribucionOperatoria distribucionOperatoria : listaDistribucionOperatoria) {
                 if (distribucionOperatoria.getFinanciacion() != null) {
                     Facade.getInstance().eliminar(distribucionOperatoria.getFinanciacion());

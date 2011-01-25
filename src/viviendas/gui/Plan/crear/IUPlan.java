@@ -140,8 +140,6 @@ public class IUPlan extends javax.swing.JInternalFrame {
 
         labAñoInicio.setText("Año Inicio");
         jPanel1.add(labAñoInicio, new java.awt.GridBagConstraints());
-
-        spinAñoInicio.setModel(new javax.swing.SpinnerNumberModel(2010, 1950, 2110, 1));
         jPanel1.add(spinAñoInicio, new java.awt.GridBagConstraints());
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -236,17 +234,6 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.weighty = 1.0;
         jPanel3.add(jScrollPane1, gridBagConstraints);
 
-        tabProvinciasSeleccionadas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         tabProvinciasSeleccionadas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(tabProvinciasSeleccionadas);
 
