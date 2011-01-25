@@ -21,7 +21,7 @@ public class TestModelo extends javax.swing.JFrame {
     public TestModelo() {
         initComponents();
         md = new ModelDinamicTable(capSolicitado, TNA, comicionOtorgamiento, gastosAdministrativos, momentoOtorgamiento, plazoGracia);
-        md.setCantAños(5);
+        md.setCantAños(6);
         jTable1.setModel(md);
     }
 

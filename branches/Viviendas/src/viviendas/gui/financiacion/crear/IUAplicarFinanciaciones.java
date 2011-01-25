@@ -3,10 +3,10 @@ package viviendas.gui.financiacion.crear;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
-public class IUCrearFinanciacion extends javax.swing.JInternalFrame {
+public class IUAplicarFinanciaciones extends javax.swing.JInternalFrame {
 
     /** Creates new form UICrearFinanciacion */
-    public IUCrearFinanciacion() {
+    public IUAplicarFinanciaciones() {
         initComponents();
     }
 
@@ -29,6 +29,12 @@ public class IUCrearFinanciacion extends javax.swing.JInternalFrame {
         _comAñoPlan = new javax.swing.JComboBox();
         _btnAceptar = new javax.swing.JButton();
         _btnCancelar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -38,71 +44,71 @@ public class IUCrearFinanciacion extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Aplicar la Financiación a:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 18))); // NOI18N
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        _comPlan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Plan", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-        _comPlan.setMinimumSize(new java.awt.Dimension(150, 40));
-        _comPlan.setPreferredSize(new java.awt.Dimension(150, 60));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
-        jPanel1.add(_comPlan, gridBagConstraints);
-
-        _comProvincia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Provincia", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-        _comProvincia.setEnabled(false);
-        _comProvincia.setMinimumSize(new java.awt.Dimension(150, 40));
-        _comProvincia.setPreferredSize(new java.awt.Dimension(150, 60));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
-        jPanel1.add(_comProvincia, gridBagConstraints);
-
-        _comCiudad.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ciudad", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-        _comCiudad.setEnabled(false);
-        _comCiudad.setMinimumSize(new java.awt.Dimension(150, 40));
-        _comCiudad.setPreferredSize(new java.awt.Dimension(150, 60));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
-        jPanel1.add(_comCiudad, gridBagConstraints);
-
-        _comSector.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sector Economico", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-        _comSector.setEnabled(false);
-        _comSector.setMinimumSize(new java.awt.Dimension(150, 40));
-        _comSector.setPreferredSize(new java.awt.Dimension(150, 60));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
-        jPanel1.add(_comSector, gridBagConstraints);
-
-        _comOperatoria.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Operatoria", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-        _comOperatoria.setEnabled(false);
-        _comOperatoria.setMinimumSize(new java.awt.Dimension(150, 40));
-        _comOperatoria.setPreferredSize(new java.awt.Dimension(150, 60));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
-        jPanel1.add(_comOperatoria, gridBagConstraints);
-
-        _comAñoPlan.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Año del Plan", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
-        _comAñoPlan.setEnabled(false);
-        _comAñoPlan.setMinimumSize(new java.awt.Dimension(150, 40));
-        _comAñoPlan.setPreferredSize(new java.awt.Dimension(150, 60));
+        _comPlan.setBorder(null);
+        _comPlan.setMinimumSize(new java.awt.Dimension(190, 30));
+        _comPlan.setPreferredSize(new java.awt.Dimension(190, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(_comPlan, gridBagConstraints);
+
+        _comProvincia.setBorder(null);
+        _comProvincia.setMinimumSize(new java.awt.Dimension(190, 30));
+        _comProvincia.setPreferredSize(new java.awt.Dimension(190, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(_comProvincia, gridBagConstraints);
+
+        _comCiudad.setBorder(null);
+        _comCiudad.setMinimumSize(new java.awt.Dimension(190, 30));
+        _comCiudad.setPreferredSize(new java.awt.Dimension(190, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(_comCiudad, gridBagConstraints);
+
+        _comSector.setBorder(null);
+        _comSector.setMinimumSize(new java.awt.Dimension(190, 30));
+        _comSector.setPreferredSize(new java.awt.Dimension(190, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(_comSector, gridBagConstraints);
+
+        _comOperatoria.setBorder(null);
+        _comOperatoria.setMinimumSize(new java.awt.Dimension(190, 30));
+        _comOperatoria.setPreferredSize(new java.awt.Dimension(190, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(_comOperatoria, gridBagConstraints);
+
+        _comAñoPlan.setBorder(null);
+        _comAñoPlan.setMinimumSize(new java.awt.Dimension(190, 30));
+        _comAñoPlan.setPreferredSize(new java.awt.Dimension(190, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
         jPanel1.add(_comAñoPlan, gridBagConstraints);
 
         _btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Accept.png"))); // NOI18N
         _btnAceptar.setText("Aceptar");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel1.add(_btnAceptar, gridBagConstraints);
 
@@ -110,10 +116,75 @@ public class IUCrearFinanciacion extends javax.swing.JInternalFrame {
         _btnCancelar.setText("Cancelar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         jPanel1.add(_btnCancelar, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel1.setText("Plan");
+        jLabel1.setMaximumSize(new java.awt.Dimension(50, 30));
+        jLabel1.setMinimumSize(new java.awt.Dimension(50, 30));
+        jLabel1.setPreferredSize(new java.awt.Dimension(100, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(jLabel1, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel2.setText("Año");
+        jLabel2.setMaximumSize(new java.awt.Dimension(50, 30));
+        jLabel2.setMinimumSize(new java.awt.Dimension(50, 30));
+        jLabel2.setPreferredSize(new java.awt.Dimension(100, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(jLabel2, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel3.setText("Provincia");
+        jLabel3.setMaximumSize(new java.awt.Dimension(50, 30));
+        jLabel3.setMinimumSize(new java.awt.Dimension(50, 30));
+        jLabel3.setPreferredSize(new java.awt.Dimension(100, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(jLabel3, gridBagConstraints);
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel4.setText("Ciudad");
+        jLabel4.setMaximumSize(new java.awt.Dimension(50, 30));
+        jLabel4.setMinimumSize(new java.awt.Dimension(50, 30));
+        jLabel4.setPreferredSize(new java.awt.Dimension(100, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(jLabel4, gridBagConstraints);
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel5.setText("Sector");
+        jLabel5.setMaximumSize(new java.awt.Dimension(50, 30));
+        jLabel5.setMinimumSize(new java.awt.Dimension(50, 30));
+        jLabel5.setPreferredSize(new java.awt.Dimension(100, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(jLabel5, gridBagConstraints);
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel6.setText("Operatoria");
+        jLabel6.setMaximumSize(new java.awt.Dimension(50, 30));
+        jLabel6.setMinimumSize(new java.awt.Dimension(50, 30));
+        jLabel6.setPreferredSize(new java.awt.Dimension(100, 30));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 10, 10);
+        jPanel1.add(jLabel6, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -124,6 +195,7 @@ public class IUCrearFinanciacion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton _btnAceptar;
     private javax.swing.JButton _btnCancelar;
@@ -133,6 +205,12 @@ public class IUCrearFinanciacion extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox _comPlan;
     private javax.swing.JComboBox _comProvincia;
     private javax.swing.JComboBox _comSector;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 

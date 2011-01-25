@@ -12,7 +12,7 @@
     <class>viviendas.entidades.flujo.InversionPlan</class>
     <class>viviendas.entidades.flujo.UsoFondo</class>
     <class>viviendas.entidades.flujo.ValorInversion</class>
-    <class>viviendas.entidades.vivienda.AñoPlan</class>
+    <class>viviendas.entidades.vivienda.AnioPlan</class>
     <class>viviendas.entidades.vivienda.Ciudad</class>
     <class>viviendas.entidades.vivienda.DistribucionCiudad</class>
     <class>viviendas.entidades.vivienda.DistribucionOperatoria</class>
@@ -29,7 +29,7 @@
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
       <property name="hibernate.connection.password" value="root"/>
-      <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/viviendas"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/viviendas"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
     </properties>

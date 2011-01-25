@@ -19,7 +19,7 @@ import javax.swing.event.ChangeListener;
 import viviendas.entidades.flujo.DistribucionFinanciacion;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.gui.Plan.modificar.IUModificarPlanNew;
-import viviendas.gui.financiacion.crear.CtrlCrearFinanciacion;
+import viviendas.gui.financiacion.crear.CtrlAplicarFinanciaciones;
 import viviendas.gui.models.tables.ModelTableDetalleDistribucion;
 import viviendas.gui.sistema.CtrlPrincipal;
 import viviendas.gui.tool.ICalculable;
@@ -41,7 +41,6 @@ public class CtrlModificarFinanciacion implements ICalculable {
         this._pantalla = pantalla;
         hashIndiceTabla = new HashMap<JScrollPane, JTable>();
         _pantalla.getBtnDropDetails().setEnabled(false);
-        _pantalla.getBtnDel().setEnabled(false);
         hashEstadoBoton = new HashMap<JButton, Boolean>(6);
         hashEstadoBoton.put(_pantalla.getBtnAdd(), _pantalla.getBtnAdd().isEnabled());
         hashEstadoBoton.put(_pantalla.getBtnDel(), _pantalla.getBtnDel().isEnabled());
@@ -256,7 +255,7 @@ public class CtrlModificarFinanciacion implements ICalculable {
     }
 
     private void presionaBtnAplicarA() {
-        new CtrlCrearFinanciacion(_pantalla,_gestor.getFinanciacion());
+        new CtrlAplicarFinanciaciones(_pantalla,_gestor.getFinanciacion());
         _panFinanciacion.getBtnAplicarA().setEnabled(false);
     }
 

@@ -8,6 +8,7 @@ import viviendas.gui.models.tables.ModelTableProvincia;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -34,7 +35,7 @@ public class CtrlPlan implements ICalculable {
         Utiles.ordena(listaProvincia, "nombre");
         _pantalla.getTabProvincias().setModel(new TablaProvincia(listaProvincia));
         _pantalla.getTabProvinciasSeleccionadas().setModel(new TablaDistribucionProvincial(new ArrayList<DistribucionProvincial>()));
-        _pantalla.getComTipoPlan().setModel(new ModelComboTipoPlan(_gestor.buscarTiposPlanes(),"Seleccione ..."));
+        _pantalla.getComTipoPlan().setModel(new ModelComboTipoPlan(_gestor.buscarTiposPlanes(), "Seleccione ..."));
         SubscriptorTotal.getInstance().añadir(this);
         _pantalla.getBtnAceptar().addActionListener(new java.awt.event.ActionListener() {
 
@@ -96,6 +97,8 @@ public class CtrlPlan implements ICalculable {
         _pantalla.toFront();
         _pantalla.setVisible(true);
         _pantalla.getBtnAceptar().setEnabled(false);
+        Calendar calendar = Calendar.getInstance();
+        _pantalla.getSpinAñoInicio().setModel(new javax.swing.SpinnerNumberModel(calendar.get(Calendar.YEAR), 1950, 2110, 1));
         desktop.add(_pantalla);
 
     }
