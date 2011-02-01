@@ -21,7 +21,7 @@ public class TestModelo extends javax.swing.JFrame {
     public TestModelo() {
         initComponents();
         md = new ModelDinamicTable(capSolicitado, TNA, comicionOtorgamiento, gastosAdministrativos, momentoOtorgamiento, plazoGracia);
-        md.setCantAños(6);
+        md.setCantAños(2);
         jTable1.setModel(md);
     }
 
@@ -81,11 +81,17 @@ public class TestModelo extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    double capSolicitado=190000;
-    double TNA=0.06;
-    double comicionOtorgamiento=0.01;
+    double capSolicitado=24000;
+    double TNA=0.03;
+    double comicionOtorgamiento=0.02;
     double gastosAdministrativos=0.01;
     int momentoOtorgamiento=0;
-    int plazoGracia=2;
+    int plazoGracia=1;
+//    double capSolicitado=190000;
+//    double TNA=0.06;
+//    double comicionOtorgamiento=0.01;
+//    double gastosAdministrativos=0.01;
+//    int momentoOtorgamiento=0;
+//    int plazoGracia=2;
     ModelDinamicTable md;
 }

@@ -95,7 +95,6 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
         panelDevolCred = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtGastosAdministrativos = new javax.swing.JTextField();
-        txtTNA = new javax.swing.JTextField();
         txtComsionOtorgamiento = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -103,6 +102,7 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
         txtMomentoOtorg = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtPlazoGracia = new javax.swing.JTextField();
+        txtTNA = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -147,115 +147,138 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                     String cadena = tf.getText();
 
                     if(!Utiles.validarStringNumericoDouble(cadena)){
-                        JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(getPantalla(), "Solo se haceptan valores numéricos.","Viviendas", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
+                    double valor = Double.valueOf(cadena).doubleValue() / 100;
+                    if(valor > 100 || valor < 0){
+                        JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. % Gastos Adm. = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                    txtGastosAdministrativos.setText(String.valueOf(valor));
                     return true;
                 }
             });
 
-            txtTNA.setPreferredSize(new java.awt.Dimension(50, 20));
+            txtComsionOtorgamiento.setMinimumSize(new java.awt.Dimension(50, 20));
+            txtComsionOtorgamiento.setPreferredSize(new java.awt.Dimension(50, 20));
             gridBagConstraints = new java.awt.GridBagConstraints();
-            gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-            gridBagConstraints.insets = new java.awt.Insets(6, 8, 6, 8);
-            panelDevolCred.add(txtTNA, gridBagConstraints);
-            txtTNA.setInputVerifier(new InputVerifier()
+            gridBagConstraints.gridx = 1;
+            gridBagConstraints.gridy = 1;
+            gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 0);
+            panelDevolCred.add(txtComsionOtorgamiento, gridBagConstraints);
+            txtComsionOtorgamiento.setInputVerifier(new InputVerifier()
                 {
                     public boolean verify(JComponent input) {
                         JTextField tf = (JTextField) input;
                         String cadena = tf.getText();
 
                         if(!Utiles.validarStringNumericoDouble(cadena)){
-                            JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(getPantalla(), "Solo se haceptan valores numéricos.","Viviendas", JOptionPane.ERROR_MESSAGE);
                             return false;
                         }
+                        double valor = Double.valueOf(cadena).doubleValue() / 100;
+                        if(valor > 100 || valor < 0){
+                            JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. %Comis. Otorg. = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
+                            return false;
+                        }
+                        txtComsionOtorgamiento.setText(String.valueOf(valor));
                         return true;
                     }
                 });
 
-                txtComsionOtorgamiento.setMinimumSize(new java.awt.Dimension(50, 20));
-                txtComsionOtorgamiento.setPreferredSize(new java.awt.Dimension(50, 20));
+                jLabel2.setText("Comisión de Otorgamiento");
                 gridBagConstraints = new java.awt.GridBagConstraints();
-                gridBagConstraints.gridx = 1;
+                gridBagConstraints.gridx = 0;
                 gridBagConstraints.gridy = 1;
-                gridBagConstraints.insets = new java.awt.Insets(6, 0, 6, 0);
-                panelDevolCred.add(txtComsionOtorgamiento, gridBagConstraints);
-                txtComsionOtorgamiento.setInputVerifier(new InputVerifier()
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                panelDevolCred.add(jLabel2, gridBagConstraints);
+
+                jLabel3.setText("Gastos Administrativos");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 0;
+                gridBagConstraints.gridy = 2;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                panelDevolCred.add(jLabel3, gridBagConstraints);
+
+                jLabel9.setText("Momento Otorgamiento");
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 2;
+                gridBagConstraints.gridy = 0;
+                gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+                panelDevolCred.add(jLabel9, gridBagConstraints);
+
+                txtMomentoOtorg.setMinimumSize(new java.awt.Dimension(50, 20));
+                txtMomentoOtorg.setPreferredSize(new java.awt.Dimension(50, 20));
+                gridBagConstraints = new java.awt.GridBagConstraints();
+                gridBagConstraints.gridx = 3;
+                gridBagConstraints.gridy = 0;
+                gridBagConstraints.insets = new java.awt.Insets(6, 8, 6, 8);
+                panelDevolCred.add(txtMomentoOtorg, gridBagConstraints);
+                txtMomentoOtorg.setInputVerifier(new InputVerifier()
                     {
                         public boolean verify(JComponent input) {
                             JTextField tf = (JTextField) input;
                             String cadena = tf.getText();
 
-                            if(!Utiles.validarStringNumericoDouble(cadena)){
-                                JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+                            if(!Utiles.validarStringNumerico(cadena)){
+                                JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos enteros.", "Viviendas", JOptionPane.ERROR_MESSAGE);
                                 return false;
                             }
                             return true;
                         }
                     });
 
-                    jLabel2.setText("Comisión de Otorgamiento");
+                    jLabel10.setText("Plazo Gracia");
                     gridBagConstraints = new java.awt.GridBagConstraints();
-                    gridBagConstraints.gridx = 0;
+                    gridBagConstraints.gridx = 2;
                     gridBagConstraints.gridy = 1;
                     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                    panelDevolCred.add(jLabel2, gridBagConstraints);
+                    panelDevolCred.add(jLabel10, gridBagConstraints);
 
-                    jLabel3.setText("Gastos Administrativos");
+                    txtPlazoGracia.setMinimumSize(new java.awt.Dimension(50, 20));
+                    txtPlazoGracia.setPreferredSize(new java.awt.Dimension(50, 20));
                     gridBagConstraints = new java.awt.GridBagConstraints();
-                    gridBagConstraints.gridx = 0;
-                    gridBagConstraints.gridy = 2;
-                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                    panelDevolCred.add(jLabel3, gridBagConstraints);
-
-                    jLabel9.setText("Momento Otorgamiento");
-                    gridBagConstraints = new java.awt.GridBagConstraints();
-                    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                    panelDevolCred.add(jLabel9, gridBagConstraints);
-
-                    txtMomentoOtorg.setMinimumSize(new java.awt.Dimension(50, 20));
-                    txtMomentoOtorg.setPreferredSize(new java.awt.Dimension(50, 20));
-                    gridBagConstraints = new java.awt.GridBagConstraints();
+                    gridBagConstraints.gridx = 3;
+                    gridBagConstraints.gridy = 1;
                     gridBagConstraints.insets = new java.awt.Insets(6, 8, 6, 8);
-                    panelDevolCred.add(txtMomentoOtorg, gridBagConstraints);
-                    txtMomentoOtorg.setInputVerifier(new InputVerifier()
+                    panelDevolCred.add(txtPlazoGracia, gridBagConstraints);
+                    txtPlazoGracia.setInputVerifier(new InputVerifier()
                         {
                             public boolean verify(JComponent input) {
                                 JTextField tf = (JTextField) input;
                                 String cadena = tf.getText();
 
-                                if(!Utiles.validarStringNumericoDouble(cadena)){
-                                    JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+                                if(!Utiles.validarStringNumerico(cadena)){
+                                    JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos enteros", "Viviendas", JOptionPane.ERROR_MESSAGE);
                                     return false;
                                 }
                                 return true;
                             }
                         });
 
-                        jLabel10.setText("Plazo Gracia");
+                        txtTNA.setMinimumSize(new java.awt.Dimension(50, 20));
+                        txtTNA.setPreferredSize(new java.awt.Dimension(50, 20));
                         gridBagConstraints = new java.awt.GridBagConstraints();
-                        gridBagConstraints.gridx = 2;
-                        gridBagConstraints.gridy = 1;
-                        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-                        panelDevolCred.add(jLabel10, gridBagConstraints);
-
-                        txtPlazoGracia.setMinimumSize(new java.awt.Dimension(50, 20));
-                        txtPlazoGracia.setPreferredSize(new java.awt.Dimension(50, 20));
-                        gridBagConstraints = new java.awt.GridBagConstraints();
-                        gridBagConstraints.gridx = 3;
-                        gridBagConstraints.gridy = 1;
-                        gridBagConstraints.insets = new java.awt.Insets(6, 8, 6, 8);
-                        panelDevolCred.add(txtPlazoGracia, gridBagConstraints);
-                        txtPlazoGracia.setInputVerifier(new InputVerifier()
+                        gridBagConstraints.gridx = 1;
+                        gridBagConstraints.gridy = 0;
+                        panelDevolCred.add(txtTNA, gridBagConstraints);
+                        txtTNA.setInputVerifier(new InputVerifier()
                             {
                                 public boolean verify(JComponent input) {
                                     JTextField tf = (JTextField) input;
                                     String cadena = tf.getText();
 
                                     if(!Utiles.validarStringNumericoDouble(cadena)){
-                                        JOptionPane.showMessageDialog(getPantalla(), "Solo se permiten valores numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+                                        JOptionPane.showMessageDialog(getPantalla(), "Solo se haceptan valores numéricos.","Viviendas", JOptionPane.ERROR_MESSAGE);
                                         return false;
                                     }
+                                    double valor = Double.valueOf(cadena).doubleValue() / 100;
+                                    if(valor > 100 || valor < 0){
+                                        JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. %TNA = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
+                                        return false;
+                                    }
+                                    txtTNA.setText(String.valueOf(valor));
                                     return true;
                                 }
                             });
@@ -360,8 +383,7 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                                             .addGap(140, 140, 140)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(panelDevolCred, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))))
                                     .addContainerGap(165, Short.MAX_VALUE))
                             );
                             layout.setVerticalGroup(

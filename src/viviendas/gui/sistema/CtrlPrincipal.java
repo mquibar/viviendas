@@ -56,7 +56,8 @@ public class CtrlPrincipal {
         _pantalla.getMnuAcercaDe().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(_pantalla, _VERSION, "Acerca de", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(_pantalla, _VERSION, "Acerca de", JOptionPane.INFORMATION_MESSAGE);
+                abrirIUAcercaDe();
             }
         });
         _pantalla.getMnuSalir().addActionListener(new ActionListener() {
@@ -157,6 +158,11 @@ public class CtrlPrincipal {
 
     private void abrirReporteDistribGenProvincias(){
         
+    }
+
+    private void abrirIUAcercaDe(){
+        IUAcercaDe acercaDe = new IUAcercaDe(_pantalla, true);
+        acercaDe.setVisible(true);
     }
 
     public JDesktopPane getDesktopPane() {

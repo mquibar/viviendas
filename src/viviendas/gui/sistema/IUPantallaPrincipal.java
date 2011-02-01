@@ -12,7 +12,6 @@
 package viviendas.gui.sistema;
 
 import javax.swing.JDesktopPane;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 /**
