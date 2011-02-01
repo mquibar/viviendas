@@ -54,7 +54,7 @@ public class ModelTableUsoFondo extends AbstractTableModel<UsoFondo>{
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                _lista.get(rowIndex).setNombre(aValue.toString());
+                _lista.get(rowIndex).setNombre(aValue.toString().toUpperCase());
                 break;
             case 1:
                 _lista.get(rowIndex).setImporte(Double.valueOf(aValue.toString()));

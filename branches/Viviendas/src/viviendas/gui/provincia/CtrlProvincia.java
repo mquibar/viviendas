@@ -23,6 +23,7 @@ import viviendas.entidades.vivienda.Provincia;
 import viviendas.gui.models.tables.ModelTableProvincia;
 import viviendas.gui.models.tables.ModeloTableCiudad;
 import viviendas.modulos.provincia.GestorProvincia;
+import viviendas.systemException.BusinessOperationException;
 import viviendas.utiles.Utiles;
 
 /**
@@ -217,10 +218,16 @@ public class CtrlProvincia {
 
     private void cargarCiudades(){
         try {
-            _gestor.guardar(_modelo.getAllRow());
-            JOptionPane.showMessageDialog(_pantalla, "Ciudades asociadas correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(_pantalla, "No se pudieron guardar los cambios  de ciudades para la provincia seleccionada. ", "Error", JOptionPane.ERROR_MESSAGE);
+            //_gestor.guardar(_modelo.getAllRow());
+            if(_pantalla.getTbProvincias().getSelectedRow() >= 0){
+                _gestor.guardar(_modelo.getSelectedIndex(_pantalla.getTbProvincias().getSelectedRow()));
+                JOptionPane.showMessageDialog(_pantalla, "Ciudades asociadas correctamente", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (BusinessOperationException ex) {
+            JOptionPane.showMessageDialog(_pantalla, "No se pudieron guardar los cambios de ciudades para la provincia seleccionada. ", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(_pantalla, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

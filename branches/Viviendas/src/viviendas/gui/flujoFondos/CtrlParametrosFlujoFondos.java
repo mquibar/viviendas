@@ -7,6 +7,8 @@ package viviendas.gui.flujoFondos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import viviendas.gui.dto.DtoParametrosFlujoFondo;
@@ -158,5 +160,9 @@ public class CtrlParametrosFlujoFondos {
         _pantalla.getCmbOperatorias().setEnabled(operatoria);
     }
 
-
+    private String convertirEnProcentaje() {
+        Double valor = Double.valueOf(_pantalla.getTxtTNA().getText());
+        valor = valor / 100;
+        return String.valueOf(valor);
+    }
 }

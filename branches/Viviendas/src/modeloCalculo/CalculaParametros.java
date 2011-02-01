@@ -40,7 +40,7 @@ public class CalculaParametros {
     }
 
     public static int calculaMomentoFinGracia(int momentoOtorgamiento, int plazoGracia){
-        return momentoOtorgamiento + (plazoGracia * 4);
+        return momentoOtorgamiento + (plazoGracia * 4); //momentoOtorgamiento + (plazoGracia * 4)
     }
 
     public static int calculaPrimerPago(int momentoFinGracia){
@@ -48,7 +48,7 @@ public class CalculaParametros {
     }
 
     public static int calculaUltimoPago(int plazoGracia, int cantAnios, int momentoFinGracia){
-        return (cantAnios - plazoGracia) * 4 + momentoFinGracia;
+        return (cantAnios - plazoGracia) * 4 + momentoFinGracia; //(cantAnios - plazoGracia) * 4 + momentoFinGracia
     }
     
     

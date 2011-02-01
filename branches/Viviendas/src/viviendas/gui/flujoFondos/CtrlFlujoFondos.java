@@ -28,13 +28,13 @@ public class CtrlFlujoFondos {
         _gestor = new GestorFlujoFondos();
         _pantalla = new IUFlujoFondos();
 
-        cargarTabla(distOp, plan);
-        
-        desktop.add(_pantalla);
-        _pantalla.setVisible(true);
+        if(cargarTabla(distOp, plan)){
+            desktop.add(_pantalla);
+            _pantalla.setVisible(true);
+        }
     }
 
-    private void cargarTabla(DistribucionOperatoria distOp, Plan plan){
+    private boolean cargarTabla(DistribucionOperatoria distOp, Plan plan){
         double totalInversion = 0;
         //Buscamos todas las inversiones del plan:
         List<InversionPlan> listaInversionPlan = plan.getListaInversion();
@@ -54,12 +54,13 @@ public class CtrlFlujoFondos {
 
         if(distOp.getParametrosFlujoFondo() == null){
             JOptionPane.showMessageDialog(_pantalla, "No se han definido parametros de flujo de fondo.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
 
         _modelo = new ModelDinamicTable(totalInversion, distOp.getParametrosFlujoFondo().getTna(), distOp.getParametrosFlujoFondo().getComisionOtorgamiento(), distOp.getParametrosFlujoFondo().getGastosAdministrativos(), distOp.getParametrosFlujoFondo().getMomentoOtorgamiento(), distOp.getParametrosFlujoFondo().getAnioGracia());
         _modelo.setCantAños(distOp.getAnioPlan().getPlan().getAniosPlan());
         _pantalla.getTbFlujoFondos().setModel(_modelo);
+        return true;
     }
 
 }

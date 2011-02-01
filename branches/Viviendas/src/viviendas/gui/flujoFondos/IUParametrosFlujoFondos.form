@@ -40,7 +40,6 @@
                           <Component id="panelDevolCred" alignment="1" max="32767" attributes="1"/>
                           <Component id="jPanel1" alignment="1" pref="387" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="165" max="32767" attributes="0"/>
@@ -99,26 +98,11 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtGastosAdministrativos.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se permiten valores num&#xe9;ricos.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        return true;&#xa;    }&#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtGastosAdministrativos.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se haceptan valores num&#xe9;ricos.&quot;,&quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        double valor = Double.valueOf(cadena).doubleValue() / 100;&#xa;        if(valor &gt; 100 || valor &lt; 0){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;El porcentaje debe ser un valor entre 0 y 100. % Gastos Adm. = &quot; + valor, &quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        txtGastosAdministrativos.setText(String.valueOf(valor));&#xa;        return true;&#xa;    }&#xa;});"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="1" gridY="2" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="6" insetsLeft="0" insetsBottom="6" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtTNA">
-          <Properties>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[50, 20]"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtTNA.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se permiten valores num&#xe9;ricos.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        return true;&#xa;    }&#xa;});"/>
-          </AuxValues>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="6" insetsLeft="8" insetsBottom="6" insetsRight="8" anchor="10" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -132,7 +116,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtComsionOtorgamiento.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se permiten valores num&#xe9;ricos.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        return true;&#xa;    }&#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtComsionOtorgamiento.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se haceptan valores num&#xe9;ricos.&quot;,&quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        double valor = Double.valueOf(cadena).doubleValue() / 100;&#xa;        if(valor &gt; 100 || valor &lt; 0){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;El porcentaje debe ser un valor entre 0 y 100. %Comis. Otorg. = &quot; + valor, &quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        txtComsionOtorgamiento.setText(String.valueOf(valor));&#xa;        return true;&#xa;    }&#xa;});"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -166,7 +150,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="2" gridY="0" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -180,11 +164,11 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtMomentoOtorg.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se permiten valores num&#xe9;ricos.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        return true;&#xa;    }&#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtMomentoOtorg.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumerico(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se permiten valores num&#xe9;ricos enteros.&quot;, &quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        return true;&#xa;    }&#xa;});"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
-              <GridBagConstraints gridX="-1" gridY="-1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="6" insetsLeft="8" insetsBottom="6" insetsRight="8" anchor="10" weightX="0.0" weightY="0.0"/>
+              <GridBagConstraints gridX="3" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="6" insetsLeft="8" insetsBottom="6" insetsRight="8" anchor="10" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -208,11 +192,29 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtPlazoGracia.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se permiten valores num&#xe9;ricos.&quot;, &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        return true;&#xa;    }&#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtPlazoGracia.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumerico(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se permiten valores num&#xe9;ricos enteros&quot;, &quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        return true;&#xa;    }&#xa;});"/>
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="3" gridY="1" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="6" insetsLeft="8" insetsBottom="6" insetsRight="8" anchor="10" weightX="0.0" weightY="0.0"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtTNA">
+          <Properties>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[50, 20]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[50, 20]"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="txtTNA.setInputVerifier(new InputVerifier()&#xa;{&#xa;    public boolean verify(JComponent input) {&#xa;        JTextField tf = (JTextField) input;&#xa;        String cadena = tf.getText();&#xa;&#xa;        if(!Utiles.validarStringNumericoDouble(cadena)){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;Solo se haceptan valores num&#xe9;ricos.&quot;,&quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        double valor = Double.valueOf(cadena).doubleValue() / 100;&#xa;        if(valor &gt; 100 || valor &lt; 0){&#xa;            JOptionPane.showMessageDialog(getPantalla(), &quot;El porcentaje debe ser un valor entre 0 y 100. %TNA = &quot; + valor, &quot;Viviendas&quot;, JOptionPane.ERROR_MESSAGE);&#xa;            return false;&#xa;        }&#xa;        txtTNA.setText(String.valueOf(valor));&#xa;        return true;&#xa;    }&#xa;});"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
+              <GridBagConstraints gridX="1" gridY="0" gridWidth="1" gridHeight="1" fill="0" ipadX="0" ipadY="0" insetsTop="0" insetsLeft="0" insetsBottom="0" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
             </Constraint>
           </Constraints>
         </Component>

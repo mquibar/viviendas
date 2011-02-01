@@ -109,8 +109,7 @@ public class ModelDinamicTable extends javax.swing.table.AbstractTableModel {
                                 ,2);
                     case 1:
                         return testModelo1.round(
-                                devolucionCapital.get(newColumnIndex) + devolucionCapital.get(newColumnIndex+1) + devolucionCapital.get(newColumnIndex+2)+ devolucionCapital.get(newColumnIndex+3)
-                                ,2);
+                                devolucionCapital.get(newColumnIndex) + devolucionCapital.get(newColumnIndex+1) + devolucionCapital.get(newColumnIndex+2)+ devolucionCapital.get(newColumnIndex+3) ,2);
                     case 2:
                         return testModelo1.round(
                                 interesPeriodo.get(newColumnIndex)+interesPeriodo.get(newColumnIndex+1)+interesPeriodo.get(newColumnIndex+2)+interesPeriodo.get(newColumnIndex+3)

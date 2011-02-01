@@ -80,4 +80,8 @@ public class Utiles {
     public static boolean validarStringNumericoDouble(String cadena) {
         return java.util.regex.Pattern.matches("[0123456789.,]*", cadena);
     }
+
+    public static boolean validarStringNumerico(String cadena) {
+        return java.util.regex.Pattern.matches("[0123456789]*", cadena);
+    }
 }
