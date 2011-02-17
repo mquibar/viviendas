@@ -81,6 +81,14 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         return mnuParamFlujoFondos;
     }
 
+    public JMenuItem getMnuUsuario() {
+        return mnuUsuario;
+    }
+
+    public void setMnuUsuario(JMenuItem mnuUsuario) {
+        this.mnuUsuario = mnuUsuario;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -106,6 +114,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuInversion = new javax.swing.JMenuItem();
         mnuParamFlujoFondos = new javax.swing.JMenuItem();
         mnuSistema = new javax.swing.JMenu();
+        mnuUsuario = new javax.swing.JMenuItem();
         mnuAcercaDe = new javax.swing.JMenuItem();
         mnuSalir = new javax.swing.JMenuItem();
 
@@ -168,8 +177,11 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
 
         mnuSistema.setText("Sistema");
 
+        mnuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/User_16x16.png"))); // NOI18N
+        mnuUsuario.setText("Usuario");
+        mnuSistema.add(mnuUsuario);
+
         mnuAcercaDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Alert.png"))); // NOI18N
-        mnuAcercaDe.setText("Acerca de");
         mnuSistema.add(mnuAcercaDe);
 
         mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
@@ -213,6 +225,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuSistema;
     private javax.swing.JMenuItem mnuTiposCiudades;
     private javax.swing.JMenuItem mnuUsosFondos;
+    private javax.swing.JMenuItem mnuUsuario;
     // End of variables declaration//GEN-END:variables
 
 }

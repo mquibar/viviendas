@@ -148,6 +148,9 @@ public class CtrlPlan implements ICalculable {
             Provincia provincia = ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).getSelectedIndex(index);
             DistribucionProvincial distribucion = new DistribucionProvincial();
             distribucion.setProvincia(provincia);
+            if (provincia.getParametro() != null) {
+                distribucion.setPorcentajeDistribucion(provincia.getParametro().getPorcenteaje());
+            }
             ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).addRow(distribucion);
             ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).delRow(provincia);
         }
@@ -160,6 +163,9 @@ public class CtrlPlan implements ICalculable {
         for (Provincia provincia : provincias) {
             DistribucionProvincial distribucion = new DistribucionProvincial();
             distribucion.setProvincia(provincia);
+            if (provincia.getParametro() != null) {
+                distribucion.setPorcentajeDistribucion(provincia.getParametro().getPorcenteaje());
+            }
             distribuciones.add(distribucion);
         }
         ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).addAll(distribuciones);
@@ -173,6 +179,8 @@ public class CtrlPlan implements ICalculable {
         } else {
             DistribucionProvincial distribucion = ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).getSelectedIndex(index);
             ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).addRow(distribucion.getProvincia());
+            Utiles.ordena(((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).getAllRow(), "nombre");
+            ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).fireTableDataChanged();
             ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).delRow(distribucion);
         }
     }
@@ -184,6 +192,8 @@ public class CtrlPlan implements ICalculable {
             listaProvincia.add(distribucionProvincial.getProvincia());
         }
         ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).addAll(listaProvincia);
+        Utiles.ordena(((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).getAllRow(), "nombre");
+        ((ModelTableProvincia) _pantalla.getTabProvincias().getModel()).fireTableDataChanged();
         ((ModelTableDistribucionProvincial) _pantalla.getTabProvinciasSeleccionadas().getModel()).clear();
     }
 
