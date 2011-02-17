@@ -41,6 +41,14 @@ public class CtrlPrincipal {
                 abrirIUFuentesFondos();
             }
         });
+
+        _pantalla.getMnuUsuario().addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                abrirIUUsuario();
+            }
+        });
+
         _pantalla.getMnuOperatoria().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
@@ -144,20 +152,20 @@ public class CtrlPrincipal {
         new CtrlProvincia(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUUsosFondos(){
+    private void abrirIUUsosFondos() {
         new CtrlUsosFondos(_pantalla.getDesktopPane());
     }
 
-    private void abrirIUInversion(){
+    private void abrirIUInversion() {
         new CtrlInversion(_pantalla.getDesktopPane());
-    }    
+    }
 
-    private void abrirIUParamInversion(){
+    private void abrirIUParamInversion() {
         new CtrlParametrosFlujoFondos(_pantalla.getDesktopPane());
     }
 
-    private void abrirReporteDistribGenProvincias(){
-        
+    private void abrirIUUsuario() {
+        new viviendas.gui.usuario.CtrlUsuario();
     }
 
     private void abrirIUAcercaDe(){
