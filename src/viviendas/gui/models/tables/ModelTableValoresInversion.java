@@ -25,6 +25,7 @@ public class ModelTableValoresInversion extends AbstractTableModel<ValorInversio
                     return _lista.get(rowIndex).getFinancio().getNombre();
                 case 1:
                     return _lista.get(rowIndex).getImporte();
+                    //return _lista.get(rowIndex).getFinancio().getImporte();
                 default:
                     return "";
             }
@@ -55,6 +56,7 @@ public class ModelTableValoresInversion extends AbstractTableModel<ValorInversio
         switch(columnIndex){
             case 0:
                 _lista.get(rowIndex).getFinancio().setNombre(aValue.toString());
+                break;
             case 1:
                 //_lista.get(rowIndex).getFinancio().setImporte(Double.valueOf(aValue.toString()));
                 _lista.get(rowIndex).setImporte(Double.valueOf(aValue.toString()));
