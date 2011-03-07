@@ -58,7 +58,8 @@ public class CtrlInversion {
             }
 
             public void focusLost(FocusEvent e) {
-                cargarUsos();                
+                if(_pantalla.getCbCiudades().getSelectedIndex() > 0)
+                    cargarUsos();
             }
         });
         _pantalla.getCbCiudades().addActionListener(new ActionListener() {
@@ -67,7 +68,7 @@ public class CtrlInversion {
                 if(_pantalla.getCbCiudades().getSelectedIndex() > 0){
                     _pantalla.getTbUsosFondos().transferFocus();
                 }
-                
+
             }
         });
         _pantalla.getTbUsosFondos().addPropertyChangeListener(new PropertyChangeListener() {

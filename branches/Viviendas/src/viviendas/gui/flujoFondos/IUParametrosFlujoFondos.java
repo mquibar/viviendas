@@ -147,12 +147,13 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                     String cadena = tf.getText();
 
                     if(!Utiles.validarStringNumericoDouble(cadena)){
-                        JOptionPane.showMessageDialog(getPantalla(), "Solo se haceptan valores numéricos.","Viviendas", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(getPantalla(), "Solo se aceptan valores numéricos.","Viviendas", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
-                    double valor = Double.valueOf(cadena).doubleValue() / 100;
+
+                    double valor = Double.valueOf(cadena).doubleValue();
                     if(valor > 100 || valor < 0){
-                        JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. % Gastos Adm. = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. %Gastos Administrativos = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
                         return false;
                     }
                     txtGastosAdministrativos.setText(String.valueOf(valor));
@@ -177,9 +178,10 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                             JOptionPane.showMessageDialog(getPantalla(), "Solo se haceptan valores numéricos.","Viviendas", JOptionPane.ERROR_MESSAGE);
                             return false;
                         }
-                        double valor = Double.valueOf(cadena).doubleValue() / 100;
+
+                        double valor = Double.valueOf(cadena).doubleValue();
                         if(valor > 100 || valor < 0){
-                            JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. %Comis. Otorg. = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. %Comision Otorgamiento = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
                             return false;
                         }
                         txtComsionOtorgamiento.setText(String.valueOf(valor));
@@ -273,7 +275,8 @@ public class IUParametrosFlujoFondos extends javax.swing.JInternalFrame {
                                         JOptionPane.showMessageDialog(getPantalla(), "Solo se haceptan valores numéricos.","Viviendas", JOptionPane.ERROR_MESSAGE);
                                         return false;
                                     }
-                                    double valor = Double.valueOf(cadena).doubleValue() / 100;
+
+                                    double valor = Double.valueOf(cadena).doubleValue();
                                     if(valor > 100 || valor < 0){
                                         JOptionPane.showMessageDialog(getPantalla(), "El porcentaje debe ser un valor entre 0 y 100. %TNA = " + valor, "Viviendas", JOptionPane.ERROR_MESSAGE);
                                         return false;

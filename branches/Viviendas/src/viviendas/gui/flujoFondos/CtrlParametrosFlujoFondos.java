@@ -104,11 +104,54 @@ public class CtrlParametrosFlujoFondos {
 
     private void guardar(){
         //datos.
-        _dto.setTna(Double.valueOf(_pantalla.getTxtTNA().getText()));
-        _dto.setGastosAdministrativos(Double.valueOf(_pantalla.getTxtGastosAdministrativos().getText()));
-        _dto.setComisionOtorgamiento(Double.valueOf(_pantalla.getTxtComsionOtorgamiento().getText()));
-        _dto.setMomentoOtorgamiento(Integer.valueOf(_pantalla.getTxtMomentoOtorg().getText()));
-        _dto.setPlazoGracia(Integer.valueOf(_pantalla.getTxtPlazoGracia().getText()));
+        if(_pantalla.getTxtTNA().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo TNA es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            if(Double.valueOf(_pantalla.getTxtTNA().getText()).doubleValue() == 0)
+                _dto.setTna(0d);
+            else
+                _dto.setTna(Double.valueOf(_pantalla.getTxtTNA().getText())/100);
+        }
+
+        if(_pantalla.getTxtGastosAdministrativos().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo Gastos Administrativo es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            if(Double.valueOf(_pantalla.getTxtGastosAdministrativos().getText()).doubleValue() == 0)
+                _dto.setGastosAdministrativos(0d);
+            else
+                _dto.setGastosAdministrativos(Double.valueOf(_pantalla.getTxtGastosAdministrativos().getText())/100);
+        }
+
+        if(_pantalla.getTxtComsionOtorgamiento().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo Comisión de Otorgamiento es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            if(Double.valueOf(_pantalla.getTxtComsionOtorgamiento().getText()).doubleValue() == 0)
+                _dto.setComisionOtorgamiento(0d);
+            else
+                _dto.setComisionOtorgamiento(Double.valueOf(_pantalla.getTxtComsionOtorgamiento().getText())/100);
+        }
+
+        if(_pantalla.getTxtMomentoOtorg().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo Momento de otorgamiento es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            _dto.setMomentoOtorgamiento(Integer.valueOf(_pantalla.getTxtMomentoOtorg().getText()));
+        }
+
+        if(_pantalla.getTxtPlazoGracia().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo Plazo de Gracia es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            _dto.setPlazoGracia(Integer.valueOf(_pantalla.getTxtPlazoGracia().getText()));
+        }
 
         //criterios.
         if(_pantalla.getCmbPlan().getSelectedIndex() == 0){
@@ -140,6 +183,9 @@ public class CtrlParametrosFlujoFondos {
             _dto.setOperatoria(((ModelComboOperatoria) _pantalla.getCmbOperatorias().getModel()).getSelected());
 
         try {
+            System.out.println("TNA: " + _dto.getTna());
+            System.out.println("Gastos Administrativos: " + _dto.getGastosAdministrativos());
+            System.out.println("Comisión de otorgamiento: " + _dto.getComisionOtorgamiento());
             _gestor.guardar(_dto);
             JOptionPane.showMessageDialog(_pantalla, "Valores almacenados", "Información", JOptionPane.INFORMATION_MESSAGE);
         } catch (BusinessOperationException ex) {
