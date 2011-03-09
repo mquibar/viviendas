@@ -54,7 +54,7 @@ public class GestorUsuario {
         }
         Facade.getInstance().beginTx();
         Usuario usuario = usuarios.get(0);
-        usuario.setContraseña(contraseñaNueva);
+        usuario.setContrasenia(contraseñaNueva);
         Facade.getInstance().actualizar(usuario);
         Facade.getInstance().commitTx();
 
@@ -62,7 +62,7 @@ public class GestorUsuario {
 
     public List<Usuario> buscarUsuarios(String usuario, String contraseña) {
         Criterio criterio = new Criterio("usuario", "=", usuario);
-        Criterio criterio1 = new Criterio("contraseña", "=", contraseña);
+        Criterio criterio1 = new Criterio("contrasenia", "=", contraseña);
         CriterioCompuesto cc = new CriterioCompuesto(criterio, "AND", criterio1);
         return (List<Usuario>) Facade.getInstance().findByCriterio(Usuario.class, cc);
     }

@@ -22,14 +22,14 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String usuario;
-    private String contraseña;
+    private String contrasenia;
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenia(String contraseña) {
+        this.contrasenia = contraseña;
     }
 
 
