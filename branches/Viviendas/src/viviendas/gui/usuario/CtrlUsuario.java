@@ -49,6 +49,7 @@ public class CtrlUsuario {
         try {
             _gestor.cambioDeClave(usuario, contraseña, contraseñaNueva, reingreso);
             JOptionPane.showMessageDialog(_pantalla, "Se ha cambiado la constrañse correctamente", "", JOptionPane.ERROR_MESSAGE);
+            cerrar();
         } catch (VerifyDataException ex) {
             JOptionPane.showMessageDialog(_pantalla, ex.getDato(), "", JOptionPane.ERROR_MESSAGE);
         } catch (PersistException ex) {
@@ -57,5 +58,11 @@ public class CtrlUsuario {
     }
 
     public void presionaCancelar() {
+        cerrar();
+    }
+
+    private void cerrar(){
+        _pantalla.hide();
+        _pantalla.dispose();
     }
 }

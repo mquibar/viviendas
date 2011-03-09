@@ -47,6 +47,8 @@ public class IUUsuario extends javax.swing.JInternalFrame {
         labContraseñaNueva = new javax.swing.JLabel();
         _txtContraseniaNueva = new javax.swing.JPasswordField();
 
+        setClosable(true);
+        setTitle("Usuario");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         labUsuario.setText("Usuario");

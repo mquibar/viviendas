@@ -182,6 +182,7 @@ public class IUPantallaPrincipal extends javax.swing.JFrame {
         mnuSistema.add(mnuUsuario);
 
         mnuAcercaDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Alert.png"))); // NOI18N
+        mnuAcercaDe.setText("Acerca de ...");
         mnuSistema.add(mnuAcercaDe);
 
         mnuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/Log Out_16x16.png"))); // NOI18N
