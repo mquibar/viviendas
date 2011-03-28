@@ -103,7 +103,10 @@ public class CtrlFuenteFondo {
     }
 
     private void quitar(){
-        if(!_modelo.getSelectedIndex(_pantalla.getTbFuentesFondos().getSelectedRow()).getNombre().equals(GestorFuentesFondos.OTROSAPORTES))
+        if(!_modelo.getSelectedIndex(_pantalla.getTbFuentesFondos().getSelectedRow()).getNombre().equals(GestorFuentesFondos.OTROSAPORTES) |
+            !_modelo.getSelectedIndex(_pantalla.getTbFuentesFondos().getSelectedRow()).getNombre().equals(GestorFuentesFondos.AHORRO_PREVIO) |
+            !_modelo.getSelectedIndex(_pantalla.getTbFuentesFondos().getSelectedRow()).getNombre().equals(GestorFuentesFondos.CREDITO_ESTADO) |
+            !_modelo.getSelectedIndex(_pantalla.getTbFuentesFondos().getSelectedRow()).getNombre().equals(GestorFuentesFondos.SUBSIDIO_ESTADO))
             if(_pantalla.getTbFuentesFondos().getSelectedRow() > -1){
                 _modelo.delRow(_pantalla.getTbFuentesFondos().getSelectedRow());
                 verificarPorcentajes();

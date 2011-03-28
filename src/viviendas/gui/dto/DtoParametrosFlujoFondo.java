@@ -5,6 +5,7 @@
 
 package viviendas.gui.dto;
 
+import viviendas.entidades.vivienda.AnioPlan;
 import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Plan;
@@ -21,11 +22,16 @@ public class DtoParametrosFlujoFondo {
     private Double comisionOtorgamiento;
     private Integer momentoOtorgamiento;
     private Integer plazoGracia;
+    private Double perdidaIncobrables;
+    private Double tnaTitulos;
+    private Integer cantAniosTitulos;
     private Plan plan;
+    private AnioPlan anioPlan;
     private Provincia provincia;
     private Ciudad ciudad;
     private SectorEconomico sectorEconomico;
     private Operatoria operatoria;
+
 
     public Ciudad getCiudad() {
         return ciudad;
@@ -59,6 +65,30 @@ public class DtoParametrosFlujoFondo {
         this.momentoOtorgamiento = momentoOtorgamiento;
     }
 
+    public Integer getCantAniosTitulos() {
+        return cantAniosTitulos;
+    }
+
+    public void setCantAniosTitulos(Integer cantAniosTitulos) {
+        this.cantAniosTitulos = cantAniosTitulos;
+    }
+
+    public Double getPerdidaIncobrables() {
+        return perdidaIncobrables;
+    }
+
+    public void setPerdidaIncobrables(Double perdidaIncobrables) {
+        this.perdidaIncobrables = perdidaIncobrables;
+    }
+
+    public Double getTnaTitulos() {
+        return tnaTitulos;
+    }
+
+    public void setTnaTitulos(Double tnaTitulos) {
+        this.tnaTitulos = tnaTitulos;
+    }
+
     public Operatoria getOperatoria() {
         return operatoria;
     }
@@ -73,6 +103,14 @@ public class DtoParametrosFlujoFondo {
 
     public void setPlan(Plan plan) {
         this.plan = plan;
+    }
+
+    public AnioPlan getAnioPlan() {
+        return anioPlan;
+    }
+
+    public void setAnioPlan(AnioPlan anioPlan) {
+        this.anioPlan = anioPlan;
     }
 
     public Integer getPlazoGracia() {

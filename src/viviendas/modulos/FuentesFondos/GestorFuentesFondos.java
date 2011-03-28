@@ -19,6 +19,9 @@ import viviendas.utiles.Utiles;
 public class GestorFuentesFondos {
     public static final String NOMBRE_PARAM_FUENTEFONDO = "FUENTEFONDO_";
     public static final String OTROSAPORTES = "OTROS APORTES";
+    public static final String CREDITO_ESTADO = "CREDITO DEL ESTADO";
+    public static final String SUBSIDIO_ESTADO = "SUBSIDIO DEL ESTADO";
+    public static final String AHORRO_PREVIO = "AHORRO PREVIO";
     
     public void guardar(List<FuenteFondo> listaMod) throws BusinessOperationException{
         Criterio criterio = new Criterio("vigente", "=", true);

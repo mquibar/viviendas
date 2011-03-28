@@ -4,10 +4,15 @@
  */
 package viviendas.modulos.flujoFondos;
 
+import java.util.ArrayList;
 import java.util.List;
 import viviendas.entidades.flujo.ParametrosFlujoFondo;
+import viviendas.entidades.vivienda.AnioPlan;
 import viviendas.entidades.vivienda.Ciudad;
+import viviendas.entidades.vivienda.DistribucionCiudad;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
+import viviendas.entidades.vivienda.DistribucionProvincial;
+import viviendas.entidades.vivienda.DistribucionSector;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.entidades.vivienda.Provincia;
@@ -18,7 +23,6 @@ import viviendas.persistencia.Criterio;
 import viviendas.persistencia.Facade;
 import viviendas.persistencia.exceptions.PersistException;
 import viviendas.systemException.BusinessOperationException;
-import viviendas.utiles.Utiles;
 
 /**
  *
@@ -30,43 +34,69 @@ public class GestorFlujoFondos {
         return Facade.getInstance().findAll(Plan.class);
     }
 
-    public List obtenerProvincias() {
-        List<Provincia> listado = Facade.getInstance().findAll(Provincia.class);
-        Utiles.ordena(listado, "nombre");
-        return listado;
+    public List<AnioPlan> obtenerAniosPlan(Plan plan) {
+        Criterio criterioAños = new Criterio("plan", "=", plan);
+        return Facade.getInstance().findByCriterio(AnioPlan.class, criterioAños);
     }
 
-    public List obtenerCiudades() {
-        Criterio criterio = new Criterio("vigente", "=", true);
-        List<Ciudad> listado = Facade.getInstance().findByCriterio(Ciudad.class, criterio);
-        Utiles.ordena(listado, "nombre");
-        return listado;
+    public List<Ciudad> obtenerCiudades(Plan plan) {
+        List<Ciudad> listaCiudades = new ArrayList<Ciudad>();
+        for (AnioPlan anioPlan : plan.getListaAnioPlan()) {
+            for (DistribucionCiudad distribucionCiudad : anioPlan.getDistribucionCiudad()) {
+                if (!listaCiudades.contains(distribucionCiudad.getCuidad())) {
+                    listaCiudades.add(distribucionCiudad.getCuidad());
+                }
+            }
+        }
+        return listaCiudades;
     }
 
-    public List obtenerSectoresEconomicos() {
-        Criterio criterio = new Criterio("vigente", "=", true);
-        List<SectorEconomico> listado = Facade.getInstance().findByCriterio(SectorEconomico.class, criterio);
-        Utiles.ordena(listado, "nombre");
-        return listado;
+    public List<Operatoria> obtenerOperatorias(Plan plan) {
+        List<Operatoria> listaOperatoria = new ArrayList<Operatoria>();
+        for (AnioPlan anioPlan : plan.getListaAnioPlan()) {
+            for (DistribucionOperatoria distribucionOperatoria : anioPlan.getDistribucionOperatoria()) {
+                if (!listaOperatoria.contains(distribucionOperatoria.getOperatoria())) {
+                    listaOperatoria.add(distribucionOperatoria.getOperatoria());
+                }
+            }
+        }
+        return listaOperatoria;
     }
 
-    public List obtenerOperatorias() {
-        Criterio criterio = new Criterio("vigente", "=", true);
-        List<Operatoria> listado = Facade.getInstance().findByCriterio(Operatoria.class, criterio);
-        Utiles.ordena(listado, "nombre");
-        return listado;
+    public List<Provincia> obtenerProvincias(Plan plan) {
+        List<Provincia> listaProvincia = new ArrayList<Provincia>();
+        for (AnioPlan anioPlan : plan.getListaAnioPlan()) {
+            for (DistribucionProvincial distribucionProvincia : anioPlan.getDistribucionProvincia()) {
+                if (!listaProvincia.contains(distribucionProvincia.getProvincia())) {
+                    listaProvincia.add(distribucionProvincia.getProvincia());
+                }
+            }
+        }
+        return listaProvincia;
+    }
+
+    public List<SectorEconomico> obtenerSectoresEconomicos(Plan plan) {
+        List<SectorEconomico> listaSector = new ArrayList<SectorEconomico>();
+        for (AnioPlan anioPlan : plan.getListaAnioPlan()) {
+            for (DistribucionSector distribucionSector : anioPlan.getDistribucionSector()) {
+                if (!listaSector.contains(distribucionSector.getSectorEconomico())) {
+                    listaSector.add(distribucionSector.getSectorEconomico());
+                }
+            }
+        }
+        return listaSector;
     }
 
     public void guardar(DtoParametrosFlujoFondo _dto) throws BusinessOperationException {
         List<DistribucionOperatoria> listaDistribucionOperatoria;
 
-        listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_dto.getPlan(), null, _dto.getProvincia(), _dto.getCiudad(), _dto.getSectorEconomico(), _dto.getOperatoria());
+        listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_dto.getPlan(), _dto.getAnioPlan(), _dto.getProvincia(), _dto.getCiudad(), _dto.getSectorEconomico(), _dto.getOperatoria());
 
         if (!listaDistribucionOperatoria.isEmpty()) {
-            ParametrosFlujoFondo parametroFlujoFondo;           
+            ParametrosFlujoFondo parametroFlujoFondo;
 
             try {
-                Facade.getInstance().beginTx();                
+                Facade.getInstance().beginTx();
                 for (DistribucionOperatoria distribucionOperatoria : listaDistribucionOperatoria) {
                     parametroFlujoFondo = new ParametrosFlujoFondo();
                     parametroFlujoFondo.setTna(_dto.getTna());
@@ -74,7 +104,10 @@ public class GestorFlujoFondos {
                     parametroFlujoFondo.setComisionOtorgamiento(_dto.getComisionOtorgamiento());
                     parametroFlujoFondo.setMomentoOtorgamiento(_dto.getMomentoOtorgamiento());
                     parametroFlujoFondo.setAnioGracia(_dto.getPlazoGracia());
-                    
+                    parametroFlujoFondo.setPerdidaIncobrables(_dto.getPerdidaIncobrables());
+                    parametroFlujoFondo.setCantAniosTitulos(_dto.getCantAniosTitulos());
+                    parametroFlujoFondo.setTnaTitulos(_dto.getTnaTitulos());
+
                     Facade.getInstance().guardar(parametroFlujoFondo);
 
                     distribucionOperatoria.setParametrosFlujoFondo(parametroFlujoFondo);
