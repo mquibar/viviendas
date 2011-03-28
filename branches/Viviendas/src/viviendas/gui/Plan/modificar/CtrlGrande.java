@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import javax.swing.JPanel;
 import viviendas.gui.financiacion.modificar.CtrlModificarFinanciacion;
+import viviendas.gui.flujoFondos.CtrlFlujoFondo;
 import viviendas.gui.flujoFondos.CtrlFlujoFondos;
 import viviendas.gui.sistema.CtrlPrincipal;
 import viviendas.modulos.Plan.modificar.GestorModificarPlan;
@@ -23,7 +24,7 @@ public class CtrlGrande {
     private ctrlModificarPlanNew _controlModificar;
     private CtrlModificarFinanciacion _controlFinanciacion;
     private CtrlModificarInversion _controlInversion;
-    private CtrlFlujoFondos _ctrlFlujoFondo;
+    private CtrlFlujoFondo _ctrlFlujoFondo;
     private GestorModificarPlan _gestor;
 
     public CtrlGrande(GestorModificarPlan gestor) {
@@ -135,6 +136,7 @@ public class CtrlGrande {
     }
 
     void pressFlujoFondoButton(){
-        _ctrlFlujoFondo = new CtrlFlujoFondos(_pantalla.getDesktopPane(), _controlModificar.getDistOperatoriaSeleccionada(), _gestor.getPlan());
+        //_ctrlFlujoFondo = new CtrlFlujoFondos(_pantalla.getDesktopPane(), _controlModificar.getDistOperatoriaSeleccionada(), _gestor.getPlan());
+        _ctrlFlujoFondo = new CtrlFlujoFondo(_pantalla.getDesktopPane(), _gestor.getPlan(), _controlModificar.getDistOperatoriaSeleccionada());
     }
 }

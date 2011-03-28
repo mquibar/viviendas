@@ -29,6 +29,9 @@ public class ParametrosFlujoFondo implements Serializable {
     private Double gastosAdministrativos;
     private Integer momentoOtorgamiento;
     private Integer anioGracia;
+    private Double perdidaIncobrables;
+    private Double tnaTitulos;
+    private Integer cantAniosTitulos;
     @OneToOne(mappedBy="parametrosFlujoFondo")
     private DistribucionOperatoria distribucionOperatoria;
 
@@ -89,6 +92,30 @@ public class ParametrosFlujoFondo implements Serializable {
 
     public void setTna(Double tna) {
         this.tna = tna;
+    }
+
+    public Integer getCantAniosTitulos() {
+        return cantAniosTitulos;
+    }
+
+    public void setCantAniosTitulos(Integer cantAniosTitulos) {
+        this.cantAniosTitulos = cantAniosTitulos;
+    }
+
+    public Double getPerdidaIncobrables() {
+        return perdidaIncobrables;
+    }
+
+    public void setPerdidaIncobrables(Double perdidaIncobrables) {
+        this.perdidaIncobrables = perdidaIncobrables;
+    }
+
+    public Double getTnaTitulos() {
+        return tnaTitulos;
+    }
+
+    public void setTnaTitulos(Double tnaTitulos) {
+        this.tnaTitulos = tnaTitulos;
     }
 
     @Override

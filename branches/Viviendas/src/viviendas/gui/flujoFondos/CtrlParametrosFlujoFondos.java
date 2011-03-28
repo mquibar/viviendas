@@ -7,16 +7,23 @@ package viviendas.gui.flujoFondos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
+import viviendas.entidades.vivienda.AnioPlan;
+import viviendas.entidades.vivienda.Ciudad;
+import viviendas.entidades.vivienda.Operatoria;
+import viviendas.entidades.vivienda.Plan;
+import viviendas.entidades.vivienda.Provincia;
+import viviendas.entidades.vivienda.SectorEconomico;
 import viviendas.gui.dto.DtoParametrosFlujoFondo;
+import viviendas.gui.models.combos.ModelComboAnioPlan;
 import viviendas.gui.models.combos.ModelComboCiudad;
 import viviendas.gui.models.combos.ModelComboOperatoria;
 import viviendas.gui.models.combos.ModelComboPlan;
 import viviendas.gui.models.combos.ModelComboProvincia;
 import viviendas.gui.models.combos.ModelComboSectorEconomico;
+import viviendas.gui.models.tables.ModelTableAño;
 import viviendas.modulos.flujoFondos.GestorFlujoFondos;
 import viviendas.systemException.BusinessOperationException;
 
@@ -42,25 +49,31 @@ public class CtrlParametrosFlujoFondos {
         _modeloPlan = new ModelComboPlan(_gestor.obtenerPlanes(), "Seleccione un Plan");
         _pantalla.getCmbPlan().setModel(_modeloPlan);
 
-        _modeloProvincia = new ModelComboProvincia(_gestor.obtenerProvincias(), "Todas");
-        _pantalla.getCmbProvincias().setModel(_modeloProvincia);
+        _pantalla.getCmbPlan().addActionListener(new ActionListener() {
 
-        _modeloCiudad = new ModelComboCiudad(_gestor.obtenerCiudades(), "Todas");
-        _pantalla.getCmbCiudades().setModel(_modeloCiudad);
+            public void actionPerformed(ActionEvent e) {
+                cargarCombinaciones((Plan) _modeloPlan.getSelected());
+            }
+        });
 
-        _modeloSectorEconomico = new ModelComboSectorEconomico(_gestor.obtenerSectoresEconomicos(), "Todas");
-        _pantalla.getCmbSectorEconomico().setModel(_modeloSectorEconomico);
+        _pantalla.getCmbAnio().addActionListener(new ActionListener() {
 
-        _modeloOperatoria = new ModelComboOperatoria(_gestor.obtenerOperatorias(), "Todas");
-        _pantalla.getCmbOperatorias().setModel(_modeloOperatoria);
+            public void actionPerformed(ActionEvent e) {
+                if(_pantalla.getCmbAnio().getSelectedIndex() == 0)
+                    configurarComponentes(true, false, false, false, false);
+                else
+                    configurarComponentes(true, true, true, true, true);
+            }
+        });
+
 
         _pantalla.getCmbProvincias().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 if(_pantalla.getCmbProvincias().getSelectedIndex() == 0)
-                    configurarComponentes(true, false, false, false);
+                    configurarComponentes(true, true, false, false, false);
                 else
-                    configurarComponentes(true, true, true, true);
+                    configurarComponentes(true, true, true, true, true);
             }
         });
 
@@ -68,9 +81,9 @@ public class CtrlParametrosFlujoFondos {
 
             public void actionPerformed(ActionEvent e) {
                 if(_pantalla.getCmbCiudades().getSelectedIndex() == 0)
-                    configurarComponentes(true, true, false, false);
+                    configurarComponentes(true, true, true, false, false);
                 else
-                    configurarComponentes(true, true, true, true);
+                    configurarComponentes(true, true, true, true, true);
             }
         });
 
@@ -78,9 +91,9 @@ public class CtrlParametrosFlujoFondos {
 
             public void actionPerformed(ActionEvent e) {
                 if(_pantalla.getCmbSectorEconomico().getSelectedIndex() == 0)
-                    configurarComponentes(true, true, true, false);
+                    configurarComponentes(true, true, true, true, false);
                 else
-                    configurarComponentes(true, true, true, true);
+                    configurarComponentes(true, true, true, true, true);
             }
         });
 
@@ -153,6 +166,30 @@ public class CtrlParametrosFlujoFondos {
             _dto.setPlazoGracia(Integer.valueOf(_pantalla.getTxtPlazoGracia().getText()));
         }
 
+        if(_pantalla.getTxtPerdidaIncobrables().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo %Perdida Incobrables es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            _dto.setPerdidaIncobrables(Double.valueOf(_pantalla.getTxtPerdidaIncobrables().getText())/100);
+        }
+
+        if(_pantalla.getTxtCantAnioTitulos().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo Cant. Años en los parámetros de títulos es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            _dto.setCantAniosTitulos(Integer.valueOf(_pantalla.getTxtCantAnioTitulos().getText()));
+        }
+
+        if(_pantalla.getTxtTnaTitulos().getText().equals("")){
+            JOptionPane.showMessageDialog(_pantalla, "El campo %Interes TNA en los parámetros de títulos es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else{
+            _dto.setTnaTitulos(Double.valueOf(_pantalla.getTxtTnaTitulos().getText()));
+        }
+
         //criterios.
         if(_pantalla.getCmbPlan().getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(_pantalla, "El plan es obligatorio.", "Viviendas", JOptionPane.ERROR_MESSAGE);
@@ -160,6 +197,13 @@ public class CtrlParametrosFlujoFondos {
         }
         else{
             _dto.setPlan( ((ModelComboPlan) _pantalla.getCmbPlan().getModel()).getSelected());
+        }
+
+        if(_pantalla.getCmbAnio().getSelectedIndex() == 0){
+            _dto.setAnioPlan(null);
+        }
+        else{
+            _dto.setAnioPlan( ((ModelComboAnioPlan) _pantalla.getCmbAnio().getModel()).getSelected());
         }
 
         if(_pantalla.getCmbProvincias().getSelectedIndex() == 0)
@@ -199,7 +243,8 @@ public class CtrlParametrosFlujoFondos {
         _pantalla.dispose();
     }
 
-    private void configurarComponentes(boolean provincia, boolean ciudad, boolean sectorEconomico, boolean operatoria) {
+    private void configurarComponentes(boolean anio, boolean provincia, boolean ciudad, boolean sectorEconomico, boolean operatoria) {
+        _pantalla.getCmbAnio().setEnabled(anio);
         _pantalla.getCmbProvincias().setEnabled(provincia);
         _pantalla.getCmbCiudades().setEnabled(ciudad);
         _pantalla.getCmbSectorEconomico().setEnabled(sectorEconomico);
@@ -210,5 +255,31 @@ public class CtrlParametrosFlujoFondos {
         Double valor = Double.valueOf(_pantalla.getTxtTNA().getText());
         valor = valor / 100;
         return String.valueOf(valor);
+    }
+
+    private void cargarCombinaciones(Plan plan){
+        //_gestor.setPlan(((ModelComboPlan) _pantalla.getComPlan().getModel()).getSelected());
+        List<AnioPlan> listaAnios = _gestor.obtenerAniosPlan(plan);
+        //Collections.sort(listaAnios, new ComparadorAñoPlan());
+        _pantalla.getCmbAnio().setModel(new ModelComboAnioPlan(listaAnios, "Todos"));
+        List<Ciudad> listaCiudad = _gestor.obtenerCiudades(plan);
+        //Collections.sort(listaCiudad, new ComparadorCiudad());
+        _pantalla.getCmbCiudades().setModel(new ModelComboCiudad(listaCiudad, "Todos"));
+        List<Operatoria> listaOperatoria = _gestor.obtenerOperatorias(plan);
+        //Collections.sort(listaOperatoria, new ComparadorOperatoria());
+        _pantalla.getCmbOperatorias().setModel(new ModelComboOperatoria(listaOperatoria, "Todos"));
+        List<Provincia> listaProvincia = _gestor.obtenerProvincias(plan);
+        //Collections.sort(listaProvincia, new ComparadorProvincia());
+        _pantalla.getCmbProvincias().setModel(new ModelComboProvincia(listaProvincia, "Todos"));
+        List<SectorEconomico> listaSector = _gestor.obtenerSectoresEconomicos(plan);
+        //Collections.sort(listaSector, new ComparadorSectorEconomico());
+        _pantalla.getCmbSectorEconomico().setModel(new ModelComboSectorEconomico(listaSector, "Todos"));
+        //_pantalla.getCmbProvincias().setEnabled(true);
+        //_pantalla.getCmbCiudades().setEnabled(true);
+        //_pantalla.getCmbSectorEconomico().setEnabled(true);
+        //_pantalla.getCmbOperatorias().setEnabled(true);
+        //_pantalla.getCmbAnio().setEnabled(true);
+        //_pantalla.getBtnAceptar().setEnabled(true);
+
     }
 }
