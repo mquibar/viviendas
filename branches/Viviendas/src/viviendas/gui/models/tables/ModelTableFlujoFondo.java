@@ -53,11 +53,11 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
     private double _saldoAux;
     private double _saldoParaEstado;
     //Porcentajes:
-    private double _porcTitulosPublicos;
+    private double _porcTitulosPublicos;//
     private double _porcAhorroPrevio;
     private double _porcOtrosAportes;
     private double _porcCreditoEstado;
-    private double _porcPerdidaIncobrables;
+    private double _porcPerdidaIncobrables;//
     private double _porcSubsidioEstado;
 
     public ModelTableFlujoFondo(Plan plan, DistribucionOperatoria combinatoria) throws BusinessOperationException {
