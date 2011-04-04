@@ -50,9 +50,9 @@ public class IUPlan extends javax.swing.JInternalFrame {
         texRestante = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabProvincias = new javax.swing.JTable();
+        tabProvincias = new viviendas.gui.tool.TableUpdated();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabProvinciasSeleccionadas = new javax.swing.JTable();
+        tabProvinciasSeleccionadas = new viviendas.gui.tool.TableUpdated();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -184,7 +184,7 @@ public class IUPlan extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 30, 0, 30);
         jPanel3.add(btnQuitarTodas, gridBagConstraints);
 
-        formatedTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        formatedTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         formatedTotal.setMinimumSize(new java.awt.Dimension(80, 27));
         formatedTotal.setPreferredSize(new java.awt.Dimension(80, 27));
         gridBagConstraints = new java.awt.GridBagConstraints();

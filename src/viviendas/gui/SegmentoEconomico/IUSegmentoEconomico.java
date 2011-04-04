@@ -61,7 +61,7 @@ public class IUSegmentoEconomico extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbSegmentoEconomico = new javax.swing.JTable();
+        tbSegmentoEconomico = new viviendas.gui.tool.TableUpdated();
         txtPorcentajeTotal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnQuitar = new javax.swing.JButton();
@@ -75,21 +75,10 @@ public class IUSegmentoEconomico extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        tbSegmentoEconomico.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(tbSegmentoEconomico);
 
         txtPorcentajeTotal.setEditable(false);
-        txtPorcentajeTotal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtPorcentajeTotal.setFont(new java.awt.Font("Tahoma", 1, 11));
 
         jLabel1.setText("Total");
 
