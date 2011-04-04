@@ -31,4 +31,18 @@ public class ModelTableAño extends AbstractTableModel<AnioPlan> {
         }
     }
 
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return columnIndex==1;
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        if(columnIndex!=1)
+            return;
+        _lista.get(rowIndex).setCantViviendasAnio((Integer)aValue);
+        fireTableDataChanged();
+    }
+
+
 }
