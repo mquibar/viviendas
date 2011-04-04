@@ -38,22 +38,11 @@ public class IUFlujoFondo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbFlujoFondo = new javax.swing.JTable();
+        tbFlujoFondo = new viviendas.gui.tool.TableUpdated();
 
         setClosable(true);
         setTitle("Flujo de Fondo");
 
-        tbFlujoFondo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(tbFlujoFondo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

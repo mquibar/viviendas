@@ -61,7 +61,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbTiposCiudades = new javax.swing.JTable();
+        tbTiposCiudades = new viviendas.gui.tool.TableUpdated();
         btnAgregar = new javax.swing.JButton();
         btnQuitar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -75,17 +75,6 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        tbTiposCiudades.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(tbTiposCiudades);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/+.png"))); // NOI18N
@@ -150,7 +139,7 @@ public class IUTipoCiudad extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(287, 287, 287)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(275, 275, 275))
         );

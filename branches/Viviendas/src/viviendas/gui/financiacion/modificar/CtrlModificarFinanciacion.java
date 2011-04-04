@@ -238,7 +238,7 @@ public class CtrlModificarFinanciacion implements ICalculable {
 
     private void agregarTabla(DtoConstruccionFinanciacion dtoConstruccion) {
         JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        JTable tabla = new JTable();
+        JTable tabla = new viviendas.gui.tool.TableUpdated();
         tabla.setModel(new ModelTableDetalleDistribucion(dtoConstruccion.getDtoDetallesDistribuciones(), dtoConstruccion.getColumas()));
         hashIndiceTabla.put(jScrollPane1, tabla);
         jScrollPane1.setViewportView(tabla);

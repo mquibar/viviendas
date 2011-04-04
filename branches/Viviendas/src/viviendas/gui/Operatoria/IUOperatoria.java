@@ -14,6 +14,7 @@ package viviendas.gui.Operatoria;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import viviendas.gui.tool.TableUpdated;
 
 /**
  *
@@ -61,7 +62,7 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbOperatoria = new javax.swing.JTable();
+        tbOperatoria = new viviendas.gui.tool.TableUpdated();
         btnAgregar = new javax.swing.JButton();
         btnQuitar = new javax.swing.JButton();
         txtPorcentajeTotal = new javax.swing.JTextField();
@@ -75,17 +76,6 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        tbOperatoria.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(tbOperatoria);
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viviendas/imagenes/+.png"))); // NOI18N
@@ -116,7 +106,7 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +138,7 @@ public class IUOperatoria extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(163, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(266, Short.MAX_VALUE)
+                .addContainerGap(276, Short.MAX_VALUE)
                 .addComponent(btnAceptar)
                 .addGap(87, 87, 87)
                 .addComponent(btnCancelar)

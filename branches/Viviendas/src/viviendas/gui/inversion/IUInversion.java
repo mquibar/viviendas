@@ -60,7 +60,7 @@ public class IUInversion extends javax.swing.JInternalFrame {
         cbCiudades = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbUsosFondos = new javax.swing.JTable();
+        tbUsosFondos = new viviendas.gui.tool.TableUpdated();
         jLabel2 = new javax.swing.JLabel();
         txtTotalInversion = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -77,23 +77,12 @@ public class IUInversion extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        tbUsosFondos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(tbUsosFondos);
 
         jLabel2.setText("Usos de Fondos");
 
         txtTotalInversion.setEditable(false);
-        txtTotalInversion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtTotalInversion.setFont(new java.awt.Font("Tahoma", 1, 11));
         txtTotalInversion.setForeground(new java.awt.Color(0, 0, 255));
 
         jLabel3.setText("Total");
@@ -103,7 +92,7 @@ public class IUInversion extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
