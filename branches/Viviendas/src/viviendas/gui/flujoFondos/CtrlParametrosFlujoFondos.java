@@ -187,7 +187,7 @@ public class CtrlParametrosFlujoFondos {
             return;
         }
         else{
-            _dto.setTnaTitulos(Double.valueOf(_pantalla.getTxtTnaTitulos().getText()));
+            _dto.setTnaTitulos(Double.valueOf(_pantalla.getTxtTnaTitulos().getText())/100);
         }
 
         //criterios.
