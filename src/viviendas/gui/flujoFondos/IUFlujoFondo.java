@@ -11,6 +11,7 @@
 
 package viviendas.gui.flujoFondos;
 
+import javax.swing.JButton;
 import javax.swing.JTable;
 
 /**
@@ -28,6 +29,10 @@ public class IUFlujoFondo extends javax.swing.JInternalFrame {
         return tbFlujoFondo;
     }
 
+    public JButton getBtnImprimir() {
+        return btnImprimir;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -39,19 +44,27 @@ public class IUFlujoFondo extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tbFlujoFondo = new viviendas.gui.tool.TableUpdated();
+        btnImprimir = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Flujo de Fondo");
 
         jScrollPane1.setViewportView(tbFlujoFondo);
 
+        btnImprimir.setText("Imprimir");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -59,7 +72,9 @@ public class IUFlujoFondo extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnImprimir, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -67,6 +82,7 @@ public class IUFlujoFondo extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbFlujoFondo;
     // End of variables declaration//GEN-END:variables
