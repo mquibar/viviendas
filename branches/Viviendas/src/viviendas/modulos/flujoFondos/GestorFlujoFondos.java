@@ -11,8 +11,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -146,21 +150,12 @@ public class GestorFlujoFondos {
 
         Map parametros = new HashMap();
 
-//        parametros.put("provincia", modelo.getCombinatoria().getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getProvincia().getNombre());
-//        parametros.put("ciudad", modelo.getCombinatoria().getDistribucionSector().getDistribucionCiudad().getCuidad().getNombre());
-//        parametros.put("segmentoEconomico", modelo.getCombinatoria().getDistribucionSector().getSectorEconomico().getNombre());
-//        parametros.put("operatoria", modelo.getCombinatoria().getOperatoria().getNombre());
-//        parametros.put("fecha", calendario.get(Calendar.DAY_OF_MONTH) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
-//        parametros.put("inversion", String.valueOf(modelo.getMontoInversion()));
-
-
-        parametros.put("provincia", "");
-        parametros.put("ciudad", "");
-        parametros.put("segmentoEconomico", "");
-        parametros.put("operatoria", "");
-        parametros.put("fecha", "");
-        parametros.put("inversion", "");
-
+        parametros.put("provincia", modelo.getCombinatoria().getDistribucionSector().getDistribucionCiudad().getDistribucionProvincial().getProvincia().getNombre());
+        parametros.put("ciudad", modelo.getCombinatoria().getDistribucionSector().getDistribucionCiudad().getCuidad().getNombre());
+        parametros.put("segmentoEconomico", modelo.getCombinatoria().getDistribucionSector().getSectorEconomico().getNombre());
+        parametros.put("operatoria", modelo.getCombinatoria().getOperatoria().getNombre());
+        parametros.put("fecha", calendario.get(Calendar.DAY_OF_MONTH) + "/" + (calendario.get(Calendar.MONTH) + 1) + "/" + calendario.get(Calendar.YEAR));
+        parametros.put("inversion", String.valueOf(modelo.getMontoInversion()));
 
         for(int i=0; i<modelo.getRowCount(); i++){
             dto = new DtoFlujoFondo();
@@ -174,6 +169,8 @@ public class GestorFlujoFondos {
         }
 
         datos = new DSFlujoFondo(listDto);
+
+
         return printReport(parametros, "/viviendas/reports/ReporteFlujoFondos", datos);
     }
 

@@ -62,7 +62,7 @@
 						key="staticText-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="12"/>
+						<font size="12" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Inversión:]]></text>
 				</staticText>
@@ -75,9 +75,9 @@
 						key="staticText-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="12"/>
+						<font size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[Fecha]]></text>
+				<text><![CDATA[Fecha:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -88,9 +88,9 @@
 						key="staticText-92"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="12"/>
+						<font size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[  Ciudad]]></text>
+				<text><![CDATA[Ciudad:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -101,9 +101,9 @@
 						key="staticText-93"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="12"/>
+						<font size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[  Seg. Econ.]]></text>
+				<text><![CDATA[Seg. Econ.:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -114,9 +114,9 @@
 						key="staticText-94"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="12"/>
+						<font size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[  Operatoria]]></text>
+				<text><![CDATA[Operatoria:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -127,9 +127,9 @@
 						key="staticText-95"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="12"/>
+						<font size="12" isBold="true"/>
 					</textElement>
-				<text><![CDATA[  Provincia]]></text>
+				<text><![CDATA[Provincia:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -138,7 +138,7 @@
 						width="157"
 						height="20"
 						key="textField-1"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Dotted" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font/>
 					</textElement>
@@ -151,7 +151,7 @@
 						width="158"
 						height="20"
 						key="textField-2"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Dotted" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font/>
 					</textElement>
@@ -164,7 +164,7 @@
 						width="157"
 						height="20"
 						key="textField-3"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Dotted" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font/>
 					</textElement>
@@ -177,7 +177,7 @@
 						width="158"
 						height="20"
 						key="textField-4"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Dotted" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font/>
 					</textElement>
@@ -190,7 +190,7 @@
 						width="106"
 						height="20"
 						key="textField-5"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Dotted" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font/>
 					</textElement>
@@ -203,7 +203,7 @@
 						width="106"
 						height="20"
 						key="textField-6"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Dotted" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font/>
 					</textElement>
@@ -211,10 +211,12 @@
 				</textField>
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="41"
 						y="221"
 						width="230"
 						height="20"
+						backcolor="#CCCCCC"
 						key="staticText-97"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -224,10 +226,12 @@
 				</staticText>
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="270"
 						y="221"
 						width="50"
 						height="20"
+						backcolor="#CCCCCC"
 						key="staticText-98"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -237,10 +241,12 @@
 				</staticText>
 				<staticText>
 					<reportElement
+						mode="Opaque"
 						x="319"
 						y="221"
 						width="150"
 						height="20"
+						backcolor="#CCCCCC"
 						key="staticText-99"/>
 					<box topBorder="Thin" topBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -251,7 +257,7 @@
 				<staticText>
 					<reportElement
 						x="41"
-						y="175"
+						y="193"
 						width="428"
 						height="20"
 						key="staticText-154"/>

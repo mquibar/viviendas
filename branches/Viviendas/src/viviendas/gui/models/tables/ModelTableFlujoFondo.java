@@ -36,36 +36,57 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
     //monto inversion:
     private double _montoInversion;
     //Variables:
-    private double _emisionTitulosPublicos;//
-    private double _devolucionTitulosPublicos;//
-    private double _ahorroPrevioAdjudicatarios;//
-    private double _devolucionAhorroPrevio;//
-    private double _otrosAportesAdjudicatarios;//
-    private double _creditoEstado;//
-    private double _devolucionCredito;//
+    private double _emisionTitulosPublicos;
+    private double _devolucionTitulosPublicos;
+    private double _ahorroPrevioAdjudicatarios;
+    private double _devolucionAhorroPrevio;
+    private double _otrosAportesAdjudicatarios;
+    private double _creditoEstado;
+    private double _devolucionCredito;
     private double _perdidaIncobrables;
-    private double _subsidioEstado;//
-    private double _saldo;//
-    private double _pagoInteresesTitulosPublicos;//
-    private double _totalInversionEstado;//
-    private double _recuperoInversionEstado;//
-    private double _saldoAux;//
-    private double _saldoParaEstado;//
-    private double _interesesCredito;//
-    private double _totalAporteAdjudicatarios;//
+    private double _subsidioEstado;
+    private double _saldo;
+    private double _pagoInteresesTitulosPublicos;
+    private double _totalInversionEstado;
+    private double _recuperoInversionEstado;
+    private double _saldoAux;
+    private double _saldoParaEstado;
+    private double _interesesCredito;
+    private double _totalAporteAdjudicatarios;
     //Porcentajes:
-    private double _porcTitulosPublicos;//
-    private double _porcAhorroPrevio;//
-    private double _porcOtrosAportes;//
-    private double _porcCreditoEstado;//
-    private double _porcPerdidaIncobrables;//
-    private double _porcSubsidioEstado;//
+    private double _porcTitulosPublicos;
+    private double _porcAhorroPrevio;
+    private double _porcOtrosAportes;
+    private double _porcCreditoEstado;
+    private double _porcPerdidaIncobrables;
+    private double _porcSubsidioEstado;
 
     public ModelTableFlujoFondo(Plan plan, DistribucionOperatoria combinatoria) throws BusinessOperationException {
         this.plan = plan;
         this.combinatoria = combinatoria;
 
-        //System.out.println("combinatoria.getParametrosFlujoFondo().getId(): " + combinatoria.getParametrosFlujoFondo().getId());
+        _montoInversion = new Double(0);
+        _emisionTitulosPublicos = new Double(0);
+        _devolucionTitulosPublicos = new Double(0);
+        _ahorroPrevioAdjudicatarios = new Double(0);
+        _devolucionAhorroPrevio = new Double(0);
+        _otrosAportesAdjudicatarios = new Double(0);
+        _creditoEstado = new Double(0);
+        _devolucionCredito = new Double(0);
+        _perdidaIncobrables = new Double(0);
+        _subsidioEstado = new Double(0);
+        _saldo  = new Double(0);
+        _pagoInteresesTitulosPublicos = new Double(0);
+        _totalInversionEstado = new Double(0);
+        _recuperoInversionEstado = new Double(0);
+        _saldoAux = new Double(0);
+        _saldoParaEstado = new Double(0);
+        _porcTitulosPublicos = new Double(0);
+        _porcAhorroPrevio = new Double(0);
+        _porcOtrosAportes = new Double(0);
+        _porcCreditoEstado = new Double(0);
+        _porcPerdidaIncobrables = new Double(0);
+        _porcSubsidioEstado = new Double(0);
 
         calcularFlujoFondo(combinatoria, plan);
 
@@ -415,7 +436,6 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
         }
 
         _montoInversion = inversionPlan.getTotalInversion() * calcularCantViviendas(distOp);
-//        _montoInversion = 165000.00;
 
         Financiacion financiacion = distOp.getFinanciacion();
         if(distOp.getFinanciacion() == null){
