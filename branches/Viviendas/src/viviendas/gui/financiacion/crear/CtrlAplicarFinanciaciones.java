@@ -15,6 +15,7 @@ import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.SectorEconomico;
 import viviendas.gui.Plan.modificar.IUModificarPlanNew;
+import viviendas.gui.financiacion.modificar.CtrlModificarFinanciacion;
 import viviendas.gui.models.combos.ModelComboAnioPlan;
 import viviendas.gui.models.combos.ModelComboCiudad;
 import viviendas.gui.models.combos.ModelComboOperatoria;
@@ -28,13 +29,13 @@ public class CtrlAplicarFinanciaciones {
 
     private IUAplicarFinanciaciones _pantalla;
     private GestorCrearFinanciacion _gestor;
-    private final IUModificarPlanNew _pantalaSecundaria;
+    private final CtrlModificarFinanciacion _ctrlModificarFinanciacion;
 
-    public CtrlAplicarFinanciaciones(IUModificarPlanNew _pantallaSecundaria, Financiacion financiacion) {
+    public CtrlAplicarFinanciaciones(CtrlModificarFinanciacion _ctrlModificarFinanciacion, Financiacion financiacion) {
         _pantalla = new IUAplicarFinanciaciones();
         _gestor = new GestorCrearFinanciacion(financiacion);
-        this._pantalaSecundaria = _pantallaSecundaria;
-        _pantallaSecundaria.setVisible(false);
+        this._ctrlModificarFinanciacion = _ctrlModificarFinanciacion;
+        _ctrlModificarFinanciacion.ocultar(true);
 
         _pantalla.getComPlan().addActionListener(new ActionListener() {
 
@@ -119,7 +120,8 @@ public class CtrlAplicarFinanciaciones {
 
     private void presionaCancelar() {
         _pantalla.dispose();
-        _pantalaSecundaria.setVisible(true);
+        _ctrlModificarFinanciacion.ocultar(false);
+        _ctrlModificarFinanciacion.iniciar(_gestor.getFinanciacion().getDistribucionOperatoria());
     }
 
     private void iniciarPantalla() {

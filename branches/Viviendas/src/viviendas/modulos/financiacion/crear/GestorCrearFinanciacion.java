@@ -112,4 +112,8 @@ public class GestorCrearFinanciacion {
     public int getCantidadRegistros(AnioPlan anio, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
         return GestorParametro.obtenerDistribucionOperatoria(_plan, anio, provincia, ciudad, sector, operatoria).size();
     }
+
+    public Financiacion getFinanciacion() {
+        return _financiacion;
+    }
 }

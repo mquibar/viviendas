@@ -255,7 +255,7 @@ public class CtrlModificarFinanciacion implements ICalculable {
     }
 
     private void presionaBtnAplicarA() {
-        new CtrlAplicarFinanciaciones(_pantalla, _gestor.getFinanciacion());
+        new CtrlAplicarFinanciaciones(this, _gestor.getFinanciacion());
         _panFinanciacion.getBtnAplicarA().setEnabled(false);
     }
 
@@ -298,5 +298,9 @@ public class CtrlModificarFinanciacion implements ICalculable {
             _pantalla.getBtnViewDetails().setEnabled(false);
             _pantalla.getBtnCancel().setEnabled(true);
         }
+    }
+
+    public void ocultar(Boolean ocultar) {
+        _pantalla.setVisible(!ocultar);
     }
 }
