@@ -103,15 +103,17 @@ public class CtrlAplicarFinanciaciones {
                 ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
                 ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
                 ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
-        int rta = JOptionPane.showConfirmDialog(_pantalla, "Se van a modificar " + cantidad + " registros, \nLa operacion tardará unos segundos ¿Desea Continuar?", "", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (rta == JOptionPane.OK_OPTION) {
-            _gestor.aplicarFinanciacion(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
-                    ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
-                    ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
-                    ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
-                    ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
-            _pantalla.getBtnAceptar().setEnabled(false);
-            JOptionPane.showMessageDialog(_pantalla, "Financiaciones creadas", "", JOptionPane.INFORMATION_MESSAGE);
+        if (cantidad > 40) {
+            int rta = JOptionPane.showConfirmDialog(_pantalla, "Se van a modificar " + cantidad + " registros, \nEsta operación puede demorar ¿Desea Continuar?", "", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (rta == JOptionPane.OK_OPTION) {
+                _gestor.aplicarFinanciacion(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
+                        ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
+                        ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
+                        ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
+                        ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
+                _pantalla.getBtnAceptar().setEnabled(false);
+                JOptionPane.showMessageDialog(_pantalla, "Financiaciones creadas", "", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
     }
 
