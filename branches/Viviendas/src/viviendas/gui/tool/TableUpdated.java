@@ -20,9 +20,10 @@ public class TableUpdated extends JTable {
     public void changeSelection(final int row, final int column, boolean toggle, boolean extend) {
         super.changeSelection(row, column, toggle, extend);
         if (editCellAt(row, column)) {
-            ((javax.swing.JTextField) getEditorComponent()).selectAll();
-            getEditorComponent().requestFocusInWindow();
+            if (getEditorComponent() instanceof javax.swing.JTextField) {
+                ((javax.swing.JTextField) getEditorComponent()).selectAll();
+                getEditorComponent().requestFocusInWindow();
+            }
         }
     }
-
 }

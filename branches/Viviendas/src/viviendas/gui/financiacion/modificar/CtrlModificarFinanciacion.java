@@ -48,7 +48,6 @@ public class CtrlModificarFinanciacion implements ICalculable {
         hashEstadoBoton.put(_pantalla.getBtnCancel(), _pantalla.getBtnCancel().isEnabled());
         hashEstadoBoton.put(_pantalla.getBtnViewDetails(), _pantalla.getBtnViewDetails().isEnabled());
         hashEstadoBoton.put(_pantalla.getBtnDropDetails(), _pantalla.getBtnDropDetails().isEnabled());
-        _gestor = new GestorModificarFinanciacion();
         SubscriptorTotal.getInstance().añadir(this);
         _panFinanciacion = new IUPanelModificarFinanciacion();
         _panFinanciacion.getBtnCrearFinanciacion().addActionListener(new ActionListener() {
@@ -149,6 +148,7 @@ public class CtrlModificarFinanciacion implements ICalculable {
         _panFinanciacion.getSpinPorcentaje().setEnabled(false);
         _panFinanciacion.getBtnCrearFinanciacion().setEnabled(false);
         _panFinanciacion.getTabPaneFinanciacion().removeAll();
+        _gestor = new GestorModificarFinanciacion();
         List<DistribucionFinanciacion> lista = _gestor.cargarFinanciacion(distribucionOperatoria);
         if (lista != null) {
             List<DtoConstruccionFinanciacion> listaDtoConstrucciones = new CtrlModeloDetalleFinanciacion().crearDistribucion(lista);
