@@ -131,6 +131,11 @@ public class GestorModificarPlan {
     }
 
     public void guardar() throws BusinessOperationException {
+        int viviendas=0;
+        for (AnioPlan anioPlan : plan_a_modificar.getListaAnioPlan()) {
+            viviendas+= anioPlan.getCantViviendasAnio();
+        }
+        plan_a_modificar.setNumeroViviendas(viviendas);
         Facade.getInstance().beginTx();
         try {
             Facade.getInstance().actualizar(plan_a_modificar);
