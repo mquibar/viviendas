@@ -30,7 +30,7 @@ public class DistribucionOperatoria implements Serializable {
     @ManyToOne
     @JoinColumn(name="anioPlan_id")
     private AnioPlan anioPlan;
-    @OneToOne(mappedBy="distribucionOperatoria")
+    @OneToOne(mappedBy="distribucionOperatoria",cascade=CascadeType.ALL)
     private Financiacion financiacion;
     @OneToOne
     @JoinColumn(name="parametrosFlujoFondo_id")

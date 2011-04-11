@@ -37,95 +37,40 @@ public class PanelTablasPlan extends javax.swing.JPanel {
 
         _contenedor = new javax.swing.JLayeredPane();
         _scrOperatoria = new javax.swing.JScrollPane();
-        _tblOperatoria = new javax.swing.JTable();
+        _tblOperatoria = new viviendas.gui.tool.TableUpdated();
         _scrSectEconom = new javax.swing.JScrollPane();
-        _tblSectorEconomico = new javax.swing.JTable();
+        _tblSectorEconomico = new viviendas.gui.tool.TableUpdated();
         _scrCiudad = new javax.swing.JScrollPane();
-        _tblCiudad = new javax.swing.JTable();
+        _tblCiudad = new viviendas.gui.tool.TableUpdated();
         _scrProvincia = new javax.swing.JScrollPane();
-        _tblProvincia = new javax.swing.JTable();
+        _tblProvincia = new viviendas.gui.tool.TableUpdated();
         _scrAño = new javax.swing.JScrollPane();
-        _tblAños = new javax.swing.JTable();
+        _tblAños = new viviendas.gui.tool.TableUpdated();
 
         setLayout(new java.awt.GridBagLayout());
 
         _contenedor.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
-        _tblOperatoria.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         _scrOperatoria.setViewportView(_tblOperatoria);
 
         _scrOperatoria.setBounds(190, 10, 290, 440);
         _contenedor.add(_scrOperatoria, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        _tblSectorEconomico.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         _scrSectEconom.setViewportView(_tblSectorEconomico);
 
         _scrSectEconom.setBounds(150, 10, 300, 450);
         _contenedor.add(_scrSectEconom, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        _tblCiudad.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         _scrCiudad.setViewportView(_tblCiudad);
 
         _scrCiudad.setBounds(100, 10, 310, 460);
         _contenedor.add(_scrCiudad, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        _tblProvincia.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         _scrProvincia.setViewportView(_tblProvincia);
 
         _scrProvincia.setBounds(60, 10, 320, 470);
         _contenedor.add(_scrProvincia, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        _tblAños.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
         _scrAño.setViewportView(_tblAños);
 
         _scrAño.setBounds(20, 10, 280, 480);
