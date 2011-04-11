@@ -5,6 +5,7 @@
 
 package viviendas.gui.models.tables;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import viviendas.entidades.flujo.DetalleDistribucionFinanciacion;
 import viviendas.entidades.flujo.DistribucionFinanciacion;
@@ -60,6 +61,9 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
     private double _porcCreditoEstado;
     private double _porcPerdidaIncobrables;
     private double _porcSubsidioEstado;
+
+    
+
 
     public ModelTableFlujoFondo(Plan plan, DistribucionOperatoria combinatoria) throws BusinessOperationException {
         this.plan = plan;
@@ -117,9 +121,9 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
                 }
             case 2: //valores.
                 switch(rowIndex){
-                    case 0:
+                    case 0:                        
                         _emisionTitulosPublicos = Utiles.round(getPorcTitulosPublicos() * _montoInversion, 0);
-                        return _emisionTitulosPublicos;
+                        return _emisionTitulosPublicos;                        
                     case 1:
                         _devolucionTitulosPublicos = Utiles.round(-calcularCuotaTitulos(_emisionTitulosPublicos, combinatoria.getParametrosFlujoFondo()) * 12 * plan.getAniosPlan(), 0);
                         return _devolucionTitulosPublicos;
