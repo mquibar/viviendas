@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
@@ -23,6 +24,7 @@ public class Financiacion implements Serializable {
     @OneToMany(mappedBy = "financiacion", cascade = CascadeType.ALL)
     private List<DistribucionFinanciacion> distribucionesFinanciacion;
     @OneToOne
+    @JoinColumn(name="distribucionOperatoria_id")
     private DistribucionOperatoria distribucionOperatoria;
 
     public Financiacion() {

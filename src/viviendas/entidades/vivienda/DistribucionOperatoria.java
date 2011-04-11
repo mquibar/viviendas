@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import viviendas.entidades.flujo.Financiacion;
@@ -21,14 +22,18 @@ public class DistribucionOperatoria implements Serializable {
     private Long id;
     private Double porcentajeDistribucion;
     @ManyToOne(cascade=CascadeType.MERGE,fetch=FetchType.EAGER)
+    @JoinColumn(name="distribucionSector_id")
     private DistribucionSector distribucionSector;
     @ManyToOne
+    @JoinColumn(name="operatoria_id")
     private Operatoria operatoria;
     @ManyToOne
+    @JoinColumn(name="anioPlan_id")
     private AnioPlan anioPlan;
     @OneToOne(mappedBy="distribucionOperatoria")
     private Financiacion financiacion;
     @OneToOne
+    @JoinColumn(name="parametrosFlujoFondo_id")
     private ParametrosFlujoFondo parametrosFlujoFondo;
 
     public AnioPlan getAnioPlan() {

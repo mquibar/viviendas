@@ -5,18 +5,15 @@
 package viviendas.modulos.flujoFondos;
 
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -48,6 +45,7 @@ import viviendas.systemException.BusinessOperationException;
  * @author Maximiliano.
  */
 public class GestorFlujoFondos {
+    private DecimalFormat format = new DecimalFormat("####################.##");
 
     public List<Plan> obtenerPlanes() {
         return Facade.getInstance().findAll(Plan.class);
@@ -160,9 +158,19 @@ public class GestorFlujoFondos {
         for(int i=0; i<modelo.getRowCount(); i++){
             dto = new DtoFlujoFondo();
 
+//            dto.setNombre(modelo.getValueAt(i, 0).toString());
+//            dto.setPorcentaje(modelo.getValueAt(i, 1).toString());
+//            dto.setValor(modelo.getValueAt(i, 2).toString());
+
             dto.setNombre(modelo.getValueAt(i, 0).toString());
             dto.setPorcentaje(modelo.getValueAt(i, 1).toString());
-            dto.setValor(modelo.getValueAt(i, 2).toString());
+            if(!modelo.getValueAt(i, 2).toString().equals("")){
+                dto.setValor(format.format(modelo.getValueAt(i, 2)));
+            }
+            else{
+                dto.setValor(modelo.getValueAt(i, 2).toString());
+            }
+
 
             listDto.add(dto);
             dto = null;

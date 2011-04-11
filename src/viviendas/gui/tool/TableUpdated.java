@@ -24,4 +24,5 @@ public class TableUpdated extends JTable {
             getEditorComponent().requestFocusInWindow();
         }
     }
+
 }

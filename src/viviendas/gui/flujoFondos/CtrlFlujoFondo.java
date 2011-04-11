@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -80,6 +81,7 @@ public class CtrlFlujoFondo {
 
 class TableRenderFlujoFondo extends DefaultTableCellRenderer{
     protected int column;
+    private DecimalFormat format = new DecimalFormat("####################.##");
 
 
     public TableRenderFlujoFondo() {
@@ -102,75 +104,19 @@ class TableRenderFlujoFondo extends DefaultTableCellRenderer{
             else{
                 color = Color.RED;
             }
-        }
+        }        
 
         if(row == 10 || row == 16 || row == 21 || row == 27 || row == 12 || row == 23 ){
             lb.setFont(new Font( "Helvetica", Font.BOLD, 12));
         }
 
         lb.setForeground(color);
-        lb.setText(" "+_modelo.getValueAt(row,column).toString());
+        if(_modelo.getValueAt(row, column) instanceof Double){
+            lb.setText(" " + format.format(_modelo.getValueAt(row,column)));
+        }
+        else{
+            lb.setText(" " + _modelo.getValueAt(row,column).toString());
+        }
         return lb;
     }
 }
-
-//class dto{
-//
-//    private String nombre;
-//    private String valor;
-//    private String porcentaje;
-//
-//    public String getNombre() {
-//        return nombre;
-//    }
-//
-//    public void setNombre(String nombre) {
-//        this.nombre = nombre;
-//    }
-//
-//    public String getPorcentaje() {
-//        return porcentaje;
-//    }
-//
-//    public void setPorcentaje(String porcentaje) {
-//        this.porcentaje = porcentaje;
-//    }
-//
-//    public String getValor() {
-//        return valor;
-//    }
-//
-//    public void setValor(String valor) {
-//        this.valor = valor;
-//    }
-//
-//}
-
-//class datasource implements JRDataSource{
-//
-//    int size =0;
-//    int index = -1;
-//    List<dto> lista;
-//    private enum fields{valor, porcentaje, nombre}
-//    public datasource(List<dto> lista) {
-//        this.lista = lista;
-//        size = lista.size();
-//    }
-//
-//    public boolean next() throws JRException {
-//        return ++index < size;
-//    }
-//
-//    public Object getFieldValue(JRField jrf) throws JRException {
-//        switch(fields.valueOf(jrf.getName())){
-//            case valor:
-//                return lista.get(index).getValor();
-//            case porcentaje:
-//                return lista.get(index).getPorcentaje();
-//            case nombre:
-//                return lista.get(index).getNombre();
-//            default:
-//                return "";
-//        }
-//    }
-//}
