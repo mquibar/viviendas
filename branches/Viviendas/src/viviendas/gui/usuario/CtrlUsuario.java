@@ -33,7 +33,7 @@ public class CtrlUsuario {
         _pantalla.getBtnCancelar().addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                presionaCancelar();
+                cerrar();
             }
         });
         _pantalla.setVisible(true);
@@ -57,12 +57,7 @@ public class CtrlUsuario {
         }
     }
 
-    public void presionaCancelar() {
-        cerrar();
-    }
-
     private void cerrar(){
-        _pantalla.hide();
         _pantalla.dispose();
     }
 }
