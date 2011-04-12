@@ -137,7 +137,7 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
                         _otrosAportesAdjudicatarios = Utiles.round(getPorcOtrosAportes() * _montoInversion, 0);
                         return _otrosAportesAdjudicatarios;
                     case 5:
-                        return -_otrosAportesAdjudicatarios;
+                        return (_otrosAportesAdjudicatarios == 0? 0 : _otrosAportesAdjudicatarios * (-1));
                     case 6:
                         _creditoEstado = Utiles.round(-getPorcCreditoEstado() * _montoInversion, 0);
                         return _creditoEstado;

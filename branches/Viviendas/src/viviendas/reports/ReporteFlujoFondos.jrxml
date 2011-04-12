@@ -39,11 +39,11 @@
 			</band>
 		</background>
 		<title>
-			<band height="241"  isSplitAllowed="true" >
+			<band height="208"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="41"
-						y="14"
+						y="5"
 						width="428"
 						height="24"
 						key="staticText-1"/>
@@ -56,7 +56,7 @@
 				<staticText>
 					<reportElement
 						x="298"
-						y="88"
+						y="68"
 						width="59"
 						height="20"
 						key="staticText-2"/>
@@ -69,7 +69,7 @@
 				<staticText>
 					<reportElement
 						x="298"
-						y="57"
+						y="37"
 						width="59"
 						height="20"
 						key="staticText-3"/>
@@ -82,7 +82,7 @@
 				<staticText>
 					<reportElement
 						x="42"
-						y="88"
+						y="68"
 						width="75"
 						height="20"
 						key="staticText-92"/>
@@ -95,7 +95,7 @@
 				<staticText>
 					<reportElement
 						x="42"
-						y="116"
+						y="96"
 						width="75"
 						height="20"
 						key="staticText-93"/>
@@ -108,7 +108,7 @@
 				<staticText>
 					<reportElement
 						x="42"
-						y="145"
+						y="125"
 						width="75"
 						height="20"
 						key="staticText-94"/>
@@ -121,7 +121,7 @@
 				<staticText>
 					<reportElement
 						x="42"
-						y="57"
+						y="37"
 						width="75"
 						height="20"
 						key="staticText-95"/>
@@ -134,7 +134,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="122"
-						y="57"
+						y="37"
 						width="157"
 						height="20"
 						key="textField-1"/>
@@ -147,7 +147,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="122"
-						y="88"
+						y="68"
 						width="158"
 						height="20"
 						key="textField-2"/>
@@ -160,7 +160,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="122"
-						y="145"
+						y="125"
 						width="157"
 						height="20"
 						key="textField-3"/>
@@ -173,7 +173,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="122"
-						y="116"
+						y="96"
 						width="158"
 						height="20"
 						key="textField-4"/>
@@ -186,7 +186,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="364"
-						y="88"
+						y="68"
 						width="106"
 						height="20"
 						key="textField-5"/>
@@ -199,7 +199,7 @@
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="364"
-						y="57"
+						y="37"
 						width="106"
 						height="20"
 						key="textField-6"/>
@@ -213,7 +213,7 @@
 					<reportElement
 						mode="Opaque"
 						x="41"
-						y="221"
+						y="188"
 						width="230"
 						height="20"
 						backcolor="#CCCCCC"
@@ -228,7 +228,7 @@
 					<reportElement
 						mode="Opaque"
 						x="270"
-						y="221"
+						y="188"
 						width="50"
 						height="20"
 						backcolor="#CCCCCC"
@@ -243,7 +243,7 @@
 					<reportElement
 						mode="Opaque"
 						x="319"
-						y="221"
+						y="188"
 						width="150"
 						height="20"
 						backcolor="#CCCCCC"
@@ -257,7 +257,7 @@
 				<staticText>
 					<reportElement
 						x="41"
-						y="193"
+						y="158"
 						width="428"
 						height="20"
 						key="staticText-154"/>
@@ -278,8 +278,8 @@
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="21"  isSplitAllowed="true" >
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+			<band height="20"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="271"
 						y="0"
@@ -287,12 +287,12 @@
 						height="20"
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{porcentaje}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{porcentaje}.isEmpty()?" ":$F{porcentaje}+" % ")]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="319"
 						y="0"
@@ -300,10 +300,10 @@
 						height="20"
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="Thin" leftBorderColor="#000000" rightBorder="Thin" rightBorderColor="#000000" bottomBorder="Thin" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{valor}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{valor}.isEmpty()?" ": "$"+$F{valor}+" ")]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
