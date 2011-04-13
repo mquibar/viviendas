@@ -11,6 +11,9 @@
 
 package viviendas.gui.reports;
 
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+
 /**
  *
  * @author desarrollo
@@ -20,6 +23,15 @@ public class UIViewerReport extends javax.swing.JInternalFrame {
     /** Creates new form UIViewerReport */
     private UIViewerReport() {
         initComponents();
+        addInternalFrameListener(new InternalFrameAdapter() {
+
+            @Override
+            public void internalFrameClosing(InternalFrameEvent e) {
+                formInternalFrameClosed(e);
+            }
+
+        });
+        setSize(700, 600);
     }
 
     /** This method is called from within the constructor to
@@ -35,17 +47,7 @@ public class UIViewerReport extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
-        );
+        getContentPane().setLayout(null);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -55,7 +57,7 @@ public class UIViewerReport extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private static UIViewerReport instance;
-    public boolean windViewerOpen = false;
+    private boolean windViewerOpen = false;
 
 
     public static UIViewerReport getInstance() {
@@ -66,6 +68,7 @@ public class UIViewerReport extends javax.swing.JInternalFrame {
 
      private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
          windViewerOpen = false;
+         instance=null;
      }
 
     public boolean isWindViewerOpen() {
