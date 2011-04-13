@@ -47,7 +47,6 @@ public class UIViewerReport extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        getContentPane().setLayout(null);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

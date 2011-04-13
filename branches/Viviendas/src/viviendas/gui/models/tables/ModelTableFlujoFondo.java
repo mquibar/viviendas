@@ -66,6 +66,7 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
 
 
     public ModelTableFlujoFondo(Plan plan, DistribucionOperatoria combinatoria) throws BusinessOperationException {
+
         this.plan = plan;
         this.combinatoria = combinatoria;
 
@@ -201,6 +202,10 @@ public class ModelTableFlujoFondo extends javax.swing.table.AbstractTableModel{
         return COLUMNAS.length;
     }
 
+    @Override
+    public String getColumnName(int column) {
+        return COLUMNAS[column];
+    }
 
     ////////////////////////////////////////////////////////////////////////////
     //Gets y Sets.
