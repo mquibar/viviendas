@@ -21,6 +21,7 @@ import net.sf.jasperreports.view.JasperViewer;
 import viviendas.entidades.vivienda.DistribucionOperatoria;
 import viviendas.entidades.vivienda.Plan;
 import viviendas.gui.models.tables.ModelTableFlujoFondo;
+import viviendas.gui.reports.CtrlViewerReport;
 import viviendas.modulos.flujoFondos.GestorFlujoFondos;
 import viviendas.systemException.BusinessOperationException;
 
@@ -64,9 +65,9 @@ public class CtrlFlujoFondo {
         _pantalla.getTbFlujoFondo().getColumnModel().getColumn(0).setMinWidth(230);
         _pantalla.getTbFlujoFondo().getColumnModel().getColumn(0).setPreferredWidth(230);
 
-        _pantalla.getTbFlujoFondo().getColumnModel().getColumn(1).setMaxWidth(50);
-        _pantalla.getTbFlujoFondo().getColumnModel().getColumn(1).setMinWidth(50);
-        _pantalla.getTbFlujoFondo().getColumnModel().getColumn(1).setPreferredWidth(50);
+        _pantalla.getTbFlujoFondo().getColumnModel().getColumn(1).setMaxWidth(80);
+        _pantalla.getTbFlujoFondo().getColumnModel().getColumn(1).setMinWidth(80);
+        _pantalla.getTbFlujoFondo().getColumnModel().getColumn(1).setPreferredWidth(80);
 
         _pantalla.getTbFlujoFondo().getColumnModel().getColumn(2).setMaxWidth(100);
         _pantalla.getTbFlujoFondo().getColumnModel().getColumn(2).setMinWidth(100);
@@ -75,7 +76,8 @@ public class CtrlFlujoFondo {
 
     private void imprimir(){
         JasperPrint jp = _gestor.imprimir(_modelo);
-        JasperViewer.viewReport(jp, false);
+        CtrlViewerReport.getInstance().verReporte(jp, "Flujo de Fondos");
+        //JasperViewer.viewReport(jp, false);
     }
 }
 

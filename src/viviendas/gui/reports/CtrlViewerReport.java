@@ -5,9 +5,10 @@
 
 package viviendas.gui.reports;
 
-import javax.swing.JDesktopPane;
+import java.awt.BorderLayout;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 import viviendas.gui.sistema.CtrlPrincipal;
 
 /**
@@ -34,11 +35,10 @@ public class CtrlViewerReport {
             return;
         }
         JRViewer jrViewer = new JRViewer(jasperPrint);
-        CtrlPrincipal.getInstance().getDesktopPane().add(UIViewerReport.getInstance());
         UIViewerReport.getInstance().setWindViewerOpen(true);
-        UIViewerReport.getInstance().getContentPane().add(jrViewer);
+        UIViewerReport.getInstance().getContentPane().add(jrViewer,BorderLayout.CENTER);
         UIViewerReport.getInstance().setTitle(title);
+        CtrlPrincipal.getInstance().getDesktopPane().add(UIViewerReport.getInstance());
         UIViewerReport.getInstance().setVisible(true);
-        
     }
 }
