@@ -74,6 +74,9 @@ public class ModelTableDetalleDistribucion extends AbstractTableModel<DtoDetalle
         }
         if (columnIndex > 1) {
             Double valor = (Double) aValue;
+            if(valor== null){
+                return;
+            }
             if (valor < 0.0) {
                 return;
             }

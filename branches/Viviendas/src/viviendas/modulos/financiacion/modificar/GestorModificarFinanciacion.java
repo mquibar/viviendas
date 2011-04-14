@@ -107,7 +107,6 @@ public class GestorModificarFinanciacion {
         } else {
             _financiacion = listaFinaciacion.get(0);
             return listaFinaciacion.get(0).getDistribucionesFinanciacion();
-
         }
 
     }
