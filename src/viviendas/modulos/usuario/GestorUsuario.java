@@ -20,7 +20,6 @@ import viviendas.systemException.VerifyDataException;
 public class GestorUsuario {
 
     public GestorUsuario() {
-        
     }
 
     public void validar(DtoUsuario dto) throws Exception {
@@ -34,10 +33,6 @@ public class GestorUsuario {
             throw new Exception("El campo <contraseña> es obligatorio.");
         }
 
-        //encriptarContraseña
-        String contraseña = dto.getContrasenia();
-
-
         List<Usuario> usuarios = buscarUsuarios(dto.getNombreUsuario(), dto.getContrasenia());
         if (usuarios.isEmpty()) {
             throw new Exception("El usuario o contraseña son incorrectos");
@@ -45,6 +40,9 @@ public class GestorUsuario {
     }
 
     public void cambioDeClave(String nombreUsuario, String contraseña, String contraseñaNueva, String reingreso) throws VerifyDataException, PersistException {
+        if (contraseñaNueva.length() < 6) {
+            throw new VerifyDataException("Debe ingresar al menos 6 caracteres");
+        }
         if (!contraseñaNueva.equals(reingreso)) {
             throw new VerifyDataException("Reingrese la nueva contraseña");
         }

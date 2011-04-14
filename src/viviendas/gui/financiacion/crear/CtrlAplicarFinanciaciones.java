@@ -14,7 +14,6 @@ import viviendas.entidades.vivienda.Ciudad;
 import viviendas.entidades.vivienda.Operatoria;
 import viviendas.entidades.vivienda.Provincia;
 import viviendas.entidades.vivienda.SectorEconomico;
-import viviendas.gui.Plan.modificar.IUModificarPlanNew;
 import viviendas.gui.financiacion.modificar.CtrlModificarFinanciacion;
 import viviendas.gui.models.combos.ModelComboAnioPlan;
 import viviendas.gui.models.combos.ModelComboCiudad;
@@ -99,7 +98,8 @@ public class CtrlAplicarFinanciaciones {
     }
 
     private void presionaAceptar() {
-        Integer cantidad = _gestor.getCantidadRegistros(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
+        Integer cantidad = _gestor.getCantidadRegistros(
+                ((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
                 ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
                 ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
                 ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
@@ -107,16 +107,17 @@ public class CtrlAplicarFinanciaciones {
         int rta;
         if (cantidad > 40) {
             rta = JOptionPane.showConfirmDialog(_pantalla, "Se van a modificar " + cantidad + " registros, \nEsta operación puede demorar ¿Desea Continuar?", "", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-        }
-        else{
+        } else {
             rta = JOptionPane.OK_OPTION;
         }
         if (rta == JOptionPane.OK_OPTION) {
-            _gestor.aplicarFinanciacion(((ModelComboAnioPlan) _pantalla.getComAñoPlan().getModel()).getSelected(),
-                    ((ModelComboProvincia) _pantalla.getComProvincia().getModel()).getSelected(),
-                    ((ModelComboCiudad) _pantalla.getComCiudad().getModel()).getSelected(),
-                    ((ModelComboSectorEconomico) _pantalla.getComSector().getModel()).getSelected(),
-                    ((ModelComboOperatoria) _pantalla.getComOperatoria().getModel()).getSelected());
+            int eliminarFinanciaciones;
+            if (_gestor.tieneFinanciaciones()) {
+                eliminarFinanciaciones = JOptionPane.showConfirmDialog(_pantalla, "Existen financiaciones previamente creadas para la combinación seleccionada.\n¿Desea reemplazarlas?", "", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+            }else{
+                eliminarFinanciaciones = JOptionPane.CANCEL_OPTION;
+            }
+            _gestor.aplicarFinanciacion(eliminarFinanciaciones == JOptionPane.OK_OPTION);
             _pantalla.getBtnAceptar().setEnabled(false);
             JOptionPane.showMessageDialog(_pantalla, "Financiaciones creadas", "", JOptionPane.INFORMATION_MESSAGE);
         }

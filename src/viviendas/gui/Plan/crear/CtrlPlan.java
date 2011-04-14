@@ -100,7 +100,7 @@ public class CtrlPlan implements ICalculable {
         Calendar calendar = Calendar.getInstance();
         _pantalla.getSpinAñoInicio().setModel(new javax.swing.SpinnerNumberModel(calendar.get(Calendar.YEAR), 1950, 2110, 1));
         desktop.add(_pantalla);
-
+        _pantalla.toFront();
     }
 
     private void cancelar() {

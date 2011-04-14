@@ -48,7 +48,7 @@ public class CtrlUsuario {
         String reingreso = new String(_pantalla.getTxtReingreseContrasenia().getPassword());
         try {
             _gestor.cambioDeClave(usuario, contraseña, contraseñaNueva, reingreso);
-            JOptionPane.showMessageDialog(_pantalla, "Se ha cambiado la constrañse correctamente", "", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(_pantalla, "Se ha cambiado la constraseña correctamente", "", JOptionPane.INFORMATION_MESSAGE);
             cerrar();
         } catch (VerifyDataException ex) {
             JOptionPane.showMessageDialog(_pantalla, ex.getDato(), "", JOptionPane.ERROR_MESSAGE);
@@ -59,5 +59,7 @@ public class CtrlUsuario {
 
     private void cerrar(){
         _pantalla.dispose();
-    }
+        _pantalla.dispose();
+        CtrlPrincipal.getInstance().getDesktopPane().remove(_pantalla);
+}
 }

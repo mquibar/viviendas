@@ -23,9 +23,11 @@ public class GestorCrearFinanciacion {
 
     private Plan _plan;
     private final Financiacion _financiacion;
+    private List<DistribucionOperatoria> _listaDistribucionOperatoria;
 
     public GestorCrearFinanciacion(Financiacion financiacion) {
         _financiacion = financiacion;
+        _listaDistribucionOperatoria = new ArrayList<DistribucionOperatoria>();
     }
 
     public void setPlan(Plan selected) {
@@ -89,19 +91,23 @@ public class GestorCrearFinanciacion {
         return Facade.getInstance().findAll(Plan.class);
     }
 
-    public void aplicarFinanciacion(AnioPlan anio, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
+    public void aplicarFinanciacion(Boolean eliminarFinanciacion) {
         try {
             Facade.getInstance().beginTx();
-            List<DistribucionOperatoria> listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_plan, null, provincia, ciudad, sector, operatoria);
-            for (DistribucionOperatoria distribucionOperatoria : listaDistribucionOperatoria) {
+            for (DistribucionOperatoria distribucionOperatoria : _listaDistribucionOperatoria) {
                 if (distribucionOperatoria.getFinanciacion() != null) {
-                    Facade.getInstance().eliminar(distribucionOperatoria.getFinanciacion());
+                    if (eliminarFinanciacion) {
+                        Facade.getInstance().eliminar(distribucionOperatoria.getFinanciacion());
+                    } else {
+                        continue;
+                    }
                 }
                 Financiacion financiacion = new Financiacion(_financiacion);
                 financiacion.setDistribucionOperatoria(distribucionOperatoria);
                 distribucionOperatoria.setFinanciacion(financiacion);
                 financiacion.setNombre(GestorModificarFinanciacion.getNombreCompletoCombinacion(distribucionOperatoria));
                 Facade.getInstance().guardar(financiacion);
+
             }
             Facade.getInstance().commitTx();
         } catch (PersistException ex) {
@@ -110,10 +116,23 @@ public class GestorCrearFinanciacion {
     }
 
     public int getCantidadRegistros(AnioPlan anio, Provincia provincia, Ciudad ciudad, SectorEconomico sector, Operatoria operatoria) {
-        return GestorParametro.obtenerDistribucionOperatoria(_plan, anio, provincia, ciudad, sector, operatoria).size();
+        _listaDistribucionOperatoria = GestorParametro.obtenerDistribucionOperatoria(_plan, anio, provincia, ciudad, sector, operatoria);
+        return _listaDistribucionOperatoria.size();
     }
 
     public Financiacion getFinanciacion() {
         return _financiacion;
+    }
+
+    public boolean tieneFinanciaciones() {
+        if (_listaDistribucionOperatoria == null || _listaDistribucionOperatoria.isEmpty()) {
+            return false;
+        }
+        for (DistribucionOperatoria distribucionOperatoria : _listaDistribucionOperatoria) {
+            if (distribucionOperatoria.getFinanciacion() != null) {
+                return true;
+            }
+        }
+        return false;
     }
 }
