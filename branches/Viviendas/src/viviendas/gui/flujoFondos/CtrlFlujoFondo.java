@@ -77,7 +77,6 @@ public class CtrlFlujoFondo {
     private void imprimir(){
         JasperPrint jp = _gestor.imprimir(_modelo);
         CtrlViewerReport.getInstance().verReporte(jp, "Flujo de Fondos");
-        //JasperViewer.viewReport(jp, false);
     }
 }
 
